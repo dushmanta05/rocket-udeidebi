@@ -1,146 +1,72 @@
-import { useState } from 'react'
-
 interface PenguinArtProps {
   size?: number | string
   className?: string
-  hasEgg?: boolean
   chefHat?: boolean
   groomTie?: boolean
-  bodyColor?: string
-  flipperColor?: string
-  pngSrc?: string
+  muted?: boolean
 }
 
 export function PenguinArt({
   size = 180,
   className = '',
-  hasEgg = false,
   chefHat = false,
   groomTie = false,
-  bodyColor,
-  flipperColor,
-  pngSrc = './images/penguin.png'
+  muted = false
 }: PenguinArtProps) {
-  const [pngError, setPngError] = useState(false)
-
-  const resolvedBody = bodyColor || (groomTie ? 'var(--color-penguin-groom-body, #1e293b)' : 'var(--color-penguin-body, #a78bfa)')
-  const resolvedFlipper = flipperColor || (groomTie ? 'var(--color-penguin-groom-dark, #0f172a)' : 'var(--color-penguin-body-dark, #8b5cf6)')
-
-  if (pngSrc && !pngError && !groomTie && !chefHat && !hasEgg) {
-    return (
-      <img
-        src={pngSrc}
-        alt="Penguin"
-        width={size}
-        height={size}
-        className={`penguin-png-art ${className}`}
-        style={{ objectFit: 'contain', display: 'block' }}
-        onError={() => setPngError(true)}
-      />
-    )
-  }
+  const body = muted ? '#5b6b8c' : groomTie ? 'var(--pengu-groom)' : 'var(--pengu-body)'
+  const bodyDark = muted ? '#4a5875' : groomTie ? 'var(--pengu-groom-dark)' : 'var(--pengu-body-dark)'
 
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 220 220"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 200 220"
       className={className}
+      style={{ overflow: 'visible', display: 'block' }}
+      aria-hidden="true"
     >
-      <defs>
-        <radialGradient id="bodyGrad" cx="35%" cy="30%" r="75%">
-          <stop offset="0%" stopColor="#c4b5fd" />
-          <stop offset="40%" stopColor={resolvedBody} />
-          <stop offset="100%" stopColor={resolvedFlipper} />
-        </radialGradient>
-        <linearGradient id="bellyGrad" x1="50%" y1="0%" x2="50%" y2="100%">
-          <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="100%" stopColor="#f3e8ff" />
-        </linearGradient>
-        <linearGradient id="beakGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#fb923c" />
-          <stop offset="100%" stopColor="#ea580c" />
-        </linearGradient>
-        <radialGradient id="cheekGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#f472b6" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#f472b6" stopOpacity="0" />
-        </radialGradient>
-      </defs>
+      <ellipse cx="100" cy="212" rx="58" ry="7" fill="rgba(0,0,0,0.25)" />
+      <ellipse cx="74" cy="203" rx="20" ry="9" fill="#f6a04d" />
+      <ellipse cx="126" cy="203" rx="20" ry="9" fill="#f6a04d" />
 
-      <ellipse cx="110" cy="208" rx="55" ry="8" fill="#000000" opacity="0.12" />
-
-      <g id="feet">
-        <path
-          d="M 68 184 C 54 184 46 195 52 201 C 58 207 84 204 88 194 C 90 188 82 184 68 184 Z"
-          fill="url(#beakGrad)"
-        />
-        <path
-          d="M 152 184 C 166 184 174 195 168 201 C 162 207 136 204 132 194 C 130 188 138 184 152 184 Z"
-          fill="url(#beakGrad)"
-        />
-      </g>
+      <path d="M40 120 Q16 140 26 170 Q44 160 52 138 Z" fill={bodyDark} />
+      <path d="M160 120 Q184 140 174 170 Q156 160 148 138 Z" fill={bodyDark} />
 
       <path
-        d="M 52 125 C 26 128 22 152 38 168 C 50 180 62 165 58 144 Z"
-        fill={resolvedFlipper}
+        d="M100 28 C150 28 168 74 168 122 C168 172 140 202 100 202 C60 202 32 172 32 122 C32 74 50 28 100 28 Z"
+        fill={body}
       />
       <path
-        d="M 168 125 C 194 128 198 152 182 168 C 170 180 158 165 162 144 Z"
-        fill={resolvedFlipper}
+        d="M100 70 C134 70 146 98 146 128 C146 164 126 190 100 190 C74 190 54 164 54 128 C54 98 66 70 100 70 Z"
+        fill="#ffffff"
       />
-
-      <ellipse cx="110" cy="120" rx="66" ry="76" fill="url(#bodyGrad)" />
-
       <path
-        d="M 110 70 C 80 70 68 100 68 135 C 68 170 85 186 110 186 C 135 186 152 170 152 135 C 152 100 140 70 110 70 Z"
-        fill="url(#bellyGrad)"
+        d="M58 92 C62 64 82 52 100 52 C118 52 138 64 142 92 C130 80 116 76 100 76 C84 76 70 80 58 92 Z"
+        fill={body}
       />
 
-      <ellipse cx="78" cy="128" rx="14" ry="9" fill="url(#cheekGlow)" />
-      <ellipse cx="142" cy="128" rx="14" ry="9" fill="url(#cheekGlow)" />
-
-      <g id="left-eye">
-        <ellipse cx="88" cy="108" rx="9" ry="12" fill="#0f172a" />
-        <ellipse cx="86" cy="104" rx="4" ry="5.5" fill="#ffffff" />
-        <circle cx="91" cy="112" r="2" fill="#ffffff" />
-      </g>
-
-      <g id="right-eye">
-        <ellipse cx="132" cy="108" rx="9" ry="12" fill="#0f172a" />
-        <ellipse cx="130" cy="104" rx="4" ry="5.5" fill="#ffffff" />
-        <circle cx="135" cy="112" r="2" fill="#ffffff" />
-      </g>
-
-      <path
-        d="M 98 116 C 98 116 110 113 122 116 C 124 125 116 136 110 136 C 104 136 96 125 98 116 Z"
-        fill="url(#beakGrad)"
-      />
-      <ellipse cx="110" cy="118" rx="6" ry="2" fill="#ffffff" opacity="0.45" />
+      <circle cx="80" cy="104" r="7" fill="#1b1f33" />
+      <circle cx="120" cy="104" r="7" fill="#1b1f33" />
+      <circle cx="82.5" cy="101.5" r="2.4" fill="#ffffff" />
+      <circle cx="122.5" cy="101.5" r="2.4" fill="#ffffff" />
+      <ellipse cx="68" cy="120" rx="9" ry="5" fill="#ffb3c7" opacity="0.8" />
+      <ellipse cx="132" cy="120" rx="9" ry="5" fill="#ffb3c7" opacity="0.8" />
+      <path d="M92 114 Q100 108 108 114 Q100 124 92 114 Z" fill="#f6a04d" />
 
       {groomTie && (
-        <g id="groom-bowtie" transform="translate(110, 142)">
-          <polygon points="-16,-8 -16,8 0,0" fill="#dc2626" />
-          <polygon points="16,-8 16,8 0,0" fill="#dc2626" />
-          <circle cx="0" cy="0" r="4.5" fill="#991b1b" />
+        <g>
+          <path d="M100 150 L80 140 L80 162 Z" fill="#e2445c" />
+          <path d="M100 150 L120 140 L120 162 Z" fill="#e2445c" />
+          <circle cx="100" cy="151" r="5" fill="#b52a40" />
         </g>
       )}
 
       {chefHat && (
-        <g id="chef-hat" transform="translate(110, 50)">
-          <ellipse cx="0" cy="-6" rx="38" ry="16" fill="#ffffff" stroke="#cbd5e1" strokeWidth="2" />
-          <circle cx="-22" cy="-16" r="16" fill="#ffffff" />
-          <circle cx="0" cy="-24" r="20" fill="#ffffff" />
-          <circle cx="22" cy="-16" r="16" fill="#ffffff" />
-          <rect x="-26" y="-6" width="52" height="14" fill="#ffffff" rx="4" stroke="#cbd5e1" strokeWidth="1.5" />
-        </g>
-      )}
-
-      {hasEgg && (
-        <g id="cracked-egg" transform="translate(110, 185)">
-          <ellipse cx="0" cy="0" rx="26" ry="32" fill="#fef08a" stroke="#ca8a04" strokeWidth="2.5" />
-          <path d="M -12 -10 L -4 0 L 6 -8 L 14 2" stroke="#b45309" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+        <g>
+          <rect x="66" y="22" width="68" height="16" rx="4" fill="#ffffff" stroke="#dfe3f0" />
+          <circle cx="78" cy="14" r="14" fill="#ffffff" />
+          <circle cx="100" cy="6" r="17" fill="#ffffff" />
+          <circle cx="122" cy="14" r="14" fill="#ffffff" />
         </g>
       )}
     </svg>
