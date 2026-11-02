@@ -20,9 +20,9 @@ export function CloudKitchen() {
   return (
     <div className="section-container menu-section">
       <div className="section-header">
-        <span className="chapter-badge">Culinary Philanthropy</span>
-        <h2 className="section-heading">Penguin & Hippo Cloud Kitchen</h2>
-        <p className="section-subtext">Click any dish to print your complimentary VIP ticket</p>
+        <span className="chapter-badge gold-badge">🍳 5-Star Philanthropic Bistro 🍳</span>
+        <h2 className="section-heading kitchen-heading">Penguin & Hippo Cloud Kitchen</h2>
+        <p className="section-subtext kitchen-subtext">Click any delicacy to print your VIP token</p>
       </div>
 
       <div className="kitchen-stage-row">
@@ -38,31 +38,33 @@ export function CloudKitchen() {
         </div>
 
         <motion.div
-          initial={{ y: -40, opacity: 0 }}
+          initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="menu-board-card"
+          transition={{ duration: 0.4 }}
+          className="chalkboard-menu-card"
         >
-          <div className="menu-dishes-list">
-            {MENU_ITEMS.map((dish) => (
-              <motion.div
-                key={dish.id}
-                whileHover={{ scale: 1.02, backgroundColor: '#fef3c7' }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handleOrder(dish)}
-                className="menu-dish-item"
-              >
-                <div className="dish-main-info">
-                  <span className="dish-name">{dish.name}</span>
-                  <span className="dish-desc">{dish.description}</span>
-                </div>
-                <div className="dish-price-badge">{dish.price}</div>
-              </motion.div>
-            ))}
-          </div>
+          <div className="chalkboard-frame-inner">
+            <div className="menu-dishes-list">
+              {MENU_ITEMS.map((dish) => (
+                <motion.div
+                  key={dish.id}
+                  whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => handleOrder(dish)}
+                  className="chalk-dish-item"
+                >
+                  <div className="dish-main-info">
+                    <span className="dish-name">{dish.name}</span>
+                    <span className="dish-desc">{dish.description}</span>
+                  </div>
+                  <div className="chalk-price-badge">{dish.price}</div>
+                </motion.div>
+              ))}
+            </div>
 
-          <div className="menu-footer-tag">
-            Delivery: Free • Payment: Not Accepted • Owner: Cannot Say No
+            <div className="chalkboard-footer-tag">
+              DELIVERY: FREE • PAYMENT: REJECTED • OWNER: CANNOT SAY NO
+            </div>
           </div>
         </motion.div>
       </div>
@@ -71,15 +73,15 @@ export function CloudKitchen() {
         {activeSlip && (
           <motion.div
             initial={{ y: 80, opacity: 0, rotate: -3 }}
-            animate={{ y: 0, opacity: 1, rotate: 2 }}
+            animate={{ y: 0, opacity: 1, rotate: 1.5 }}
             exit={{ y: 80, opacity: 0 }}
             className="receipt-slip-banner"
           >
             <div className="slip-content">
-              <span>🧾 ORDER PLACED: <strong>{activeSlip.name}</strong></span>
-              <span className="slip-cost">Total Billed: ₹0.00 (Charged to Big Heart)</span>
+              <span>🧾 TOKEN DISPENSED: <strong>{activeSlip.name}</strong></span>
+              <span className="slip-cost">Total Billed: ₹0.00 (Settled by Generous Heart)</span>
             </div>
-            <button className="slip-close-btn" onClick={() => setActiveSlip(null)}>✓ Collected</button>
+            <button className="slip-close-btn" onClick={() => setActiveSlip(null)}>✓ Grab Slip</button>
           </motion.div>
         )}
       </AnimatePresence>

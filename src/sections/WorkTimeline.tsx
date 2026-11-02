@@ -76,26 +76,27 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext }: WorkTimelin
         <AnimatePresence mode="wait">
           <motion.div
             key={activeStop.id}
-            initial={{ opacity: 0, x: 50, scale: 0.92 }}
+            initial={{ opacity: 0, x: 45, scale: 0.94 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -50, scale: 0.92 }}
+            exit={{ opacity: 0, x: -45, scale: 0.94 }}
             transition={{ duration: 0.28 }}
-            className="stop-card work-card"
+            className="comic-milestone-card"
           >
-            <div className="stop-photo-box">
+            <div className="speed-burst-badge">MILESTONE {currentStep + 1}</div>
+            <div className="comic-photo-col">
               <Placeholder
                 label={`PHOTO: ${activeStop.title}`}
                 src={activeStop.src}
-                width={320}
+                width={300}
                 aspectRatio="4 / 3"
-                tilt={currentStep % 2 === 0 ? 4 : -4}
+                tilt={currentStep % 2 === 0 ? 3 : -3}
               />
             </div>
 
-            <div className="stop-content">
-              <span className="stop-year work-year">{activeStop.year}</span>
-              <h3 className="stop-title">{activeStop.title}</h3>
-              <p className="stop-caption">{activeStop.caption}</p>
+            <div className="comic-content-col">
+              <span className="comic-year-tag">{activeStop.year}</span>
+              <h3 className="comic-title">{activeStop.title}</h3>
+              <p className="comic-caption">"{activeStop.caption}"</p>
             </div>
           </motion.div>
         </AnimatePresence>

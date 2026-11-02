@@ -69,4 +69,6 @@ Every agent must update this document upon completing a task or before ending a 
 - Redesigned Penguin with kawaii aesthetics, specular catchlights, blush cheeks, and support for transparent PNG overrides (`public/images/penguin.png`).
 - Created `PenguinRocketArt` featuring Arpita Penguin riding her rocket with fluttering scarf and exhaust flames; supports `public/images/penguin-rocket.png` PNG override.
 - Upgraded bottom progress bar (`ProgressRocket`) into a frosted glass slider dock where the penguin rocket glides across milestones.
+- Selected `Outfit` (display) and `Plus Jakarta Sans` (body) for modern party typography with `Caveat` for polaroid handwriting.
+- Eliminated generic repetitive white cards in favor of 13 immersive slide atmospheres (cosmic welcome stage, arctic birth floe, scrapbook road trip, neon speedway, dark studio gallery, black-tie awards gala with spotlights, anime bag realm, moody loft tubelight, royal deed parchment, pop-art duel, chalkboard bistro, mystic nebula oracle, and cinematic space launch).
 - Tested and verified production build with `pnpm build`.

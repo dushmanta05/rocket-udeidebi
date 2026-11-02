@@ -42,9 +42,9 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: SayNoProps) {
   return (
     <div className="section-container say-no-section">
       <div className="section-header">
-        <span className="chapter-badge">Psychological Resistance Test</span>
+        <span className="chapter-badge">🚫 Reflex Challenge 🚫</span>
         <h2 className="section-heading">Mission: Say "No" (Impossible)</h2>
-        <p className="section-subtext">Witnessing Arpita attempt to reject a human request</p>
+        <p className="section-subtext">Scientific test: Can Arpita physically decline a request?</p>
       </div>
 
       <div className="say-no-stage">
@@ -52,12 +52,13 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: SayNoProps) {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentRequest.id}
-              initial={{ scale: 0.8, opacity: 0, y: 40 }}
+              initial={{ scale: 0.85, opacity: 0, y: 35 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: -40 }}
-              className="request-card"
+              exit={{ scale: 0.85, opacity: 0, y: -35 }}
+              className="pop-challenge-card"
             >
-              <span className="request-step-badge">Request {currentRequest.id} of 5</span>
+              <div className="challenge-bubble-tail" />
+              <span className="request-step-badge">CHALLENGE {currentRequest.id} OF 5</span>
               <h3 className="request-question">"{currentRequest.question}"</h3>
               <p className="request-subtext">{currentRequest.subtext}</p>
 
@@ -95,7 +96,7 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: SayNoProps) {
           >
             <Stamp
               text="VERDICT: CANNOT SAY NO"
-              subtext="ALL 5 REQUESTS ACCEPTED • JAFATMATA STATE PERMANENT"
+              subtext="ALL 5 REQUESTS ACCEPTED • JAGATMATA STATUS PERMANENT"
               color="#ea580c"
             />
           </motion.div>

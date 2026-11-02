@@ -23,8 +23,9 @@ export function Tubelight({ currentStep, setTotalSteps, onNext }: TubelightProps
       onClick={onNext}
     >
       <div className="section-header">
-        <span className="chapter-badge">High-Voltage Mystery</span>
-        <h2 className="section-heading">The Tubelight Moment</h2>
+        <span className="chapter-badge gold-badge">⚡ Voltage Laboratory ⚡</span>
+        <h2 className="section-heading tubelight-heading">The Tubelight Moment</h2>
+        <p className="section-subtext tubelight-subtext">Tracking the neural propagation of a punchline</p>
       </div>
 
       <div className="tubelight-fixture-area">
@@ -35,11 +36,11 @@ export function Tubelight({ currentStep, setTotalSteps, onNext }: TubelightProps
         <AnimatePresence mode="wait">
           <motion.div
             key={activeStep.step}
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className={`tubelight-card step-${activeStep.step}`}
+            transition={{ duration: 0.25 }}
+            className={`tubelight-dialog-bubble step-${activeStep.step}`}
           >
             <div className="buffering-indicator">
               <span className="buffer-bar" style={{ width: `${(activeStep.step / 5) * 100}%` }} />
@@ -49,7 +50,7 @@ export function Tubelight({ currentStep, setTotalSteps, onNext }: TubelightProps
         </AnimatePresence>
       </div>
 
-      <div className="step-indicator-bar">
+      <div className="step-indicator-bar tubelight-step-bar">
         Phase {activeIndex + 1} of 5 • Click to advance comprehension stream →
       </div>
     </div>

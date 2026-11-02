@@ -17,6 +17,22 @@ import { CloudKitchen } from './sections/CloudKitchen'
 import { Predictions } from './sections/Predictions'
 import { WishesFinale } from './sections/WishesFinale'
 
+const SECTION_THEMES = [
+  'theme-welcome',
+  'theme-birth',
+  'theme-family',
+  'theme-work',
+  'theme-polaroids',
+  'theme-awards',
+  'theme-bag',
+  'theme-tubelight',
+  'theme-terms',
+  'theme-sayno',
+  'theme-kitchen',
+  'theme-predictions',
+  'theme-finale'
+]
+
 export default function App() {
   const { isMuted, toggleMute, startBgMusic } = useSound()
   const {
@@ -71,7 +87,7 @@ export default function App() {
   }
 
   return (
-    <div className="app-container">
+    <div className={`app-container ${SECTION_THEMES[currentSection]}`}>
       <div className="floating-top-controls">
         <button
           className="control-icon-btn"

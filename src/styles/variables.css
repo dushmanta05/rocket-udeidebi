@@ -1,7 +1,7 @@
 :root {
-  --font-family-base: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-display: 'Fredoka', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-family-handwriting: 'Caveat', cursive, system-ui, sans-serif;
+  --font-family-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-handwriting: 'Caveat', cursive, sans-serif;
 
   --color-bg-light: #fef6ec;
   --color-bg-dark: #0b0f19;

@@ -31,7 +31,7 @@ export function BagReveal({ currentStep, setTotalSteps, onNext }: BagRevealProps
       <div className="section-header">
         <span className="chapter-badge">Inspection Protocol</span>
         <h2 className="section-heading">Arpita's Doraemon Pocket</h2>
-        <p className="section-subtext">Tap the bag to extract an emergency survival artifact</p>
+        <p className="section-subtext">Tap the 4D bag to extract emergency survival artifacts</p>
       </div>
 
       <div className="bag-stage">
@@ -60,7 +60,7 @@ export function BagReveal({ currentStep, setTotalSteps, onNext }: BagRevealProps
       </div>
 
       <div className="bag-inventory-tray">
-        <span className="tray-counter">Extracted: {itemIndex + 1} / {BAG_ITEMS.length}</span>
+        <span className="tray-counter">ARTIFACTS EXTRACTED: {itemIndex + 1} / {BAG_ITEMS.length}</span>
         <div className="tray-icons">
           {BAG_ITEMS.slice(0, itemIndex + 1).map((item) => (
             <span key={item.id} className="tray-badge" title={item.name}>

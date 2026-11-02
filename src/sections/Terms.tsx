@@ -27,8 +27,8 @@ export function Terms({ onNext }: TermsProps) {
   const handleAccept = () => {
     setIsAgreed(true)
     confetti({
-      particleCount: 60,
-      spread: 90,
+      particleCount: 65,
+      spread: 95,
       origin: { y: 0.6 }
     })
     setTimeout(() => {
@@ -39,14 +39,17 @@ export function Terms({ onNext }: TermsProps) {
   return (
     <div className="section-container terms-section">
       <div className="section-header">
-        <span className="chapter-badge">Legal Enforcement</span>
+        <span className="chapter-badge">⚖️ Supreme Bachelorette Tribunal ⚖️</span>
         <h2 className="section-heading">Bride's Terms & Conditions</h2>
-        <p className="section-subtext">Approved by the Council of Work Friends & Cousins</p>
+        <p className="section-subtext">Legally binding clauses drafted by Friends, Siblings & Cousins</p>
       </div>
 
-      <div className="terms-contract-card">
-        <div className="contract-header">OFFICIAL BACHELORETTE CLAUSES (2026 EDITION)</div>
-        <div className="contract-scrollable-body">
+      <div className="parchment-deed-card">
+        <div className="parchment-top-bar">
+          <span className="parchment-ribbon">OFFICIAL COVENANT</span>
+        </div>
+
+        <div className="parchment-scrollable-body">
           {TERMS_DATA.map((term) => (
             <div key={term.id} className="contract-rule-row">
               <span className="rule-number">Clause {term.id}.</span>
@@ -76,7 +79,7 @@ export function Terms({ onNext }: TermsProps) {
             onClick={handleEvade}
             className="disagree-runaway-btn"
           >
-            {evadeCount >= 5 ? 'Fine, I Agree!' : 'Disagree'}
+            {evadeCount >= 5 ? 'Fine, I Surrender & Agree!' : 'Disagree'}
           </motion.button>
         </div>
       </div>

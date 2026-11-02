@@ -9,6 +9,8 @@ interface PolaroidsProps {
   onNext: () => void
 }
 
+const TAPE_COLORS = ['#f472b6', '#38bdf8', '#facc15', '#a78bfa']
+
 export function Polaroids({ currentStep, setTotalSteps }: PolaroidsProps) {
   const [selectedItem, setSelectedItem] = useState<PolaroidItem | null>(null)
   const activePage = (currentStep + 1) as 1 | 2 | 3
@@ -23,20 +25,20 @@ export function Polaroids({ currentStep, setTotalSteps }: PolaroidsProps) {
   return (
     <div className="section-container polaroids-section">
       <div className="section-header">
-        <span className="chapter-badge">Exhibit {activePage} of 3</span>
+        <span className="chapter-badge purple-badge">Exhibit {activePage} of 3</span>
         <h2 className="section-heading">{currentTheme}</h2>
         <p className="section-subtext">Click any polaroid to inspect the candid evidence</p>
       </div>
 
       <motion.div
         key={activePage}
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.92 }}
         animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 1.1 }}
-        transition={{ duration: 0.4 }}
+        exit={{ opacity: 0, scale: 1.08 }}
+        transition={{ duration: 0.35 }}
         className="polaroid-grid"
       >
-        {pageItems.map((item) => (
+        {pageItems.map((item, idx) => (
           <motion.div
             key={item.id}
             whileHover={{ scale: 1.08, zIndex: 10, rotate: 0 }}
@@ -45,6 +47,10 @@ export function Polaroids({ currentStep, setTotalSteps }: PolaroidsProps) {
             className="polaroid-frame"
             onClick={() => setSelectedItem(item)}
           >
+            <div
+              className="polaroid-tape"
+              style={{ backgroundColor: TAPE_COLORS[idx % TAPE_COLORS.length] }}
+            />
             <div className="polaroid-photo">
               <Placeholder
                 label={item.label}
@@ -67,9 +73,9 @@ export function Polaroids({ currentStep, setTotalSteps }: PolaroidsProps) {
             onClick={() => setSelectedItem(null)}
           >
             <motion.div
-              initial={{ scale: 0.5, rotate: -8 }}
+              initial={{ scale: 0.6, rotate: -6 }}
               animate={{ scale: 1, rotate: 0 }}
-              exit={{ scale: 0.5, rotate: 8 }}
+              exit={{ scale: 0.6, rotate: 6 }}
               transition={{ type: 'spring', damping: 18 }}
               className="polaroid-modal-card"
               onClick={(e) => e.stopPropagation()}
@@ -78,7 +84,7 @@ export function Polaroids({ currentStep, setTotalSteps }: PolaroidsProps) {
                 <Placeholder
                   label={selectedItem.label}
                   src={selectedItem.src}
-                  width={420}
+                  width={380}
                   aspectRatio="1"
                 />
               </div>

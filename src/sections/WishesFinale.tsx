@@ -40,14 +40,14 @@ export function WishesFinale({ currentStep, setTotalSteps, onNext }: WishesFinal
             className="wishes-reel-stage"
           >
             <div className="section-header">
-              <span className="chapter-badge gold-badge">Warm Hearts & Roasted Souls</span>
-              <h2 className="section-heading">Messages from the Crew</h2>
-              <p className="section-subtext">Wishes and advice for the newly minted astronauts</p>
+              <span className="chapter-badge gold-badge">💌 Cosmic Broadcast 💌</span>
+              <h2 className="section-heading finale-stars-heading">Messages from the Crew</h2>
+              <p className="section-subtext finale-subtext">Wishes and heartfelt roasts before ignition</p>
             </div>
 
             <div className="wishes-cards-grid">
               {WISHES_DATA.map((wish) => (
-                <div key={wish.id} className="wish-card">
+                <div key={wish.id} className="stellar-wish-card">
                   <span className="wish-quote-icon">“</span>
                   <p className="wish-body">{wish.text}</p>
                   <span className="wish-author">— {wish.author}</span>
@@ -55,7 +55,7 @@ export function WishesFinale({ currentStep, setTotalSteps, onNext }: WishesFinal
               ))}
             </div>
 
-            <div className="scene-prompt">Click or press Space to proceed to the Launch Pad 🚀</div>
+            <div className="scene-prompt finale-prompt">Click or press Space to proceed to the Launch Pad 🚀</div>
           </motion.div>
         )}
 
@@ -74,7 +74,7 @@ export function WishesFinale({ currentStep, setTotalSteps, onNext }: WishesFinal
                 <div className="speech-bubble groom-bubble">Pranjal is waiting on the pad! 🤵</div>
               </div>
             </div>
-            <div className="scene-prompt">Click to initiate countdown ⏱️</div>
+            <div className="scene-prompt finale-prompt">Click to initiate countdown ⏱️</div>
           </motion.div>
         )}
 
@@ -106,7 +106,7 @@ export function WishesFinale({ currentStep, setTotalSteps, onNext }: WishesFinal
                 <PenguinArt size={170} groomTie={true} />
               </div>
             </div>
-            <div className="scene-prompt">Click to board the rocket 🚀</div>
+            <div className="scene-prompt finale-prompt">Click to board the rocket 🚀</div>
           </motion.div>
         )}
 

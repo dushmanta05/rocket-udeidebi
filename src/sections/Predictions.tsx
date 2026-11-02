@@ -28,14 +28,14 @@ export function Predictions({ currentStep, setTotalSteps, onNext }: PredictionsP
   return (
     <div className="section-container predictions-section" onClick={handleTap}>
       <div className="section-header">
-        <span className="chapter-badge purple-badge">Astral Forecast</span>
-        <h2 className="section-heading">Arpita's Married Life: Predicted</h2>
-        <p className="section-subtext">Tap the crystal orb to consult the mystic foresight</p>
+        <span className="chapter-badge purple-badge">🔮 Astral Oracle Chamber 🔮</span>
+        <h2 className="section-heading mystic-heading">Arpita's Married Life: Predicted</h2>
+        <p className="section-subtext mystic-subtext">Tap the crystal orb to consult the mystic foresight</p>
       </div>
 
       <div className="predictions-stage">
         <motion.div
-          animate={swirling ? { scale: [1, 1.15, 1], filter: ['drop-shadow(0 0 10px #c084fc)', 'drop-shadow(0 0 25px #c084fc)', 'drop-shadow(0 0 10px #c084fc)'] } : {}}
+          animate={swirling ? { scale: [1, 1.15, 1], filter: ['drop-shadow(0 0 10px #c084fc)', 'drop-shadow(0 0 35px #a855f7)', 'drop-shadow(0 0 10px #c084fc)'] } : {}}
           className="crystal-ball-wrap"
         >
           <CrystalBallArt size={220} isSwirling={swirling} />
@@ -48,17 +48,19 @@ export function Predictions({ currentStep, setTotalSteps, onNext }: PredictionsP
             animate={{ rotateY: 0, scale: 1, opacity: 1 }}
             exit={{ rotateY: -90, scale: 0.7, opacity: 0 }}
             transition={{ type: 'spring', damping: 14 }}
-            className="prediction-card"
+            className="tarot-destiny-card"
           >
-            <div className="prediction-symbol">🔮</div>
-            <p className="prediction-text">"{currentPrediction.text}"</p>
-            <div className="prediction-author">— {currentPrediction.author}</div>
+            <div className="tarot-inner-border">
+              <div className="tarot-symbol">✨ 🔮 ✨</div>
+              <p className="tarot-prophecy">"{currentPrediction.text}"</p>
+              <div className="tarot-author">— FORESEEN BY: {currentPrediction.author.toUpperCase()}</div>
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="step-indicator-bar">
-        Vision {activeIndex + 1} of {PREDICTIONS_DATA.length} • Click to peer further into destiny →
+      <div className="step-indicator-bar mystic-step-bar">
+        Vision {activeIndex + 1} of {PREDICTIONS_DATA.length} • Tap the orb to peer further into destiny →
       </div>
     </div>
   )

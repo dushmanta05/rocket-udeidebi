@@ -26,22 +26,23 @@ export function PenguinBirth({ currentStep, setTotalSteps, onNext }: PenguinBirt
             className="birth-colony-stage"
           >
             <div className="colony-backdrop">
+              <div className="colony-ice-ridge" />
               <div className="mini-penguin-group">
+                <PenguinArt size={85} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" pngSrc="" />
+                <PenguinArt size={100} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" pngSrc="" />
                 <PenguinArt size={80} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" pngSrc="" />
                 <PenguinArt size={95} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" pngSrc="" />
-                <PenguinArt size={75} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" pngSrc="" />
-                <PenguinArt size={90} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" pngSrc="" />
               </div>
             </div>
 
             <motion.div
-              initial={{ x: -100 }}
-              animate={{ x: 80 }}
-              transition={{ duration: 2.2, ease: 'easeInOut' }}
-              className="lonely-penguin"
+              initial={{ x: -120 }}
+              animate={{ x: 60 }}
+              transition={{ duration: 2, ease: 'easeInOut' }}
+              className="lonely-penguin-wrap"
             >
-              <PenguinArt size={160} />
-              <div className="speech-bubble">Wait, I walk different... 🐧</div>
+              <PenguinArt size={175} />
+              <div className="speech-bubble">Wait, where is everyone going? 🐧</div>
             </motion.div>
 
             <div className="scene-prompt">Click or press Space to follow the lonely penguin →</div>
@@ -51,23 +52,23 @@ export function PenguinBirth({ currentStep, setTotalSteps, onNext }: PenguinBirt
         {currentStep === 1 && (
           <motion.div
             key="egg-crack"
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ opacity: 0 }}
             className="birth-egg-stage"
           >
             <motion.div
               animate={{
-                rotate: [-6, 6, -8, 8, -4, 4, 0],
-                scale: [1, 1.05, 1.1, 1.15, 1]
+                rotate: [-6, 6, -10, 10, -5, 5, 0],
+                scale: [1, 1.06, 1.12, 1.18, 1]
               }}
-              transition={{ duration: 1.2, repeat: Infinity }}
+              transition={{ duration: 1.1, repeat: Infinity }}
               className="wobbling-egg-wrap"
             >
-              <PenguinArt size={200} hasEgg={true} />
+              <PenguinArt size={220} hasEgg={true} />
             </motion.div>
             <h2 className="birth-egg-title">CRACK... CRACK...</h2>
-            <p className="birth-egg-subtitle">Something iconic is about to hatch!</p>
+            <p className="birth-egg-subtitle">The legend is about to emerge!</p>
           </motion.div>
         )}
 
@@ -81,28 +82,29 @@ export function PenguinBirth({ currentStep, setTotalSteps, onNext }: PenguinBirt
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
               className="birth-flash"
             />
 
             <motion.div
-              initial={{ scale: 0.2, rotate: -15, opacity: 0 }}
-              animate={{ scale: 1, rotate: 0, opacity: 1 }}
-              transition={{ type: 'spring', damping: 10, stiffness: 160 }}
+              initial={{ scale: 0.2, rotate: -12, opacity: 0 }}
+              animate={{ scale: 1, rotate: -2, opacity: 1 }}
+              transition={{ type: 'spring', damping: 11, stiffness: 150 }}
               className="baby-photo-frame"
             >
+              <div className="frame-ribbon">BABY ARPITA 🍼</div>
               <Placeholder
                 label="PHOTO: Baby Arpita (1999)"
-                width={340}
+                width={300}
                 aspectRatio="1"
-                tilt={-3}
+                tilt={0}
               />
             </motion.div>
 
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.25 }}
               className="birth-text"
             >
               <h2>Arpita is Born!</h2>

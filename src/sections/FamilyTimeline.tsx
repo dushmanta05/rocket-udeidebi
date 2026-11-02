@@ -70,26 +70,27 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: FamilyTim
         <AnimatePresence mode="wait">
           <motion.div
             key={activeStop.id}
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            initial={{ opacity: 0, y: 25, scale: 0.94 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.35 }}
-            className="stop-card"
+            exit={{ opacity: 0, y: -20, scale: 0.94 }}
+            transition={{ duration: 0.3 }}
+            className="scrapbook-milestone-card"
           >
-            <div className="stop-photo-box">
+            <div className="washi-tape-strip" />
+            <div className="scrapbook-photo-col">
               <Placeholder
                 label={`PHOTO: ${activeStop.title} (${activeStop.year})`}
                 src={activeStop.src}
-                width={320}
+                width={300}
                 aspectRatio="4 / 3"
-                tilt={currentStep % 2 === 0 ? -3 : 3}
+                tilt={currentStep % 2 === 0 ? -2.5 : 2.5}
               />
             </div>
 
-            <div className="stop-content">
-              <span className="stop-year">{activeStop.year}</span>
-              <h3 className="stop-title">{activeStop.title}</h3>
-              <p className="stop-caption">{activeStop.caption}</p>
+            <div className="scrapbook-content-col">
+              <span className="scrapbook-year-pill">{activeStop.year}</span>
+              <h3 className="scrapbook-title">{activeStop.title}</h3>
+              <p className="scrapbook-caption">"{activeStop.caption}"</p>
             </div>
           </motion.div>
         </AnimatePresence>
