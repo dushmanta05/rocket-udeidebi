@@ -141,6 +141,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
             >
               {currentStep === STEP_PAD && <div className="speech-bubble">{FINALE_COPY.pranjalSays}</div>}
               <Pengu size={120} variant="pranjal" />
+              <span className="name-pill">{FINALE_COPY.pranjalName}</span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -153,6 +154,11 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
         >
           {currentStep === STEP_ARRIVE && <div className="speech-bubble">{FINALE_COPY.arpitaSays}</div>}
           <PenguinRocketArt size={170} />
+          {currentStep >= STEP_ARRIVE && (
+            <motion.span className="name-pill rocket-name" animate={{ rotate: -rocketState.rotate }}>
+              {FINALE_COPY.arpitaName}
+            </motion.span>
+          )}
           {currentStep >= STEP_BOARD && (
             <motion.div
               className="pranjal-riding"
@@ -160,6 +166,9 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
               animate={{ x: [260, 140, 0], y: [110, -120, 0] }}
               transition={{ duration: 1, ease: 'easeOut' }}
             >
+              <motion.span className="name-pill" animate={{ rotate: -rocketState.rotate }}>
+                {FINALE_COPY.pranjalName}
+              </motion.span>
               <Pengu size={60} variant="pranjal" />
             </motion.div>
           )}

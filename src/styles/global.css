@@ -2045,6 +2045,30 @@ img {
   z-index: 3;
 }
 
+.name-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.92);
+  color: #1d2140;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.pranjal-riding .name-pill {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  translate: -50% -4px;
+}
+
+.rocket-name {
+  margin-top: -6px;
+}
+
 .pranjal-riding {
   position: absolute;
   left: 6%;

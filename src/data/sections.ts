@@ -187,6 +187,8 @@ export const FINALE_COPY = {
   boardTitle: 'Boarding complete',
   countdown: ['3', '2', '1'],
   blastOff: 'ROCKET UDEIDEBI!',
+  arpitaName: 'Arpita',
+  pranjalName: 'Pranjal',
   thankYouTitle: 'Thank You',
   thankYouNote: [
     'To everyone who laughed, roasted, recorded, planned and showed up tonight: thank you.',
