@@ -1,41 +1,40 @@
 :root {
-  --font-family-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-display: 'Playfair Display', Georgia, serif;
-  --font-family-handwriting: 'Caveat', cursive, sans-serif;
+  --font-display: 'Fredoka Variable', 'Fredoka', system-ui, sans-serif;
+  --font-body: 'Nunito Variable', 'Nunito', system-ui, sans-serif;
+  --font-hand: 'Caveat', cursive;
 
-  --color-bg-light: #faf8f5;
-  --color-bg-subtle: #f5f1eb;
-  --color-bg-dark: #141518;
-  --color-text-main: #1e2022;
-  --color-text-light: #fdfbf7;
-  --color-text-muted: #686d76;
+  --sky-top: #0b1030;
+  --sky-mid: #0a0d24;
+  --sky-bottom: #05060f;
 
-  --color-hippo-main: #a389d4;
-  --color-hippo-light: #f3effa;
-  --color-hippo-dark: #6b5299;
+  --ink: #f2f3ff;
+  --ink-soft: #c9cdee;
+  --ink-muted: #8f95c2;
 
-  --color-penguin-body: #9d8df1;
-  --color-penguin-body-dark: #816ecb;
-  --color-penguin-belly: #ffffff;
-  --color-penguin-beak: #e07a5f;
-  --color-penguin-groom-body: #25282e;
-  --color-penguin-groom-dark: #16181b;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.22);
 
-  --color-rocket-primary: #e07a5f;
-  --color-rocket-secondary: #d64045;
-  --color-rocket-fin: #5f7995;
-  --color-rocket-flame: #f4a261;
+  --pink: #ff8fb1;
+  --gold: #ffd27a;
+  --sky: #8ec5ff;
+  --lavender: #b9a6ff;
+  --mint: #7ee2a8;
+  --coral: #ff9f5a;
 
-  --color-card-bg: #ffffff;
-  --color-card-border: #ede8e1;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.08);
+  --pengu-body: #7fb2f0;
+  --pengu-body-dark: #5d93d8;
+  --pengu-groom: #2b3550;
+  --pengu-groom-dark: #1b2238;
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
 
-  --aspect-ratio-presentation: 16 / 9;
+  --shadow-card: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --glow-pink: 0 0 40px rgba(255, 143, 177, 0.35);
+
+  --progress-h: 64px;
 }
