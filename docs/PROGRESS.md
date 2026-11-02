@@ -71,4 +71,5 @@ Every agent must update this document upon completing a task or before ending a 
 - Upgraded bottom progress bar (`ProgressRocket`) into a frosted glass slider dock where the penguin rocket glides across milestones.
 - Selected `Outfit` (display) and `Plus Jakarta Sans` (body) for modern party typography with `Caveat` for polaroid handwriting.
 - Eliminated generic repetitive white cards in favor of 13 immersive slide atmospheres (cosmic welcome stage, arctic birth floe, scrapbook road trip, neon speedway, dark studio gallery, black-tie awards gala with spotlights, anime bag realm, moody loft tubelight, royal deed parchment, pop-art duel, chalkboard bistro, mystic nebula oracle, and cinematic space launch).
+- Refined UI to be minimal and elegant: replaced neon gradients with a serene, warm linen/cream palette (`#faf8f5`), paired with editorial serif typography (**Playfair Display**) for headings, **Plus Jakarta Sans** for body, and **Caveat** for all roast lines and handwritten notes.
 - Tested and verified production build with `pnpm build`.
