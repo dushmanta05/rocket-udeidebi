@@ -7,7 +7,7 @@ Instructions and guidelines for AI agents working on **Arpita's Launch Pad** (`r
 - **Purpose:** A PPT-style interactive bachelorette party website ("Arpita's Launch Pad") for Arpita, designed to run on a laptop connected to a TV, and responsive on mobile.
 - **Tone:** Full chaos roasts among work friends, siblings, and cousins.
 - **Stack:** Vite + React + TypeScript + GSAP (MotionPath) + Framer Motion + Plain CSS (CSS variables) + canvas-confetti.
-- **Runtime:** 100% frontend only. No backend, no database, no runtime network calls, no analytics. Must work fully offline after `npm run build` (`base: './'`).
+- **Runtime:** 100% frontend only. Node 24 with `pnpm`. No backend, no database, no runtime network calls, no analytics. Must work fully offline after `pnpm build` (`base: './'`).
 
 ## Coding Standards
 
@@ -37,7 +37,7 @@ Prefer a clearer name or a smaller function over a comment explaining a murky on
 - Keep the subject concise and all lowercase, with no trailing period.
 - No description: the subject line is the whole message.
 - No `Co-Authored-By` line, for Claude or anyone else, and no other attribution or trailer.
-- Always run the build/type check (`npm run build` or `npx tsc --noEmit`) and verify clean output before committing.
+- Always run the build/type check (`pnpm build` or `pnpm tsc --noEmit`) and verify clean output before committing.
 - **Never commit `PLAN.md`:** All persistent specifications live in `docs/CONTEXT.md`. `PLAN.md` is strictly ignored in `.gitignore`.
 
 ## Session Workflow & Progress Tracking
