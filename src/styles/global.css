@@ -2375,6 +2375,44 @@ img {
     min-height: auto;
   }
 
+  .section > .launch-stage {
+    flex: 1;
+    min-height: 62vh;
+  }
+
+  .launch-section {
+    overflow: hidden;
+  }
+
+  .flyby-layer {
+    display: none;
+  }
+
+  .hatch-text,
+  .award-text,
+  .artifact-text,
+  .crew-caption,
+  .milestone-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hatch-text .pill,
+  .award-text .pill,
+  .artifact-text .pill,
+  .crew-caption .pill,
+  .milestone-text .pill {
+    align-self: center;
+  }
+
+  .hatch-egg {
+    height: 280px;
+  }
+
+  .crew-queue {
+    justify-content: center;
+  }
+
   .welcome-flyby {
     top: 6%;
   }
