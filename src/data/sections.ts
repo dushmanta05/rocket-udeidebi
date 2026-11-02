@@ -122,10 +122,14 @@ export const WELCOME_COPY = {
 }
 
 export const BIRTH_COPY = {
-  colonyThought: 'Wait, where is everyone going?',
+  journey: [
+    { kicker: 'Somewhere in Antarctica', line: 'One penguin left the colony.', sub: 'Alone.' },
+    { kicker: 'Day 1, day 100, day 1000', line: 'No map. No plan.', sub: 'Just the mountains, and a feeling.' }
+  ],
+  rebirthLine: 'Somewhere past the mountains, she was reborn...',
   eggTitles: ['Something is moving...', 'Crack...', 'CRACK CRACK!'],
-  bornTitle: 'Arpita is Born!',
-  bornText: 'The universe gave us a Jagatmata, a Tubelight and a Penguin, all in one.',
+  bornTitle: 'Reborn as a human!',
+  bornText: 'And just like that, the penguin became Arpita: a Jagatmata, a Tubelight and still a Penguin at heart.',
   bornTag: 'Catchphrase unlocked: "Rocket udeidebi!"',
   babyPhotoLabel: 'Baby Arpita photo'
 }

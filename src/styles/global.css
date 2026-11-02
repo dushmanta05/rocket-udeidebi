@@ -512,6 +512,7 @@ img {
 }
 
 .welcome-section,
+.birth-section,
 .tubelight-section,
 .launch-section,
 .thanks-section {
@@ -607,63 +608,72 @@ img {
   place-items: center;
 }
 
-.colony-scene {
+.journey-backdrop {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: 50% 65%;
+  transform-origin: 48% 70%;
+  z-index: 0;
+}
+
+.journey-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 6, 15, 0.55) 0%, rgba(5, 6, 15, 0) 30%, rgba(5, 6, 15, 0) 55%, rgba(5, 6, 15, 0.75) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.birth-section .birth-stage,
+.birth-section .hint {
   position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 1000px;
+  z-index: 1;
 }
 
-.ice-floe {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 6%;
-  height: 26%;
-  border-radius: 50% 50% 18px 18px / 40% 40% 18px 18px;
-  background: linear-gradient(180deg, #e6f1ff 0%, #b7cdee 100%);
-  box-shadow: 0 -10px 60px rgba(142, 197, 255, 0.25);
-}
-
-.colony-row {
-  position: absolute;
-  left: 4%;
-  bottom: 20%;
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  opacity: 0.85;
-}
-
-.lonely-pengu {
-  position: absolute;
-  translate: -50% 0;
-  bottom: 18%;
+.journey-caption {
+  align-self: start;
+  margin-top: 4vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
+  text-align: center;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
 }
 
-.thought-bubble {
+.journey-line {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+}
+
+.journey-sub {
+  font-family: var(--font-hand);
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  color: var(--gold);
+}
+
+.rebirth-line {
+  font-family: var(--font-hand);
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.egg-glow {
   position: absolute;
-  bottom: 100%;
-  margin-bottom: 8px;
-  padding: 10px 16px;
-  border-radius: 20px;
-  background: #ffffff;
-  color: #1d2140;
-  font-weight: 700;
-  white-space: nowrap;
+  top: 50%;
+  left: 50%;
+  width: 340px;
+  height: 340px;
+  translate: -50% -45%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 244, 214, 0.55), rgba(255, 244, 214, 0) 65%);
+  z-index: -1;
 }
 
 .egg-scene {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: clamp(20px, 6vw, 90px);
-}
-
-.egg-wrap {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
-import { Pengu } from '../components/Pengu'
-import { PenguinArt } from '../components/art/PenguinArt'
 import { EggArt, EggShellBottom, EggShellTop } from '../components/art/EggArt'
 import { Placeholder } from '../components/Placeholder'
-import { Hint, SectionHeader } from '../components/SectionHeader'
+import { Hint } from '../components/SectionHeader'
+import { ASSETS } from '../data/assets'
 import { BIRTH_COPY, SECTIONS } from '../data/sections'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[1]
-const COLONY_SIZES = [70, 86, 64, 78, 92]
+const JOURNEY_STEPS = BIRTH_COPY.journey.length
+const EGG_STEP = JOURNEY_STEPS
+const HATCH_STEP = JOURNEY_STEPS + 1
 
 function useCrackProgress(active: boolean) {
   const [cracks, setCracks] = useState(0)
@@ -20,8 +21,7 @@ function useCrackProgress(active: boolean) {
       setCracks(0)
       return
     }
-    setCracks(1)
-    const timers = [setTimeout(() => setCracks(2), 700), setTimeout(() => setCracks(3), 1400)]
+    const timers = [1, 2, 3].map((n) => setTimeout(() => setCracks(n), 900 + n * 700))
     return () => timers.forEach(clearTimeout)
   }, [active])
 
@@ -30,82 +30,73 @@ function useCrackProgress(active: boolean) {
 
 export function PenguinBirth({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   const reduceMotion = useReducedMotion()
-  const cracks = useCrackProgress(currentStep === 2)
+  const cracks = useCrackProgress(currentStep === EGG_STEP)
+  const journey = BIRTH_COPY.journey[Math.min(currentStep, JOURNEY_STEPS - 1)]
+  const inJourney = currentStep < JOURNEY_STEPS
 
   useEffect(() => {
-    setTotalSteps(4)
+    setTotalSteps(HATCH_STEP + 1)
   }, [setTotalSteps])
 
   useEffect(() => {
-    if (currentStep === 3) {
+    if (currentStep === HATCH_STEP) {
       confetti({ particleCount: 90, spread: 100, origin: { y: 0.55 }, colors: ['#ffd27a', '#ff8fb1', '#8ec5ff', '#ffffff'] })
     }
   }, [currentStep])
 
-  const shake = reduceMotion ? {} : currentStep === 1
-    ? { rotate: [-3, 3, -2, 2, 0] }
-    : { rotate: [-7, 7, -9, 9, -5, 5, 0], x: [-3, 3, -3, 3, 0] }
-
   return (
     <div className="section birth-section" onClick={onNext}>
-      <SectionHeader copy={copy} />
+      <motion.div
+        className="journey-backdrop"
+        style={{ backgroundImage: `url(${ASSETS.penguJourney})` }}
+        initial={{ scale: 1, opacity: 0 }}
+        animate={{
+          opacity: 1,
+          scale: reduceMotion ? 1 : inJourney ? 1.06 + currentStep * 0.12 : 1.35,
+          filter: inJourney ? 'blur(0px) brightness(0.9)' : 'blur(10px) brightness(0.35)'
+        }}
+        transition={{ duration: inJourney ? 9 : 1.6, ease: 'easeOut', opacity: { duration: 1.2 } }}
+      />
+      <div className="journey-shade" />
 
       <div className="birth-stage">
         <AnimatePresence mode="wait">
-          {currentStep === 0 && (
-            <motion.div key="colony" className="colony-scene" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <div className="ice-floe" />
-              <div className="colony-row">
-                {COLONY_SIZES.map((size, idx) => (
-                  <motion.div
-                    key={idx}
-                    animate={reduceMotion ? {} : { y: [0, -4, 0] }}
-                    transition={{ duration: 1.6, repeat: Infinity, delay: idx * 0.2 }}
-                  >
-                    <PenguinArt size={size} muted />
-                  </motion.div>
-                ))}
-              </div>
+          {inJourney && (
+            <motion.div
+              key={`journey-${currentStep}`}
+              className="journey-caption"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.9 }}
+            >
+              <span className="kicker">{journey.kicker}</span>
+              <h2 className="journey-line">{journey.line}</h2>
+              <motion.p className="journey-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4, duration: 1 }}>
+                {journey.sub}
+              </motion.p>
+            </motion.div>
+          )}
+
+          {currentStep === EGG_STEP && (
+            <motion.div key="egg" className="egg-scene" initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+              <p className="rebirth-line">{BIRTH_COPY.rebirthLine}</p>
+              <div className="egg-glow" />
               <motion.div
-                className="lonely-pengu"
-                initial={{ left: '18%' }}
-                animate={{ left: '58%' }}
-                transition={{ duration: 3, ease: 'easeInOut' }}
+                animate={reduceMotion || cracks === 0 ? { y: [0, -6, 0] } : { rotate: [-7, 7, -9, 9, -5, 5, 0], x: [-3, 3, -3, 3, 0] }}
+                transition={{ duration: cracks === 0 ? 2 : 0.5, repeat: Infinity, repeatDelay: cracks === 0 ? 0 : 0.15 }}
               >
-                <motion.div
-                  animate={reduceMotion ? {} : { rotate: [-6, 6, -6] }}
-                  transition={{ duration: 0.6, repeat: Infinity }}
-                >
-                  <Pengu size={140} />
-                </motion.div>
-                <div className="thought-bubble">{BIRTH_COPY.colonyThought}</div>
+                <EggArt size={190} cracks={cracks} />
               </motion.div>
+              <motion.h3 key={`title-${cracks}`} className="egg-title" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+                {BIRTH_COPY.eggTitles[Math.min(cracks, 2)]}
+              </motion.h3>
             </motion.div>
           )}
 
-          {(currentStep === 1 || currentStep === 2) && (
-            <motion.div key="egg" className="egg-scene" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
-              <motion.div className="egg-pengu" initial={{ x: -40, opacity: 0 }} animate={{ x: 0, opacity: 1 }}>
-                <Pengu size={150} />
-              </motion.div>
-              <div className="egg-wrap">
-                <motion.div
-                  key={currentStep}
-                  animate={shake}
-                  transition={{ duration: currentStep === 1 ? 1.4 : 0.5, repeat: Infinity, repeatDelay: currentStep === 1 ? 0.6 : 0.1 }}
-                >
-                  <EggArt size={200} cracks={currentStep === 2 ? cracks : 0} />
-                </motion.div>
-                <motion.h3 key={`title-${currentStep}-${cracks}`} className="egg-title" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-                  {currentStep === 1 ? BIRTH_COPY.eggTitles[0] : BIRTH_COPY.eggTitles[Math.max(1, Math.min(cracks, 2))]}
-                </motion.h3>
-              </div>
-            </motion.div>
-          )}
-
-          {currentStep >= 3 && (
+          {currentStep >= HATCH_STEP && (
             <motion.div key="hatched" className="hatch-scene" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <motion.div className="hatch-flash" initial={{ opacity: 1 }} animate={{ opacity: 0 }} transition={{ duration: 0.7 }} />
+              <motion.div className="hatch-flash" initial={{ opacity: 1 }} animate={{ opacity: 0 }} transition={{ duration: 0.8 }} />
               <div className="hatch-egg">
                 <motion.div
                   className="shell-top"
