@@ -1,58 +1,80 @@
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import confetti from 'canvas-confetti'
 import { TUBELIGHT_STEPS } from '../data/tubelight'
-import { TubelightArt } from '../components/art/TubelightArt'
+import { SECTIONS, TUBELIGHT_COPY } from '../data/sections'
+import { Placeholder } from '../components/Placeholder'
+import { Hint, SectionHeader } from '../components/SectionHeader'
+import type { StepSectionProps } from './types'
 
-interface TubelightProps {
-  currentStep: number
-  setTotalSteps: (steps: number) => void
-  onNext: () => void
-}
+const copy = SECTIONS[7]
 
-export function Tubelight({ currentStep, setTotalSteps, onNext }: TubelightProps) {
+export function Tubelight({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   useEffect(() => {
     setTotalSteps(TUBELIGHT_STEPS.length)
   }, [setTotalSteps])
 
-  const activeIndex = Math.min(currentStep, TUBELIGHT_STEPS.length - 1)
-  const activeStep = TUBELIGHT_STEPS[activeIndex]
+  const index = Math.min(currentStep, TUBELIGHT_STEPS.length - 1)
+  const active = TUBELIGHT_STEPS[index]
+  const isDone = index === TUBELIGHT_STEPS.length - 1
+  const percent = Math.round(active.brightness * 100)
+
+  useEffect(() => {
+    if (isDone) {
+      confetti({ particleCount: 80, spread: 110, origin: { y: 0.3 }, colors: ['#ffffff', '#fff3b0', '#8ec5ff'] })
+    }
+  }, [isDone])
 
   return (
     <div
-      className={`section-container tubelight-section ${activeIndex === 4 ? 'full-bright' : ''}`}
+      className={`section tubelight-section ${isDone ? 'lit' : ''}`}
+      style={{ ['--glow' as string]: active.brightness }}
       onClick={onNext}
     >
-      <div className="section-header">
-        <span className="chapter-badge gold-badge">⚡ Voltage Laboratory ⚡</span>
-        <h2 className="section-heading tubelight-heading">The Tubelight Moment</h2>
-        <p className="section-subtext tubelight-subtext">Tracking the neural propagation of a punchline</p>
-      </div>
+      <div className="room-light" />
+      <SectionHeader copy={copy} />
 
-      <div className="tubelight-fixture-area">
-        <TubelightArt size={360} brightness={activeStep.brightness} />
-      </div>
-
-      <div className="tubelight-dialogue-stage">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeStep.step}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
-            className={`tubelight-dialog-bubble step-${activeStep.step}`}
-          >
-            <div className="buffering-indicator">
-              <span className="buffer-bar" style={{ width: `${(activeStep.step / 5) * 100}%` }} />
+      <div className="tubelight-layout">
+        <div className="tube-room">
+          <div className="tube-fixture">
+            <div className={`tube ${active.flicker ? 'flicker' : ''}`} />
+            <div className="tube-cap left" />
+            <div className="tube-cap right" />
+          </div>
+          <div className="tube-beam" />
+          <div className="tube-subject">
+            <Placeholder label="Photo: Arpita's tubelight face" aspectRatio="1 / 1" />
+          </div>
+          <div className="meter">
+            <div className="meter-head">
+              <span>{TUBELIGHT_COPY.meterLabel}</span>
+              <strong>{isDone ? TUBELIGHT_COPY.done : `${percent}%`}</strong>
             </div>
-            <p className="tubelight-text">{activeStep.text}</p>
-          </motion.div>
-        </AnimatePresence>
+            <div className="meter-bar">
+              <motion.div className="meter-fill" animate={{ width: `${Math.max(percent, 3)}%` }} transition={{ duration: 0.8 }} />
+            </div>
+          </div>
+        </div>
+
+        <div className="tube-log">
+          <AnimatePresence initial={false}>
+            {TUBELIGHT_STEPS.slice(0, index + 1).map((step, idx) => (
+              <motion.div
+                key={step.step}
+                className={`log-row speaker-${step.speaker} ${idx === index ? 'latest' : ''}`}
+                initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                animate={{ opacity: idx === index ? 1 : 0.55, x: 0, scale: 1 }}
+                transition={{ type: 'spring', damping: 18 }}
+              >
+                <span className="log-time">{step.time}</span>
+                <p className="log-text">{step.text}</p>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
 
-      <div className="step-indicator-bar tubelight-step-bar">
-        Phase {activeIndex + 1} of 5 • Click to advance comprehension stream →
-      </div>
+      <Hint>{copy.hint}</Hint>
     </div>
   )
 }
