@@ -2,97 +2,67 @@ import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { AWARDS_DATA } from '../data/awards'
-import { TrophyArt } from '../components/art/TrophyArt'
+import { SECTIONS } from '../data/sections'
 import { Placeholder } from '../components/Placeholder'
+import { Hint, SectionHeader } from '../components/SectionHeader'
+import type { StepSectionProps } from './types'
 
-interface AwardsProps {
-  currentStep: number
-  setTotalSteps: (steps: number) => void
-  onNext: () => void
-}
+const copy = SECTIONS[5]
 
-export function Awards({ currentStep, setTotalSteps, onNext }: AwardsProps) {
+export function Awards({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   useEffect(() => {
     setTotalSteps(AWARDS_DATA.length)
   }, [setTotalSteps])
 
-  const award = AWARDS_DATA[Math.min(currentStep, AWARDS_DATA.length - 1)]
+  const index = Math.min(currentStep, AWARDS_DATA.length - 1)
+  const award = AWARDS_DATA[index]
 
   useEffect(() => {
-    confetti({
-      particleCount: 25,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#facc15', '#f59e0b', '#f97316']
-    })
-  }, [currentStep])
+    const colors = ['#ffd27a', '#ff8fb1', '#8ec5ff', '#ffffff']
+    confetti({ particleCount: 70, angle: 60, spread: 70, origin: { x: 0, y: 0.7 }, colors })
+    confetti({ particleCount: 70, angle: 120, spread: 70, origin: { x: 1, y: 0.7 }, colors })
+  }, [index])
 
   return (
-    <div className="section-container awards-section" onClick={onNext}>
-      <div className="gala-spotlight-left" />
-      <div className="gala-spotlight-right" />
-
-      <div className="section-header">
-        <span className="chapter-badge gold-badge">👑 Annual Gala Accolades 👑</span>
-        <h2 className="section-heading gala-heading">The Arpita Hall of Fame</h2>
-        <p className="section-subtext gala-subtext">Recognizing unparalleled lifetime achievements</p>
-      </div>
+    <div className="section awards-section" onClick={onNext}>
+      <div className="spotlight spotlight-left" />
+      <div className="spotlight spotlight-right" />
+      <SectionHeader copy={copy} kicker={`${copy.kicker} · Award ${index + 1} of ${AWARDS_DATA.length}`} />
 
       <AnimatePresence mode="wait">
         <motion.div
           key={award.id}
-          initial={{ opacity: 0, scale: 0.85, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.85, y: -20 }}
-          transition={{ type: 'spring', damping: 14 }}
-          className="award-gold-plaque"
+          className="award-stage"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9, y: -20 }}
+          transition={{ type: 'spring', damping: 15 }}
         >
-          <div className="plaque-corner top-left" />
-          <div className="plaque-corner top-right" />
-          <div className="plaque-corner bottom-left" />
-          <div className="plaque-corner bottom-right" />
-
-          <div className="award-visual-row">
-            <motion.div
-              initial={{ rotate: -15, scale: 0.8 }}
-              animate={{ rotate: 0, scale: 1 }}
-              transition={{ type: 'spring', damping: 10 }}
-              className="award-trophy-wrap"
-            >
-              <TrophyArt size={190} />
-            </motion.div>
-
-            <motion.div
-              initial={{ rotate: 180, scale: 0.4 }}
-              animate={{ rotate: -3, scale: 1 }}
-              transition={{ duration: 0.45 }}
-              className="award-photo-frame"
-            >
-              <Placeholder
-                label={award.label}
-                src={award.src}
-                width={200}
-                aspectRatio="1"
-              />
-            </motion.div>
-          </div>
-
           <motion.div
-            initial={{ y: 15, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="award-details"
+            className="award-frame"
+            initial={{ rotate: -20, scale: 0.5 }}
+            animate={{ rotate: -3, scale: 1 }}
+            transition={{ type: 'spring', damping: 9, stiffness: 120 }}
           >
-            <span className="award-number-badge">CATEGORY #{currentStep + 1}</span>
-            <h3 className="award-title">{award.title}</h3>
-            <p className="award-roast">"{award.roast}"</p>
+            <Placeholder label={award.label} src={award.src} aspectRatio="1 / 1" />
           </motion.div>
+
+          <div className="award-text">
+            <span className="award-number">No. {String(index + 1).padStart(2, '0')}</span>
+            <h3 className="award-title">{award.title}</h3>
+            <motion.p
+              className="award-roast"
+              initial={{ clipPath: 'inset(0 100% 0 0)' }}
+              animate={{ clipPath: 'inset(0 0% 0 0)' }}
+              transition={{ delay: 0.3, duration: 1.2, ease: 'easeOut' }}
+            >
+              {award.roast}
+            </motion.p>
+          </div>
         </motion.div>
       </AnimatePresence>
 
-      <div className="step-indicator-bar gala-step-bar">
-        Award {currentStep + 1} of {AWARDS_DATA.length} • Click to reveal next award →
-      </div>
+      <Hint>{copy.hint}</Hint>
     </div>
   )
 }
