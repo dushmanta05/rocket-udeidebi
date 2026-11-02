@@ -14,7 +14,7 @@ export interface NavigationState {
   isFullscreen: boolean
 }
 
-export function useNavigation(totalSections: number = 13, onMuteToggle?: () => void): NavigationState {
+export function useNavigation(totalSections: number): NavigationState {
   const [currentSection, setCurrentSection] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
   const [totalSteps, setTotalStepsState] = useState(1)
@@ -82,9 +82,6 @@ export function useNavigation(totalSections: number = 13, onMuteToggle?: () => v
       } else if (e.key.toLowerCase() === 'f') {
         e.preventDefault()
         toggleFullscreen()
-      } else if (e.key.toLowerCase() === 'm' && onMuteToggle) {
-        e.preventDefault()
-        onMuteToggle()
       }
     }
 
@@ -119,7 +116,7 @@ export function useNavigation(totalSections: number = 13, onMuteToggle?: () => v
       window.removeEventListener('touchstart', handleTouchStart)
       window.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [goToNext, goToPrev, toggleFullscreen, onMuteToggle])
+  }, [goToNext, goToPrev, toggleFullscreen])
 
   return {
     currentSection,

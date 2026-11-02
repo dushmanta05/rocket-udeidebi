@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigation } from './hooks/useNavigation'
-import { useSound } from './hooks/useSound'
 import { ProgressRocket } from './components/ProgressRocket'
 
 import { Welcome } from './sections/Welcome'
@@ -34,7 +33,6 @@ const SECTION_THEMES = [
 ]
 
 export default function App() {
-  const { isMuted, toggleMute, startBgMusic } = useSound()
   const {
     currentSection,
     totalSections,
@@ -46,17 +44,12 @@ export default function App() {
     setTotalSteps,
     toggleFullscreen,
     isFullscreen
-  } = useNavigation(13, toggleMute)
-
-  const handleStart = () => {
-    startBgMusic()
-    goToNext()
-  }
+  } = useNavigation(13)
 
   const renderSection = () => {
     switch (currentSection) {
       case 0:
-        return <Welcome onStart={handleStart} />
+        return <Welcome onStart={goToNext} />
       case 1:
         return <PenguinBirth currentStep={currentStep} setTotalSteps={setTotalSteps} onNext={goToNext} />
       case 2:
@@ -89,15 +82,6 @@ export default function App() {
   return (
     <div className={`app-container ${SECTION_THEMES[currentSection]}`}>
       <div className="floating-top-controls">
-        <button
-          className="control-icon-btn"
-          onClick={toggleMute}
-          aria-label={isMuted ? 'Unmute music' : 'Mute music'}
-          title={isMuted ? 'Unmute (M)' : 'Mute (M)'}
-        >
-          {isMuted ? '🔇' : '🔊'}
-        </button>
-
         <button
           className="control-icon-btn"
           onClick={toggleFullscreen}
