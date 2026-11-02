@@ -2,110 +2,98 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { REQUESTS_DATA } from '../data/requests'
+import { SAYNO_COPY, SECTIONS } from '../data/sections'
 import { Stamp } from '../components/Stamp'
+import { Hint, SectionHeader } from '../components/SectionHeader'
+import type { StepSectionProps } from './types'
 
-interface SayNoProps {
-  currentStep: number
-  setTotalSteps: (steps: number) => void
-  onNext: () => void
-}
+const copy = SECTIONS[9]
 
-export function SayNo({ currentStep, setTotalSteps, onNext }: SayNoProps) {
-  const [noPosition, setNoPosition] = useState({ x: 0, y: 0 })
-  const [yesScale, setYesScale] = useState(1)
+export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
+  const [noPos, setNoPos] = useState({ x: 0, y: 0 })
+  const [dodges, setDodges] = useState(0)
 
   useEffect(() => {
     setTotalSteps(REQUESTS_DATA.length + 1)
   }, [setTotalSteps])
 
-  const dodgeNo = () => {
-    const rx = (Math.random() - 0.5) * 180
-    const ry = (Math.random() - 0.5) * 120
-    setNoPosition({ x: rx, y: ry })
-    setYesScale((prev) => Math.min(prev + 0.15, 1.8))
+  useEffect(() => {
+    setNoPos({ x: 0, y: 0 })
+    setDodges(0)
+  }, [currentStep])
+
+  const dodge = () => {
+    setNoPos({ x: (Math.random() - 0.5) * 360, y: (Math.random() - 0.5) * 160 })
+    setDodges((n) => n + 1)
   }
 
-  const handleYes = () => {
-    setNoPosition({ x: 0, y: 0 })
-    setYesScale(1)
-    confetti({
-      particleCount: 25,
-      spread: 60,
-      origin: { y: 0.6 }
-    })
+  const sayYes = () => {
+    confetti({ particleCount: 40, spread: 70, origin: { y: 0.6 }, colors: ['#7ee2a8', '#ffd27a', '#ffffff'] })
     onNext()
   }
 
-  const isCompleted = currentStep >= REQUESTS_DATA.length
-  const currentRequest = REQUESTS_DATA[Math.min(currentStep, REQUESTS_DATA.length - 1)]
+  const isDone = currentStep >= REQUESTS_DATA.length
+  const request = REQUESTS_DATA[Math.min(currentStep, REQUESTS_DATA.length - 1)]
 
   return (
-    <div className="section-container say-no-section">
-      <div className="section-header">
-        <span className="chapter-badge">🚫 Reflex Challenge 🚫</span>
-        <h2 className="section-heading">Mission: Say "No" (Impossible)</h2>
-        <p className="section-subtext">Scientific test: Can Arpita physically decline a request?</p>
-      </div>
+    <div className="section sayno-section">
+      <SectionHeader
+        copy={copy}
+        title={
+          <>
+            {copy.title} <span className="giant-no">NO</span>
+          </>
+        }
+      />
 
-      <div className="say-no-stage">
-        {!isCompleted ? (
+      <div className="sayno-stage">
+        {!isDone ? (
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentRequest.id}
-              initial={{ scale: 0.85, opacity: 0, y: 35 }}
+              key={request.id}
+              className="request-card"
+              initial={{ scale: 0.85, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.85, opacity: 0, y: -35 }}
-              className="pop-challenge-card"
+              exit={{ x: 500, rotate: 18, opacity: 0 }}
+              transition={{ type: 'spring', damping: 16 }}
             >
-              <div className="challenge-bubble-tail" />
-              <span className="request-step-badge">CHALLENGE {currentRequest.id} OF 5</span>
-              <h3 className="request-question">"{currentRequest.question}"</h3>
-              <p className="request-subtext">{currentRequest.subtext}</p>
+              <span className="pill">
+                Request {request.id} of {REQUESTS_DATA.length}
+              </span>
+              <h3 className="request-question">"{request.question}"</h3>
+              <p className="request-sub">{request.subtext}</p>
 
-              <div className="request-buttons-row">
+              <div className="request-actions">
                 <motion.button
-                  animate={{ scale: yesScale }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleYes}
-                  className="say-yes-btn"
+                  type="button"
+                  className="no-btn"
+                  animate={{ x: noPos.x, y: noPos.y }}
+                  transition={{ type: 'spring', damping: 11, stiffness: 240 }}
+                  onMouseEnter={dodge}
+                  onClick={dodge}
                 >
-                  YES, OF COURSE! 💖
+                  {SAYNO_COPY.no}
                 </motion.button>
-
                 <motion.button
-                  animate={{
-                    x: noPosition.x,
-                    y: noPosition.y,
-                    scale: Math.max(0.5, 1 - (yesScale - 1) * 0.5)
-                  }}
-                  transition={{ type: 'spring', damping: 12 }}
-                  onMouseEnter={dodgeNo}
-                  onClick={dodgeNo}
-                  className="say-no-btn"
+                  type="button"
+                  className="yes-btn"
+                  animate={{ scale: 1 + Math.min(dodges, 6) * 0.04 }}
+                  whileTap={{ scale: 0.92 }}
+                  onClick={sayYes}
                 >
-                  No...
+                  {SAYNO_COPY.yes}
                 </motion.button>
               </div>
             </motion.div>
           </AnimatePresence>
         ) : (
-          <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="verdict-wrapper"
-          >
-            <Stamp
-              text="VERDICT: CANNOT SAY NO"
-              subtext="ALL 5 REQUESTS ACCEPTED • JAGATMATA STATUS PERMANENT"
-              color="#ea580c"
-            />
+          <motion.div className="verdict" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+            <Stamp text={SAYNO_COPY.verdict} subtext={SAYNO_COPY.verdictSub} color="#ff9f5a" />
           </motion.div>
         )}
       </div>
 
-      <div className="step-indicator-bar">
-        {!isCompleted ? `Trial ${currentStep + 1} of 5 • Try clicking No if you dare` : 'Test Concluded • Arrow key to advance →'}
-      </div>
+      <Hint>{copy.hint}</Hint>
     </div>
   )
 }
