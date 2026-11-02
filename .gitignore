@@ -29,5 +29,5 @@ pnpm-debug.log*
 *.sw?
 .DS_Store
 
-# Temporary / planning files
+# Temporary files
 PLAN.md
