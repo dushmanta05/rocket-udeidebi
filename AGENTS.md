@@ -44,8 +44,20 @@ Prefer a clearer name or a smaller function over a comment explaining a murky on
 
 1. **Start of Session:** Always read `docs/PROGRESS.md` and `docs/CONTEXT.md` to see the current state, active tasks, and implementation specs.
 2. **Implementation:** Work on one distinct task or component at a time, adhering strictly to the no-comments rule.
-3. **End of Task / Session:** Always update `docs/PROGRESS.md` with what was completed, current state, and next steps before committing.
-4. **Commit:** Commit each distinct working change with a concise conventional commit message matching the commit rules above.
+3. **Mandatory Verification (Before Every Commit):**
+   - **Check for zero unwanted code comments:**
+     ```bash
+     grep -rn "//" src/ | grep -v -E "https?://|xmlns=" || echo "No single-line comments found"
+     grep -rn "/\*" src/ || echo "No block comments found"
+     ```
+     If any unwanted comment appears in the output, remove it before proceeding.
+   - **Check build and type safety:**
+     ```bash
+     pnpm build
+     ```
+     Ensure `tsc -b && vite build` succeeds with zero errors.
+4. **End of Task / Session:** Always update `docs/PROGRESS.md` with what was completed, current state, and next steps before committing.
+5. **Commit:** Commit each distinct working change with a concise conventional commit message matching the commit rules above.
 
 ## Directory Structure
 
