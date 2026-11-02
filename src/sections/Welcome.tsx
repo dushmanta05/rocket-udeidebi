@@ -1,53 +1,62 @@
 import { motion } from 'framer-motion'
 import { Hippo } from '../components/Hippo'
+import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
+import { SECTIONS, WELCOME_COPY } from '../data/sections'
 
 interface WelcomeProps {
   onStart: () => void
 }
 
+const copy = SECTIONS[0]
+
 export function Welcome({ onStart }: WelcomeProps) {
   return (
-    <div className="section-container welcome-section">
+    <div className="section welcome-section">
       <motion.div
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="welcome-stage-content"
+        className="welcome-flyby"
+        initial={{ x: '-15vw', y: '10vh', rotate: 0 }}
+        animate={{ x: '105vw', y: '-30vh' }}
+        transition={{ duration: 9, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
       >
-        <div className="welcome-pedestal">
-          <div className="pedestal-glow-ring" />
-          <Hippo size={210} waving={true} speechText="Hoppi welcomes you! 🎉" />
-        </div>
+        <PenguinRocketArt size={72} />
+      </motion.div>
 
+      <div className="welcome-grid">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="welcome-hero-text"
+          initial={{ scale: 0.6, opacity: 0, y: 40 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ type: 'spring', damping: 11, stiffness: 120 }}
+          className="welcome-hippo"
         >
-          <span className="party-kicker-badge">The Bachelorette Special</span>
-          <h1 className="welcome-main-title">
-            <span className="title-gradient">Arpita's</span> Launch Pad
-          </h1>
-          <p className="welcome-lead">
-            A celebration & chaotic roast reel for our favourite Jagatmata.
-          </p>
-          <div className="welcome-quote">"Rocket udeidebi!" 🚀</div>
+          <div className="welcome-glow" />
+          <Hippo size={210} speechText={WELCOME_COPY.greeting} />
         </motion.div>
 
-        <motion.button
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.96 }}
-          onClick={onStart}
-          className="welcome-launch-btn"
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.5 }}
+          className="welcome-copy"
         >
-          <span>Begin the Journey</span>
-          <span className="btn-icon">→</span>
-        </motion.button>
-      </motion.div>
+          <span className="kicker">{copy.kicker}</span>
+          <h1 className="welcome-title">
+            <span className="script-word">Arpita's</span>
+            <span className="welcome-title-main">Launch Pad</span>
+          </h1>
+          <p className="welcome-lead">{copy.subtitle}</p>
+          <p className="welcome-catchphrase">"{WELCOME_COPY.catchphrase}"</p>
+
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={onStart}
+            className="primary-btn"
+          >
+            {WELCOME_COPY.button}
+            <span aria-hidden="true">→</span>
+          </motion.button>
+        </motion.div>
+      </div>
     </div>
   )
 }
