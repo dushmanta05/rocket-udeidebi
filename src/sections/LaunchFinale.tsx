@@ -53,7 +53,12 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
     if (currentStep < STEP_THANKS) return
     const colors = ['#ffd27a', '#ff8fb1', '#8ec5ff', '#b9a6ff']
     confetti({ particleCount: 120, spread: 120, origin: { y: 0.4 }, colors })
-  }, [currentStep])
+    if (reduceMotion) return
+    const timer = setInterval(() => {
+      confetti({ particleCount: 18, spread: 80, startVelocity: 12, gravity: 0.5, ticks: 400, origin: { x: Math.random(), y: -0.05 }, colors })
+    }, 1400)
+    return () => clearInterval(timer)
+  }, [currentStep, reduceMotion])
 
   const names = Array.from(new Set([...CREW_NAMES, ...wishes.map((wish) => wish.name)]))
   const cycle = Math.max(10, names.length * 1.1)
