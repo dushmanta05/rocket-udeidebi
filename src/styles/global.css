@@ -2104,7 +2104,9 @@ img {
   inset: 0;
   display: grid;
   place-items: center;
-  font-size: clamp(2.6rem, 8vw, 6rem);
+  text-align: center;
+  padding: 0 16px;
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
   font-weight: 700;
   background: linear-gradient(120deg, var(--gold), var(--pink));
   -webkit-background-clip: text;

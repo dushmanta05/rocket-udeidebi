@@ -186,7 +186,7 @@ export const FINALE_COPY = {
   arpitaSays: 'Hop on!',
   boardTitle: 'Boarding complete',
   countdown: ['3', '2', '1'],
-  blastOff: 'ROCKET UDEIDEBI!',
+  blastOff: 'Next stop: Happily Ever After!',
   arpitaName: 'Arpita',
   pranjalName: 'Pranjal',
   thankYouTitle: 'Thank You',
