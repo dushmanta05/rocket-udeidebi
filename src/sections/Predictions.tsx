@@ -1,67 +1,87 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PREDICTIONS_DATA } from '../data/predictions'
+import { PREDICTIONS_COPY, SECTIONS } from '../data/sections'
 import { CrystalBallArt } from '../components/art/CrystalBallArt'
+import { Hint, SectionHeader } from '../components/SectionHeader'
+import type { StepSectionProps } from './types'
 
-interface PredictionsProps {
-  currentStep: number
-  setTotalSteps: (steps: number) => void
-  onNext: () => void
+const copy = SECTIONS[11]
+
+function Sparkle({ className }: { className: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <path d="M12 0 L14.2 9.8 L24 12 L14.2 14.2 L12 24 L9.8 14.2 L0 12 L9.8 9.8 Z" fill="currentColor" />
+    </svg>
+  )
 }
 
-export function Predictions({ currentStep, setTotalSteps, onNext }: PredictionsProps) {
+export function Predictions({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   const [swirling, setSwirling] = useState(false)
 
   useEffect(() => {
     setTotalSteps(PREDICTIONS_DATA.length)
   }, [setTotalSteps])
 
-  const activeIndex = Math.min(currentStep, PREDICTIONS_DATA.length - 1)
-  const currentPrediction = PREDICTIONS_DATA[activeIndex]
+  const index = Math.min(currentStep, PREDICTIONS_DATA.length - 1)
+  const prediction = PREDICTIONS_DATA[index]
+  const revealed = PREDICTIONS_DATA.slice(0, index)
 
   const handleTap = () => {
     setSwirling(true)
-    setTimeout(() => setSwirling(false), 700)
+    setTimeout(() => setSwirling(false), 800)
     onNext()
   }
 
   return (
-    <div className="section-container predictions-section" onClick={handleTap}>
-      <div className="section-header">
-        <span className="chapter-badge purple-badge">🔮 Astral Oracle Chamber 🔮</span>
-        <h2 className="section-heading mystic-heading">Arpita's Married Life: Predicted</h2>
-        <p className="section-subtext mystic-subtext">Tap the crystal orb to consult the mystic foresight</p>
-      </div>
+    <div className="section predictions-section" onClick={handleTap}>
+      <SectionHeader copy={copy} />
 
-      <div className="predictions-stage">
+      <div className="oracle-layout">
         <motion.div
-          animate={swirling ? { scale: [1, 1.15, 1], filter: ['drop-shadow(0 0 10px #c084fc)', 'drop-shadow(0 0 35px #a855f7)', 'drop-shadow(0 0 10px #c084fc)'] } : {}}
-          className="crystal-ball-wrap"
+          className="orb"
+          animate={swirling ? { scale: [1, 1.12, 1], rotate: [0, 8, 0] } : { y: [0, -8, 0] }}
+          transition={swirling ? { duration: 0.8 } : { duration: 3, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <CrystalBallArt size={220} isSwirling={swirling} />
+          <div className="orb-aura" />
+          <CrystalBallArt size={230} isSwirling={swirling} />
         </motion.div>
 
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentPrediction.id}
-            initial={{ rotateY: 90, scale: 0.7, opacity: 0 }}
-            animate={{ rotateY: 0, scale: 1, opacity: 1 }}
-            exit={{ rotateY: -90, scale: 0.7, opacity: 0 }}
-            transition={{ type: 'spring', damping: 14 }}
-            className="tarot-destiny-card"
+            key={prediction.id}
+            className="fortune-card"
+            initial={{ rotateY: 90, opacity: 0, scale: 0.8 }}
+            animate={{ rotateY: 0, opacity: 1, scale: 1 }}
+            exit={{ x: 260, y: -40, rotate: 10, scale: 0.4, opacity: 0 }}
+            transition={{ type: 'spring', damping: 15 }}
           >
-            <div className="tarot-inner-border">
-              <div className="tarot-symbol">✨ 🔮 ✨</div>
-              <p className="tarot-prophecy">"{currentPrediction.text}"</p>
-              <div className="tarot-author">— FORESEEN BY: {currentPrediction.author.toUpperCase()}</div>
-            </div>
+            <Sparkle className="fortune-sparkle tl" />
+            <Sparkle className="fortune-sparkle br" />
+            <span className="fortune-num">Vision {index + 1} of {PREDICTIONS_DATA.length}</span>
+            <p className="fortune-text">{prediction.text}</p>
+            <span className="fortune-author">
+              {PREDICTIONS_COPY.foreseenBy} <strong>{prediction.author}</strong>
+            </span>
           </motion.div>
         </AnimatePresence>
+
+        <div className="fortune-stack">
+          {revealed.length > 0 && <span className="fortune-stack-label">{PREDICTIONS_COPY.revealed}</span>}
+          {revealed.map((item, idx) => (
+            <motion.div
+              key={item.id}
+              className="fortune-mini"
+              initial={{ opacity: 0, x: -40, rotate: 0 }}
+              animate={{ opacity: 1, x: 0, rotate: idx % 2 === 0 ? -3 : 3 }}
+            >
+              <span>{item.author}</span>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
-      <div className="step-indicator-bar mystic-step-bar">
-        Vision {activeIndex + 1} of {PREDICTIONS_DATA.length} • Tap the orb to peer further into destiny →
-      </div>
+      <Hint>{copy.hint}</Hint>
     </div>
   )
 }
