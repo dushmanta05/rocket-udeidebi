@@ -27,10 +27,10 @@ export function PenguinBirth({ currentStep, setTotalSteps, onNext }: PenguinBirt
           >
             <div className="colony-backdrop">
               <div className="mini-penguin-group">
-                <PenguinArt size={80} className="colony-penguin" />
-                <PenguinArt size={95} className="colony-penguin" />
-                <PenguinArt size={75} className="colony-penguin" />
-                <PenguinArt size={90} className="colony-penguin" />
+                <PenguinArt size={80} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" />
+                <PenguinArt size={95} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" />
+                <PenguinArt size={75} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" />
+                <PenguinArt size={90} className="colony-penguin" bodyColor="#64748b" flipperColor="#475569" />
               </div>
             </div>
 

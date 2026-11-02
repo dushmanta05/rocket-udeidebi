@@ -13,9 +13,12 @@
   --color-hippo-light: #f0e6ff;
   --color-hippo-dark: #7b4397;
 
-  --color-penguin-body: #1e293b;
+  --color-penguin-body: #a78bfa;
+  --color-penguin-body-dark: #8b5cf6;
   --color-penguin-belly: #ffffff;
   --color-penguin-beak: #f97316;
+  --color-penguin-groom-body: #1e293b;
+  --color-penguin-groom-dark: #0f172a;
 
   --color-rocket-primary: #f97316;
   --color-rocket-secondary: #ef4444;

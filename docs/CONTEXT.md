@@ -13,8 +13,9 @@ The journey culminates in a grand finale at a launch pad where groom penguin (Pr
 ## 2. Characters & Motifs
 
 - **Hippo ("Hoppi"):** The host. Welcomes guests in Section 1 and thanks everyone at the end of Section 13.
-- **Penguin (Arpita):** Arpita's alter ego. Leaves the colony, is born as baby Arpita, and pilots the rocket through the years.
-- **Pranjal Penguin:** The groom penguin, appearing exclusively in the finale at the launch pad.
+- **Penguin (Arpita):** Arpita's alter ego. Styled in soft lavender (`#a78bfa`) matching the Tenor Pengu aesthetic. Leaves the colony, is born as baby Arpita, and pilots the rocket through the years.
+  - *Color Customization:* Centrally defined in `src/styles/variables.css` via `--color-penguin-body` and `--color-penguin-body-dark`. Can be tweaked or overridden via props on `PenguinArt` and `Penguin` (`bodyColor`, `flipperColor`).
+- **Pranjal Penguin:** The groom penguin, appearing exclusively in the finale at the launch pad. Styled in classic groom navy (`--color-penguin-groom-body: #1e293b`) with a red bow tie.
 - **Rocket:** Moves along a winding SVG trajectory across sections. Catchphrase: *"Rocket udeidebi!"*
 
 ## 3. The 13 Sections Breakdown

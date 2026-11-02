@@ -4,6 +4,8 @@ interface PenguinArtProps {
   hasEgg?: boolean
   chefHat?: boolean
   groomTie?: boolean
+  bodyColor?: string
+  flipperColor?: string
 }
 
 export function PenguinArt({
@@ -11,8 +13,13 @@ export function PenguinArt({
   className = '',
   hasEgg = false,
   chefHat = false,
-  groomTie = false
+  groomTie = false,
+  bodyColor,
+  flipperColor
 }: PenguinArtProps) {
+  const resolvedBody = bodyColor || (groomTie ? 'var(--color-penguin-groom-body, #1e293b)' : 'var(--color-penguin-body, #a78bfa)')
+  const resolvedFlipper = flipperColor || (groomTie ? 'var(--color-penguin-groom-dark, #0f172a)' : 'var(--color-penguin-body-dark, #8b5cf6)')
+
   return (
     <svg
       width={size}
@@ -25,12 +32,12 @@ export function PenguinArt({
       <ellipse cx="65" cy="180" rx="20" ry="10" fill="#f97316" />
       <ellipse cx="135" cy="180" rx="20" ry="10" fill="#f97316" />
 
-      <ellipse cx="100" cy="115" rx="58" ry="68" fill="#1e293b" />
+      <ellipse cx="100" cy="115" rx="58" ry="68" fill={resolvedBody} />
 
-      <ellipse cx="44" cy="118" rx="14" ry="36" fill="#0f172a" transform="rotate(18 44 118)" />
-      <ellipse cx="156" cy="118" rx="14" ry="36" fill="#0f172a" transform="rotate(-18 156 118)" />
+      <ellipse cx="44" cy="118" rx="14" ry="36" fill={resolvedFlipper} transform="rotate(18 44 118)" />
+      <ellipse cx="156" cy="118" rx="14" ry="36" fill={resolvedFlipper} transform="rotate(-18 156 118)" />
 
-      <ellipse cx="100" cy="125" rx="42" ry="50" fill="#ffffff" />
+      <ellipse cx="100" cy="125" rx="42" ry="50" fill="var(--color-penguin-belly, #ffffff)" />
 
       <circle cx="82" cy="80" r="7" fill="#0f172a" />
       <circle cx="84" cy="78" r="2.5" fill="#ffffff" />
@@ -39,7 +46,7 @@ export function PenguinArt({
 
       <path
         d="M 90 92 Q 100 108 110 92 Z"
-        fill="#f97316"
+        fill="var(--color-penguin-beak, #f97316)"
         stroke="#ea580c"
         strokeWidth="1.5"
       />

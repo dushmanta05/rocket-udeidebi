@@ -45,7 +45,7 @@ export function RocketArt({
 
       {withPenguin && (
         <g id="mini-penguin" transform="translate(68, 68) scale(0.16)">
-          <ellipse cx="75" cy="75" rx="35" ry="42" fill="#1e293b" />
+          <ellipse cx="75" cy="75" rx="35" ry="42" fill="var(--color-penguin-body, #a78bfa)" />
           <ellipse cx="75" cy="80" rx="24" ry="30" fill="#ffffff" />
           <polygon points="70,68 80,68 75,76" fill="#f97316" />
         </g>

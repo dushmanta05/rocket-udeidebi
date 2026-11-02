@@ -9,6 +9,8 @@ interface PenguinProps {
   hasEgg?: boolean
   chefHat?: boolean
   groomTie?: boolean
+  bodyColor?: string
+  flipperColor?: string
 }
 
 const PENGUIN_QUIPS = [
@@ -25,7 +27,9 @@ export function Penguin({
   speechText,
   hasEgg = false,
   chefHat = false,
-  groomTie = false
+  groomTie = false,
+  bodyColor,
+  flipperColor
 }: PenguinProps) {
   const [quip, setQuip] = useState<string | null>(null)
   const [isSpinning, setIsSpinning] = useState(false)
@@ -45,7 +49,7 @@ export function Penguin({
         x: e.clientX / window.innerWidth,
         y: e.clientY / window.innerHeight
       },
-      colors: ['#38bdf8', '#f97316', '#ffffff']
+      colors: ['#a78bfa', '#f97316', '#ffffff']
     })
 
     setTimeout(() => setQuip(null), 3000)
@@ -66,6 +70,8 @@ export function Penguin({
           hasEgg={hasEgg}
           chefHat={chefHat}
           groomTie={groomTie}
+          bodyColor={bodyColor}
+          flipperColor={flipperColor}
         />
       </div>
     </div>
