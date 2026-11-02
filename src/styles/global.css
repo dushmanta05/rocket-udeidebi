@@ -1504,42 +1504,94 @@ img {
   place-items: center;
 }
 
-.request-card {
-  width: min(100%, 680px);
+.chat-card {
+  position: relative;
+  width: min(100%, 620px);
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 14px;
-  padding: clamp(22px, 4vw, 40px);
+  padding: clamp(20px, 3vw, 32px);
   border-radius: var(--radius-lg);
-  text-align: center;
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
   box-shadow: var(--shadow-card);
 }
 
-.request-card .pill {
-  align-self: center;
+.chat-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.request-question {
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+.chat-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--sky), var(--lavender));
+  color: #14183a;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
-.request-sub {
+.chat-from {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.chat-meta {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.chat-bubble {
+  align-self: flex-start;
+  max-width: 90%;
+  padding: 16px 20px;
+  border-radius: 6px 22px 22px 22px;
+  background: #ffffff;
+  color: #1d2140;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2.6vw, 1.8rem);
+  line-height: 1.25;
+  transform-origin: top left;
+}
+
+.chat-sub {
   font-family: var(--font-hand);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: var(--ink-soft);
+  padding-left: 6px;
 }
 
 .request-actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 28px;
   min-height: 130px;
-  margin-top: 8px;
+  margin-top: 4px;
+}
+
+.dodge-taunt {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -34px;
+  text-align: center;
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  color: var(--gold);
 }
 
 .no-btn {

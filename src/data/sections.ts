@@ -157,6 +157,8 @@ export const TERMS_COPY = {
 export const SAYNO_COPY = {
   yes: 'Yes',
   no: 'No',
+  requestLabel: 'Request',
+  taunts: ['Nope, No ran away.', 'No is scared of you.', 'No has left the chat.', 'Even No knows you will say yes.', 'Just press Yes, Hippo.'],
   verdict: 'VERDICT: CANNOT SAY NO',
   verdictSub: 'All requests accepted. Jagatmata status: permanent.'
 }
