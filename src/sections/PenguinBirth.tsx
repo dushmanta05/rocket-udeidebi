@@ -112,7 +112,7 @@ export function PenguinBirth({ currentStep, setTotalSteps, onNext }: StepSection
                   animate={{ y: 0, scale: 1, opacity: 1 }}
                   transition={{ delay: 0.35, type: 'spring', damping: 10, stiffness: 120 }}
                 >
-                  <Placeholder label={BIRTH_COPY.babyPhotoLabel} aspectRatio="1 / 1" />
+                  <Placeholder label={BIRTH_COPY.babyPhotoLabel} src={ASSETS.babyArpita} aspectRatio="1 / 1" />
                 </motion.div>
                 <div className="shell-bottom">
                   <EggShellBottom size={200} />
