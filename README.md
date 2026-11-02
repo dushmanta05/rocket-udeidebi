@@ -1,6 +1,6 @@
 # Arpita's Launch Pad
 
-An interactive, PPT-style bachelorette website for Arpita ("Rocket udeidebi!"). Built to run from a laptop on a TV, and responsive on phones. Dark night-sky theme with twinkling stars throughout.
+An interactive, PPT-style bachelorette website made by her crew for Arpita, our "Hippo" ("Rocket udeidebi!"). Built to run from a laptop on a TV, and works on phones and tablets too. Dark night-sky theme with twinkling stars throughout.
 
 ## Prerequisites
 
@@ -34,6 +34,7 @@ Fonts (Fredoka, Nunito, Caveat) are bundled with the build, so nothing is fetche
 | Swipe left / right | Next / previous on touch screens |
 | Progress dots (bottom) | Jump to a section |
 | Tap the hippo | A random quip and confetti |
+| Hover or tap **No** in Say NO | It runs away (that is the joke) |
 
 ## Images
 
@@ -41,10 +42,11 @@ All images live in `public/images/`. A missing file never breaks a screen; it fa
 
 | File | Used for | If missing |
 |---|---|---|
-| `hippo.png` | The host on the welcome and thank-you screens (Arpita is also called Hippo) | Drawn hippo |
+| `hippo.png` | Arpita as Hippo on the welcome and thank-you screens | Drawn hippo |
+| `pengu.webp` | The lone penguin walking to the mountains (Antarctica story) | No background photo |
 | `arpita.jpeg` | Stand-in for every photo slot that has no photo of its own | Dashed placeholder |
+| `baby-arpita.jpg` (optional) | The baby photo that rises out of the egg | `arpita.jpeg` |
 | `pengu-on-rocket.png` | Arpita on her rocket: timelines, progress bar, welcome fly-by, finale | Drawn rocket |
-| `pengu.png` (optional) | Pengu in the egg-hatching scene (transparent PNG or GIF renamed to `.png`) | Drawn blue penguin |
 | `pengu-chef.gif` (optional) | Chef sticker in the Cloud Kitchen | Drawn penguin in a chef hat |
 | `pranjal.png` (optional) | Pranjal at the launch pad | Drawn penguin with a bow tie |
 
@@ -85,9 +87,20 @@ Put one vertical video per person in `public/videos/wishes/` and list them in `p
 
 A person with no video yet shows their name over the stand-in photo. If `wishes.json` is missing or broken, the list in `src/data/wishes.ts` is used.
 
+## Names for the thank-you screen
+
+Every name in `src/data/crew.ts` falls like a star on the last screen, together with the names from the crew videos (duplicates are shown once). Add one line per person:
+
+```ts
+export const CREW_NAMES: string[] = [
+  'Dushmanta',
+  'Your Name Here'
+]
+```
+
 ## Text
 
-All on-screen copy is in `src/data/`: section titles in `sections.ts`, and each screen's content in its own file.
+All on-screen copy is in `src/data/`: section titles and screen text in `sections.ts`, and each screen's content in its own file (`timeline.ts`, `polaroids.ts`, `awards.ts`, `bagItems.ts`, `tubelight.ts`, `terms.ts`, `requests.ts`, `menu.ts`, `predictions.ts`, `crew.ts`). The copy speaks to Arpita from the crew.
 
 ## Tech stack
 

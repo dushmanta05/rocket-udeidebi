@@ -4,22 +4,24 @@ A PPT-style interactive website for Arpita's bachelorette party. Runs offline on
 
 ## 1. High-Level Concept
 
-Arpita is our Penguin and our Hippo. The site opens with the Hippo welcoming guests to "Arpita's Launch Pad". A lonely penguin leaves the colony, finds an egg, and baby Arpita hatches out of it. Arpita, as Pengu riding a rocket, then flies a winding path through her family years and her work friendships, honouring her Odia catchphrase **"Rocket udeidebi"** ("I will fly the rocket").
+Arpita is our Penguin and our Hippo. **The party is thrown by her crew for her**, so the whole site speaks to Arpita from the crew ("Welcome, Hippo!", "Your Doraemon Pocket", "Messages for You", "Thank You, Hippo"). It is not Arpita hosting or thanking guests. A lone penguin leaves the colony and walks toward the mountains, is reborn from an egg, and baby Arpita hatches out of it. Arpita, as Pengu riding a rocket, then flies a winding path through her family years and her work friendships, honouring her Odia catchphrase **"Rocket udeidebi"** ("I will fly the rocket").
 
 After the roasts and the crew's video messages, the finale: Pranjal waits at the launch pad, Arpita flies in on her rocket and picks him up, they blast off together, and a thank-you note closes the night.
 
-**Tone:** full chaos roasts among work friends, siblings and cousins.
+**Tone:** full chaos roasts among work friends, siblings and cousins, addressed to her ("you") in titles, and about her ("she") in narration and roasts.
 
-**Look:** one dark theme, a night sky with twinkling stars, drifting nebulae and shooting stars behind every screen. Glass cards, warm accents (pink, gold, sky blue). Fonts: **Fredoka** for headings (rounded, playful), **Nunito** for body text, **Caveat** for every handwritten line (roasts, names, captions). Fonts are bundled with the build.
+**Look:** one dark theme, a night sky with twinkling stars, drifting nebulae and shooting stars behind every screen. Every card is the same frosted glass (`--glass-bg`, `--glass-border`, `--glass-blur`) with no highlighted or coloured borders; photo frames, polaroids and the receipt are objects, not cards, and keep their own look. Warm accents (pink, gold, sky blue). Pengu's rocket also drifts through the empty margins of most pages (`RocketFlyby`), climbing or cruising, never diving, and never on the timelines or the launch, which have their own rocket. Fonts: **Fredoka** for headings (rounded, playful), **Nunito** for body text, **Caveat** for every handwritten line (roasts, names, captions). Fonts are bundled with the build.
 
 ## 2. Characters, Images & Motifs
 
 Every image has a drawn fallback, so a missing file never breaks a screen. Paths are in `src/data/assets.ts`.
 
-- **Hippo (`public/images/hippo.png`):** the host, and Arpita's own nickname. Welcomes guests on the first screen and thanks everyone on the last. Tapping it gives a quip and confetti.
+- **Hippo (`public/images/hippo.png`):** Arpita herself (her nickname). Greeted on the first screen ("Welcome, Hippo!", she replies "Who, me?") and on the last. Tapping it gives a quip and confetti.
+- **Baby photo (`public/images/baby-arpita.jpg`, optional):** rises out of the egg; falls back to `arpita.jpeg`.
 - **Arpita photo (`public/images/arpita.jpeg`):** the stand-in for every photo slot with no photo of its own (`Placeholder` component). Any item in `src/data/` with a `src` uses that instead.
 - **Pengu on the rocket (`public/images/pengu-on-rocket.png`):** Arpita riding her rocket. Used on the timelines, the bottom progress bar, the welcome fly-by and the finale.
-- **Pengu (`public/images/pengu.png`, optional):** the original Pengu meme penguin in the egg-hatching scene. Falls back to a drawn blue Pengu-style penguin.
+- **Lone penguin (`public/images/pengu.webp`):** the full-screen photo of a single penguin walking toward the mountains, used for the Antarctica journey and, blurred, behind the egg.
+- **Pengu (`public/images/pengu.png`, optional):** reserved slot for a Pengu meme image (`Pengu` component, `arpita` variant). Not currently on any screen.
 - **Pengu chef (`public/images/pengu-chef.gif`, optional):** a Pengu sticker GIF for the Cloud Kitchen. Falls back to the drawn penguin in a chef hat.
 - **Pranjal (`public/images/pranjal.png`, optional):** the groom at the launch pad. Falls back to a drawn navy penguin with a red bow tie.
 - **Colours** for the drawn penguins: `--pengu-body`, `--pengu-body-dark`, `--pengu-groom` in `src/styles/variables.css`.
@@ -28,20 +30,20 @@ Every image has a drawn fallback, so a missing file never breaks a screen. Paths
 
 Section titles, hints and short names live in `src/data/sections.ts`.
 
-1. **Welcome:** the Hippo with a speech bubble, the title ("Arpita's" in Caveat, "Launch Pad" in Fredoka), the catchphrase, and **Begin the Journey**. Pengu's rocket flies across the whole screen in the background.
-2. **Hatching:** a muted penguin colony on an ice floe; Pengu waddles away ("Wait, where is everyone going?"). Next, Pengu stands beside a wobbling egg. Next, the egg shakes harder and cracks in three stages. Last, a white flash, the top shell flies off, baby Arpita's photo rises out of the bottom shell, and confetti: "Arpita is Born!"
-3. **Family & Early Years:** Pengu's rocket flies along a winding path, nose following the curve, through the family stops (`timeline.ts`). The path behind lights up; each stop shows a photo card beside its year, title and handwritten roast. Photo and text never overlap: a two-column card on desktop, stacked on phones.
-4. **Then We Met:** the same, for the work stops, on a faster, wavier path in gold.
+1. **Welcome:** "Arpita's Bachelorette", the title "Welcome," (Caveat) "Hippo!" (Fredoka), the Hippo saying "Who, me?", the catchphrase, and **Let's Begin**. Pengu's rocket flies across the whole screen in the background.
+2. **Antarctica journey and rebirth:** two cinematic steps over the full-screen `pengu.webp` with a slow zoom ("One penguin left the colony. Alone." then "No map. No plan. Just the mountains, and a feeling."). Then the scene blurs, "Somewhere past the mountains, she was reborn..." and a glowing egg wobbles and cracks in three stages. Last, a white flash, the top shell flies off, baby Arpita's photo rises out of the bottom shell, and confetti: "Reborn as a human!"
+3. **Family & Early Years:** Pengu's rocket flies slowly (about 2.8 s) along a winding path, sampling the curve so it never cuts a corner, nose following the direction of travel, through the family stops (`timeline.ts`). The path behind lights up; each stop shows a photo card beside its year, title and handwritten roast. Photo and text never overlap: a two-column card on desktop, stacked on phones.
+4. **Then We Met You:** the same, for the work stops, on a slightly faster (2.2 s), wavier path in gold.
 5. **Polaroids:** four sets (two of Weird Expressions, the Office Era, Trips & Parties), six or four polaroids each. They drop in, blow away on the next set, and open large on tap.
 6. **Awards:** one award at a time. A gold-framed photo (no trophy art), the award number, title and roast written on, and confetti from both sides each time.
-7. **Doraemon Pocket:** tap the bag to pull out the next item. A card beside the bag shows the item's photo, name and roast (no emoji). A tray of chips below fills in as items are found; the last item flips the bag over.
+7. **Your Doraemon Pocket:** seven items. Tap the drawn tote (stitched handle, white 4D pocket, red band, gold bell, items peeking out) to pull out the next one. A glass card beside the bag shows the item's photo, name and roast (no emoji). A tray of chips below fills in. The bag never flips over.
 8. **Tubelight Moment:** a tubelight above Arpita's photo, and a timestamped log (10:00 AM joke, 10:45 AM laugh). The light flickers while she buffers, a comprehension meter fills, and at the end the whole room lights up.
 9. **Terms & Conditions:** a contract card with ten clauses, each a number, a short title and one line. **I Agree** signs it in her handwriting and slams an ACCEPTED stamp; **Disagree** runs away and gives up after five tries.
-10. **Say NO:** the title's NO is huge. Each request card has a big **No** that dodges every attempt and a small **Yes** that grows a little each time No escapes. Yes sends the card flying; the end is a "Cannot say no" verdict stamp.
-11. **Cloud Kitchen:** Pengu chef, a chalkboard menu that fits on screen without scrolling, and a receipt that prints from a slot when a dish is tapped.
+10. **Say NO:** the title's NO is huge. Each request arrives as a chat message from someone (`from` in `requests.ts`: Office Bestie, Cousin, Flatmate, Random Stranger, Stray Puppy). A big **No** dodges every attempt with a taunt ("No has left the chat.") and a small **Yes** grows a little each time. Yes sends the card flying. The end is a scoreboard (Yes 5, No 0, how many times No ran away) and a CASE CLOSED stamp.
+11. **Cloud Kitchen:** Pengu chef, a glass menu in handwriting that fits on a laptop screen without scrolling, and a receipt that prints from a slot when a dish is tapped.
 12. **Predictions:** a floating crystal ball; each tap flips in the next fortune card, and earlier ones stack to the side with their authors.
-13. **Messages from the Crew:** one vertical (9:16) video per person in a phone frame, with their name, relation and one-line message beside it and an "Up next" list. It moves on when a video ends. The list comes from `public/videos/wishes/wishes.json` (see `README.md`), so the count follows the file.
-14. **Launch:** Pranjal waits on the pad ("Where is my rocket?"). Arpita flies in on her rocket ("Hop on!"). Pranjal hops onto the rocket with a heart. Countdown 3, 2, 1, then the rocket turns upward and blasts off with a screen shake: "ROCKET UDEIDEBI!". Last, the thank-you screen: the Hippo, a thank-you note, and the crew's names falling like stars.
+13. **Messages for You:** one vertical (9:16) video per person in a phone frame, with their name, relation and one-line message beside it and an "Up next" list. It moves on when a video ends. The list comes from `public/videos/wishes/wishes.json` (see `README.md`), so the count follows the file.
+14. **Launch:** Pranjal waits on the pad ("Where is my rocket?"). Arpita flies in on her rocket ("Hop on!"). Pranjal hops onto the rocket with a heart. White name pills ("Arpita", "Pranjal") stay upright on both. Countdown 3, 2, 1 (each number shown), then the rocket turns upward and blasts off with a screen shake: "Next stop: Happily Ever After!". Last, the thank-you screen from the crew to her: the Hippo saying "Rocket udeidebi!", "Thank You, Hippo" and a note, signed "Love, your whole crew". Every name in `src/data/crew.ts` (plus the crew video names) falls like a star, and confetti keeps drifting down.
 
 ## 4. Roast Material & Personality Traits
 
@@ -114,6 +116,7 @@ Section titles, hints and short names live in `src/data/sections.ts`.
 - **Animation:** Framer Motion for everything; CSS keyframes for stars, flicker and floating. All motion respects `prefers-reduced-motion`.
 - **Styling:** plain CSS with variables (`src/styles/variables.css`, `global.css`); no utility frameworks.
 - **Offline:** standalone build (`base: './'`), fonts bundled through `@fontsource`. No CDN calls at runtime. The only runtime request is the local `videos/wishes/wishes.json`, so serve the build with `pnpm preview`.
+- **Screens:** built for a laptop on a TV first; phones and tablets (under 900px) stack every layout into one column and scroll vertically, centre stacked text, keep the launch scene full height, and hide the margin fly-by.
 - **Sound:** none. There is no background music or sound effects; the crew videos play their own sound.
 - **Controls:** arrow keys, Space, Enter, `F` for fullscreen, swipe on touch screens, clickable progress dots. Sub-steps inside a section consume the arrow keys before the section changes.
 - **Media fallbacks:** `Placeholder` (photos and videos) and `SmartImage` (characters) fall back cleanly when a file is missing or fails to load.
