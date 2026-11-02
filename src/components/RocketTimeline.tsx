@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { TimelineStop } from '../data/timeline'
 import type { SectionCopy } from '../data/sections'
@@ -29,6 +29,27 @@ function pointAt(t: number, variant: 'family' | 'work') {
   return { x: MARGIN + t * (VIEW_W - MARGIN * 2), y: curveY(t, variant) }
 }
 
+const ROCKET_NOSE_OFFSET = 40
+const SAMPLES = 160
+
+function headingAt(t: number, variant: 'family' | 'work', forward: boolean) {
+  const a = pointAt(Math.max(0, t - 0.005), variant)
+  const b = pointAt(Math.min(1, t + 0.005), variant)
+  const deg = Math.atan2(b.y - a.y, b.x - a.x) * (180 / Math.PI)
+  return (forward ? deg : deg + 180) + ROCKET_NOSE_OFFSET
+}
+
+function arcFractions(variant: 'family' | 'work') {
+  const lengths = [0]
+  for (let i = 1; i <= SAMPLES; i++) {
+    const p = pointAt((i - 1) / SAMPLES, variant)
+    const q = pointAt(i / SAMPLES, variant)
+    lengths.push(lengths[i - 1] + Math.hypot(q.x - p.x, q.y - p.y))
+  }
+  const total = lengths[SAMPLES]
+  return (t: number) => lengths[Math.round(t * SAMPLES)] / total
+}
+
 export function RocketTimeline({ stops, copy, variant, currentStep, setTotalSteps, onNext }: RocketTimelineProps) {
   useEffect(() => {
     setTotalSteps(stops.length)
@@ -43,16 +64,26 @@ export function RocketTimeline({ stops, copy, variant, currentStep, setTotalStep
     return points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
   }, [variant])
 
-  const progressD = useMemo(() => {
-    const end = tFor(index)
-    const count = Math.max(2, Math.round(end * 80) + 1)
-    const points = Array.from({ length: count }, (_, i) => pointAt((i / (count - 1)) * end, variant))
-    return points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
-  }, [index, variant, stops.length])
+  const arcAt = useMemo(() => arcFractions(variant), [variant])
+  const previous = useRef(index)
+  const duration = variant === 'family' ? 2.8 : 2.2
 
-  const here = pointAt(tFor(index), variant)
-  const ahead = pointAt(Math.min(1, tFor(index) + 0.01), variant)
-  const slope = Math.atan2(ahead.y - here.y, ahead.x - here.x) * (180 / Math.PI)
+  const flight = useMemo(() => {
+    const from = tFor(previous.current)
+    const to = tFor(index)
+    const forward = to >= from
+    const frames = Array.from({ length: 31 }, (_, i) => from + ((to - from) * i) / 30)
+    return {
+      left: frames.map((t) => `${(pointAt(t, variant).x / VIEW_W) * 100}%`),
+      top: frames.map((t) => `${(pointAt(t, variant).y / VIEW_H) * 100}%`),
+      rotate: frames.map((t) => headingAt(t, variant, forward)),
+      lit: arcAt(to)
+    }
+  }, [index, variant, arcAt])
+
+  useEffect(() => {
+    previous.current = index
+  }, [index])
 
   return (
     <div className={`section timeline-section timeline-${variant}`} onClick={onNext}>
@@ -61,7 +92,13 @@ export function RocketTimeline({ stops, copy, variant, currentStep, setTotalStep
       <div className="timeline-track">
         <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} className="timeline-svg" preserveAspectRatio="none">
           <path d={pathD} className="timeline-path" />
-          <path d={progressD} className="timeline-path-done" />
+          <motion.path
+            d={pathD}
+            className="timeline-path-done"
+            initial={false}
+            animate={{ pathLength: Math.max(flight.lit, 0.001) }}
+            transition={{ duration, ease: 'easeInOut' }}
+          />
           {stops.map((s, i) => {
             const p = pointAt(tFor(i), variant)
             return (
@@ -85,12 +122,9 @@ export function RocketTimeline({ stops, copy, variant, currentStep, setTotalStep
         })}
         <motion.div
           className="timeline-rocket"
-          animate={{
-            left: `${(here.x / VIEW_W) * 100}%`,
-            top: `${(here.y / VIEW_H) * 100}%`,
-            rotate: slope + 35
-          }}
-          transition={{ type: 'spring', damping: variant === 'work' ? 13 : 16, stiffness: variant === 'work' ? 160 : 110 }}
+          initial={false}
+          animate={{ left: flight.left, top: flight.top, rotate: flight.rotate }}
+          transition={{ duration, ease: 'easeInOut' }}
         >
           <PenguinRocketArt size={68} />
         </motion.div>
