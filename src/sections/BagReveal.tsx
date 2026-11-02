@@ -18,7 +18,6 @@ export function BagReveal({ currentStep, setTotalSteps, onNext }: StepSectionPro
 
   const index = Math.min(currentStep, BAG_ITEMS.length - 1)
   const item = BAG_ITEMS[index]
-  const isFinal = index === BAG_ITEMS.length - 1
 
   const handleTap = () => {
     setWiggling(true)
@@ -32,11 +31,7 @@ export function BagReveal({ currentStep, setTotalSteps, onNext }: StepSectionPro
 
       <div className="bag-layout">
         <div className="bag-side">
-          <motion.div
-            className="bag-art"
-            animate={isFinal ? { rotate: [0, -12, 12, -160, 180, 0], scale: [1, 1.1, 0.95, 1] } : { scale: [1, 1.03, 1] }}
-            transition={isFinal ? { duration: 0.9 } : { duration: 2.4, repeat: Infinity }}
-          >
+          <motion.div className="bag-art" animate={{ scale: [1, 1.03, 1] }} transition={{ duration: 2.4, repeat: Infinity }}>
             <BagArt size={240} isWiggling={wiggling} />
           </motion.div>
           <div className="bag-counter">
