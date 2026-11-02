@@ -9,9 +9,9 @@ export interface SectionCopy {
 export const SECTIONS: SectionCopy[] = [
   {
     short: 'Welcome',
-    kicker: 'The Bachelorette Special',
-    title: "Arpita's Launch Pad",
-    subtitle: 'A celebration, a roast and a rocket launch for our favourite Jagatmata.',
+    kicker: "Arpita's Bachelorette",
+    title: 'Welcome, Hippo!',
+    subtitle: 'Tonight is all about you: your crew, your story, a lot of roasting and one rocket launch.',
     hint: 'Tap the button to begin'
   },
   {
@@ -25,77 +25,77 @@ export const SECTIONS: SectionCopy[] = [
     short: 'Family',
     kicker: 'Chapter 1',
     title: 'Family & Early Years',
-    subtitle: 'Before us, there was already a legend in the making.',
+    subtitle: 'Before we met you, you were already a legend in the making.',
     hint: 'Tap or press the right arrow to fly to the next stop'
   },
   {
     short: 'Work',
     kicker: 'Chapter 2',
-    title: 'Then We Met',
-    subtitle: 'The rocket found its crew, and the chai breaks got longer.',
+    title: 'Then We Met You',
+    subtitle: 'Your rocket found its crew, and the chai breaks got longer.',
     hint: 'Tap to boost to the next stop'
   },
   {
     short: 'Polaroids',
     kicker: 'The Evidence Wall',
     title: 'Caught on Camera',
-    subtitle: 'Tap any photo to inspect the evidence.',
+    subtitle: 'Yes, we kept every one of these. Tap a photo to zoom in.',
     hint: 'Arrow keys switch between sets'
   },
   {
     short: 'Awards',
     kicker: 'The Hall of Fame',
     title: 'And the Award Goes To',
-    subtitle: 'Recognising a lifetime of unmatched achievements.',
+    subtitle: 'For achievements only you could pull off.',
     hint: 'Tap for the next award'
   },
   {
     short: 'Bag',
     kicker: 'Inspection Protocol',
-    title: "Arpita's Doraemon Pocket",
-    subtitle: 'Tap the bag to pull out the next survival artifact.',
+    title: 'Your Doraemon Pocket',
+    subtitle: "Tap your bag. Let's see what you are carrying today.",
     hint: 'Tap the bag'
   },
   {
     short: 'Tubelight',
     kicker: 'Live Experiment',
     title: 'The Tubelight Moment',
-    subtitle: 'Tracking how long a punchline takes to reach Arpita.',
+    subtitle: 'We timed how long a punchline takes to reach you.',
     hint: 'Tap to advance the buffering'
   },
   {
     short: 'T&C',
     kicker: 'Legally Binding',
-    title: "The Bride's Terms & Conditions",
-    subtitle: 'Drafted by friends, siblings and cousins. Non-negotiable.',
-    hint: 'Read carefully, then try disagreeing'
+    title: 'Your Terms & Conditions',
+    subtitle: 'Drafted by your friends, siblings and cousins. Non-negotiable.',
+    hint: 'Read carefully, Hippo. Then try disagreeing.'
   },
   {
     short: 'Say No',
     kicker: 'Mission Impossible',
     title: 'Say',
-    subtitle: 'A scientific test: can Arpita physically decline a request?',
+    subtitle: 'We tested it scientifically: can you actually say no?',
     hint: 'Try pressing No. We dare you.'
   },
   {
     short: 'Kitchen',
     kicker: 'Now Open, Forever Free',
     title: 'Penguin & Hippo Cloud Kitchen',
-    subtitle: 'Tap a dish to place your order.',
+    subtitle: 'The restaurant you will open one day. Tap a dish to order.',
     hint: 'Tap any dish'
   },
   {
     short: 'Predictions',
     kicker: 'The Oracle Speaks',
-    title: 'Married Life: Predicted',
+    title: 'Your Married Life: Predicted',
     subtitle: 'Tap the crystal ball to see what the future holds.',
     hint: 'Tap the crystal ball'
   },
   {
     short: 'Crew',
     kicker: 'Incoming Transmissions',
-    title: 'Messages from the Crew',
-    subtitle: 'Recorded before ignition, with love and some roasting.',
+    title: 'Messages for You',
+    subtitle: 'Recorded by your crew before launch, with love and some roasting.',
     hint: 'Tap or press the right arrow for the next message'
   },
   {
@@ -116,9 +116,11 @@ export const HIPPO_QUIPS = [
 ]
 
 export const WELCOME_COPY = {
-  greeting: 'Hippo welcomes you!',
+  greeting: 'Who, me?',
+  titleScript: 'Welcome,',
+  titleMain: 'Hippo!',
   catchphrase: 'Rocket udeidebi!',
-  button: 'Begin the Journey'
+  button: "Let's Begin"
 }
 
 export const BIRTH_COPY = {
@@ -189,11 +191,11 @@ export const FINALE_COPY = {
   blastOff: 'Next stop: Happily Ever After!',
   arpitaName: 'Arpita',
   pranjalName: 'Pranjal',
-  thankYouTitle: 'Thank You',
+  thankYouTitle: 'Thank You, Hippo',
   thankYouNote: [
-    'To everyone who laughed, roasted, recorded, planned and showed up tonight: thank you.',
+    'For every chai break, every chair you found us, every snack from that bag and every laugh at full voltage: thank you for being you.',
     'Arpita and Pranjal, may the chai always be hot, the chairs always be free, and the laughter always be electric.'
   ],
-  hippoSays: 'The rocket has launched. Thank you, everyone!',
-  signOff: 'With love, the whole crew'
+  hippoSays: 'Rocket udeidebi!',
+  signOff: 'Love, your whole crew'
 }

@@ -40,8 +40,8 @@ export function Welcome({ onStart }: WelcomeProps) {
         >
           <span className="kicker">{copy.kicker}</span>
           <h1 className="welcome-title">
-            <span className="script-word">Arpita's</span>
-            <span className="welcome-title-main">Launch Pad</span>
+            <span className="script-word">{WELCOME_COPY.titleScript}</span>
+            <span className="welcome-title-main">{WELCOME_COPY.titleMain}</span>
           </h1>
           <p className="welcome-lead">{copy.subtitle}</p>
           <p className="welcome-catchphrase">"{WELCOME_COPY.catchphrase}"</p>
