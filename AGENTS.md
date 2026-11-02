@@ -6,8 +6,9 @@ Instructions and guidelines for AI agents working on **Arpita's Launch Pad** (`r
 
 - **Purpose:** A PPT-style interactive bachelorette party website ("Arpita's Launch Pad") for Arpita, designed to run on a laptop connected to a TV, and responsive on mobile.
 - **Tone:** Full chaos roasts among work friends, siblings, and cousins.
-- **Stack:** Vite + React + TypeScript + GSAP (MotionPath) + Framer Motion + Plain CSS (CSS variables) + canvas-confetti.
-- **Runtime:** 100% frontend only. Node 24 with `pnpm`. No backend, no database, no runtime network calls, no analytics. Must work fully offline after `pnpm build` (`base: './'`).
+- **Stack:** Vite + React + TypeScript + Framer Motion + Plain CSS (CSS variables) + canvas-confetti.
+- **Runtime:** 100% frontend only. Node 24 with `pnpm`. No backend, no database, no analytics, no CDN. The only runtime request is the local `videos/wishes/wishes.json`. Fonts are bundled via `@fontsource`. Must work fully offline after `pnpm build` (`base: './'`).
+- **Look:** one dark night-sky theme (`Starfield` behind every screen). Fredoka headings, Nunito body, Caveat for handwritten lines. No emoji in the UI.
 
 ## Coding Standards
 
@@ -67,15 +68,14 @@ rocket-udeidebi/
 │   ├── CONTEXT.md       # Full project brief, section specs, character personas, animation specs
 │   └── PROGRESS.md      # Living roadmap, section checklist, status tracker, and session notes
 ├── public/
-│   ├── audio/           # Sound clips and background music (optional, graceful failure)
-│   ├── images/          # Real photos when supplied (placeholders used otherwise)
-│   └── videos/          # Wish video clips
+│   ├── images/          # hippo.png, arpita.jpeg (stand-in photo), pengu-on-rocket.png, optional pengu.png, pengu-chef.gif, pranjal.png
+│   └── videos/wishes/   # Crew videos plus wishes.json listing them
 ├── src/
-│   ├── components/      # Shared UI pieces (Placeholder, Hippo, Penguin, Rocket, ProgressRocket, etc.)
-│   │   └── art/         # Standalone SVG art placeholders for characters and props
-│   ├── data/            # Strictly typed data files (timeline, awards, bag items, rules, wishes, etc.)
-│   ├── hooks/           # Navigation, keyboard shortcuts, swipe detection, audio controller
-│   ├── sections/        # The 13 distinct section components
+│   ├── components/      # Shared UI pieces (Placeholder, SmartImage, Hippo, Pengu, Starfield, RocketTimeline, ProgressRocket)
+│   │   └── art/         # Drawn SVG fallbacks for characters and props
+│   ├── data/            # Typed content: sections.ts (all titles and screen copy), assets.ts (image paths), timeline, awards, etc.
+│   ├── hooks/           # Navigation (keys, swipe, steps) and useWishes (crew video manifest)
+│   ├── sections/        # The 14 section components
 │   ├── styles/          # Plain CSS variables and global theme styles
 │   ├── App.tsx          # Root container and section coordinator
 │   └── main.tsx         # Application entry point
