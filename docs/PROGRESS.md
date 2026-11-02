@@ -5,38 +5,49 @@ Every agent must update this document upon completing a task or before ending a 
 
 ## Current Status
 
-- **Phase:** Redesign done (dark night sky, real images, 14 sections); waiting on real photos and videos
+- **Phase:** Feature-complete for the party; waiting on real photos, videos and names
 - **Active Task:** None
-- **Next Task:** Drop in real assets (see "Assets still to add"), then a full run-through on the TV
+- **Next Task:** Drop in real assets (below), fill `src/data/crew.ts`, then a full run-through on the TV and on a phone
 
 ## Assets still to add
 
 | What | Where | Until then |
 |---|---|---|
 | Per-slot photos (timelines, polaroids, awards, bag items) | `public/images/`, then `src:` on the item in `src/data/` | `arpita.jpeg` everywhere |
-| Pengu meme image for the hatching | `public/images/pengu.png` | Drawn Pengu |
+| Baby photo for the hatching | `public/images/baby-arpita.jpg` | `arpita.jpeg` |
 | Pengu chef sticker | `public/images/pengu-chef.gif` | Drawn chef penguin |
 | Pranjal | `public/images/pranjal.png` | Drawn groom penguin |
 | Crew videos | `public/videos/wishes/*.mp4` listed in `wishes.json` | Name over the stand-in photo |
+| Every name for the thank-you star rain | `src/data/crew.ts` | Four sample names |
+
+## Story ideas not built yet
+
+Ideas raised for possible extra sections; none is started.
+
+- **How Well Do You Know Hippo?** A quick quiz for the room with multiple-choice answers about her, revealed one by one.
+- **Pranjal's Side of the Story:** a short chapter of how they met, told from his side.
+- **Chai Break Chronicles:** a map of her favourite chai spots and the chair she found at each.
+- **Hippo's Dance Floor:** a tap-to-dance mini scene set to "generator beats", tying back to the Unstoppable Dancer roast.
+- **Before and After Marriage:** split-screen predictions of everyday habits, with photos.
 
 ## Section Checklist
 
 | # | Section | Status | Notes |
 |---|---|---|---|
 | 01 | Welcome | Done | `hippo.png` host, Fredoka + Caveat title, full-width rocket fly-by |
-| 02 | Hatching | Done | Colony, Pengu waddle, egg wobble, 3-stage crack, shell split, baby photo rises |
+| 02 | Antarctica + rebirth | Done | Full-screen lone penguin (`pengu.webp`), two caption steps, glowing egg, 3-stage crack, baby photo rises |
 | 03 | Family timeline | Done | Rocket follows the curve, lit path, two-column card (no overlap) |
 | 04 | Work timeline | Done | Same component, faster wavier gold path |
 | 05 | Polaroids | Done | 4 sets, 2 of them Weird Expressions (6 photos each) |
 | 06 | Awards | Done | Gold-framed photo only, no trophy, confetti both sides |
-| 07 | Doraemon pocket | Done | Photo + details beside the bag, no emoji, item tray |
+| 07 | Doraemon pocket | Done | 7 items, drawn tote bag, photo + details beside it, no flip |
 | 08 | Tubelight | Done | Timestamped log, flicker, comprehension meter, room lights up |
 | 09 | Terms & Conditions | Done | Short clause titles, signature, runaway Disagree, stamp |
-| 10 | Say NO | Done | Huge NO title, big dodging No, small Yes |
+| 10 | Say NO | Done | Chat-message requests, big dodging No with taunts, small Yes, scoreboard + CASE CLOSED |
 | 11 | Cloud Kitchen | Done | Fits without scrolling, chef sticker slot, printed receipt |
 | 12 | Predictions | Done | Floating orb, flip-in fortunes, revealed stack |
 | 13 | Crew messages | Done | Vertical videos from `wishes.json`, auto-advance, name/relation/message |
-| 14 | Launch | Done | Pranjal on pad, Arpita arrives, he boards, countdown, blast-off, thank-you note |
+| 14 | Launch | Done | Name pills, every countdown number, "Next stop: Happily Ever After!", thank-you from the crew, names from `crew.ts`, continuous confetti |
 
 ---
 
@@ -89,3 +100,15 @@ Every agent must update this document upon completing a task or before ending a 
 - Split the old finale into Crew messages (vertical videos from `wishes.json`) and Launch (pickup, countdown, blast-off, thank-you).
 - Removed unused art (`TrophyArt`, `MenuBoardArt`, `TubelightArt`, `Penguin`) and the sound hook.
 - Fixed: clicking the current section's progress dot reset its step count, so the next tap skipped the section.
+
+### Session 3 (2026-11-03)
+- Perspective: the party is from the crew to Arpita. Rewrote titles and the welcome and thank-you copy to speak to her ("Welcome, Hippo!", "Thank You, Hippo").
+- Antarctica: full-screen lone penguin journey (`pengu.webp`) in two caption steps, then the rebirth through the egg.
+- Timelines: the rocket flies slowly along the curve with the lit path drawn in step.
+- Margin fly-by (`RocketFlyby`) on most pages: per-section paths through empty corners and edges, always climbing or cruising.
+- Doraemon pocket: seven items, a drawn tote bag, no flip at the end.
+- Launch: every countdown number shows, name pills on Arpita and Pranjal, new blast-off line, names list (`crew.ts`) and continuous confetti on the thank-you screen.
+- One frosted-glass card style everywhere, no highlighted borders.
+- Say NO: chat-message requests, taunts, and a scoreboard ending.
+- Phones and tablets: launch scene fixed (it collapsed), stacked text centred, fly-by hidden under 900px. Checked at 390x844 and 820x1180.
+- Every commit was built on its own before committing (see "Committing" in `AGENTS.md`).
