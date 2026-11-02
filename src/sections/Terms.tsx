@@ -2,87 +2,108 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { TERMS_DATA } from '../data/terms'
+import { SECTIONS, TERMS_COPY } from '../data/sections'
 import { Stamp } from '../components/Stamp'
+import { Hint, SectionHeader } from '../components/SectionHeader'
 
 interface TermsProps {
   onNext: () => void
 }
 
-export function Terms({ onNext }: TermsProps) {
-  const [isAgreed, setIsAgreed] = useState(false)
-  const [disagreeOffset, setDisagreeOffset] = useState({ x: 0, y: 0 })
-  const [evadeCount, setEvadeCount] = useState(0)
+const copy = SECTIONS[8]
+const ESCAPES_BEFORE_SURRENDER = 5
 
-  const handleEvade = () => {
-    if (evadeCount >= 5) {
-      handleAccept()
+export function Terms({ onNext }: TermsProps) {
+  const [agreed, setAgreed] = useState(false)
+  const [offset, setOffset] = useState({ x: 0, y: 0 })
+  const [escapes, setEscapes] = useState(0)
+
+  const accept = () => {
+    if (agreed) return
+    setAgreed(true)
+    confetti({ particleCount: 90, spread: 100, origin: { y: 0.6 } })
+    setTimeout(onNext, 2600)
+  }
+
+  const evade = () => {
+    if (escapes >= ESCAPES_BEFORE_SURRENDER) {
+      accept()
       return
     }
-    const randomX = (Math.random() - 0.5) * 260
-    const randomY = (Math.random() - 0.5) * 160
-    setDisagreeOffset({ x: randomX, y: randomY })
-    setEvadeCount((prev) => prev + 1)
+    setOffset({ x: (Math.random() - 0.5) * 320, y: -Math.random() * 140 })
+    setEscapes((n) => n + 1)
   }
 
-  const handleAccept = () => {
-    setIsAgreed(true)
-    confetti({
-      particleCount: 65,
-      spread: 95,
-      origin: { y: 0.6 }
-    })
-    setTimeout(() => {
-      onNext()
-    }, 2400)
-  }
+  const surrendered = escapes >= ESCAPES_BEFORE_SURRENDER
 
   return (
-    <div className="section-container terms-section">
-      <div className="section-header">
-        <span className="chapter-badge">⚖️ Supreme Bachelorette Tribunal ⚖️</span>
-        <h2 className="section-heading">Bride's Terms & Conditions</h2>
-        <p className="section-subtext">Legally binding clauses drafted by Friends, Siblings & Cousins</p>
-      </div>
+    <div className="section terms-section">
+      <SectionHeader copy={copy} />
 
-      <div className="parchment-deed-card">
-        <div className="parchment-top-bar">
-          <span className="parchment-ribbon">OFFICIAL COVENANT</span>
+      <div className="contract">
+        <div className="contract-head">
+          <span className="contract-seal">{TERMS_COPY.seal}</span>
+          <div>
+            <span className="contract-label">{TERMS_COPY.heading}</span>
+            <span className="contract-sub">{TERMS_DATA.length} {TERMS_COPY.headingSub}</span>
+          </div>
         </div>
 
-        <div className="parchment-scrollable-body">
-          {TERMS_DATA.map((term) => (
-            <div key={term.id} className="contract-rule-row">
-              <span className="rule-number">Clause {term.id}.</span>
-              <span className="rule-text">{term.rule}</span>
-            </div>
+        <div className="clause-grid">
+          {TERMS_DATA.map((term, idx) => (
+            <motion.div
+              key={term.id}
+              className="clause"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 + idx * 0.07 }}
+            >
+              <span className="clause-num">{String(term.id).padStart(2, '0')}</span>
+              <div>
+                <h4 className="clause-title">{term.title}</h4>
+                <p className="clause-rule">{term.rule}</p>
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        {isAgreed && (
+        <div className="contract-foot">
+          <div className="signature">
+            <span className="signature-name">{agreed ? TERMS_COPY.signature : ''}</span>
+            <span className="signature-label">{TERMS_COPY.signatureLabel}</span>
+          </div>
+          <div className="contract-actions">
+            <motion.button
+              type="button"
+              className="primary-btn"
+              whileTap={{ scale: 0.95 }}
+              animate={surrendered ? { scale: [1, 1.12, 1] } : {}}
+              transition={{ repeat: surrendered ? Infinity : 0, duration: 0.9 }}
+              onClick={accept}
+            >
+              {TERMS_COPY.agree}
+            </motion.button>
+            <motion.button
+              type="button"
+              className="ghost-btn"
+              animate={{ x: offset.x, y: offset.y, rotate: surrendered ? [0, -6, 6, 0] : 0 }}
+              transition={{ type: 'spring', damping: 10, stiffness: 260 }}
+              onMouseEnter={evade}
+              onClick={evade}
+            >
+              {surrendered ? TERMS_COPY.surrender : TERMS_COPY.disagree}
+            </motion.button>
+          </div>
+        </div>
+
+        {agreed && (
           <div className="stamp-overlay">
-            <Stamp text="ACCEPTED" subtext="NO DISAGREEMENT ALLOWED • CASE CLOSED" color="#dc2626" />
+            <Stamp text={TERMS_COPY.stamp} subtext={TERMS_COPY.stampSub} color="#ff5a6e" />
           </div>
         )}
-
-        <div className="contract-footer-actions">
-          <button
-            className={`agree-action-btn ${isAgreed ? 'btn-active' : ''}`}
-            onClick={handleAccept}
-          >
-            ✓ I Agree (I Understand Everything)
-          </button>
-
-          <motion.button
-            animate={{ x: disagreeOffset.x, y: disagreeOffset.y }}
-            transition={{ type: 'spring', damping: 10, stiffness: 260 }}
-            onMouseEnter={handleEvade}
-            onClick={handleEvade}
-            className="disagree-runaway-btn"
-          >
-            {evadeCount >= 5 ? 'Fine, I Surrender & Agree!' : 'Disagree'}
-          </motion.button>
-        </div>
       </div>
+
+      <Hint>{copy.hint}</Hint>
     </div>
   )
 }

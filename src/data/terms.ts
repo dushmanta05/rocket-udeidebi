@@ -1,17 +1,18 @@
 export interface TermItem {
   id: number
+  title: string
   rule: string
 }
 
 export const TERMS_DATA: TermItem[] = [
-  { id: 1, rule: 'The bride must never say no to anyone, except to the elusive Disagree button.' },
-  { id: 2, rule: 'The bride will never argue, even when completely right. Friends will argue on her behalf.' },
-  { id: 3, rule: 'The bride must formulate and execute a chair-finding strategy for every single trip.' },
-  { id: 4, rule: 'The bride bag must remain open for inspection at all times, as Doraemon wants it back.' },
-  { id: 5, rule: 'The bride will not throw away food. Surplus delicacies will be surrendered to friends.' },
-  { id: 6, rule: 'The bride will notify neighbors about her laugh in advance before electricians are called.' },
-  { id: 7, rule: 'The bride will maintain Srikant mimicry ready for live performances at family gatherings.' },
-  { id: 8, rule: 'The Penguin and Hippo royal titles are eternal and non-refundable.' },
-  { id: 9, rule: 'The bride must maintain regular phone calls to friends, not solely on Diwali and Eid.' },
-  { id: 10, rule: 'By ticking I Agree, the bride confirms comprehension. (Tubelight clause: explanation will follow in 3-5 business days.)' }
+  { id: 1, title: 'The No Clause', rule: 'Never say no to anyone, except the Disagree button.' },
+  { id: 2, title: 'Zero Arguments', rule: 'Never argue, even when right. Friends will argue for her.' },
+  { id: 3, title: 'Chair Strategy', rule: 'Carry a chair-finding plan for every trip and chai break.' },
+  { id: 4, title: 'Bag Inspection', rule: 'The bag stays open for inspection. Doraemon wants it back.' },
+  { id: 5, title: 'Food Policy', rule: 'No food is thrown away. Leftovers go to friends.' },
+  { id: 6, title: 'Laugh Warning', rule: 'Warn the neighbours before laughing, so nobody calls an electrician.' },
+  { id: 7, title: 'Srikant Mimicry', rule: 'Available on demand at every family function.' },
+  { id: 8, title: 'Royal Titles', rule: 'Penguin and Hippo are permanent and non-refundable.' },
+  { id: 9, title: 'Keep Calling', rule: 'Call your friends after marriage, not only on festivals.' },
+  { id: 10, title: 'Tubelight Clause', rule: 'Agreeing confirms understanding. Explanation follows in 3 to 5 business days.' }
 ]
