@@ -5,47 +5,54 @@ Every agent must update this document upon completing a task or before ending a 
 
 ## Current Status
 
-- **Phase:** Core Application Implemented & Verified
-- **Active Task:** Verification of the complete 13-section presentation flow
-- **Next Task:** Polish animations, connect real assets as they arrive, and add optional audio clips
+- **Phase:** Redesign done (dark night sky, real images, 14 sections); waiting on real photos and videos
+- **Active Task:** None
+- **Next Task:** Drop in real assets (see "Assets still to add"), then a full run-through on the TV
 
----
+## Assets still to add
+
+| What | Where | Until then |
+|---|---|---|
+| Per-slot photos (timelines, polaroids, awards, bag items) | `public/images/`, then `src:` on the item in `src/data/` | `arpita.jpeg` everywhere |
+| Pengu meme image for the hatching | `public/images/pengu.png` | Drawn Pengu |
+| Pengu chef sticker | `public/images/pengu-chef.gif` | Drawn chef penguin |
+| Pranjal | `public/images/pranjal.png` | Drawn groom penguin |
+| Crew videos | `public/videos/wishes/*.mp4` listed in `wishes.json` | Name over the stand-in photo |
 
 ## Section Checklist
 
-| Section | Description | Status | Notes |
+| # | Section | Status | Notes |
 |---|---|---|---|
-| 01 | Hippo Welcome ("Tap to start", audio prompt) | Completed | Squash-stretch bounce, Hoppi greeting, audio trigger |
-| 02 | Lonely Penguin & Baby Arpita (waddle, egg crack, birth flash) | Completed | Colony background, egg crack, baby photo reveal |
-| 03 | Family Timeline (S-curve path, stops, photo placeholders) | Completed | S-curve SVG trajectory, year milestones, photo card |
-| 04 | "Then We Met" Chapter (work friends, accelerated rocket) | Completed | Speed lines, faster rocket, sunset theme, work roasts |
-| 05 | Polaroid Pages (scattered, tap-to-enlarge, card blow-away) | Completed | 3 categories, interactive modal view, random rotations |
-| 06 | Awards (elastic trophy, spinning frame, typewriter roast) | Completed | 6 roasts, trophy art, confetti bursts |
-| 07 | Arpita's Bag Reveal (Doraemon pocket, item pop out, counter) | Completed | 10 survival items, inventory tray, final invert shake |
-| 08 | Tubelight Moment (erratic flicker, buzz, joke buffering) | Completed | 5 comprehension phases, brightness transition |
-| 09 | Bride's Terms & Conditions (runaway Disagree, ACCEPTED stamp) | Completed | Dodging Disagree button, giant ACCEPTED rubber stamp |
-| 10 | Impossible to Say "No" (shrinking No, expanding Yes) | Completed | 5 requests, expanding Yes, final verdict stamp |
-| 11 | Cloud Kitchen Menu (unrolling parchment, order slip tear) | Completed | Free dishes, chef penguin, printed receipt slips |
-| 12 | Predictions (crystal ball mist, flip cards) | Completed | Swirling crystal ball mist, flipping fortune cards |
-| 13 | Recorded Wishes & Finale (video reel, countdown, launch) | Completed | Wishes reel, Pranjal launch pad, 3-2-1 blastoff, falling star wishes |
+| 01 | Welcome | Done | `hippo.png` host, Fredoka + Caveat title, full-width rocket fly-by |
+| 02 | Hatching | Done | Colony, Pengu waddle, egg wobble, 3-stage crack, shell split, baby photo rises |
+| 03 | Family timeline | Done | Rocket follows the curve, lit path, two-column card (no overlap) |
+| 04 | Work timeline | Done | Same component, faster wavier gold path |
+| 05 | Polaroids | Done | 4 sets, 2 of them Weird Expressions (6 photos each) |
+| 06 | Awards | Done | Gold-framed photo only, no trophy, confetti both sides |
+| 07 | Doraemon pocket | Done | Photo + details beside the bag, no emoji, item tray |
+| 08 | Tubelight | Done | Timestamped log, flicker, comprehension meter, room lights up |
+| 09 | Terms & Conditions | Done | Short clause titles, signature, runaway Disagree, stamp |
+| 10 | Say NO | Done | Huge NO title, big dodging No, small Yes |
+| 11 | Cloud Kitchen | Done | Fits without scrolling, chef sticker slot, printed receipt |
+| 12 | Predictions | Done | Floating orb, flip-in fortunes, revealed stack |
+| 13 | Crew messages | Done | Vertical videos from `wishes.json`, auto-advance, name/relation/message |
+| 14 | Launch | Done | Pranjal on pad, Arpita arrives, he boards, countdown, blast-off, thank-you note |
 
 ---
 
 ## Infrastructure & Core Systems
 
-- [x] Vite + React + TypeScript configuration (`base: './'`)
-- [x] Node 24 support with `.nvmrc` and `pnpm`
-- [x] Dependencies installed (`gsap`, `framer-motion`, `canvas-confetti`, `@types/canvas-confetti`)
-- [x] Global styling and CSS theme variables (colors, fonts, responsive container)
-- [x] Navigation controller hook (`useNavigation` with sub-steps, keyboard shortcuts, swipe detection)
-- [x] Bottom progress rocket line component (`ProgressRocket`)
-- [x] Universal `Placeholder` component (supports label, aspect ratio, tilt, failure fallback)
-- [x] Standalone SVG art placeholders (`HippoArt`, `PenguinArt`, `RocketArt`, `TrophyArt`, `BagArt`, `TubelightArt`, `CrystalBallArt`, `MenuBoardArt`)
-- [x] Typed data modules in `src/data/` (`timeline.ts`, `polaroids.ts`, `awards.ts`, `bagItems.ts`, `tubelight.ts`, `terms.ts`, `requests.ts`, `menu.ts`, `predictions.ts`, `wishes.ts`)
-- [x] Audio manager with silent fallback on missing assets (`useSound`)
-- [x] Easter egg handlers (Hippo tap squish, Penguin tap spin with confetti bursts)
-- [x] `prefers-reduced-motion` compliance across all CSS and transitions
-- [x] Offline production build verification (`pnpm build` passing with 0 errors)
+- [x] Vite + React + TypeScript (`base: './'`), Node 24, `pnpm`
+- [x] Dark night-sky theme with `Starfield` (twinkling stars, nebulae, shooting stars) behind every screen
+- [x] Self-hosted fonts via `@fontsource` (Fredoka, Nunito, Caveat); no Google Fonts CDN
+- [x] All copy in `src/data/` (`sections.ts` for titles, hints and screen text)
+- [x] `Placeholder` uses `arpita.jpeg` when a slot has no photo; `SmartImage` gives characters a drawn fallback
+- [x] Image paths in one place: `src/data/assets.ts`
+- [x] `useWishes` loads `public/videos/wishes/wishes.json`, falls back to `src/data/wishes.ts`
+- [x] Navigation: keys, swipe, progress dots; clicking the current section's dot restarts it without breaking its steps
+- [x] No sound: background music, mute button and `useSound` removed (the folder had no audio)
+- [x] `prefers-reduced-motion` respected
+- [x] `pnpm build` clean; screenshots checked at 1440x900 and 390x844
 
 ---
 
@@ -73,3 +80,12 @@ Every agent must update this document upon completing a task or before ending a 
 - Eliminated generic repetitive white cards in favor of 13 immersive slide atmospheres (cosmic welcome stage, arctic birth floe, scrapbook road trip, neon speedway, dark studio gallery, black-tie awards gala with spotlights, anime bag realm, moody loft tubelight, royal deed parchment, pop-art duel, chalkboard bistro, mystic nebula oracle, and cinematic space launch).
 - Refined UI to be minimal and elegant: replaced neon gradients with a serene, warm linen/cream palette (`#faf8f5`), paired with editorial serif typography (**Playfair Display**) for headings, **Plus Jakarta Sans** for body, and **Caveat** for all roast lines and handwritten notes.
 - Tested and verified production build with `pnpm build`.
+
+### Session 2 (2026-11-03)
+- Switched to one dark night-sky theme with a global starfield; removed the 13 per-section light themes.
+- Replaced Playfair Display and Plus Jakarta Sans with Fredoka and Nunito, kept Caveat, and bundled all three locally.
+- Used the supplied images: `hippo.png` as the host (renamed Hoppi to Hippo throughout), `pengu-on-rocket.png` for every rocket, `arpita.jpeg` as the stand-in photo everywhere; added optional slots for `pengu.png`, `pengu-chef.gif` and `pranjal.png`.
+- Rebuilt the hatching, both timelines (shared `RocketTimeline`), polaroids, awards, Doraemon pocket, tubelight, terms, Say NO, kitchen and predictions as described in `docs/CONTEXT.md`.
+- Split the old finale into Crew messages (vertical videos from `wishes.json`) and Launch (pickup, countdown, blast-off, thank-you).
+- Removed unused art (`TrophyArt`, `MenuBoardArt`, `TubelightArt`, `Penguin`) and the sound hook.
+- Fixed: clicking the current section's progress dot reset its step count, so the next tap skipped the section.
