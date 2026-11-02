@@ -159,8 +159,11 @@ export const SAYNO_COPY = {
   no: 'No',
   requestLabel: 'Request',
   taunts: ['Nope, No ran away.', 'No is scared of you.', 'No has left the chat.', 'Even No knows you will say yes.', 'Just press Yes, Hippo.'],
-  verdict: 'VERDICT: CANNOT SAY NO',
-  verdictSub: 'All requests accepted. Jagatmata status: permanent.'
+  scoreYes: 'Times you said Yes',
+  scoreNo: 'Times you said No',
+  scoreEscapes: 'Times No ran away',
+  verdict: 'CASE CLOSED',
+  verdictSub: 'The Jagatmata cannot say no. Not even to a button.'
 }
 
 export const KITCHEN_COPY = {

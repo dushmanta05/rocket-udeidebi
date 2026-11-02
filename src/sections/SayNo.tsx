@@ -12,6 +12,7 @@ const copy = SECTIONS[9]
 export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   const [noPos, setNoPos] = useState({ x: 0, y: 0 })
   const [dodges, setDodges] = useState(0)
+  const [totalDodges, setTotalDodges] = useState(0)
 
   useEffect(() => {
     setTotalSteps(REQUESTS_DATA.length + 1)
@@ -25,10 +26,17 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
   const isDone = currentStep >= REQUESTS_DATA.length
   const request = REQUESTS_DATA[Math.min(currentStep, REQUESTS_DATA.length - 1)]
 
+  useEffect(() => {
+    if (isDone) {
+      confetti({ particleCount: 100, spread: 110, origin: { y: 0.5 }, colors: ['#7ee2a8', '#ffd27a', '#ff8fb1', '#ffffff'] })
+    }
+  }, [isDone])
+
   const dodge = () => {
     const side = Math.random() < 0.5 ? -1 : 1
     setNoPos({ x: side * (120 + Math.random() * 200), y: (Math.random() - 0.5) * 140 })
     setDodges((n) => n + 1)
+    setTotalDodges((n) => n + 1)
   }
 
   const sayYes = () => {
@@ -106,6 +114,20 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
           </AnimatePresence>
         ) : (
           <motion.div className="verdict" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <div className="score-row">
+              <div className="score-tile">
+                <span className="score-num yes">{REQUESTS_DATA.length}</span>
+                <span className="score-label">{SAYNO_COPY.scoreYes}</span>
+              </div>
+              <div className="score-tile">
+                <span className="score-num no">0</span>
+                <span className="score-label">{SAYNO_COPY.scoreNo}</span>
+              </div>
+              <div className="score-tile">
+                <span className="score-num">{totalDodges}</span>
+                <span className="score-label">{SAYNO_COPY.scoreEscapes}</span>
+              </div>
+            </div>
             <Stamp text={SAYNO_COPY.verdict} subtext={SAYNO_COPY.verdictSub} color="#ff9f5a" />
           </motion.div>
         )}

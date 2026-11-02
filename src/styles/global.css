@@ -1594,6 +1594,50 @@ img {
   color: var(--gold);
 }
 
+.score-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+
+.score-tile {
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+}
+
+.score-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold);
+}
+
+.score-num.yes {
+  color: var(--mint);
+}
+
+.score-num.no {
+  color: var(--pink);
+}
+
+.score-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
 .no-btn {
   padding: 22px 64px;
   border-radius: var(--radius-full);
@@ -1615,8 +1659,9 @@ img {
 }
 
 .verdict {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .kitchen-layout {
