@@ -65,4 +65,8 @@ Every agent must update this document upon completing a task or before ending a 
 - Themed Arpita Penguin in sweet lavender (`#a78bfa` / `#8b5cf6`) matching the Tenor Pengu gif style, with CSS variable customization in `src/styles/variables.css` and component prop overrides.
 - Added mandatory pre-commit verification commands (`grep` comment checks and `pnpm build`) to `AGENTS.md`.
 - Documented complete prerequisites, setup, run commands, offline presentation setup, and controls in `README.md`.
+- Refined UI styling with glassmorphism, responsive `clamp()` typography, and full mobile/tablet viewport adaptability.
+- Redesigned Penguin with kawaii aesthetics, specular catchlights, blush cheeks, and support for transparent PNG overrides (`public/images/penguin.png`).
+- Created `PenguinRocketArt` featuring Arpita Penguin riding her rocket with fluttering scarf and exhaust flames; supports `public/images/penguin-rocket.png` PNG override.
+- Upgraded bottom progress bar (`ProgressRocket`) into a frosted glass slider dock where the penguin rocket glides across milestones.
 - Tested and verified production build with `pnpm build`.

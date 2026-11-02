@@ -1,6 +1,6 @@
 :root {
-  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-family-display: 'Fredoka', system-ui, -apple-system, sans-serif;
+  --font-family-base: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-display: 'Fredoka', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-family-handwriting: 'Caveat', cursive, system-ui, sans-serif;
 
   --color-bg-light: #fef6ec;

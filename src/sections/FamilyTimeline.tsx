@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TIMELINE_STOPS } from '../data/timeline'
 import { Placeholder } from '../components/Placeholder'
-import { RocketArt } from '../components/art/RocketArt'
+import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
 
 interface FamilyTimelineProps {
   currentStep: number
@@ -24,6 +24,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: FamilyTim
       <div className="timeline-header">
         <span className="chapter-badge">Chapter 1: The Origin Story</span>
         <h2 className="timeline-heading">Family & Early Years</h2>
+        <p className="section-subtext">Gliding along Arpita's timeline with rocket thrusters on</p>
       </div>
 
       <div className="timeline-stage">
@@ -55,13 +56,14 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: FamilyTim
           <motion.div
             className="traveling-rocket"
             animate={{
-              x: `${(currentStep / (familyStops.length - 1)) * 85}%`,
-              y: Math.sin(currentStep * 1.5) * 35
+              x: `${(currentStep / (familyStops.length - 1)) * 82}%`,
+              y: Math.sin(currentStep * 1.5) * 35,
+              rotate: Math.cos(currentStep * 1.5) * 8
             }}
             transition={{ type: 'spring', damping: 15, stiffness: 120 }}
           >
-            <RocketArt size={75} withPenguin={true} />
-            <div className="rocket-burst-tag">Udeidebi!</div>
+            <PenguinRocketArt size={110} hasFlame={true} />
+            <div className="rocket-burst-tag">Rocket Udeidebi! 🚀</div>
           </motion.div>
         </div>
 
@@ -78,7 +80,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: FamilyTim
               <Placeholder
                 label={`PHOTO: ${activeStop.title} (${activeStop.year})`}
                 src={activeStop.src}
-                width={300}
+                width={320}
                 aspectRatio="4 / 3"
                 tilt={currentStep % 2 === 0 ? -3 : 3}
               />

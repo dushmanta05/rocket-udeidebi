@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { WISHES_DATA } from '../data/wishes'
 import { PenguinArt } from '../components/art/PenguinArt'
-import { RocketArt } from '../components/art/RocketArt'
+import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
 import { Hippo } from '../components/Hippo'
 
 interface WishesFinaleProps {
@@ -42,6 +42,7 @@ export function WishesFinale({ currentStep, setTotalSteps, onNext }: WishesFinal
             <div className="section-header">
               <span className="chapter-badge gold-badge">Warm Hearts & Roasted Souls</span>
               <h2 className="section-heading">Messages from the Crew</h2>
+              <p className="section-subtext">Wishes and advice for the newly minted astronauts</p>
             </div>
 
             <div className="wishes-cards-grid">
@@ -69,7 +70,7 @@ export function WishesFinale({ currentStep, setTotalSteps, onNext }: WishesFinal
             <h2 className="finale-heading">Destination: Launch Pad</h2>
             <div className="launch-pad-ground">
               <div className="pranjal-stand">
-                <PenguinArt size={180} groomTie={true} />
+                <PenguinArt size={190} groomTie={true} />
                 <div className="speech-bubble groom-bubble">Pranjal is waiting on the pad! 🤵</div>
               </div>
             </div>
@@ -101,7 +102,7 @@ export function WishesFinale({ currentStep, setTotalSteps, onNext }: WishesFinal
             <h2 className="finale-heading">Arpita Arrives!</h2>
             <div className="launch-pad-ground">
               <div className="pad-arrival-row">
-                <RocketArt size={110} withPenguin={true} />
+                <PenguinRocketArt size={160} hasFlame={true} />
                 <PenguinArt size={170} groomTie={true} />
               </div>
             </div>
@@ -113,16 +114,15 @@ export function WishesFinale({ currentStep, setTotalSteps, onNext }: WishesFinal
           <motion.div
             key="blastoff"
             initial={{ y: 150 }}
-            animate={{ y: -350 }}
+            animate={{ y: -380 }}
             transition={{ duration: 2.2, ease: 'easeIn' }}
             className="blastoff-stage"
           >
             <div className="tandem-rocket">
               <div className="heart-pop">💖</div>
-              <RocketArt size={150} hasFlame={true} />
+              <PenguinRocketArt size={190} hasFlame={true} tilt={-15} />
               <div className="tandem-penguins">
-                <PenguinArt size={50} />
-                <PenguinArt size={50} groomTie={true} />
+                <PenguinArt size={55} groomTie={true} />
               </div>
             </div>
             <h1 className="blastoff-shout">ROCKET UDEIDEBI!</h1>
@@ -142,11 +142,11 @@ export function WishesFinale({ currentStep, setTotalSteps, onNext }: WishesFinal
                   key={w.id}
                   className="star-wish-particle"
                   style={{
-                    left: `${15 + idx * 24}%`,
+                    left: `${12 + idx * 24}%`,
                     animationDelay: `${idx * 0.7}s`
                   }}
                 >
-                  ★ {w.author}: "{w.text.slice(0, 40)}..."
+                  ★ {w.author}: "{w.text.slice(0, 42)}..."
                 </div>
               ))}
             </div>

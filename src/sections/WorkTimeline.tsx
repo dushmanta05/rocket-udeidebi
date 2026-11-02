@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TIMELINE_STOPS } from '../data/timeline'
 import { Placeholder } from '../components/Placeholder'
-import { RocketArt } from '../components/art/RocketArt'
+import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
 
 interface WorkTimelineProps {
   currentStep: number
@@ -24,6 +24,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext }: WorkTimelin
       <div className="timeline-header">
         <span className="chapter-badge work-badge">Chapter 2: Work Fam Chaos</span>
         <h2 className="timeline-heading">Then We Met: The Rocket Era</h2>
+        <p className="section-subtext">Rocket speeds doubled as the chai breaks and roasts began</p>
       </div>
 
       <div className="speed-lines-container">
@@ -61,12 +62,13 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext }: WorkTimelin
           <motion.div
             className="traveling-rocket accelerated-rocket"
             animate={{
-              x: `${(currentStep / (workStops.length - 1)) * 85}%`,
-              y: (currentStep % 2 === 0 ? 25 : -25)
+              x: `${(currentStep / (workStops.length - 1)) * 82}%`,
+              y: (currentStep % 2 === 0 ? 25 : -25),
+              rotate: (currentStep % 2 === 0 ? 6 : -6)
             }}
             transition={{ type: 'spring', damping: 12, stiffness: 180 }}
           >
-            <RocketArt size={82} withPenguin={true} />
+            <PenguinRocketArt size={118} hasFlame={true} />
             <div className="rocket-speed-sparks">⚡ FULL BOOST</div>
           </motion.div>
         </div>

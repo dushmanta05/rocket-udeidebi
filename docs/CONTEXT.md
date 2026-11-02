@@ -13,8 +13,11 @@ The journey culminates in a grand finale at a launch pad where groom penguin (Pr
 ## 2. Characters & Motifs
 
 - **Hippo ("Hoppi"):** The host. Welcomes guests in Section 1 and thanks everyone at the end of Section 13.
-- **Penguin (Arpita):** Arpita's alter ego. Styled in soft lavender (`#a78bfa`) matching the Tenor Pengu aesthetic. Leaves the colony, is born as baby Arpita, and pilots the rocket through the years.
-  - *Color Customization:* Centrally defined in `src/styles/variables.css` via `--color-penguin-body` and `--color-penguin-body-dark`. Can be tweaked or overridden via props on `PenguinArt` and `Penguin` (`bodyColor`, `flipperColor`).
+- **Penguin (Arpita):** Arpita's alter ego. Styled in soft lavender (`#a78bfa`) matching the Tenor Pengu aesthetic, with expressive kawaii highlights, blush cheeks, and rounded proportions.
+  - *PNG Asset Override:* Accepts a real transparent PNG at `public/images/penguin.png`. If present, it replaces the SVG while keeping all bounce and spin animations intact. If missing, it falls back cleanly to the enhanced SVG.
+  - *Color Customization:* Centrally defined in `src/styles/variables.css` via `--color-penguin-body` and `--color-penguin-body-dark`. Can also be overridden via props on `PenguinArt` and `Penguin` (`bodyColor`, `flipperColor`).
+- **Penguin on Rocket:** The signature motif of Arpita riding her rocket across all pages and the bottom progress slider (`PenguinRocketArt`).
+  - *PNG Asset Override:* Accepts a transparent PNG at `public/images/penguin-rocket.png`. If present, it renders automatically on the progress bar, timelines, and finale while maintaining animated floating, tilt, and trail effects.
 - **Pranjal Penguin:** The groom penguin, appearing exclusively in the finale at the launch pad. Styled in classic groom navy (`--color-penguin-groom-body: #1e293b`) with a red bow tie.
 - **Rocket:** Moves along a winding SVG trajectory across sections. Catchphrase: *"Rocket udeidebi!"*
 
