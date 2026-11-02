@@ -52,12 +52,13 @@ export function useNavigation(totalSections: number): NavigationState {
   }, [currentStep, currentSection])
 
   const setSection = useCallback((section: number) => {
-    if (section >= 0 && section < totalSections) {
+    if (section < 0 || section >= totalSections) return
+    setCurrentStep(0)
+    if (section !== currentSection) {
       setCurrentSection(section)
-      setCurrentStep(0)
       setTotalStepsState(1)
     }
-  }, [totalSections])
+  }, [totalSections, currentSection])
 
   const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
