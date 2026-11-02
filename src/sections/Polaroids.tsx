@@ -1,111 +1,91 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { POLAROID_ITEMS, PolaroidItem } from '../data/polaroids'
+import { POLAROID_ITEMS, POLAROID_PAGES, type PolaroidItem } from '../data/polaroids'
+import { SECTIONS } from '../data/sections'
 import { Placeholder } from '../components/Placeholder'
+import { Hint, SectionHeader } from '../components/SectionHeader'
+import type { StepSectionProps } from './types'
 
-interface PolaroidsProps {
-  currentStep: number
-  setTotalSteps: (steps: number) => void
-  onNext: () => void
-}
+const copy = SECTIONS[4]
+const TAPE_COLORS = ['#ff8fb1', '#8ec5ff', '#ffd27a', '#b9a6ff']
 
-const TAPE_COLORS = ['#f472b6', '#38bdf8', '#facc15', '#a78bfa']
-
-export function Polaroids({ currentStep, setTotalSteps }: PolaroidsProps) {
-  const [selectedItem, setSelectedItem] = useState<PolaroidItem | null>(null)
-  const activePage = (currentStep + 1) as 1 | 2 | 3
+export function Polaroids({ currentStep, setTotalSteps }: StepSectionProps) {
+  const [selected, setSelected] = useState<PolaroidItem | null>(null)
 
   useEffect(() => {
-    setTotalSteps(3)
+    setTotalSteps(POLAROID_PAGES.length)
   }, [setTotalSteps])
 
-  const pageItems = POLAROID_ITEMS.filter((item) => item.page === activePage)
-  const currentTheme = pageItems[0]?.theme || 'Photo Gallery'
+  const page = POLAROID_PAGES[Math.min(currentStep, POLAROID_PAGES.length - 1)]
+  const items = POLAROID_ITEMS.filter((item) => item.page === page.page)
 
   return (
-    <div className="section-container polaroids-section">
-      <div className="section-header">
-        <span className="chapter-badge purple-badge">Exhibit {activePage} of 3</span>
-        <h2 className="section-heading">{currentTheme}</h2>
-        <p className="section-subtext">Click any polaroid to inspect the candid evidence</p>
-      </div>
+    <div className="section polaroids-section">
+      <SectionHeader
+        copy={copy}
+        kicker={`${copy.kicker} · Set ${currentStep + 1} of ${POLAROID_PAGES.length}`}
+        title={page.theme}
+      />
 
-      <motion.div
-        key={activePage}
-        initial={{ opacity: 0, scale: 0.92 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 1.08 }}
-        transition={{ duration: 0.35 }}
-        className="polaroid-grid"
-      >
-        {pageItems.map((item, idx) => (
-          <motion.div
-            key={item.id}
-            whileHover={{ scale: 1.08, zIndex: 10, rotate: 0 }}
-            whileTap={{ scale: 0.96 }}
-            style={{ rotate: item.rotation }}
-            className="polaroid-frame"
-            onClick={() => setSelectedItem(item)}
-          >
-            <div
-              className="polaroid-tape"
-              style={{ backgroundColor: TAPE_COLORS[idx % TAPE_COLORS.length] }}
-            />
-            <div className="polaroid-photo">
-              <Placeholder
-                label={item.label}
-                src={item.src}
-                aspectRatio="1"
-              />
-            </div>
-            <div className="polaroid-caption">{item.label}</div>
-          </motion.div>
-        ))}
-      </motion.div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={page.page}
+          className={`polaroid-grid count-${items.length}`}
+          initial="hidden"
+          animate="shown"
+          exit="gone"
+          variants={{ shown: { transition: { staggerChildren: 0.08 } } }}
+        >
+          {items.map((item, idx) => (
+            <motion.button
+              key={item.id}
+              type="button"
+              className="polaroid"
+              style={{ rotate: item.rotation }}
+              variants={{
+                hidden: { y: -260, opacity: 0, rotate: item.rotation * 3 },
+                shown: { y: 0, opacity: 1, rotate: item.rotation, transition: { type: 'spring', damping: 14 } },
+                gone: { x: (idx % 2 === 0 ? -1 : 1) * 700, rotate: item.rotation * 6, opacity: 0, transition: { duration: 0.45 } }
+              }}
+              whileHover={{ scale: 1.07, rotate: 0, zIndex: 5 }}
+              onClick={() => setSelected(item)}
+            >
+              <span className="polaroid-tape" style={{ background: TAPE_COLORS[idx % TAPE_COLORS.length] }} />
+              <Placeholder label={item.label} src={item.src} aspectRatio="1 / 1" />
+              <span className="polaroid-caption">{item.label}</span>
+            </motion.button>
+          ))}
+        </motion.div>
+      </AnimatePresence>
 
       <AnimatePresence>
-        {selectedItem && (
+        {selected && (
           <motion.div
+            className="modal-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="polaroid-modal-backdrop"
-            onClick={() => setSelectedItem(null)}
+            onClick={() => setSelected(null)}
           >
             <motion.div
-              initial={{ scale: 0.6, rotate: -6 }}
+              className="polaroid polaroid-large"
+              initial={{ scale: 0.6, rotate: -8 }}
               animate={{ scale: 1, rotate: 0 }}
-              exit={{ scale: 0.6, rotate: 6 }}
+              exit={{ scale: 0.6, rotate: 8 }}
               transition={{ type: 'spring', damping: 18 }}
-              className="polaroid-modal-card"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="polaroid-modal-photo">
-                <Placeholder
-                  label={selectedItem.label}
-                  src={selectedItem.src}
-                  width={380}
-                  aspectRatio="1"
-                />
-              </div>
-              <div className="polaroid-modal-caption">
-                <h3>{selectedItem.label}</h3>
-                <span className="category-pill">{selectedItem.theme}</span>
-              </div>
-              <button
-                className="close-modal-btn"
-                onClick={() => setSelectedItem(null)}
-              >
-                ✕ Close
+              <Placeholder label={selected.label} src={selected.src} aspectRatio="1 / 1" />
+              <span className="polaroid-caption">{selected.label}</span>
+              <button type="button" className="ghost-btn" onClick={() => setSelected(null)}>
+                Close
               </button>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <div className="step-indicator-bar">
-        Theme {activePage} of 3 • Arrow keys to switch sets
-      </div>
+      <Hint>{copy.hint}</Hint>
     </div>
   )
 }
