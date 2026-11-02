@@ -1,68 +1,51 @@
-import { useState, CSSProperties } from 'react'
+import { useState, type CSSProperties } from 'react'
+import { ASSETS } from '../data/assets'
 
 interface PlaceholderProps {
   label: string
   src?: string
-  width?: string | number
-  height?: string | number
-  aspectRatio?: string | number
-  tilt?: number
+  aspectRatio?: string
   className?: string
   alt?: string
+  video?: boolean
 }
 
-export function Placeholder({
-  label,
-  src,
-  width = '100%',
-  height = '100%',
-  aspectRatio = '4 / 3',
-  tilt = 0,
-  className = '',
-  alt
-}: PlaceholderProps) {
-  const [hasError, setHasError] = useState(false)
+export function Placeholder({ label, src, aspectRatio = '4 / 3', className = '', alt, video = false }: PlaceholderProps) {
+  const [failed, setFailed] = useState<string[]>([])
+  const style: CSSProperties = { aspectRatio }
+  const candidate = [src, ASSETS.arpita].find((s): s is string => Boolean(s) && !failed.includes(s as string))
 
-  const cardStyle: CSSProperties = {
-    width,
-    height,
-    aspectRatio: aspectRatio ? String(aspectRatio) : undefined,
-    transform: tilt ? `rotate(${tilt}deg)` : undefined,
-    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-  }
-
-  if (src && !hasError) {
+  if (candidate) {
     return (
-      <img
-        src={src}
-        alt={alt || label}
-        style={cardStyle}
-        className={`placeholder-img ${className}`}
-        onError={() => setHasError(true)}
-      />
+      <div className={`media-frame ${className}`} style={style}>
+        <img
+          src={candidate}
+          alt={alt || label}
+          className="media-img"
+          draggable={false}
+          onError={() => setFailed((prev) => [...prev, candidate])}
+        />
+        {video && candidate !== src && <span className="media-badge">{label}</span>}
+      </div>
     )
   }
 
   return (
-    <div
-      style={cardStyle}
-      className={`placeholder-fallback ${className}`}
-    >
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="placeholder-icon"
-      >
-        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-        <circle cx="12" cy="13" r="3" />
+    <div style={style} className={`media-placeholder ${className}`}>
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {video ? (
+          <>
+            <rect x="2" y="5" width="15" height="14" rx="3" />
+            <path d="M17 10l5-3v10l-5-3z" />
+          </>
+        ) : (
+          <>
+            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+            <circle cx="12" cy="13" r="3" />
+          </>
+        )}
       </svg>
-      <span className="placeholder-label">{label}</span>
+      <span className="media-placeholder-label">{label}</span>
     </div>
   )
 }
