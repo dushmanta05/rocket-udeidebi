@@ -1,0 +1,28 @@
+{
+  "wishes": [
+    {
+      "name": "Dushmanta",
+      "relation": "Work crew",
+      "message": "May your rocket fly higher than ever.",
+      "video": "dushmanta.mp4"
+    },
+    {
+      "name": "Siblings & Cousins",
+      "relation": "Family",
+      "message": "Endless laughter, zero arguments and bottomless chai.",
+      "video": "family.mp4"
+    },
+    {
+      "name": "The Office Gang",
+      "relation": "Work crew",
+      "message": "Never lose that electric laugh.",
+      "video": "office-gang.mp4"
+    },
+    {
+      "name": "Childhood Besties",
+      "relation": "School friends",
+      "message": "Forever our favourite tubelight.",
+      "video": "school-besties.mp4"
+    }
+  ]
+}
