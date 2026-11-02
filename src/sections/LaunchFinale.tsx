@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { FINALE_COPY, SECTIONS } from '../data/sections'
 import { useWishes } from '../hooks/useWishes'
+import { CREW_NAMES } from '../data/crew'
 import { Pengu } from '../components/Pengu'
 import { Hippo } from '../components/Hippo'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
@@ -46,11 +47,16 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
     if (currentStep === STEP_BOARD) {
       setTimeout(() => confetti({ particleCount: 40, spread: 60, origin: { x: 0.4, y: 0.5 }, colors: ['#ff8fb1', '#ffffff'] }), 900)
     }
-    if (currentStep === STEP_THANKS) {
-      const colors = ['#ffd27a', '#ff8fb1', '#8ec5ff', '#b9a6ff']
-      confetti({ particleCount: 120, spread: 120, origin: { y: 0.4 }, colors })
-    }
   }, [currentStep])
+
+  useEffect(() => {
+    if (currentStep < STEP_THANKS) return
+    const colors = ['#ffd27a', '#ff8fb1', '#8ec5ff', '#b9a6ff']
+    confetti({ particleCount: 120, spread: 120, origin: { y: 0.4 }, colors })
+  }, [currentStep])
+
+  const names = Array.from(new Set([...CREW_NAMES, ...wishes.map((wish) => wish.name)]))
+  const cycle = Math.max(10, names.length * 1.1)
 
   const rocketState =
     currentStep === STEP_PAD
@@ -65,13 +71,17 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
     return (
       <div className="section thanks-section" onClick={onNext}>
         <div className="wish-rain" aria-hidden="true">
-          {wishes.map((wish, idx) => (
+          {names.map((name, idx) => (
             <span
-              key={`${wish.name}-${idx}`}
+              key={name}
               className="wish-star"
-              style={{ left: `${8 + ((idx * 23) % 84)}%`, animationDelay: `${idx * 0.9}s` }}
+              style={{
+                left: `${6 + ((idx * 37) % 86)}%`,
+                animationDelay: `${(idx * cycle) / names.length}s`,
+                animationDuration: `${cycle}s`
+              }}
             >
-              {wish.name}
+              {name}
             </span>
           ))}
         </div>
