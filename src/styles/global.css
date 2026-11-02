@@ -142,6 +142,20 @@ img {
   }
 }
 
+.flyby-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.flyby-rocket {
+  position: absolute;
+  translate: -50% -50%;
+  opacity: 0.75;
+}
+
 .stage {
   position: absolute;
   inset: 0 0 var(--progress-h) 0;

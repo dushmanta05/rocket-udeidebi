@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigation } from './hooks/useNavigation'
 import { ProgressRocket } from './components/ProgressRocket'
 import { Starfield } from './components/Starfield'
+import { RocketFlyby } from './components/RocketFlyby'
 import { SECTIONS } from './data/sections'
 
 import { Welcome } from './sections/Welcome'
@@ -62,6 +63,7 @@ export default function App() {
   return (
     <div className="app">
       <Starfield />
+      <RocketFlyby section={currentSection} />
 
       <div className="top-controls">
         <button
