@@ -25,7 +25,7 @@ function useCountdown(active: boolean) {
       return
     }
     setTick(0)
-    const timers = FINALE_COPY.countdown.map((_, i) => setTimeout(() => setTick(i + 1), (i + 1) * 900))
+    const timers = FINALE_COPY.countdown.map((_, i) => setTimeout(() => setTick(i + 1), (i + 1) * 1100))
     return () => timers.forEach(clearTimeout)
   }, [active])
 
@@ -175,15 +175,15 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
           )}
         </motion.div>
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           {currentStep === STEP_LAUNCH && tick >= 0 && tick < FINALE_COPY.countdown.length && (
             <motion.div
               key={tick}
               className="countdown"
               initial={{ scale: 3, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.5, opacity: 0 }}
-              transition={{ type: 'spring', damping: 10 }}
+              exit={{ scale: 0.6, opacity: 0, transition: { duration: 0.2 } }}
+              transition={{ type: 'spring', damping: 12, stiffness: 200 }}
             >
               {FINALE_COPY.countdown[tick]}
             </motion.div>
