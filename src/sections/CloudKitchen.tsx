@@ -1,90 +1,91 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
-import { MENU_ITEMS, MenuItem } from '../data/menu'
-import { PenguinArt } from '../components/art/PenguinArt'
+import { MENU_ITEMS, type MenuItem } from '../data/menu'
+import { KITCHEN_COPY, SECTIONS } from '../data/sections'
+import { Pengu } from '../components/Pengu'
+import { Hint, SectionHeader } from '../components/SectionHeader'
+
+const copy = SECTIONS[10]
 
 export function CloudKitchen() {
-  const [activeSlip, setActiveSlip] = useState<MenuItem | null>(null)
+  const [order, setOrder] = useState<{ dish: MenuItem; ticket: number } | null>(null)
 
-  const handleOrder = (dish: MenuItem) => {
-    setActiveSlip(dish)
-    confetti({
-      particleCount: 20,
-      spread: 50,
-      origin: { y: 0.7 },
-      colors: ['#f59e0b', '#10b981', '#3b82f6']
-    })
+  const place = (dish: MenuItem) => {
+    setOrder((prev) => ({ dish, ticket: (prev?.ticket ?? 100) + 1 }))
+    confetti({ particleCount: 30, spread: 60, origin: { y: 0.7 }, colors: ['#ffd27a', '#7ee2a8', '#8ec5ff'] })
   }
 
   return (
-    <div className="section-container menu-section">
-      <div className="section-header">
-        <span className="chapter-badge gold-badge">🍳 5-Star Philanthropic Bistro 🍳</span>
-        <h2 className="section-heading kitchen-heading">Penguin & Hippo Cloud Kitchen</h2>
-        <p className="section-subtext kitchen-subtext">Click any delicacy to print your VIP token</p>
-      </div>
+    <div className="section kitchen-section">
+      <SectionHeader copy={copy} />
 
-      <div className="kitchen-stage-row">
-        <div className="chef-side-col">
+      <div className="kitchen-layout">
+        <div className="chef-col">
           <motion.div
-            animate={{ rotate: [-2, 3, -2], y: [0, -6, 0] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-            className="chef-penguin-wrap"
+            animate={{ y: [0, -8, 0], rotate: [-2, 2, -2] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <PenguinArt size={190} chefHat={true} />
-            <div className="speech-bubble">Food is free, hugs are unlimited! 🍳</div>
+            <Pengu size={140} variant="chef" />
           </motion.div>
+          <div className="speech-bubble">{KITCHEN_COPY.chefSays}</div>
         </div>
 
-        <motion.div
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          className="chalkboard-menu-card"
-        >
-          <div className="chalkboard-frame-inner">
-            <div className="menu-dishes-list">
-              {MENU_ITEMS.map((dish) => (
-                <motion.div
-                  key={dish.id}
-                  whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handleOrder(dish)}
-                  className="chalk-dish-item"
-                >
-                  <div className="dish-main-info">
-                    <span className="dish-name">{dish.name}</span>
-                    <span className="dish-desc">{dish.description}</span>
-                  </div>
-                  <div className="chalk-price-badge">{dish.price}</div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="chalkboard-footer-tag">
-              DELIVERY: FREE • PAYMENT: REJECTED • OWNER: CANNOT SAY NO
-            </div>
+        <div className="menu-board">
+          <div className="menu-list">
+            {MENU_ITEMS.map((dish, idx) => (
+              <motion.button
+                key={dish.id}
+                type="button"
+                className={`menu-item ${order?.dish.id === dish.id ? 'ordered' : ''}`}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 + idx * 0.08 }}
+                whileHover={{ x: 6 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => place(dish)}
+              >
+                <span className="menu-name">{dish.name}</span>
+                <span className="menu-dots" />
+                <span className="menu-price">{dish.price}</span>
+                <span className="menu-desc">{dish.description}</span>
+              </motion.button>
+            ))}
           </div>
-        </motion.div>
+          <p className="menu-footer">{KITCHEN_COPY.footer}</p>
+        </div>
+
+        <div className="receipt-col">
+          <div className="receipt-slot" />
+          <AnimatePresence mode="wait">
+            {order ? (
+              <motion.div
+                key={order.ticket}
+                className="receipt"
+                initial={{ clipPath: 'inset(0 0 100% 0)', y: -10 }}
+                animate={{ clipPath: 'inset(0 0 0% 0)', y: 0 }}
+                exit={{ y: 80, rotate: 8, opacity: 0 }}
+                transition={{ duration: 0.9, ease: 'easeOut' }}
+              >
+                <span className="receipt-title">{KITCHEN_COPY.receiptTitle}</span>
+                <span className="receipt-ticket">#{order.ticket}</span>
+                <span className="receipt-line">1 x {order.dish.name}</span>
+                <span className="receipt-total">{KITCHEN_COPY.receiptTotal}</span>
+                <span className="receipt-note">{KITCHEN_COPY.receiptNote}</span>
+                <button type="button" className="ghost-btn small" onClick={() => setOrder(null)}>
+                  {KITCHEN_COPY.receiptClose}
+                </button>
+              </motion.div>
+            ) : (
+              <motion.p key="empty" className="receipt-empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                {KITCHEN_COPY.receiptEmpty}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
-      <AnimatePresence>
-        {activeSlip && (
-          <motion.div
-            initial={{ y: 80, opacity: 0, rotate: -3 }}
-            animate={{ y: 0, opacity: 1, rotate: 1.5 }}
-            exit={{ y: 80, opacity: 0 }}
-            className="receipt-slip-banner"
-          >
-            <div className="slip-content">
-              <span>🧾 TOKEN DISPENSED: <strong>{activeSlip.name}</strong></span>
-              <span className="slip-cost">Total Billed: ₹0.00 (Settled by Generous Heart)</span>
-            </div>
-            <button className="slip-close-btn" onClick={() => setActiveSlip(null)}>✓ Grab Slip</button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Hint>{copy.hint}</Hint>
     </div>
   )
 }
