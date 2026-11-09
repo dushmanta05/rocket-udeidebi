@@ -29,7 +29,7 @@ export function Welcome({ onStart }: WelcomeProps) {
           className="welcome-hippo"
         >
           <div className="welcome-glow" />
-          <Hippo size={210} speechText={WELCOME_COPY.greeting} />
+          <Hippo size={280} speechText={WELCOME_COPY.greeting} />
         </motion.div>
 
         <motion.div

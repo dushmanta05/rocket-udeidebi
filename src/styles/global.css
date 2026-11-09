@@ -562,6 +562,11 @@ img {
   place-items: center;
 }
 
+.welcome-hippo .hippo-character {
+  max-width: min(320px, 45vw);
+  max-height: min(320px, 45vh);
+}
+
 .welcome-glow {
   position: absolute;
   inset: 12% 8% 0;
@@ -2446,6 +2451,11 @@ img {
   .welcome-copy {
     align-items: center;
     text-align: center;
+  }
+
+  .welcome-hippo .hippo-character {
+    max-width: min(240px, 65vw);
+    max-height: min(240px, 32vh);
   }
 
   .script-word {
