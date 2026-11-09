@@ -8,7 +8,9 @@ Instructions and guidelines for AI agents working on **Arpita's Launch Pad** (`r
 - **Tone:** Full chaos roasts among work friends, siblings, and cousins.
 - **Stack:** Vite + React + TypeScript + Framer Motion + Plain CSS (CSS variables) + canvas-confetti.
 - **Runtime:** 100% frontend only. Node 24 with `pnpm`. No backend, no database, no analytics, no CDN. The only runtime request is the local `videos/wishes/wishes.json`. Fonts are bundled via `@fontsource`. Must work fully offline after `pnpm build` (`base: './'`).
-- **Look:** one dark night-sky theme (`Starfield` behind every screen). Fredoka headings, Nunito body, Caveat for handwritten lines. No emoji in the UI.
+- **Look:** one dark night-sky theme (`Starfield` behind every screen). Fredoka headings, Nunito body, Caveat for handwritten lines. No emoji in the UI. Every card uses the shared frosted glass (`--glass-*` variables) with no highlighted or coloured borders.
+- **Voice:** the party is thrown by her crew for Arpita ("Hippo"). Titles and the welcome and thank-you screens speak to her ("Welcome, Hippo!", "Your Doraemon Pocket", "Thank You, Hippo"); narration and roasts may talk about her. Never write copy where Arpita hosts or thanks the guests.
+- **Screens:** laptop on a TV first, but every section must also work on phones and tablets (check at 390x844 and 820x1180).
 
 ## Coding Standards
 
@@ -58,7 +60,7 @@ Prefer a clearer name or a smaller function over a comment explaining a murky on
      ```
      Ensure `tsc -b && vite build` succeeds with zero errors.
 4. **End of Task / Session:** Always update `docs/PROGRESS.md` with what was completed, current state, and next steps before committing.
-5. **Commit:** Commit each distinct working change with a concise conventional commit message matching the commit rules above.
+5. **Commit:** Commit each distinct working change as soon as it is verified, not in one batch at the end: one change per commit, with a concise conventional subject. Build the commit on its own before committing (stage it, set the rest aside with `git stash push --keep-index --include-untracked`, run `pnpm build`, commit, `git stash pop`), so every commit in history builds.
 
 ## Directory Structure
 
