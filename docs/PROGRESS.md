@@ -112,3 +112,7 @@ Ideas raised for possible extra sections; none is started.
 - Say NO: chat-message requests, taunts, and a scoreboard ending.
 - Phones and tablets: launch scene fixed (it collapsed), stacked text centred, fly-by hidden under 900px. Checked at 390x844 and 820x1180.
 - Every commit was built on its own before committing (see "Committing" in `AGENTS.md`).
+
+### Session 4 (2026-11-09)
+- Increased Hippo mascot size on the welcome slide to 280px with responsive max bounds on desktop and mobile.
+- Verified typography hierarchy and font family mappings (Fredoka for title, Nunito for subtitle/lead, Caveat for handwritten lines).
