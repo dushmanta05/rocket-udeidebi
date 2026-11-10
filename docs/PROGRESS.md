@@ -116,3 +116,4 @@ Ideas raised for possible extra sections; none is started.
 ### Session 4 (2026-11-09)
 - Increased Hippo mascot size on the welcome slide to 280px with responsive max bounds on desktop and mobile.
 - Verified typography hierarchy and font family mappings (Fredoka for title, Nunito for subtitle/lead, Caveat for handwritten lines).
+- Configured Hippo image as site favicon and apple-touch-icon in `index.html`.
