@@ -35,8 +35,8 @@ export function ProgressRocket({ currentSection, totalSections, currentStep, tot
         ))}
         <motion.div
           className="progress-rocket"
-          animate={{ left: `${percent}%`, y: [-2, 2, -2] }}
-          transition={{ left: { type: 'spring', damping: 18 }, y: { duration: 2, repeat: Infinity } }}
+          animate={{ left: `${percent}%` }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
         >
           <PenguinRocketArt size={36} tilt={40} />
         </motion.div>

@@ -2356,6 +2356,7 @@ img {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.15s;
+  z-index: 5;
 }
 
 .progress-dot:hover .progress-tip {
@@ -2365,7 +2366,8 @@ img {
 .progress-rocket {
   position: absolute;
   top: 50%;
-  translate: -50% -62%;
+  translate: -50% -92%;
+  z-index: 2;
   pointer-events: none;
 }
 
