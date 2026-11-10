@@ -117,3 +117,4 @@ Ideas raised for possible extra sections; none is started.
 - Increased Hippo mascot size on the welcome slide to 280px with responsive max bounds on desktop and mobile.
 - Verified typography hierarchy and font family mappings (Fredoka for title, Nunito for subtitle/lead, Caveat for handwritten lines).
 - Configured Hippo image as site favicon and apple-touch-icon in `index.html`.
+- Removed bounce animation on the bottom timeline rocket and positioned it steadily on top of the track dots.
