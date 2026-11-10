@@ -2366,7 +2366,7 @@ img {
 .progress-rocket {
   position: absolute;
   top: 50%;
-  translate: -50% -92%;
+  translate: -50% -50%;
   z-index: 2;
   pointer-events: none;
 }
