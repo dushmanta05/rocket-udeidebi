@@ -131,9 +131,9 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
                       animate={
                         isFinalTest
                           ? { scale: [1, 1.06, 1], transition: { repeat: Infinity, duration: 1.2 } }
-                          : { x: dodgePos.x, y: dodgePos.y, rotate: dodges > 0 ? (dodgePos.x > 0 ? 8 : -8) : 0 }
+                          : { x: dodgePos.x, y: dodgePos.y, rotate: dodges > 0 ? (dodgePos.x > 0 ? 6 : -6) : 0 }
                       }
-                      transition={{ type: 'spring', damping: 11, stiffness: 240 }}
+                      transition={{ type: 'spring', damping: 12, stiffness: 260 }}
                     >
                       <motion.button
                         type="button"
@@ -151,9 +151,10 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
                       className="yes-btn"
                       animate={
                         isFinalTest
-                          ? { x: dodgePos.x, y: dodgePos.y, rotate: dodges > 0 ? (dodgePos.x > 0 ? 8 : -8) : 0 }
-                          : { scale: 1 + Math.min(dodges, 6) * 0.04 }
+                          ? { x: dodgePos.x, y: dodgePos.y, rotate: dodges > 0 ? (dodgePos.x > 0 ? 6 : -6) : 0 }
+                          : { scale: 1 + Math.min(dodges, 5) * 0.04 }
                       }
+                      transition={{ type: 'spring', damping: 12, stiffness: 260 }}
                       whileTap={{ scale: 0.92 }}
                       onMouseEnter={isFinalTest ? dodge : undefined}
                       onClick={handleYes}
