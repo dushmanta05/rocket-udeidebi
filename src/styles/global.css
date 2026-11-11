@@ -3116,9 +3116,10 @@ img {
 }
 
 .thanks-thankyou-gif {
-  width: clamp(80px, 12vw, 120px);
-  height: clamp(50px, 8vw, 80px);
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+  width: clamp(140px, 20vw, 200px);
+  height: clamp(84px, 12vw, 120px);
+  filter: drop-shadow(0 8px 24px rgba(255, 143, 177, 0.4));
+  margin: -8px 0 -10px -6px;
 }
 
 .thanks-badge-gif {
@@ -3130,21 +3131,26 @@ img {
 
 .thanks-dance-badge {
   position: absolute;
-  top: -24px;
+  top: -28px;
   right: 18px;
-  width: clamp(70px, 8vw, 96px);
-  height: clamp(70px, 8vw, 96px);
   filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.45));
   pointer-events: none;
 }
 
+.thanks-dance-badge .pengu,
+.thanks-party-dancer .pengu {
+  width: clamp(74px, 9vw, 96px) !important;
+  height: clamp(74px, 9vw, 96px) !important;
+}
+
 .thanks-title {
   font-family: var(--font-hand);
-  font-size: clamp(2rem, 3.6vw, 3rem);
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
   font-weight: 700;
-  color: #ffffff;
-  line-height: 1.1;
+  color: var(--pink);
+  line-height: 1.05;
   margin: 0;
+  text-shadow: 0 0 24px rgba(255, 143, 177, 0.4);
 }
 
 .thanks-dance-gif {
