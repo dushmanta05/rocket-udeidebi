@@ -150,4 +150,7 @@ Ideas raised for possible extra sections; none is started.
 - Tubelight power-up: integrated `pengu-energy.gif` triggering with full voltage when comprehension buffers to 100%.
 - Hippo Mid-Party Recharge Station: added interactive 8th milestone in Doraemon Pocket (`BagReveal.tsx`) featuring `pengu-energy.gif`, 12% to 100% animated battery voltage bar, confetti, and roast about Hippo getting tired carrying the heavy bag and searching for chairs.
 - Flower Pengu on covenant: added `pengu-flower.gif` beside the cursive signature and witness pills in `Terms.tsx` on acceptance, plus inside the individual clause modal view.
-- Animated rocket & character GIFs: integrated `pengu-rocket.gif` across flying rocket paths, timeline progress, and finale launch; wired `pengu-bag.gif` into Doraemon Pocket and Awards; wired `pengu-jagat-mata.gif` into Jagatmata Award; wired `pengu-tubelight.gif` into Tubelight Moment section and award.
+- Animated character GIFs: wired `pengu-bag.gif` into Doraemon Pocket and Awards; wired `pengu-jagat-mata.gif` into Jagatmata Award; wired `pengu-tubelight.gif` into Tubelight Moment section and award.
+- Restored rocket illustration: restored original `pengu-on-rocket.png` across timeline, margin flybys, and finale launch; wired `pengu-rocket.gif` into `PenguinBirth` rebirth and Subhasree's "Rocket udeidebi!" prediction.
+- Mirrored Pranjal flower greeting: horizontally mirrored Pranjal at the launch pad so the bouquet points left toward Arpita arriving in her rocket.
+- 13 Crew Predictions & Wish-Star Rain: created 13 tailored roast predictions from Dushmanta, Niyaz, Astha, Subhasree, Tapan, Shyam, Soumya, Tanu, Asutosh, Paresh, Amit, Anchal, and Ankita; all 13 names cascade down as glowing wish-stars in the finale.
