@@ -9,7 +9,7 @@ import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[10]
-const NO_VARIANTS = ['no1', 'no2', 'no3', 'no4', 'no5'] as const
+const SCENARIO_VARIANTS = ['please', 'bag', 'jagatMata', 'asking', 'chair', 'believe'] as const
 const SIDE_QUOTES = [
   'A wild project lead appears! Can you say NO?',
   'Wait, this bag weighs 20 kilos... resist!',
@@ -94,7 +94,7 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
                 </span>
                 <Pengu
                   size={220}
-                  variant={isFinalTest ? 'believe' : NO_VARIANTS[requestIndex % NO_VARIANTS.length]}
+                  variant={SCENARIO_VARIANTS[requestIndex % SCENARIO_VARIANTS.length]}
                 />
               </motion.div>
               <div className="sayno-counter">
