@@ -1198,6 +1198,17 @@ img {
   gap: 12px;
 }
 
+.award-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.award-mic-pengu {
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35));
+}
+
 .award-number {
   font-family: var(--font-display);
   font-size: 1rem;
@@ -1930,6 +1941,21 @@ img {
   font-weight: 800;
   color: var(--ink-soft);
   text-align: center;
+}
+
+.no-btn-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-dodging-pengu {
+  position: absolute;
+  top: -38px;
+  right: -24px;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
 }
 
 .no-btn {

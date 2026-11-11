@@ -9,6 +9,7 @@ import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[9]
+const NO_VARIANTS = ['no1', 'no2', 'no3', 'no4', 'no5'] as const
 
 export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   const [dodgePos, setDodgePos] = useState({ x: 0, y: 0 })
@@ -103,20 +104,35 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
               <p className="chat-sub">{request.subtext}</p>
 
               <div className="request-actions">
-                <motion.button
-                  type="button"
-                  className={`no-btn ${isFinalTest ? 'pulse-no' : ''}`}
+                <motion.div
+                  className="no-btn-group"
                   animate={
                     isFinalTest
                       ? { scale: [1, 1.08, 1], transition: { repeat: Infinity, duration: 1.2 } }
                       : { x: dodgePos.x, y: dodgePos.y, rotate: dodges > 0 ? (dodgePos.x > 0 ? 8 : -8) : 0 }
                   }
-                  whileTap={{ scale: 0.94 }}
-                  onMouseEnter={!isFinalTest ? dodge : undefined}
-                  onClick={handleNo}
+                  transition={{ type: 'spring', damping: 11, stiffness: 240 }}
                 >
-                  {SAYNO_COPY.no}
-                </motion.button>
+                  <motion.button
+                    type="button"
+                    className={`no-btn ${isFinalTest ? 'pulse-no' : ''}`}
+                    whileTap={{ scale: 0.94 }}
+                    onMouseEnter={!isFinalTest ? dodge : undefined}
+                    onClick={handleNo}
+                  >
+                    {SAYNO_COPY.no}
+                  </motion.button>
+                  {!isFinalTest && (
+                    <motion.div
+                      className="no-dodging-pengu"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', damping: 12 }}
+                    >
+                      <Pengu size={60} variant={NO_VARIANTS[requestIndex % NO_VARIANTS.length]} />
+                    </motion.div>
+                  )}
+                </motion.div>
                 <motion.button
                   type="button"
                   className="yes-btn"

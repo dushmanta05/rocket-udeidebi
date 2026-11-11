@@ -20,6 +20,12 @@ type PenguVariant =
   | 'run'
   | 'energy'
   | 'flower'
+  | 'no1'
+  | 'no2'
+  | 'no3'
+  | 'no4'
+  | 'no5'
+  | 'mic'
   | 'thankYou'
 
 interface PenguProps {
@@ -46,6 +52,12 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   run: ASSETS.penguRun,
   energy: ASSETS.penguEnergy,
   flower: ASSETS.penguFlower,
+  no1: ASSETS.penguNo1,
+  no2: ASSETS.penguNo2,
+  no3: ASSETS.penguNo3,
+  no4: ASSETS.penguNo4,
+  no5: ASSETS.penguNo5,
+  mic: ASSETS.penguMic,
   thankYou: ASSETS.thankYou
 }
 
