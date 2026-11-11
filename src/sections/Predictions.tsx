@@ -9,11 +9,11 @@ import type { StepSectionProps } from './types'
 const copy = SECTIONS[11]
 
 const PENGU_POSES = [
-  { className: 'pos-top-right', rotate: 8 },
-  { className: 'pos-top-left', rotate: -8 },
-  { className: 'pos-bottom-right', rotate: 6 },
-  { className: 'pos-bottom-left', rotate: -6 },
-  { className: 'pos-top-center', rotate: 0 }
+  { className: 'pos-side-right', rotate: 6 },
+  { className: 'pos-side-left', rotate: -6 },
+  { className: 'pos-bottom-right', rotate: 4 },
+  { className: 'pos-bottom-left', rotate: -4 },
+  { className: 'pos-deck-right', rotate: 8 }
 ]
 
 function Sparkle({ className }: { className: string }) {

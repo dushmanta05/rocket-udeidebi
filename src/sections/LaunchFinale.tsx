@@ -49,10 +49,6 @@ function ThanksCoupleFlyby() {
       >
         <div style={{ transform: `scaleX(${pose.flip})` }} className="couple-rocket-wrap">
           <PenguinRocketArt size={88} sparks />
-          <div className="couple-pranjal">
-            <Pengu size={34} variant="pranjal" />
-          </div>
-          <span className="couple-heart">♥</span>
         </div>
       </motion.div>
     </div>
@@ -148,11 +144,15 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
             transition={{ delay: 0.3, type: 'spring', damping: 14 }}
           >
-            <div className="thanks-top-row">
+            <div className="thanks-dance-badge">
+              <Pengu size={isMobile ? 70 : 96} variant="dance" />
+            </div>
+
+            <div className="thanks-hero-header">
               <motion.div
-                className="thanks-gif-wrap"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
+                className="thanks-thankyou-gif"
+                initial={{ scale: 0, y: -10 }}
+                animate={{ scale: 1, y: 0 }}
                 transition={{ delay: 0.45, type: 'spring', damping: 12 }}
               >
                 <SmartImage
@@ -162,16 +162,9 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
                   className="thanks-badge-gif"
                 />
               </motion.div>
-              <div className="thanks-dance-badge">
-                <SmartImage
-                  src={ASSETS.penguDance}
-                  alt="Pengu dancing"
-                  fallback={<Pengu size={72} variant="pranjal" />}
-                  className="thanks-dance-gif"
-                />
-              </div>
+              <h2 className="script-title thanks-title">{FINALE_COPY.thankYouTitle}</h2>
             </div>
-            <h2 className="script-title huge">{FINALE_COPY.thankYouTitle}</h2>
+
             {FINALE_COPY.thankYouNote.map((line) => (
               <p key={line} className="thanks-line">
                 {line}

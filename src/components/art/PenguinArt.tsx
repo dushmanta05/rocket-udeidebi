@@ -2,7 +2,6 @@ interface PenguinArtProps {
   size?: number | string
   className?: string
   chefHat?: boolean
-  groomTie?: boolean
   futureLens?: boolean
   remote?: boolean
   muted?: boolean
@@ -12,13 +11,12 @@ export function PenguinArt({
   size = 180,
   className = '',
   chefHat = false,
-  groomTie = false,
   futureLens = false,
   remote = false,
   muted = false
 }: PenguinArtProps) {
-  const body = muted ? '#5b6b8c' : groomTie ? 'var(--pengu-groom)' : 'var(--pengu-body)'
-  const bodyDark = muted ? '#4a5875' : groomTie ? 'var(--pengu-groom-dark)' : 'var(--pengu-body-dark)'
+  const body = muted ? '#5b6b8c' : 'var(--pengu-body)'
+  const bodyDark = muted ? '#4a5875' : 'var(--pengu-body-dark)'
 
   return (
     <svg
@@ -56,14 +54,6 @@ export function PenguinArt({
       <ellipse cx="68" cy="120" rx="9" ry="5" fill="#ffb3c7" opacity="0.8" />
       <ellipse cx="132" cy="120" rx="9" ry="5" fill="#ffb3c7" opacity="0.8" />
       <path d="M92 114 Q100 108 108 114 Q100 124 92 114 Z" fill="#f6a04d" />
-
-      {groomTie && (
-        <g>
-          <path d="M100 150 L80 140 L80 162 Z" fill="#e2445c" />
-          <path d="M100 150 L120 140 L120 162 Z" fill="#e2445c" />
-          <circle cx="100" cy="151" r="5" fill="#b52a40" />
-        </g>
-      )}
 
       {chefHat && (
         <g>
