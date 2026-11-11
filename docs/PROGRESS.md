@@ -35,19 +35,20 @@ Ideas raised for possible extra sections; none is started.
 | # | Section | Status | Notes |
 |---|---|---|---|
 | 01 | Welcome | Done | `hippo.png` host, Fredoka + Caveat title, full-width rocket fly-by |
-| 02 | Antarctica + rebirth | Done | Full-screen lone penguin (`pengu.webp`), two caption steps, glowing egg, 3-stage crack, baby photo rises |
+| 02 | Antarctica + rebirth | Done | Full-screen lone penguin journey, `pengu-egg.gif`, baby photo rises with enlarged caption & pill |
 | 03 | Family timeline | Done | Rocket follows the curve, lit path, two-column card (no overlap) |
-| 04 | Work timeline | Done | Same component, faster wavier gold path |
+| 04 | Work timeline | Done | Faster wavier gold path, `pnngu-greet.gif` when crew meets her |
 | 05 | Polaroids | Done | 4 sets, 2 of them Weird Expressions (6 photos each) |
-| 06 | Awards | Done | Gold-framed photo only, no trophy, confetti both sides |
-| 07 | Doraemon pocket | Done | 7 items, drawn tote bag, photo + details beside it, no flip |
-| 08 | Tubelight | Done | Timestamped log, flicker, comprehension meter, room lights up |
-| 09 | Terms & Conditions | Done | 10 clickable clauses in modal, cursive Arpita Nayak signature, Hippo & Pengu pills |
-| 10 | Say NO | Done | Chat requests, dodging No, final exam breakthrough NO, SEE HOW EASILY YOU SAID NO verdict |
-| 11 | Cloud Kitchen | Done | Fits without scrolling, chef sticker slot, printed receipt |
-| 12 | Predictions | Done | Large card, future-lens Pengu cycling positions, scrolling revealed tray |
-| 13 | Crew messages | Done | 16:9 widescreen cinema feature film player with remote-holding Pengu |
-| 14 | Launch | Done | Name pills, every countdown number, "Next stop: Happily Ever After!", thank-you from the crew, names from `crew.ts`, continuous confetti |
+| 06 | Awards | Done | Neutral frosted glass frames with gold titles; custom GIFs for chair, laugh, walk |
+| 07 | Doraemon pocket | Done | 7 bag artifacts, drawn tote bag, item details beside it |
+| 08 | Hippo Recharge Station | Done | Dedicated section, 5s battery charging (0-100%), locked resume button, `pengu-energy.gif` |
+| 09 | Tubelight | Done | Timestamped log, flicker, comprehension meter, room lights up |
+| 10 | Terms & Conditions | Done | Zig-zag 8 clauses, modal viewer, cursive Arpita Nayak signature, `pengu-yes.gif` badge |
+| 11 | Say NO | Done | Chat requests, enlarged dodging NO, weekend work & heavy bag roasts, `beleive-in-pengu.gif` on final exam |
+| 12 | Cloud Kitchen | Done | Scattered recipe board, modal view with cycling chef cooking GIFs and itemized bill with PAID stamp |
+| 13 | Predictions | Done | Large card, future-lens Pengu, wrapping 2-row revealed name tray (no horizontal scrollbar) |
+| 14 | Crew messages | Done | Retro marquee, cinema curtains, clapperboard, film reel, fullscreen toggle, remote-holding Pengu |
+| 15 | Launch & Finale | Done | Name pills, countdown, blast-off, pink thank-you title, strictly 13 crew wish-stars, continuous confetti |
 
 ---
 
@@ -158,3 +159,15 @@ Ideas raised for possible extra sections; none is started.
 - Extended Custom GIFs Integration: wired `pengu-asking.gif` into Say NO chat requester avatars; `pengu-use-head.gif` into the final exam and Award #5; `pengu-think.gif` and `pengu-idea.gif` into Tubelight comprehension stages; and `penguin-travel.gif` into Award #3 (Chair Seeker).
 - Strictly 13 Finale Names: purged generic placeholders ("Siblings & Cousins", "The Office Gang", "Childhood Besties") from finale wish rain; the falling wish-stars now exclusively feature the 13 specified names (Dushmanta, Niyaz, Astha, Subhasree, Tapan, Shyam, Soumya, Tanu, Asutosh, Paresh, Amit, Anchal, Ankita).
 - Final Card Clean Up: deleted `thank-you.gif` from the card header so the script title stands clean; bumped the top-right dancing Pengu size to `clamp(86px, 12vw, 118px)` for balanced visual weight.
+
+### Session 6 (2026-11-12)
+- Added and registered 10 new custom transparent GIFs: `pengu-egg.gif`, `beleive-in-pengu.gif`, `pengu-chair.gif`, `pengu-cute.gif`, `pengu-dance-3.gif`, `pengu-fly.gif`, `pengu-laugh.gif`, `pengu-walk.gif`, `pengu-yes.gif`, and `pnngu-greet.gif`.
+- Antarctica Rebirth: Integrated `pengu-egg.gif` for the hatching egg step; added `penguin-travel.gif` and `pengu-walk.gif` during caption steps; increased paragraph text clamp and pill badge sizes for the rebirth finale step.
+- "Then We Met You" Timeline: Assigned `pnngu-greet.gif` to the first work timeline milestone.
+- Awards: Swapped metallic yellow background for neutral frosted glass (`--glass-bg`) on `.award-frame` so transparent GIFs display seamlessly while keeping titles golden; wired `pengu-chair.gif` (Chair Seeker), `pengu-laugh.gif` (Current Laugh), and `pengu-walk.gif` (Penguin Walk).
+- Dedicated Hippo Recharge Station (Section 7): Extracted recharge into its own dedicated section between Bag Reveal and Tubelight with 5-second animated charging bar (0% to 100%), big `pengu-energy.gif`, curved text roast, and locked resume button.
+- Terms & Conditions: Curated 8 clauses laid out in a playful zig-zag pattern with hover resets; clicking opens modal with Next / Prev navigation; prominently features curvy "Arpita Nayak" signature and `pengu-yes.gif` badge.
+- Say NO: Increased dodging NO Pengu size from 60 to 100+; refined 6 requests (weekend work, holding heavy bag, organizing trip, 7 AM shift, giving up chair, and Final Exam); integrated `beleive-in-pengu.gif` as Hippo's cheerleader on the Final Exam.
+- Cloud Kitchen: Scattered recipe cards across the counter; clicking any card opens modal with dish info, cycling chef cooking GIFs, delivery runner, and itemized bill with PAID stamp.
+- Predictions: Wrapped revealed chips tray across rows (`flex-wrap: wrap; justify-content: center;`), eliminating horizontal scrollbar.
+- Cinema Screen: Added retro marquee header, theater velvet curtains, clapperboard details, film reel glow ring, metadata badges, fullscreen toggle, and Pengu Remote with infrared beam.
