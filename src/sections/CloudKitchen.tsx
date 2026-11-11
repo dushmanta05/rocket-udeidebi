@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { MENU_ITEMS, type MenuItem } from '../data/menu'
@@ -14,6 +14,15 @@ export function CloudKitchen() {
   const [activeDish, setActiveDish] = useState<MenuItem | null>(null)
   const [ticket, setTicket] = useState(101)
   const [chefIdx, setChefIdx] = useState<0 | 1 | 2>(0)
+
+  useEffect(() => {
+    if (activeDish === null) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveDish(null)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeDish])
 
   const openDish = (dish: MenuItem) => {
     setActiveDish(dish)

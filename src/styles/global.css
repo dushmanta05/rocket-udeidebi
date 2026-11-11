@@ -956,12 +956,12 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 12px 24px;
+  padding: 14px 24px;
   border-radius: var(--radius-lg);
-  background: rgba(18, 24, 48, 0.7);
-  border: 1.5px solid rgba(255, 210, 122, 0.45);
-  box-shadow: 0 0 30px rgba(255, 210, 122, 0.2), var(--shadow-card);
+  background: var(--glass-bg);
+  border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-card);
   max-width: 520px;
 }
 
@@ -1085,17 +1085,30 @@ img {
   min-width: 0;
   max-height: 42vh;
   aspect-ratio: 4 / 3;
-  padding: 8px 8px 0;
-  background: #ffffff;
-  border-radius: 8px;
+  padding: 8px;
+  background: rgba(18, 24, 44, 0.65);
+  border: var(--glass-border);
+  border-radius: var(--radius-md);
   transform: rotate(-2deg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .milestone-photo .media-frame,
 .milestone-photo .media-placeholder {
-  height: calc(100% - 8px);
-  border-radius: 4px;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  background: transparent;
+}
+
+.milestone-photo .media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
 }
 
 .milestone-text {
@@ -1796,7 +1809,7 @@ img {
 
 .clause-tile:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 210, 122, 0.4);
+  border-color: rgba(255, 255, 255, 0.25);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
@@ -1907,7 +1920,7 @@ img {
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -2286,9 +2299,9 @@ img {
   gap: clamp(16px, 3vw, 36px);
   padding: 14px 24px;
   border-radius: var(--radius-lg);
-  background: rgba(18, 24, 48, 0.7);
-  border: 1px solid rgba(255, 210, 122, 0.35);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 24px rgba(255, 210, 122, 0.12);
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  box-shadow: var(--shadow-card);
   backdrop-filter: var(--glass-blur);
   width: 100%;
 }
@@ -2358,7 +2371,7 @@ img {
 }
 
 .recipe-scatter-card:hover {
-  border-color: rgba(255, 210, 122, 0.45);
+  border-color: rgba(255, 255, 255, 0.25);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
 }
 
@@ -2422,9 +2435,9 @@ img {
   padding: clamp(20px, 3.5vw, 32px);
   border-radius: var(--radius-lg);
   background: var(--glass-bg);
-  border: 1px solid rgba(255, 210, 122, 0.35);
+  border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -2896,9 +2909,9 @@ img {
   gap: 12px;
   padding: 6px 20px;
   border-radius: var(--radius-full);
-  background: rgba(18, 24, 48, 0.75);
-  border: 1px solid rgba(255, 210, 122, 0.4);
-  box-shadow: 0 0 20px rgba(255, 210, 122, 0.2);
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  box-shadow: var(--shadow-card);
 }
 
 .marquee-badge {

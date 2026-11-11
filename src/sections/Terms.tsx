@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { TERMS_DATA } from '../data/terms'
@@ -20,6 +20,15 @@ export function Terms({ onNext }: TermsProps) {
   const [offset, setOffset] = useState({ x: 0, y: 0 })
   const [escapes, setEscapes] = useState(0)
   const [activeTermIdx, setActiveTermIdx] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (activeTermIdx === null) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveTermIdx(null)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeTermIdx])
 
   const accept = () => {
     if (agreed) return
