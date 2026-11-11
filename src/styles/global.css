@@ -2314,16 +2314,18 @@ img {
 .sayno-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 18px;
-  padding: clamp(24px, 4vw, 36px);
+  justify-content: space-between;
+  gap: 16px;
+  padding: clamp(22px, 3.6vw, 32px);
   border-radius: 28px;
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
   box-shadow: var(--shadow-card);
   width: 100%;
-  max-width: 600px;
+  max-width: 580px;
+  min-height: 380px;
+  overflow: hidden;
 }
 
 .sayno-card-head {
@@ -2369,32 +2371,36 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  min-height: 120px;
-  margin-top: 8px;
+  gap: 10px;
+  min-height: 104px;
+  width: 100%;
 }
 
 .sayno-btn-arena {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 28px;
   width: 100%;
-  min-height: 70px;
+  min-height: 60px;
 }
 
 .sayno-taunt-bar {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 28px;
+  width: 100%;
 }
 
 .sayno-taunt-text {
   font-family: var(--font-hand);
-  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
   font-weight: 700;
   color: var(--gold);
   text-align: center;
+  white-space: nowrap;
 }
 
 .sayno-tray {
@@ -2422,28 +2428,29 @@ img {
 }
 
 .no-btn {
-  padding: 22px 64px;
+  padding: 12px 38px;
   border-radius: var(--radius-full);
   background: linear-gradient(135deg, var(--pink), #ff5d8d);
   color: #2a0f1a;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
   box-shadow: var(--glow-pink);
 }
 
 .no-btn.pulse-no {
-  box-shadow: 0 0 35px rgba(255, 143, 177, 0.7), 0 0 70px rgba(255, 143, 177, 0.4);
+  box-shadow: 0 0 30px rgba(255, 143, 177, 0.7), 0 0 50px rgba(255, 143, 177, 0.4);
   cursor: pointer;
 }
 
 .yes-btn {
-  padding: 8px 18px;
+  padding: 10px 24px;
   border-radius: var(--radius-full);
   background: var(--mint);
   color: #0c2a1b;
-  font-weight: 800;
-  font-size: 0.9rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .verdict {

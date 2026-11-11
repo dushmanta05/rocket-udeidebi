@@ -45,7 +45,7 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
 
   const dodge = () => {
     const side = Math.random() < 0.5 ? -1 : 1
-    setDodgePos({ x: side * (120 + Math.random() * 200), y: (Math.random() - 0.5) * 140 })
+    setDodgePos({ x: side * (60 + Math.random() * 50), y: (Math.random() - 0.5) * 20 })
     setDodges((n) => n + 1)
   }
 
@@ -162,23 +162,23 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
                     </motion.button>
                   </div>
 
-                  <AnimatePresence>
-                    {dodges > 0 && (
-                      <motion.div
-                        key={dodges}
-                        className="sayno-taunt-bar"
-                        initial={{ opacity: 0, y: 6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                      >
-                        <span className="sayno-taunt-text">
+                  <div className="sayno-taunt-bar">
+                    <AnimatePresence mode="wait">
+                      {dodges > 0 && (
+                        <motion.span
+                          key={dodges}
+                          className="sayno-taunt-text"
+                          initial={{ opacity: 0, y: 4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0 }}
+                        >
                           {isFinalTest
                             ? SAYNO_COPY.yesTaunts[(dodges - 1) % SAYNO_COPY.yesTaunts.length]
                             : SAYNO_COPY.taunts[(dodges - 1) % SAYNO_COPY.taunts.length]}
-                        </span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>
