@@ -1,7 +1,8 @@
-import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useMemo } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Hippo } from '../components/Hippo'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
+import { computeTrajectoryPose, type FlightTrajectory } from '../components/RocketFlyby'
 import { SECTIONS, WELCOME_COPY } from '../data/sections'
 
 interface WelcomeProps {
@@ -10,29 +11,41 @@ interface WelcomeProps {
 
 const copy = SECTIONS[0]
 
+const WELCOME_TRAJECTORIES: FlightTrajectory[] = [
+  { from: [-15, 65], to: [115, 18], duration: 10 },
+  { from: [115, 22], to: [-15, 62], duration: 11 },
+  { from: [-15, 40], to: [115, 12], duration: 9 },
+  { from: [115, 78], to: [-15, 20], duration: 12 },
+  { from: [-15, 52], to: [115, 30], duration: 10 }
+]
+
 export function Welcome({ onStart }: WelcomeProps) {
-  const rotate = useMemo(() => {
-    const w = typeof window !== 'undefined' ? window.innerWidth : 1440
-    const h = typeof window !== 'undefined' ? window.innerHeight : 900
-    const dx = 1.2 * w
-    const dy = -0.4 * h
-    const heading = Math.atan2(dy, dx) * (180 / Math.PI)
-    let deg = heading - (-43)
-    while (deg > 180) deg -= 360
-    while (deg < -180) deg += 360
-    return Math.round(deg)
-  }, [])
+  const reduceMotion = useReducedMotion()
+  const [flightIdx, setFlightIdx] = useState(() => Math.floor(Math.random() * WELCOME_TRAJECTORIES.length))
+  const traj = WELCOME_TRAJECTORIES[flightIdx]
+  const pose = useMemo(() => computeTrajectoryPose(traj), [traj])
 
   return (
     <div className="section welcome-section">
-      <motion.div
-        className="welcome-flyby"
-        initial={{ x: '-15vw', y: '10vh', rotate }}
-        animate={{ x: '105vw', y: '-30vh', rotate }}
-        transition={{ duration: 9, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
-      >
-        <PenguinRocketArt size={72} sparks />
-      </motion.div>
+      {!reduceMotion && (
+        <div className="welcome-flyby-layer" aria-hidden="true">
+          <motion.div
+            key={flightIdx}
+            className="welcome-flyby"
+            initial={{ left: `${traj.from[0]}vw`, top: `${traj.from[1]}vh` }}
+            animate={{ left: `${traj.to[0]}vw`, top: `${traj.to[1]}vh` }}
+            transition={{ duration: traj.duration, ease: 'linear' }}
+            onAnimationComplete={() =>
+              setFlightIdx((prev) => (prev + 1 + Math.floor(Math.random() * (WELCOME_TRAJECTORIES.length - 1))) % WELCOME_TRAJECTORIES.length)
+            }
+            style={{ rotate: pose.rotate }}
+          >
+            <div style={{ transform: `scaleX(${pose.flip})` }}>
+              <PenguinRocketArt size={72} sparks />
+            </div>
+          </motion.div>
+        </div>
+      )}
 
       <div className="welcome-grid">
         <motion.div

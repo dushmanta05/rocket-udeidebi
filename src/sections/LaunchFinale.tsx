@@ -9,6 +9,7 @@ import { Hippo } from '../components/Hippo'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
 import { LaunchPadArt } from '../components/art/LaunchPadArt'
 import { Hint } from '../components/SectionHeader'
+import { computeTrajectoryPose, type FlightTrajectory } from '../components/RocketFlyby'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[13]
@@ -18,15 +19,7 @@ const STEP_BOARD = 2
 const STEP_LAUNCH = 3
 const STEP_THANKS = 4
 
-const ROCKET_NOSE_ANGLE = -43
-
-interface ThanksTrajectory {
-  from: [number, number]
-  to: [number, number]
-  duration: number
-}
-
-const THANKS_TRAJECTORIES: ThanksTrajectory[] = [
+const THANKS_TRAJECTORIES: FlightTrajectory[] = [
   { from: [-15, 72], to: [115, 18], duration: 11 },
   { from: [115, 20], to: [-15, 65], duration: 12 },
   { from: [-15, 45], to: [115, 12], duration: 10 },
@@ -34,23 +27,8 @@ const THANKS_TRAJECTORIES: ThanksTrajectory[] = [
   { from: [-15, 55], to: [115, 28], duration: 11 }
 ]
 
-function computeTrajectoryPose(traj: ThanksTrajectory) {
-  const w = typeof window !== 'undefined' ? window.innerWidth : 1440
-  const h = typeof window !== 'undefined' ? window.innerHeight : 900
-  const dx = ((traj.to[0] - traj.from[0]) / 100) * w
-  const dy = ((traj.to[1] - traj.from[1]) / 100) * h
-  const heading = Math.atan2(dy, dx) * (180 / Math.PI)
-  const leftward = dx < 0
-  const flip = leftward ? -1 : 1
-  const baseNose = leftward ? -180 - ROCKET_NOSE_ANGLE : ROCKET_NOSE_ANGLE
-  let rotate = heading - baseNose
-  while (rotate > 180) rotate -= 360
-  while (rotate < -180) rotate += 360
-  return { rotate, flip }
-}
-
 function ThanksCoupleFlyby() {
-  const [flightIdx, setFlightIdx] = useState(0)
+  const [flightIdx, setFlightIdx] = useState(() => Math.floor(Math.random() * THANKS_TRAJECTORIES.length))
   const traj = THANKS_TRAJECTORIES[flightIdx]
   const pose = useMemo(() => computeTrajectoryPose(traj), [traj])
 
@@ -62,7 +40,9 @@ function ThanksCoupleFlyby() {
         initial={{ left: `${traj.from[0]}vw`, top: `${traj.from[1]}vh` }}
         animate={{ left: `${traj.to[0]}vw`, top: `${traj.to[1]}vh` }}
         transition={{ duration: traj.duration, ease: 'linear' }}
-        onAnimationComplete={() => setFlightIdx((prev) => (prev + 1) % THANKS_TRAJECTORIES.length)}
+        onAnimationComplete={() =>
+          setFlightIdx((prev) => (prev + 1 + Math.floor(Math.random() * (THANKS_TRAJECTORIES.length - 1))) % THANKS_TRAJECTORIES.length)
+        }
         style={{ rotate: pose.rotate }}
       >
         <div style={{ transform: `scaleX(${pose.flip})` }} className="couple-rocket-wrap">
@@ -155,7 +135,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
 
         <div className="thanks-layout">
           <motion.div initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', damping: 12 }}>
-            <Hippo size={250} speechText={FINALE_COPY.hippoSays} />
+            <Hippo size={190} speechText={FINALE_COPY.hippoSays} />
           </motion.div>
 
           <motion.div

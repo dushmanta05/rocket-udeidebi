@@ -1,30 +1,39 @@
-import { useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { PenguinRocketArt } from './art/PenguinRocketArt'
 
-interface Flight {
+export const ROCKET_NOSE_ANGLE = -43
+
+export interface FlightTrajectory {
   from: [number, number]
   to: [number, number]
+  duration: number
 }
 
-const ACROSS_TOP_RIGHT: Flight = { from: [-10, 40], to: [26, -12] }
-const ACROSS_TOP_LEFT: Flight = { from: [110, 40], to: [74, -12] }
-const CLIMB_LEFT_EDGE: Flight = { from: [3, 110], to: [15, -12] }
-const CLIMB_RIGHT_EDGE: Flight = { from: [97, 110], to: [85, -12] }
-
-const FLIGHTS: Record<number, Flight> = {
-  4: ACROSS_TOP_RIGHT,
-  5: CLIMB_LEFT_EDGE,
-  6: ACROSS_TOP_LEFT,
-  7: CLIMB_RIGHT_EDGE,
-  8: ACROSS_TOP_RIGHT,
-  9: ACROSS_TOP_LEFT,
-  10: CLIMB_LEFT_EDGE,
-  11: CLIMB_RIGHT_EDGE,
-  12: ACROSS_TOP_LEFT
+export function computeTrajectoryPose(traj: FlightTrajectory) {
+  const w = typeof window !== 'undefined' ? window.innerWidth : 1440
+  const h = typeof window !== 'undefined' ? window.innerHeight : 900
+  const dx = ((traj.to[0] - traj.from[0]) / 100) * w
+  const dy = ((traj.to[1] - traj.from[1]) / 100) * h
+  const heading = Math.atan2(dy, dx) * (180 / Math.PI)
+  const leftward = dx < 0
+  const flip = leftward ? -1 : 1
+  const baseNose = leftward ? -180 - ROCKET_NOSE_ANGLE : ROCKET_NOSE_ANGLE
+  let rotate = heading - baseNose
+  while (rotate > 180) rotate -= 360
+  while (rotate < -180) rotate += 360
+  return { rotate, flip }
 }
 
-const ROCKET_NOSE_ANGLE = -43
+const FLYBY_TRAJECTORIES: FlightTrajectory[] = [
+  { from: [-15, 68], to: [115, 18], duration: 9 },
+  { from: [115, 22], to: [-15, 62], duration: 10 },
+  { from: [-15, 40], to: [115, 12], duration: 9 },
+  { from: [115, 76], to: [-15, 20], duration: 11 },
+  { from: [-15, 52], to: [115, 28], duration: 10 },
+  { from: [6, 112], to: [28, -15], duration: 8 },
+  { from: [94, 112], to: [72, -15], duration: 8 }
+]
 
 interface RocketFlybyProps {
   section: number
@@ -32,33 +41,28 @@ interface RocketFlybyProps {
 
 export function RocketFlyby({ section }: RocketFlybyProps) {
   const reduceMotion = useReducedMotion()
-  const flight = FLIGHTS[section] ?? ACROSS_TOP_RIGHT
+  const [flightIdx, setFlightIdx] = useState(() => Math.floor(Math.random() * FLYBY_TRAJECTORIES.length))
 
-  const pose = useMemo(() => {
-    const w = typeof window !== 'undefined' ? window.innerWidth : 1440
-    const h = typeof window !== 'undefined' ? window.innerHeight : 900
-    const dx = (flight.to[0] - flight.from[0]) * w
-    const dy = (flight.to[1] - flight.from[1]) * h
-    const heading = Math.atan2(dy, dx) * (180 / Math.PI)
-    const leftward = dx < 0
-    const flip = leftward ? -1 : 1
-    const baseNose = leftward ? -180 - ROCKET_NOSE_ANGLE : ROCKET_NOSE_ANGLE
-    let rotate = heading - baseNose
-    while (rotate > 180) rotate -= 360
-    while (rotate < -180) rotate += 360
-    return { rotate, flip }
-  }, [flight])
+  useEffect(() => {
+    setFlightIdx((prev) => (prev + 1 + Math.floor(Math.random() * (FLYBY_TRAJECTORIES.length - 1))) % FLYBY_TRAJECTORIES.length)
+  }, [section])
 
-  if (reduceMotion || !(section in FLIGHTS)) return null
+  const traj = FLYBY_TRAJECTORIES[flightIdx]
+  const pose = useMemo(() => computeTrajectoryPose(traj), [traj])
+
+  if (reduceMotion || section < 4 || section > 12) return null
 
   return (
     <div className="flyby-layer" aria-hidden="true">
       <motion.div
-        key={section}
+        key={`${section}-${flightIdx}`}
         className="flyby-rocket"
-        initial={{ left: `${flight.from[0]}vw`, top: `${flight.from[1]}vh` }}
-        animate={{ left: `${flight.to[0]}vw`, top: `${flight.to[1]}vh` }}
-        transition={{ duration: 7, delay: 1.2, ease: 'easeIn', repeat: Infinity, repeatDelay: 8 }}
+        initial={{ left: `${traj.from[0]}vw`, top: `${traj.from[1]}vh` }}
+        animate={{ left: `${traj.to[0]}vw`, top: `${traj.to[1]}vh` }}
+        transition={{ duration: traj.duration, delay: 0.8, ease: 'linear' }}
+        onAnimationComplete={() =>
+          setFlightIdx((prev) => (prev + 1 + Math.floor(Math.random() * (FLYBY_TRAJECTORIES.length - 1))) % FLYBY_TRAJECTORIES.length)
+        }
         style={{ rotate: pose.rotate }}
       >
         <div style={{ transform: `scaleX(${pose.flip})` }}>

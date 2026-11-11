@@ -697,11 +697,16 @@ img {
   justify-content: center;
 }
 
+.welcome-flyby-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
 .welcome-flyby {
   position: absolute;
-  left: 0;
-  top: 62%;
-  z-index: 0;
   opacity: 0.85;
   pointer-events: none;
 }
@@ -2312,11 +2317,15 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
+}
+
+.pranjal-standing .speech-bubble {
+  margin-bottom: 8px;
 }
 
 .pranjal-standing .name-pill {
-  margin-bottom: -8px;
+  margin-bottom: -4px;
 }
 
 .launch-rocket {
@@ -2345,7 +2354,7 @@ img {
   position: absolute;
   bottom: 100%;
   left: 50%;
-  translate: -50% -4px;
+  translate: -50% -12px;
 }
 
 .rocket-name {
@@ -2454,11 +2463,6 @@ img {
   grid-template-columns: auto minmax(0, 560px);
   align-items: center;
   gap: clamp(20px, 5vw, 70px);
-}
-
-.thanks-layout .hippo-character {
-  max-width: min(280px, 45vw);
-  max-height: min(280px, 42vh);
 }
 
 .thanks-flyby-layer {
@@ -2674,10 +2678,6 @@ img {
     justify-content: center;
   }
 
-  .welcome-flyby {
-    top: 6%;
-  }
-
   .chef-col {
     flex-direction: row;
     gap: 10px;
@@ -2712,11 +2712,6 @@ img {
   .welcome-hippo .hippo-character {
     max-width: min(240px, 65vw);
     max-height: min(240px, 32vh);
-  }
-
-  .thanks-layout .hippo-character {
-    max-width: min(200px, 60vw);
-    max-height: min(200px, 28vh);
   }
 
   .script-word {
