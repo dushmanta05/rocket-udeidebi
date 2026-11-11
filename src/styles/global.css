@@ -1479,6 +1479,11 @@ img {
   background: linear-gradient(90deg, var(--coral), var(--gold), #fffbe6);
 }
 
+.tubelight-energy-wrap {
+  margin-top: 8px;
+  filter: drop-shadow(0 0 16px rgba(255, 210, 122, 0.6));
+}
+
 .tube-log {
   display: flex;
   flex-direction: column;
@@ -2638,6 +2643,17 @@ img {
   width: 26px;
   border-radius: 4px;
   background: var(--pink);
+}
+
+.launch-section .launch-header {
+  min-height: 86px;
+  flex: none;
+}
+
+.launch-title-slot {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .launch-stage {

@@ -4,6 +4,7 @@ import confetti from 'canvas-confetti'
 import { TUBELIGHT_STEPS } from '../data/tubelight'
 import { SECTIONS, TUBELIGHT_COPY } from '../data/sections'
 import { Placeholder } from '../components/Placeholder'
+import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
@@ -54,6 +55,16 @@ export function Tubelight({ currentStep, setTotalSteps, onNext }: StepSectionPro
               <motion.div className="meter-fill" animate={{ width: `${Math.max(percent, 3)}%` }} transition={{ duration: 0.8 }} />
             </div>
           </div>
+          {isDone && (
+            <motion.div
+              className="tubelight-energy-wrap"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', damping: 11 }}
+            >
+              <Pengu size={100} variant="energy" />
+            </motion.div>
+          )}
         </div>
 
         <div className="tube-log">

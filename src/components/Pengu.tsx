@@ -18,6 +18,8 @@ type PenguVariant =
   | 'kitchen2'
   | 'kitchen3'
   | 'run'
+  | 'energy'
+  | 'flower'
   | 'thankYou'
 
 interface PenguProps {
@@ -29,7 +31,7 @@ interface PenguProps {
 const VARIANT_SRC: Record<PenguVariant, string> = {
   arpita: ASSETS.pengu,
   chef: ASSETS.penguChef,
-  pranjal: ASSETS.penguRocket,
+  pranjal: ASSETS.pranjal,
   future: ASSETS.penguFuture,
   remote: ASSETS.penguRemote,
   dance: ASSETS.penguDance,
@@ -42,17 +44,21 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   kitchen2: ASSETS.penguKitchen2,
   kitchen3: ASSETS.penguKitchen3,
   run: ASSETS.penguRun,
+  energy: ASSETS.penguEnergy,
+  flower: ASSETS.penguFlower,
   thankYou: ASSETS.thankYou
 }
 
 export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguProps) {
+  const imgSrc = VARIANT_SRC[variant]
+
   return (
     <div className={`pengu ${className}`} style={{ width: size, height: size }}>
       <SmartImage
-        src={VARIANT_SRC[variant]}
+        src={imgSrc}
         alt={
           variant === 'pranjal'
-            ? 'Penguin'
+            ? 'Pranjal the penguin'
             : variant === 'future'
               ? 'Pengu seeing the future'
               : variant === 'remote'
@@ -69,12 +75,21 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
         }
         className="pengu-img"
         fallback={
-          <PenguinArt
-            size={size}
-            chefHat={variant === 'chef' || variant.startsWith('kitchen')}
-            futureLens={variant === 'future'}
-            remote={variant === 'remote'}
-          />
+          variant === 'pranjal' ? (
+            <SmartImage
+              src={ASSETS.penguLove1}
+              alt="Pranjal the penguin"
+              className="pengu-img"
+              fallback={<PenguinArt size={size} />}
+            />
+          ) : (
+            <PenguinArt
+              size={size}
+              chefHat={variant === 'chef' || variant.startsWith('kitchen')}
+              futureLens={variant === 'future'}
+              remote={variant === 'remote'}
+            />
+          )
         }
       />
     </div>

@@ -18,6 +18,8 @@ export const ASSETS = {
   penguDance3: './images/dancing-dance-3.gif',
   penguLove: './images/pengu-love.gif',
   penguLove1: './images/pengu-love-1.gif',
+  penguEnergy: './images/pengu-energy.gif',
+  penguFlower: './images/pengu-flower.gif',
   thankYou: './images/thank-you.gif',
   pranjal: './images/pranjal.png',
   crewFilm: './videos/crew-film.mp4',

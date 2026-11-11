@@ -49,6 +49,10 @@ function ThanksCoupleFlyby() {
       >
         <div style={{ transform: `scaleX(${pose.flip})` }} className="couple-rocket-wrap">
           <PenguinRocketArt size={88} sparks />
+          <div className="couple-pranjal">
+            <Pengu size={34} variant="pranjal" />
+          </div>
+          <span className="couple-heart">♥</span>
         </div>
       </motion.div>
     </div>
@@ -201,15 +205,23 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
 
   return (
     <div className="section launch-section" onClick={onNext}>
-      <header className="section-header">
+      <header className="section-header launch-header">
         <span className="kicker">{copy.kicker}</span>
-        <AnimatePresence mode="wait">
-          {title && (
-            <motion.h2 key={title} className="section-title" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-              {title}
-            </motion.h2>
-          )}
-        </AnimatePresence>
+        <div className="launch-title-slot">
+          <AnimatePresence mode="wait">
+            {title && (
+              <motion.h2
+                key={title}
+                className="section-title"
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+              >
+                {title}
+              </motion.h2>
+            )}
+          </AnimatePresence>
+        </div>
       </header>
 
       <div className={`launch-stage ${launched ? 'shaking' : ''}`}>
@@ -230,7 +242,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
             >
               {currentStep === STEP_PAD && <div className="speech-bubble">{FINALE_COPY.pranjalSays}</div>}
               <span className="name-pill">{FINALE_COPY.pranjalName}</span>
-              <Pengu size={120} variant="pranjal" />
+              <Pengu size={120} variant="flower" />
             </motion.div>
           )}
         </AnimatePresence>
