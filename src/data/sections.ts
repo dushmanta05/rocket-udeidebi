@@ -58,7 +58,7 @@ export const SECTIONS: SectionCopy[] = [
   },
   {
     short: 'Recharge',
-    kicker: 'Mid-Party Pit Stop',
+    kicker: '',
     title: 'Hippo Recharge Station',
     subtitle: 'Warning: Hippo has reached critical battery level from searching for chairs.',
     hint: 'Wait for battery to reach 100%'

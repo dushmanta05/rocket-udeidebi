@@ -59,17 +59,19 @@ export function Awards({ currentStep, setTotalSteps, onNext }: StepSectionProps)
           >
             <div className="award-head-row">
               <span className="pill">Award {String(index + 1).padStart(2, '0')}</span>
-              <motion.div
-                className="award-mic-pengu"
-                initial={{ scale: 0, rotate: -10 }}
-                animate={{ scale: 1, rotate: [-4, 4, -4] }}
-                transition={{
-                  scale: { delay: 0.2, type: 'spring', damping: 11 },
-                  rotate: { repeat: Infinity, duration: 2.2, ease: 'easeInOut' }
-                }}
-              >
-                <Pengu size={68} variant="mic" />
-              </motion.div>
+              <div className="award-mic-pengu-wrap">
+                <motion.div
+                  className="award-mic-pengu"
+                  initial={{ scale: 0, rotate: -10 }}
+                  animate={{ scale: 1, rotate: [-4, 4, -4] }}
+                  transition={{
+                    scale: { delay: 0.2, type: 'spring', damping: 11 },
+                    rotate: { repeat: Infinity, duration: 2.2, ease: 'easeInOut' }
+                  }}
+                >
+                  <Pengu size={68} variant="mic" />
+                </motion.div>
+              </div>
             </div>
             <h3 className="award-title">{award.title}</h3>
             <p className="award-roast">{award.roast}</p>

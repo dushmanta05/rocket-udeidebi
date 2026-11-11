@@ -139,7 +139,7 @@ export function RocketTimeline({ stops, copy, variant, currentStep, setTotalStep
           transition={{ duration: 0.35 }}
           className="milestone-card"
         >
-          <div className="milestone-photo">
+          <div className={`milestone-photo ${stop.src && stop.src.toLowerCase().includes('.gif') ? 'is-gif' : 'is-photo'}`}>
             <Placeholder label={`Photo: ${stop.title}`} src={stop.src} aspectRatio="4 / 3" />
           </div>
           <div className="milestone-text">

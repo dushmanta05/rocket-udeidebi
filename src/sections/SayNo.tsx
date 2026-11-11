@@ -103,15 +103,10 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
                 transition={{ type: 'spring', damping: 16 }}
               >
                 <div className="chat-head">
-                  <span className="chat-avatar">
-                    <Pengu size={46} variant="please" />
+                  <span className="pill">
+                    {SAYNO_COPY.requestLabel} {request.id} of {REQUESTS_DATA.length}
                   </span>
-                  <div>
-                    <span className="chat-from">{request.from}</span>
-                    <span className="chat-meta">
-                      {SAYNO_COPY.requestLabel} {request.id} / {REQUESTS_DATA.length}
-                    </span>
-                  </div>
+                  <span className="chat-from-badge">{request.from}</span>
                 </div>
 
                 <motion.div

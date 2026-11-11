@@ -42,7 +42,7 @@ export function RechargeStation({ onNext }: RechargeStationProps) {
 
   return (
     <div className="section recharge-section">
-      <SectionHeader copy={copy} />
+      <SectionHeader copy={copy} kicker="" />
 
       <motion.article
         className="recharge-card"
