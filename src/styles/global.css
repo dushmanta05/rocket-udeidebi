@@ -2220,11 +2220,14 @@ img {
 
 .blast-text {
   position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
+  top: clamp(24px, 8vh, 70px);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 0 16px;
+  padding: 0 clamp(16px, 4vw, 40px);
   font-size: clamp(2.2rem, 6vw, 4.6rem);
   font-weight: 700;
   background: linear-gradient(120deg, var(--gold), var(--pink));
