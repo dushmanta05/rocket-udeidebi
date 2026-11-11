@@ -783,6 +783,17 @@ img {
   color: var(--sky);
 }
 
+.welcome-action-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.welcome-dance-pengu {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
 .birth-stage {
   position: relative;
   flex: 1;
@@ -1752,10 +1763,17 @@ img {
 .stamp-overlay {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   pointer-events: none;
   z-index: 5;
+}
+
+.terms-love-pengu {
+  filter: drop-shadow(0 6px 20px rgba(255, 77, 109, 0.4));
 }
 
 .giant-no {
@@ -1958,6 +1976,11 @@ img {
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   color: var(--ink-soft);
   margin-top: 6px;
+}
+
+.verdict-dancer {
+  margin-bottom: 20px;
+  filter: drop-shadow(0 6px 20px rgba(126, 226, 168, 0.4));
 }
 
 .kitchen-layout {
@@ -2914,6 +2937,18 @@ img {
   line-height: 1.5;
 }
 
+.thanks-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.thanks-party-dancer {
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35));
+}
+
 .thanks-sign {
   align-self: flex-end;
   font-family: var(--font-hand);
@@ -3110,6 +3145,16 @@ img {
   .welcome-copy {
     align-items: center;
     text-align: center;
+  }
+
+  .welcome-action-row {
+    justify-content: center;
+  }
+
+  .thanks-foot {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
   }
 
   .welcome-hippo .hippo-character,

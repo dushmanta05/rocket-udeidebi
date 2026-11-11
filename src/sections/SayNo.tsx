@@ -4,6 +4,7 @@ import confetti from 'canvas-confetti'
 import { REQUESTS_DATA } from '../data/requests'
 import { SAYNO_COPY, SECTIONS } from '../data/sections'
 import { Stamp } from '../components/Stamp'
+import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
@@ -155,6 +156,17 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
               <h3 className="verdict-title">{SAYNO_COPY.verdictTitle}</h3>
               <p className="verdict-subtitle">{SAYNO_COPY.verdictSubtitle}</p>
             </div>
+            <motion.div
+              className="verdict-dancer"
+              initial={{ scale: 0, rotate: -15 }}
+              animate={{ scale: 1, rotate: [-6, 6, -6] }}
+              transition={{
+                scale: { type: 'spring', damping: 11 },
+                rotate: { repeat: Infinity, duration: 2, ease: 'easeInOut' }
+              }}
+            >
+              <Pengu size={130} variant="dance2" />
+            </motion.div>
             <div className="score-row">
               <div className="score-tile">
                 <span className="score-num yes">{REQUESTS_DATA.length - 1}</span>

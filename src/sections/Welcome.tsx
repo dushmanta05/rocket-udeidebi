@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Hippo } from '../components/Hippo'
+import { Pengu } from '../components/Pengu'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
 import { computeTrajectoryPose, type FlightTrajectory } from '../components/RocketFlyby'
 import { SECTIONS, WELCOME_COPY } from '../data/sections'
@@ -72,15 +73,28 @@ export function Welcome({ onStart }: WelcomeProps) {
           <p className="welcome-lead">{copy.subtitle}</p>
           <p className="welcome-catchphrase">"{WELCOME_COPY.catchphrase}"</p>
 
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={onStart}
-            className="primary-btn"
-          >
-            {WELCOME_COPY.button}
-            <span aria-hidden="true">→</span>
-          </motion.button>
+          <div className="welcome-action-row">
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              onClick={onStart}
+              className="primary-btn"
+            >
+              {WELCOME_COPY.button}
+              <span aria-hidden="true">→</span>
+            </motion.button>
+            <motion.div
+              className="welcome-dance-pengu"
+              initial={{ scale: 0, rotate: -10 }}
+              animate={{ scale: 1, rotate: [-6, 6, -6] }}
+              transition={{
+                scale: { delay: 0.4, type: 'spring', damping: 10 },
+                rotate: { repeat: Infinity, duration: 2.2, ease: 'easeInOut' }
+              }}
+            >
+              <Pengu size={84} variant="dance1" />
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import confetti from 'canvas-confetti'
 import { TERMS_DATA } from '../data/terms'
 import { SECTIONS, TERMS_COPY } from '../data/sections'
 import { Stamp } from '../components/Stamp'
+import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 
 interface TermsProps {
@@ -106,6 +107,14 @@ export function Terms({ onNext }: TermsProps) {
 
         {agreed && (
           <div className="stamp-overlay">
+            <motion.div
+              className="terms-love-pengu"
+              initial={{ scale: 0, y: 30 }}
+              animate={{ scale: 1, y: 0 }}
+              transition={{ delay: 0.15, type: 'spring', damping: 11 }}
+            >
+              <Pengu size={120} variant="love" />
+            </motion.div>
             <Stamp text={TERMS_COPY.stamp} subtext={TERMS_COPY.stampSub} color="#ff5a6e" />
           </div>
         )}

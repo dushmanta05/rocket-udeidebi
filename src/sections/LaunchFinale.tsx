@@ -162,7 +162,20 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
                 {line}
               </p>
             ))}
-            <span className="thanks-sign">{FINALE_COPY.signOff}</span>
+            <div className="thanks-foot">
+              <motion.div
+                className="thanks-party-dancer"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1, rotate: [-4, 4, -4] }}
+                transition={{
+                  scale: { delay: 0.6, type: 'spring', damping: 10 },
+                  rotate: { repeat: Infinity, duration: 1.8, ease: 'easeInOut' }
+                }}
+              >
+                <Pengu size={isMobile ? 70 : 96} variant="dance3" />
+              </motion.div>
+              <span className="thanks-sign">{FINALE_COPY.signOff}</span>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -237,7 +250,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
               <motion.span className="name-pill" animate={{ rotate: -rocketState.rotate }}>
                 {FINALE_COPY.pranjalName}
               </motion.span>
-              <Pengu size={isMobile ? 46 : 60} variant="pranjal" />
+              <Pengu size={isMobile ? 46 : 60} variant="love1" />
             </motion.div>
           )}
           {currentStep >= STEP_BOARD && (
