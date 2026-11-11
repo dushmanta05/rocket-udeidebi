@@ -13,18 +13,18 @@ export const FALLBACK_WISHES: CrewWish[] = [
     message: 'May your rocket fly higher than ever, and may Pranjal always keep a chair ready for you.'
   },
   {
-    name: 'Siblings & Cousins',
+    name: 'Amit, Anchal & Ankita',
     relation: 'Family',
     message: 'To our forever Jagatmata: endless laughter, zero arguments and bottomless chai.'
   },
   {
-    name: 'The Office Gang',
+    name: 'Subhasree, Astha & Niyaz',
     relation: 'Work crew',
     message: 'Never lose that electric laugh. Have the happiest married life, Penguin.'
   },
   {
-    name: 'Childhood Besties',
-    relation: 'School friends',
-    message: 'From school desks to the launch pad, you will always be our favourite tubelight.'
+    name: 'Tapan, Shyam, Soumya, Tanu, Paresh & Asutosh',
+    relation: 'Crew',
+    message: 'From chai breaks to the launch pad, you will always be our favourite tubelight.'
   }
 ]

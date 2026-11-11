@@ -3,7 +3,6 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { FINALE_COPY, SECTIONS } from '../data/sections'
 import { ASSETS } from '../data/assets'
-import { useWishes } from '../hooks/useWishes'
 import { CREW_NAMES } from '../data/crew'
 import { Pengu } from '../components/Pengu'
 import { Hippo } from '../components/Hippo'
@@ -77,7 +76,6 @@ function useCountdown(active: boolean) {
 
 export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   const reduceMotion = useReducedMotion()
-  const wishes = useWishes()
   const tick = useCountdown(currentStep === STEP_LAUNCH)
   const launched = currentStep === STEP_LAUNCH && tick >= FINALE_COPY.countdown.length
 
@@ -102,7 +100,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
     return () => clearInterval(timer)
   }, [currentStep, reduceMotion])
 
-  const names = Array.from(new Set([...CREW_NAMES, ...wishes.map((wish) => wish.name)]))
+  const names = CREW_NAMES
   const cycle = Math.max(10, names.length * 1.1)
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
