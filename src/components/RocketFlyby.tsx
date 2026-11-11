@@ -24,7 +24,7 @@ const FLIGHTS: Record<number, Flight> = {
   12: ACROSS_TOP_LEFT
 }
 
-const ROCKET_NOSE_ANGLE = -40
+const ROCKET_NOSE_ANGLE = -43
 
 interface RocketFlybyProps {
   section: number
@@ -35,12 +35,18 @@ export function RocketFlyby({ section }: RocketFlybyProps) {
   const flight = FLIGHTS[section] ?? ACROSS_TOP_RIGHT
 
   const pose = useMemo(() => {
-    const dx = (flight.to[0] - flight.from[0]) * window.innerWidth
-    const dy = (flight.to[1] - flight.from[1]) * window.innerHeight
+    const w = typeof window !== 'undefined' ? window.innerWidth : 1440
+    const h = typeof window !== 'undefined' ? window.innerHeight : 900
+    const dx = (flight.to[0] - flight.from[0]) * w
+    const dy = (flight.to[1] - flight.from[1]) * h
     const heading = Math.atan2(dy, dx) * (180 / Math.PI)
     const leftward = dx < 0
-    const nose = leftward ? 180 - ROCKET_NOSE_ANGLE : ROCKET_NOSE_ANGLE
-    return { rotate: heading - nose, flip: leftward ? -1 : 1 }
+    const flip = leftward ? -1 : 1
+    const baseNose = leftward ? -180 - ROCKET_NOSE_ANGLE : ROCKET_NOSE_ANGLE
+    let rotate = heading - baseNose
+    while (rotate > 180) rotate -= 360
+    while (rotate < -180) rotate += 360
+    return { rotate, flip }
   }, [flight])
 
   if (reduceMotion || !(section in FLIGHTS)) return null

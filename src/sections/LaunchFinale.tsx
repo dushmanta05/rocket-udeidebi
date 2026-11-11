@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { FINALE_COPY, SECTIONS } from '../data/sections'
@@ -18,40 +18,54 @@ const STEP_BOARD = 2
 const STEP_LAUNCH = 3
 const STEP_THANKS = 4
 
-interface ThanksFlight {
-  fromX: string
-  toX: string
-  fromY: string
-  toY: string
-  rotate: number
-  flip: number
+const ROCKET_NOSE_ANGLE = -43
+
+interface ThanksTrajectory {
+  from: [number, number]
+  to: [number, number]
   duration: number
 }
 
-const THANKS_FLIGHTS: ThanksFlight[] = [
-  { fromX: '-15vw', toX: '115vw', fromY: '72vh', toY: '18vh', rotate: -24, flip: 1, duration: 11 },
-  { fromX: '115vw', toX: '-15vw', fromY: '24vh', toY: '60vh', rotate: 18, flip: -1, duration: 12 },
-  { fromX: '-15vw', toX: '115vw', fromY: '36vh', toY: '14vh', rotate: -18, flip: 1, duration: 10 },
-  { fromX: '115vw', toX: '-15vw', fromY: '76vh', toY: '20vh', rotate: -26, flip: -1, duration: 13 },
-  { fromX: '-15vw', toX: '115vw', fromY: '58vh', toY: '26vh', rotate: -15, flip: 1, duration: 11 }
+const THANKS_TRAJECTORIES: ThanksTrajectory[] = [
+  { from: [-15, 72], to: [115, 18], duration: 11 },
+  { from: [115, 20], to: [-15, 65], duration: 12 },
+  { from: [-15, 45], to: [115, 12], duration: 10 },
+  { from: [115, 80], to: [-15, 15], duration: 13 },
+  { from: [-15, 55], to: [115, 28], duration: 11 }
 ]
+
+function computeTrajectoryPose(traj: ThanksTrajectory) {
+  const w = typeof window !== 'undefined' ? window.innerWidth : 1440
+  const h = typeof window !== 'undefined' ? window.innerHeight : 900
+  const dx = ((traj.to[0] - traj.from[0]) / 100) * w
+  const dy = ((traj.to[1] - traj.from[1]) / 100) * h
+  const heading = Math.atan2(dy, dx) * (180 / Math.PI)
+  const leftward = dx < 0
+  const flip = leftward ? -1 : 1
+  const baseNose = leftward ? -180 - ROCKET_NOSE_ANGLE : ROCKET_NOSE_ANGLE
+  let rotate = heading - baseNose
+  while (rotate > 180) rotate -= 360
+  while (rotate < -180) rotate += 360
+  return { rotate, flip }
+}
 
 function ThanksCoupleFlyby() {
   const [flightIdx, setFlightIdx] = useState(0)
-  const flight = THANKS_FLIGHTS[flightIdx]
+  const traj = THANKS_TRAJECTORIES[flightIdx]
+  const pose = useMemo(() => computeTrajectoryPose(traj), [traj])
 
   return (
     <div className="thanks-flyby-layer" aria-hidden="true">
       <motion.div
         key={flightIdx}
         className="thanks-flyby-rocket"
-        initial={{ left: flight.fromX, top: flight.fromY }}
-        animate={{ left: flight.toX, top: flight.toY }}
-        transition={{ duration: flight.duration, ease: 'linear' }}
-        onAnimationComplete={() => setFlightIdx((prev) => (prev + 1) % THANKS_FLIGHTS.length)}
-        style={{ rotate: flight.rotate }}
+        initial={{ left: `${traj.from[0]}vw`, top: `${traj.from[1]}vh` }}
+        animate={{ left: `${traj.to[0]}vw`, top: `${traj.to[1]}vh` }}
+        transition={{ duration: traj.duration, ease: 'linear' }}
+        onAnimationComplete={() => setFlightIdx((prev) => (prev + 1) % THANKS_TRAJECTORIES.length)}
+        style={{ rotate: pose.rotate }}
       >
-        <div style={{ transform: `scaleX(${flight.flip})` }} className="couple-rocket-wrap">
+        <div style={{ transform: `scaleX(${pose.flip})` }} className="couple-rocket-wrap">
           <PenguinRocketArt size={88} />
           <div className="couple-pranjal">
             <Pengu size={34} variant="pranjal" />
