@@ -148,13 +148,28 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
             transition={{ delay: 0.3, type: 'spring', damping: 14 }}
           >
-            <div className="thanks-dance-badge">
-              <SmartImage
-                src={ASSETS.penguDance}
-                alt="Pengu dancing"
-                fallback={<Pengu size={72} variant="pranjal" />}
-                className="thanks-dance-gif"
-              />
+            <div className="thanks-top-row">
+              <motion.div
+                className="thanks-gif-wrap"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.45, type: 'spring', damping: 12 }}
+              >
+                <SmartImage
+                  src={ASSETS.thankYou}
+                  alt="Thank you animation"
+                  fallback={null}
+                  className="thanks-badge-gif"
+                />
+              </motion.div>
+              <div className="thanks-dance-badge">
+                <SmartImage
+                  src={ASSETS.penguDance}
+                  alt="Pengu dancing"
+                  fallback={<Pengu size={72} variant="pranjal" />}
+                  className="thanks-dance-gif"
+                />
+              </div>
             </div>
             <h2 className="script-title huge">{FINALE_COPY.thankYouTitle}</h2>
             {FINALE_COPY.thankYouNote.map((line) => (
