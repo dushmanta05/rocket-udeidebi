@@ -30,20 +30,33 @@ export function Awards({ currentStep, setTotalSteps, onNext }: StepSectionProps)
       <div className="spotlight spotlight-right" />
       <SectionHeader copy={copy} kicker={`${copy.kicker} · Award ${index + 1} of ${AWARDS_DATA.length}`} />
 
-      <AnimatePresence mode="wait">
-        <motion.article
-          key={award.id}
-          className="award-card"
-          initial={{ opacity: 0, y: 24, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -16, scale: 0.96 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-        >
-          <div className="award-gif-wrap">
+      <div className="award-layout">
+        <div className="award-side">
+          <motion.div
+            key={`award-gif-${award.id}`}
+            className="award-hero-gif"
+            initial={{ scale: 0.8, opacity: 0, rotate: -6 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ type: 'spring', damping: 13 }}
+          >
             <Placeholder label={award.label} src={award.src} aspectRatio="1 / 1" />
+          </motion.div>
+          <div className="award-counter">
+            <span className="award-counter-num">{index + 1}</span>
+            <span className="award-counter-of">of {AWARDS_DATA.length} honors</span>
           </div>
+        </div>
 
-          <div className="award-text">
+        <AnimatePresence mode="wait">
+          <motion.article
+            key={award.id}
+            className="award-card"
+            initial={{ opacity: 0, x: 40, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.96 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+          >
             <div className="award-head-row">
               <span className="pill">Award {String(index + 1).padStart(2, '0')}</span>
               <motion.div
@@ -60,9 +73,9 @@ export function Awards({ currentStep, setTotalSteps, onNext }: StepSectionProps)
             </div>
             <h3 className="award-title">{award.title}</h3>
             <p className="award-roast">{award.roast}</p>
-          </div>
-        </motion.article>
-      </AnimatePresence>
+          </motion.article>
+        </AnimatePresence>
+      </div>
 
       <Hint>{copy.hint}</Hint>
     </div>

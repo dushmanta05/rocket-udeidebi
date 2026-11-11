@@ -1234,49 +1234,83 @@ img {
   rotate: 18deg;
 }
 
-.award-card {
+.award-layout {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1050px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 5vw, 64px);
+}
+
+.award-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.award-hero-gif {
+  width: clamp(200px, 26vw, 300px);
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
-  gap: clamp(24px, 4vw, 56px);
-  padding: clamp(24px, 4vw, 44px);
+  justify-content: center;
+  background: transparent;
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.5));
+}
+
+.award-hero-gif .media-frame,
+.award-hero-gif .media-placeholder {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  height: 100%;
+}
+
+.award-hero-gif .media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.award-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.award-counter-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.award-counter-of {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.award-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: clamp(24px, 4vw, 40px);
   border-radius: 28px;
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
   box-shadow: var(--shadow-card);
   width: 100%;
-  max-width: 880px;
-}
-
-.award-gif-wrap {
-  flex: 0 0 clamp(180px, 30vw, 300px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-}
-
-.award-gif-wrap .media-frame,
-.award-gif-wrap .media-placeholder {
-  background: transparent;
-  box-shadow: none;
-  border: none;
-}
-
-.award-gif-wrap .media-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45));
-}
-
-.award-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 14px;
-  flex: 1;
-  text-align: left;
 }
 
 .award-head-row {
@@ -3906,7 +3940,7 @@ img {
 
   .welcome-grid,
   .hatch-scene,
-  .award-stage,
+  .award-layout,
   .bag-layout,
   .tubelight-layout,
   .kitchen-layout,
@@ -3998,15 +4032,16 @@ img {
     line-height: 1.35;
   }
 
+  .award-layout,
   .bag-layout {
     gap: 12px;
   }
 
-  .bag-art svg {
-    width: min(120px, 32vw);
-    height: auto;
+  .award-hero-gif {
+    width: min(150px, 40vw);
   }
 
+  .award-side,
   .bag-side {
     gap: 4px;
     margin-bottom: 4px;
