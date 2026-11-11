@@ -1,12 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PREDICTIONS_DATA } from '../data/predictions'
 import { PREDICTIONS_COPY, SECTIONS } from '../data/sections'
-import { CrystalBallArt } from '../components/art/CrystalBallArt'
+import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[11]
+
+const PENGU_POSES = [
+  { className: 'pos-top-right', rotate: 8 },
+  { className: 'pos-top-left', rotate: -8 },
+  { className: 'pos-bottom-right', rotate: 6 },
+  { className: 'pos-bottom-left', rotate: -6 },
+  { className: 'pos-top-center', rotate: 0 }
+]
 
 function Sparkle({ className }: { className: string }) {
   return (
@@ -17,8 +25,6 @@ function Sparkle({ className }: { className: string }) {
 }
 
 export function Predictions({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
-  const [swirling, setSwirling] = useState(false)
-
   useEffect(() => {
     setTotalSteps(PREDICTIONS_DATA.length)
   }, [setTotalSteps])
@@ -26,58 +32,56 @@ export function Predictions({ currentStep, setTotalSteps, onNext }: StepSectionP
   const index = Math.min(currentStep, PREDICTIONS_DATA.length - 1)
   const prediction = PREDICTIONS_DATA[index]
   const revealed = PREDICTIONS_DATA.slice(0, index)
-
-  const handleTap = () => {
-    setSwirling(true)
-    setTimeout(() => setSwirling(false), 800)
-    onNext()
-  }
+  const pose = PENGU_POSES[index % PENGU_POSES.length]
 
   return (
-    <div className="section predictions-section" onClick={handleTap}>
+    <div className="section predictions-section" onClick={onNext}>
       <SectionHeader copy={copy} />
 
       <div className="oracle-layout">
-        <motion.div
-          className="orb"
-          animate={swirling ? { scale: [1, 1.12, 1], rotate: [0, 8, 0] } : { y: [0, -8, 0] }}
-          transition={swirling ? { duration: 0.8 } : { duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <div className="orb-aura" />
-          <CrystalBallArt size={230} isSwirling={swirling} />
-        </motion.div>
-
-        <AnimatePresence mode="wait">
+        <div className="fortune-arena">
           <motion.div
-            key={prediction.id}
-            className="fortune-card"
-            initial={{ rotateY: 90, opacity: 0, scale: 0.8 }}
-            animate={{ rotateY: 0, opacity: 1, scale: 1 }}
-            exit={{ x: 260, y: -40, rotate: 10, scale: 0.4, opacity: 0 }}
-            transition={{ type: 'spring', damping: 15 }}
+            key={index}
+            className={`pengu-teller-wrap ${pose.className}`}
+            initial={{ scale: 0.6, opacity: 0, rotate: 0 }}
+            animate={{ scale: 1, opacity: 1, rotate: pose.rotate }}
+            transition={{ type: 'spring', damping: 13, stiffness: 140 }}
           >
-            <Sparkle className="fortune-sparkle tl" />
-            <Sparkle className="fortune-sparkle br" />
-            <span className="fortune-num">Vision {index + 1} of {PREDICTIONS_DATA.length}</span>
-            <p className="fortune-text">{prediction.text}</p>
-            <span className="fortune-author">
-              {PREDICTIONS_COPY.foreseenBy} <strong>{prediction.author}</strong>
-            </span>
+            <Pengu size={130} variant="future" />
           </motion.div>
-        </AnimatePresence>
 
-        <div className="fortune-stack">
-          {revealed.length > 0 && <span className="fortune-stack-label">{PREDICTIONS_COPY.revealed}</span>}
-          {revealed.map((item, idx) => (
+          <AnimatePresence mode="wait">
             <motion.div
-              key={item.id}
-              className="fortune-mini"
-              initial={{ opacity: 0, x: -40, rotate: 0 }}
-              animate={{ opacity: 1, x: 0, rotate: idx % 2 === 0 ? -3 : 3 }}
+              key={prediction.id}
+              className="fortune-card"
+              initial={{ rotateY: 90, opacity: 0, scale: 0.85 }}
+              animate={{ rotateY: 0, opacity: 1, scale: 1 }}
+              exit={{ x: 260, y: -40, rotate: 10, scale: 0.4, opacity: 0 }}
+              transition={{ type: 'spring', damping: 15 }}
             >
-              <span>{item.author}</span>
+              <Sparkle className="fortune-sparkle tl" />
+              <Sparkle className="fortune-sparkle br" />
+              <span className="fortune-num">Vision {index + 1} of {PREDICTIONS_DATA.length}</span>
+              <p className="fortune-text">{prediction.text}</p>
+              <span className="fortune-author">
+                {PREDICTIONS_COPY.foreseenBy} <strong>{prediction.author}</strong>
+              </span>
             </motion.div>
-          ))}
+          </AnimatePresence>
+        </div>
+
+        <div className="revealed-tray-wrap">
+          {revealed.length > 0 && <span className="revealed-tray-label">{PREDICTIONS_COPY.revealed}</span>}
+          {revealed.length > 0 && (
+            <div className="revealed-tray" aria-label="Foreseen futures">
+              {revealed.map((item, idx) => (
+                <div key={item.id} className="revealed-chip">
+                  <span className="revealed-idx">#{idx + 1}</span>
+                  <span className="revealed-author">{item.author}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

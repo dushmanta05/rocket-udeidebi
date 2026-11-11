@@ -3,6 +3,7 @@ interface PenguinArtProps {
   className?: string
   chefHat?: boolean
   groomTie?: boolean
+  futureLens?: boolean
   muted?: boolean
 }
 
@@ -11,6 +12,7 @@ export function PenguinArt({
   className = '',
   chefHat = false,
   groomTie = false,
+  futureLens = false,
   muted = false
 }: PenguinArtProps) {
   const body = muted ? '#5b6b8c' : groomTie ? 'var(--pengu-groom)' : 'var(--pengu-body)'
@@ -67,6 +69,15 @@ export function PenguinArt({
           <circle cx="78" cy="14" r="14" fill="#ffffff" />
           <circle cx="100" cy="6" r="17" fill="#ffffff" />
           <circle cx="122" cy="14" r="14" fill="#ffffff" />
+        </g>
+      )}
+
+      {futureLens && (
+        <g>
+          <circle cx="120" cy="104" r="18" fill="rgba(142, 197, 255, 0.35)" stroke="#ffd27a" strokeWidth="3.5" />
+          <path d="M110 94 A 12 12 0 0 1 128 98" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="134" y1="116" x2="154" y2="138" stroke="#ffd27a" strokeWidth="4" strokeLinecap="round" />
+          <polygon points="120,82 122,87 127,87 123,90 125,95 120,92 115,95 117,90 113,87 118,87" fill="#ffffff" />
         </g>
       )}
     </svg>

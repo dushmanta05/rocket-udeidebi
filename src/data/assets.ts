@@ -6,6 +6,7 @@ export const ASSETS = {
   pengu: './images/pengu.png',
   penguJourney: './images/pengu.webp',
   penguChef: './images/pengu-chef.gif',
+  penguFuture: './images/pengu-future.png',
   pranjal: './images/pranjal.png',
   wishesManifest: './videos/wishes/wishes.json'
 } as const
