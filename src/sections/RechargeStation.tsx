@@ -44,59 +44,52 @@ export function RechargeStation({ onNext }: RechargeStationProps) {
     <div className="section recharge-section">
       <SectionHeader copy={copy} />
 
-      <div className="recharge-screen-stage">
-        <motion.article
-          className="recharge-card"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+      <motion.article
+        className="recharge-card"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <motion.div
+          className="recharge-hero-pengu"
+          animate={{ scale: [1, 1.04, 1] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <div className="recharge-top-gif">
+          <Pengu size={260} variant="energy" />
+        </motion.div>
+
+        <p className="recharge-roast-curved">
+          Hold on! Hippo gets tired a lot from carrying this infinite bag and locating the nearest chair.
+          Energy loading in progress...
+        </p>
+
+        <div className="recharge-hud">
+          <div className="recharge-hud-head">
+            <span className="recharge-label">{isLoaded ? '100%' : 'Charging...'}</span>
+            <span className="recharge-percent">{percent}%</span>
+          </div>
+          <div className="recharge-hud-bar">
             <motion.div
-              className="recharge-hero-pengu"
-              animate={{ scale: [1, 1.04, 1] }}
-              transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <Pengu size={180} variant="energy" />
-            </motion.div>
+              className="recharge-hud-fill"
+              style={{ width: `${percent}%` }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+            />
           </div>
+        </div>
 
-          <div className="recharge-text">
-            <span className="pill">Pitstop Power-Up</span>
-            <h3 className="recharge-title">Recharge in Progress</h3>
-            <p className="recharge-roast">
-              Hold on! Hippo gets tired a lot from carrying this infinite bag and locating the nearest chair.
-            </p>
-
-            <div className="recharge-hud">
-              <div className="recharge-hud-head">
-                <span className="recharge-label">{isLoaded ? '100%' : 'Charging...'}</span>
-                <span className="recharge-percent">{percent}%</span>
-              </div>
-              <div className="recharge-hud-bar">
-                <motion.div
-                  className="recharge-hud-fill"
-                  style={{ width: `${percent}%` }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                />
-              </div>
-            </div>
-
-            <motion.button
-              type="button"
-              className={`primary-btn recharge-resume-btn ${isLoaded ? 'ready' : 'locked'}`}
-              disabled={!isLoaded}
-              onClick={isLoaded ? onNext : undefined}
-              whileHover={isLoaded ? { scale: 1.05 } : {}}
-              whileTap={isLoaded ? { scale: 0.95 } : {}}
-              animate={isLoaded ? { scale: [1, 1.05, 1] } : {}}
-              transition={isLoaded ? { repeat: Infinity, duration: 1.2 } : {}}
-            >
-              {isLoaded ? 'Resume Party →' : `⚡ Charging... (${5 - seconds}s)`}
-            </motion.button>
-          </div>
-        </motion.article>
-      </div>
+        <motion.button
+          type="button"
+          className={`primary-btn recharge-resume-btn ${isLoaded ? 'ready' : 'locked'}`}
+          disabled={!isLoaded}
+          onClick={isLoaded ? onNext : undefined}
+          whileHover={isLoaded ? { scale: 1.05 } : {}}
+          whileTap={isLoaded ? { scale: 0.95 } : {}}
+          animate={isLoaded ? { scale: [1, 1.06, 1] } : {}}
+          transition={isLoaded ? { repeat: Infinity, duration: 1.2 } : {}}
+        >
+          {isLoaded ? 'Resume Party →' : `⚡ Charging... (${5 - seconds}s)`}
+        </motion.button>
+      </motion.article>
 
       <Hint>{isLoaded ? 'Click the button to continue' : 'Wait for battery to reach 100%'}</Hint>
     </div>
