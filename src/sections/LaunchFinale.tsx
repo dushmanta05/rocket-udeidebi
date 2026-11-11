@@ -11,7 +11,7 @@ import { Hint } from '../components/SectionHeader'
 import { computeTrajectoryPose, type FlightTrajectory } from '../components/RocketFlyby'
 import type { StepSectionProps } from './types'
 
-const copy = SECTIONS[13]
+const copy = SECTIONS[14]
 const STEP_PAD = 0
 const STEP_ARRIVE = 1
 const STEP_BOARD = 2

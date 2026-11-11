@@ -8,7 +8,7 @@ import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
-const copy = SECTIONS[9]
+const copy = SECTIONS[10]
 const NO_VARIANTS = ['no1', 'no2', 'no3', 'no4', 'no5'] as const
 
 export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
@@ -124,14 +124,23 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
                   >
                     {SAYNO_COPY.no}
                   </motion.button>
-                  {!isFinalTest && (
+                  {!isFinalTest ? (
                     <motion.div
                       className="no-dodging-pengu"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', damping: 12 }}
                     >
-                      <Pengu size={60} variant={NO_VARIANTS[requestIndex % NO_VARIANTS.length]} />
+                      <Pengu size={100} variant={NO_VARIANTS[requestIndex % NO_VARIANTS.length]} />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      className="no-dodging-pengu believe-pengu"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: [1, 1.06, 1] }}
+                      transition={{ repeat: Infinity, duration: 1.5 }}
+                    >
+                      <Pengu size={105} variant="believe" />
                     </motion.div>
                   )}
                 </motion.div>

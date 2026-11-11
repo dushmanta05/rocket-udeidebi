@@ -6,7 +6,7 @@ import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
-const copy = SECTIONS[11]
+const copy = SECTIONS[12]
 
 const PENGU_POSES = [
   { className: 'pos-side-right', rotate: 6 },

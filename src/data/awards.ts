@@ -28,7 +28,7 @@ export const AWARDS_DATA: AwardItem[] = [
     title: 'Chair Seeker Award',
     roast: 'Chai break is for drinking tea. She is strictly there for locating the nearest chair.',
     label: 'Award: Chair Seeker',
-    src: ASSETS.penguinTravel
+    src: ASSETS.penguChair
   },
   {
     id: 'award-4',
@@ -42,13 +42,13 @@ export const AWARDS_DATA: AwardItem[] = [
     title: 'Current Laugh Award',
     roast: 'Laughs like a high-voltage live wire. Spectators are advised to maintain a safe distance.',
     label: 'Award: Current Laugh',
-    src: ASSETS.penguUseHead
+    src: ASSETS.penguLaugh
   },
   {
     id: 'award-6',
     title: 'Penguin Walk Award',
     roast: 'Walks with an elite waddle like she is on an urgent mission to a secret polar colony.',
     label: 'Award: Penguin Walk',
-    src: ASSETS.penguRun
+    src: ASSETS.penguWalk
   }
 ]

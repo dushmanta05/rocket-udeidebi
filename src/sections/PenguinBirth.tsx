@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
-import { EggArt, EggShellBottom, EggShellTop } from '../components/art/EggArt'
+import { EggShellBottom, EggShellTop } from '../components/art/EggArt'
 import { Placeholder } from '../components/Placeholder'
 import { Pengu } from '../components/Pengu'
 import { Hint } from '../components/SectionHeader'
@@ -72,6 +72,14 @@ export function PenguinBirth({ currentStep, setTotalSteps, onNext }: StepSection
               transition={{ duration: 0.9 }}
             >
               <span className="kicker">{journey.kicker}</span>
+              <motion.div
+                className="journey-pengu-wrap"
+                initial={{ scale: 0.7, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+              >
+                <Pengu size={130} variant={currentStep === 0 ? 'travel' : 'walk'} />
+              </motion.div>
               <h2 className="journey-line">{journey.line}</h2>
               <motion.p className="journey-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4, duration: 1 }}>
                 {journey.sub}
@@ -87,7 +95,7 @@ export function PenguinBirth({ currentStep, setTotalSteps, onNext }: StepSection
                 animate={reduceMotion || cracks === 0 ? { y: [0, -6, 0] } : { rotate: [-7, 7, -9, 9, -5, 5, 0], x: [-3, 3, -3, 3, 0] }}
                 transition={{ duration: cracks === 0 ? 2 : 0.5, repeat: Infinity, repeatDelay: cracks === 0 ? 0 : 0.15 }}
               >
-                <EggArt size={190} cracks={cracks} />
+                <Pengu size={210} variant="egg" />
               </motion.div>
               <motion.h3 key={`title-${cracks}`} className="egg-title" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
                 {BIRTH_COPY.eggTitles[Math.min(cracks, 2)]}

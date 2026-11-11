@@ -11,8 +11,9 @@ interface TermsProps {
   onNext: () => void
 }
 
-const copy = SECTIONS[8]
+const copy = SECTIONS[9]
 const ESCAPES_BEFORE_SURRENDER = 5
+const CLAUSE_TILTS = [-2.2, 1.8, -1.5, 2, -2, 1.6, -1.8, 2.2]
 
 export function Terms({ onNext }: TermsProps) {
   const [agreed, setAgreed] = useState(false)
@@ -56,9 +57,11 @@ export function Terms({ onNext }: TermsProps) {
             <motion.div
               key={term.id}
               className="clause"
+              style={{ rotate: CLAUSE_TILTS[idx % CLAUSE_TILTS.length] }}
+              whileHover={{ scale: 1.04, rotate: 0 }}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 + idx * 0.07 }}
+              transition={{ delay: 0.15 + idx * 0.06 }}
               onClick={() => setActiveTermIdx(idx)}
             >
               <span className="clause-num">{String(term.id).padStart(2, '0')}</span>
@@ -71,13 +74,17 @@ export function Terms({ onNext }: TermsProps) {
         </div>
 
         <div className="contract-foot">
+          <div className="terms-pengu-yes-badge">
+            <Pengu size={110} variant="yes" />
+          </div>
+
           <div className="signature">
             <div className="signature-line">
-              <span className="signature-name">{agreed ? TERMS_COPY.signature : ''}</span>
+              <span className="signature-name cursive-signature">{TERMS_COPY.signature}</span>
               <div className="witness-pills">
                 <span className="name-pill">Hippo</span>
                 <span className="name-pill">Pengu</span>
-                {agreed && <Pengu size={40} variant="flower" />}
+                <Pengu size={34} variant="flower" />
               </div>
             </div>
             <span className="signature-label">{TERMS_COPY.signatureLabel}</span>

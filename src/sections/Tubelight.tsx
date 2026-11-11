@@ -9,7 +9,7 @@ import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
-const copy = SECTIONS[7]
+const copy = SECTIONS[8]
 
 export function Tubelight({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   useEffect(() => {

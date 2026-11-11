@@ -12,6 +12,7 @@ import { WorkTimeline } from './sections/WorkTimeline'
 import { Polaroids } from './sections/Polaroids'
 import { Awards } from './sections/Awards'
 import { BagReveal } from './sections/BagReveal'
+import { RechargeStation } from './sections/RechargeStation'
 import { Tubelight } from './sections/Tubelight'
 import { Terms } from './sections/Terms'
 import { SayNo } from './sections/SayNo'
@@ -42,18 +43,20 @@ export default function App() {
       case 6:
         return <BagReveal {...stepProps} />
       case 7:
-        return <Tubelight {...stepProps} />
+        return <RechargeStation onNext={goToNext} />
       case 8:
-        return <Terms onNext={goToNext} />
+        return <Tubelight {...stepProps} />
       case 9:
-        return <SayNo {...stepProps} />
+        return <Terms onNext={goToNext} />
       case 10:
-        return <CloudKitchen />
+        return <SayNo {...stepProps} />
       case 11:
-        return <Predictions {...stepProps} />
+        return <CloudKitchen />
       case 12:
-        return <CrewMessages {...stepProps} />
+        return <Predictions {...stepProps} />
       case 13:
+        return <CrewMessages {...stepProps} />
+      case 14:
         return <LaunchFinale {...stepProps} />
       default:
         return null
