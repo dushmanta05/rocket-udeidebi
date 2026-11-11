@@ -148,3 +148,5 @@ Ideas raised for possible extra sections; none is started.
 - Launch stage stabilization: locked `.launch-header` and `.launch-title-slot` height, completely preventing the moon, ground, and pad from shifting when the title changes or clears.
 - Pranjal standing with flowers: connected `pengu-flower.gif` for Pranjal waiting at the launch pad; wired `ASSETS.pranjal` with graceful fallback to `pengu-love-1.gif` (never the rocket image).
 - Tubelight power-up: integrated `pengu-energy.gif` triggering with full voltage when comprehension buffers to 100%.
+- Hippo Mid-Party Recharge Station: added interactive 8th milestone in Doraemon Pocket (`BagReveal.tsx`) featuring `pengu-energy.gif`, 12% to 100% animated battery voltage bar, confetti, and roast about Hippo getting tired carrying the heavy bag and searching for chairs.
+- Flower Pengu on covenant: added `pengu-flower.gif` beside the cursive signature and witness pills in `Terms.tsx` on acceptance, plus inside the individual clause modal view.
