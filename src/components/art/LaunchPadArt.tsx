@@ -58,7 +58,8 @@ export function LaunchPadArt({ className = '' }: LaunchPadArtProps) {
       </g>
 
       <g className="pad-railing">
-        <line x1="24" y1="252" x2="278" y2="252" stroke="#58669e" strokeWidth="3.5" />
+        <rect x="22" y="249" width="258" height="6" rx="2" fill="#58669e" />
+        <rect x="22" y="248.5" width="258" height="2" rx="1" fill="#8898d2" />
         <line x1="24" y1="272" x2="278" y2="272" stroke="#445080" strokeWidth="2.5" />
         <line x1="26" y1="252" x2="26" y2="296" stroke="#58669e" strokeWidth="3.5" />
         <line x1="75" y1="252" x2="75" y2="296" stroke="#445080" strokeWidth="3" />

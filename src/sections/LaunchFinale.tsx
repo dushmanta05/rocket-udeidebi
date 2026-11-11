@@ -149,14 +149,14 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
           {currentStep < STEP_BOARD && (
             <motion.div
               className="pranjal-standing"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: reduceMotion ? 0 : [0, -6, 0] }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ y: { duration: 1.6, repeat: Infinity } }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
             >
               {currentStep === STEP_PAD && <div className="speech-bubble">{FINALE_COPY.pranjalSays}</div>}
-              <Pengu size={120} variant="pranjal" />
               <span className="name-pill">{FINALE_COPY.pranjalName}</span>
+              <Pengu size={120} variant="pranjal" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -177,8 +177,8 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
           {currentStep >= STEP_BOARD && (
             <motion.div
               className="pranjal-riding"
-              initial={{ x: 260, y: 110, opacity: 1 }}
-              animate={{ x: [260, 140, 0], y: [110, -120, 0] }}
+              initial={{ x: 260, y: 60, opacity: 1 }}
+              animate={{ x: [260, 140, 0], y: [60, -120, 0] }}
               transition={{ duration: 1, ease: 'easeOut' }}
             >
               <motion.span className="name-pill" animate={{ rotate: -rocketState.rotate }}>

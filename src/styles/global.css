@@ -2148,11 +2148,15 @@ img {
 .pranjal-standing {
   position: absolute;
   left: 58%;
-  bottom: calc(12% + 44px);
+  bottom: calc(12% + clamp(76px, 9.3vh, 102px));
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
+}
+
+.pranjal-standing .name-pill {
+  margin-bottom: -8px;
 }
 
 .launch-rocket {
@@ -2564,7 +2568,7 @@ img {
 
   .pranjal-standing {
     left: 48%;
-    bottom: calc(11% + 34px);
+    bottom: calc(11% + 65px);
   }
 
   .nav-arrow {
