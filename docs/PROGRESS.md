@@ -150,3 +150,4 @@ Ideas raised for possible extra sections; none is started.
 - Tubelight power-up: integrated `pengu-energy.gif` triggering with full voltage when comprehension buffers to 100%.
 - Hippo Mid-Party Recharge Station: added interactive 8th milestone in Doraemon Pocket (`BagReveal.tsx`) featuring `pengu-energy.gif`, 12% to 100% animated battery voltage bar, confetti, and roast about Hippo getting tired carrying the heavy bag and searching for chairs.
 - Flower Pengu on covenant: added `pengu-flower.gif` beside the cursive signature and witness pills in `Terms.tsx` on acceptance, plus inside the individual clause modal view.
+- Animated rocket & character GIFs: integrated `pengu-rocket.gif` across flying rocket paths, timeline progress, and finale launch; wired `pengu-bag.gif` into Doraemon Pocket and Awards; wired `pengu-jagat-mata.gif` into Jagatmata Award; wired `pengu-tubelight.gif` into Tubelight Moment section and award.
