@@ -42,11 +42,11 @@ Ideas raised for possible extra sections; none is started.
 | 06 | Awards | Done | Gold-framed photo only, no trophy, confetti both sides |
 | 07 | Doraemon pocket | Done | 7 items, drawn tote bag, photo + details beside it, no flip |
 | 08 | Tubelight | Done | Timestamped log, flicker, comprehension meter, room lights up |
-| 09 | Terms & Conditions | Done | Short clause titles, signature, runaway Disagree, stamp |
-| 10 | Say NO | Done | Chat-message requests, big dodging No with taunts, small Yes, scoreboard + CASE CLOSED |
+| 09 | Terms & Conditions | Done | 10 clickable clauses in modal, cursive Arpita Nayak signature, Hippo & Pengu pills |
+| 10 | Say NO | Done | Chat requests, dodging No, final exam breakthrough NO, SEE HOW EASILY YOU SAID NO verdict |
 | 11 | Cloud Kitchen | Done | Fits without scrolling, chef sticker slot, printed receipt |
-| 12 | Predictions | Done | Floating orb, flip-in fortunes, revealed stack |
-| 13 | Crew messages | Done | Vertical videos from `wishes.json`, auto-advance, name/relation/message |
+| 12 | Predictions | Done | Large card, future-lens Pengu cycling positions, scrolling revealed tray |
+| 13 | Crew messages | Done | 16:9 widescreen cinema feature film player with remote-holding Pengu |
 | 14 | Launch | Done | Name pills, every countdown number, "Next stop: Happily Ever After!", thank-you from the crew, names from `crew.ts`, continuous confetti |
 
 ---
@@ -118,3 +118,13 @@ Ideas raised for possible extra sections; none is started.
 - Verified typography hierarchy and font family mappings (Fredoka for title, Nunito for subtitle/lead, Caveat for handwritten lines).
 - Configured Hippo image as site favicon and apple-touch-icon in `index.html`.
 - Removed bounce animation on the bottom timeline rocket and positioned it steadily on top of the track dots.
+
+### Session 5 (2026-11-11)
+- Timeline synchronization: keyframed `lit` along 31 identical sample points as `left` and `top`, eliminating line lag behind the rocket.
+- Mobile responsiveness: tuned Family & Work Timelines, Doraemon Pocket, and Tubelight with compact heights, responsive fonts, and scrollable logs.
+- Terms & Conditions: clickable clauses open a modal with Previous / Next navigation to cycle through all 10 clauses; cursive "Arpita Nayak" signature with "Hippo" and "Pengu" witness pills.
+- Predictions section revamp: removed crystal ball, added large card, cycling Pengu with future lens in dynamic positions, and horizontal scrolling chip tray for 14-15 items.
+- Say NO game enhancement: added 6th Final Exam challenge ("Can you say NO to this question right now?"), inverted dodging so YES runs away, and rewarded her breakthrough with "SEE? LOOK HOW EASILY YOU SAID NO!" celebration and scoreboard.
+- Message for you: converted into a 16:9 widescreen cinema feature film player with Pengu holding a TV remote; tapping Pengu or screen toggles play/pause with infrared beam effects.
+- Launch Pad mobile polish: centered gantry platform and scaled rocket to fit 390px mobile screens without overflow.
+- Thank You screen: enlarged Hippo to match hero size (380px) and added slot for `pengu-dance.gif`.
