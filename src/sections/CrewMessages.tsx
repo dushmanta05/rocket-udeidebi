@@ -1,96 +1,119 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import confetti from 'canvas-confetti'
 import { CREW_COPY, SECTIONS } from '../data/sections'
+import { ASSETS } from '../data/assets'
 import { useWishes } from '../hooks/useWishes'
-import type { CrewWish } from '../data/wishes'
-import { Placeholder } from '../components/Placeholder'
+import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[12]
 
-function VerticalVideo({ wish, onEnded }: { wish: CrewWish; onEnded: () => void }) {
-  const [failed, setFailed] = useState(false)
+export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
+  const wishes = useWishes()
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [videoFailed, setVideoFailed] = useState(false)
+  const [remoteFlash, setRemoteFlash] = useState(false)
 
-  if (!wish.video || failed) {
-    return <Placeholder label={`${wish.name}: ${CREW_COPY.noVideo}`} src={wish.poster} aspectRatio="9 / 16" video />
+  const filmSource = ASSETS.crewFilm || (wishes.length > 0 && wishes[0].video ? wishes[0].video : null)
+
+  useEffect(() => {
+    setTotalSteps(1)
+  }, [setTotalSteps])
+
+  const triggerRemote = () => {
+    setRemoteFlash(true)
+    setTimeout(() => setRemoteFlash(false), 350)
+    confetti({
+      particleCount: 24,
+      spread: 60,
+      origin: { x: 0.75, y: 0.6 },
+      colors: ['#ff4d6d', '#ffd27a', '#8ec5ff']
+    })
+
+    if (!videoRef.current) return
+
+    if (isPlaying) {
+      videoRef.current.pause()
+    } else {
+      videoRef.current.play().catch(() => {})
+    }
+  }
+
+  const handleVideoClick = () => {
+    if (!videoRef.current) return
+    if (isPlaying) {
+      videoRef.current.pause()
+    } else {
+      videoRef.current.play().catch(() => {})
+    }
   }
 
   return (
-    <video
-      key={wish.video}
-      className="crew-video"
-      src={wish.video}
-      poster={wish.poster}
-      autoPlay
-      playsInline
-      controls
-      onEnded={onEnded}
-      onError={() => setFailed(true)}
-      onClick={(e) => e.stopPropagation()}
-    />
-  )
-}
+    <div className="section crew-section">
+      <SectionHeader copy={copy} />
 
-export function CrewMessages({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
-  const wishes = useWishes()
+      <div className="cinema-stage">
+        <div className="cinema-screen-wrap">
+          <div className="cinema-bezel">
+            <div className="cinema-screen">
+              {filmSource && !videoFailed ? (
+                <video
+                  ref={videoRef}
+                  className="cinema-video"
+                  src={filmSource}
+                  playsInline
+                  controls
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  onEnded={onNext}
+                  onError={() => setVideoFailed(true)}
+                  onClick={handleVideoClick}
+                />
+              ) : (
+                <div className="cinema-standby" onClick={triggerRemote}>
+                  <div className="cinema-standby-curtain" />
+                  <motion.div
+                    className="cinema-play-orb"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="play-triangle">
+                      <polygon points="6,4 20,12 6,20" />
+                    </svg>
+                  </motion.div>
+                  <h3 className="standby-title">{CREW_COPY.filmTitle}</h3>
+                  <p className="standby-sub">{CREW_COPY.filmSubtitle}</p>
+                  <span className="standby-badge">{CREW_COPY.filmPlaceholder}</span>
+                </div>
+              )}
+            </div>
+          </div>
 
-  useEffect(() => {
-    setTotalSteps(wishes.length)
-  }, [setTotalSteps, wishes.length])
+          <div className="cinema-status-bar">
+            <span className={`status-led ${isPlaying ? 'live' : ''}`} />
+            <span className="status-text">{isPlaying ? CREW_COPY.nowPlaying : CREW_COPY.playPrompt}</span>
+          </div>
+        </div>
 
-  const index = Math.min(currentStep, wishes.length - 1)
-  const wish = wishes[index]
-  const upcoming = wishes.slice(index + 1)
-
-  return (
-    <div className="section crew-section" onClick={onNext}>
-      <SectionHeader copy={copy} kicker={`${copy.kicker} · ${index + 1} of ${wishes.length}`} />
-
-      <div className="crew-layout">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`${wish.name}-${index}`}
-            className="crew-phone"
-            initial={{ opacity: 0, y: 40, rotate: -4 }}
-            animate={{ opacity: 1, y: 0, rotate: 0 }}
-            exit={{ opacity: 0, y: -30, rotate: 4 }}
-            transition={{ type: 'spring', damping: 16 }}
-          >
-            <VerticalVideo wish={wish} onEnded={onNext} />
-          </motion.div>
-        </AnimatePresence>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`caption-${index}`}
-            className="crew-caption"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-          >
-            {wish.relation && <span className="pill">{wish.relation}</span>}
-            <h3 className="script-title">{wish.name}</h3>
-            {wish.message && <p className="crew-message">{wish.message}</p>}
-
-            {upcoming.length > 0 && (
-              <div className="crew-queue">
-                <span className="crew-queue-label">{CREW_COPY.upNext}</span>
-                {upcoming.slice(0, 4).map((next) => (
-                  <span key={next.name} className="crew-queue-item">
-                    {next.name}
-                  </span>
-                ))}
-              </div>
-            )}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <div className="crew-dots">
-        {wishes.map((w, i) => (
-          <span key={`${w.name}-${i}`} className={`crew-dot ${i === index ? 'current' : i < index ? 'done' : ''}`} />
-        ))}
+        <motion.div
+          className="remote-pengu-wrap"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: 'spring', damping: 14 }}
+          onClick={triggerRemote}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="pengu-speech-bubble">
+            {isPlaying ? 'Enjoy the show!' : 'Tap me for remote!'}
+          </div>
+          {remoteFlash && <div className="infrared-beam" />}
+          <Pengu size={180} variant="remote" />
+          <span className="name-pill pengu-remote-pill">Pengu Remote</span>
+        </motion.div>
       </div>
 
       <Hint>{copy.hint}</Hint>

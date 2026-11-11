@@ -2,10 +2,12 @@ import { useEffect, useState, useMemo } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { FINALE_COPY, SECTIONS } from '../data/sections'
+import { ASSETS } from '../data/assets'
 import { useWishes } from '../hooks/useWishes'
 import { CREW_NAMES } from '../data/crew'
 import { Pengu } from '../components/Pengu'
 import { Hippo } from '../components/Hippo'
+import { SmartImage } from '../components/SmartImage'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
 import { LaunchPadArt } from '../components/art/LaunchPadArt'
 import { Hint } from '../components/SectionHeader'
@@ -103,14 +105,16 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
   const names = Array.from(new Set([...CREW_NAMES, ...wishes.map((wish) => wish.name)]))
   const cycle = Math.max(10, names.length * 1.1)
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
+
   const rocketState =
     currentStep === STEP_PAD
       ? { left: '-30%', bottom: '55%', rotate: 0, opacity: 0 }
       : launched
-        ? { left: '38%', bottom: '160%', rotate: -47, opacity: 1 }
+        ? { left: isMobile ? '28%' : '38%', bottom: '160%', rotate: -47, opacity: 1 }
         : currentStep === STEP_LAUNCH
-          ? { left: '38%', bottom: '24%', rotate: -47, opacity: 1 }
-          : { left: '30%', bottom: '30%', rotate: 0, opacity: 1 }
+          ? { left: isMobile ? '28%' : '38%', bottom: isMobile ? '20%' : '24%', rotate: -47, opacity: 1 }
+          : { left: isMobile ? '22%' : '30%', bottom: isMobile ? '24%' : '30%', rotate: 0, opacity: 1 }
 
   if (currentStep >= STEP_THANKS) {
     return (
@@ -144,6 +148,14 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
             transition={{ delay: 0.3, type: 'spring', damping: 14 }}
           >
+            <div className="thanks-dance-badge">
+              <SmartImage
+                src={ASSETS.penguDance}
+                alt="Pengu dancing"
+                fallback={<Pengu size={72} variant="pranjal" />}
+                className="thanks-dance-gif"
+              />
+            </div>
             <h2 className="script-title huge">{FINALE_COPY.thankYouTitle}</h2>
             {FINALE_COPY.thankYouNote.map((line) => (
               <p key={line} className="thanks-line">
@@ -218,14 +230,14 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
           {currentStep >= STEP_BOARD && (
             <motion.div
               className="pranjal-flying"
-              initial={{ x: 260, y: 60, opacity: 1 }}
-              animate={{ x: [260, 140, 0], y: [60, -120, 0] }}
+              initial={{ x: isMobile ? 150 : 260, y: 60, opacity: 1 }}
+              animate={{ x: [isMobile ? 150 : 260, isMobile ? 75 : 140, 0], y: [60, -120, 0] }}
               transition={{ duration: 1, ease: 'easeOut' }}
             >
               <motion.span className="name-pill" animate={{ rotate: -rocketState.rotate }}>
                 {FINALE_COPY.pranjalName}
               </motion.span>
-              <Pengu size={60} variant="pranjal" />
+              <Pengu size={isMobile ? 46 : 60} variant="pranjal" />
             </motion.div>
           )}
           {currentStep >= STEP_BOARD && (

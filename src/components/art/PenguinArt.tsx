@@ -4,6 +4,7 @@ interface PenguinArtProps {
   chefHat?: boolean
   groomTie?: boolean
   futureLens?: boolean
+  remote?: boolean
   muted?: boolean
 }
 
@@ -13,6 +14,7 @@ export function PenguinArt({
   chefHat = false,
   groomTie = false,
   futureLens = false,
+  remote = false,
   muted = false
 }: PenguinArtProps) {
   const body = muted ? '#5b6b8c' : groomTie ? 'var(--pengu-groom)' : 'var(--pengu-body)'
@@ -78,6 +80,18 @@ export function PenguinArt({
           <path d="M110 94 A 12 12 0 0 1 128 98" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
           <line x1="134" y1="116" x2="154" y2="138" stroke="#ffd27a" strokeWidth="4" strokeLinecap="round" />
           <polygon points="120,82 122,87 127,87 123,90 125,95 120,92 115,95 117,90 113,87 118,87" fill="#ffffff" />
+        </g>
+      )}
+
+      {remote && (
+        <g>
+          <rect x="142" y="124" width="22" height="42" rx="4" fill="#202538" stroke="#5d668c" strokeWidth="2" transform="rotate(-15 142 124)" />
+          <circle cx="150" cy="132" r="3.5" fill="#ff4d6d" />
+          <circle cx="158" cy="130" r="2.5" fill="#7ee2a8" />
+          <rect x="146" y="139" width="13" height="4" rx="1.5" fill="#8ec5ff" transform="rotate(-15 146 139)" />
+          <rect x="148" y="147" width="13" height="4" rx="1.5" fill="#ffd27a" transform="rotate(-15 148 147)" />
+          <circle cx="151" cy="122" r="3" fill="#ff4d6d" opacity="0.8" />
+          <line x1="151" y1="122" x2="162" y2="105" stroke="#ff4d6d" strokeWidth="2" strokeDasharray="2 3" opacity="0.85" />
         </g>
       )}
     </svg>

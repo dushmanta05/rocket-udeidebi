@@ -93,10 +93,10 @@ export const SECTIONS: SectionCopy[] = [
   },
   {
     short: 'Crew',
-    kicker: 'Incoming Transmissions',
-    title: 'Messages for You',
-    subtitle: 'Recorded by your crew before launch, with love and some roasting.',
-    hint: 'Tap or press the right arrow for the next message'
+    kicker: 'The Crew Premiere',
+    title: 'A Special Film for Hippo',
+    subtitle: 'Recorded with love and chaos. Pengu has the remote — tap to play!',
+    hint: 'Tap the cinema screen or Pengu to play'
   },
   {
     short: 'Launch',
@@ -185,7 +185,12 @@ export const PREDICTIONS_COPY = {
 }
 
 export const CREW_COPY = {
-  noVideo: 'Video coming soon',
+  filmTitle: 'The Crew Premiere',
+  filmSubtitle: 'Special feature film for Arpita Nayak',
+  playPrompt: 'Tap Pengu or screen to play',
+  nowPlaying: 'Now Playing · Sit back & enjoy!',
+  filmPlaceholder: 'Drop crew-film.mp4 into public/videos/',
+  noVideo: 'Feature film coming soon',
   upNext: 'Up next'
 }
 
