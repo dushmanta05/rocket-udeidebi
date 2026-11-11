@@ -142,4 +142,7 @@ Ideas raised for possible extra sections; none is started.
   - `pengu-run.gif`: delivery Pengu sprinting next to the free delivery notice in Cloud Kitchen.
 - Cloud Kitchen direct bill: directly displays the printed complimentary bill with "PAID" stamp, updating live on each order.
 - Predictions layout safety: relocated Pengu future poses to side and lower deck positions, preventing overlap on the section title/header.
-- Finale & Thank You refinement: scaled down "Thank You, Hippo" text, matched dancing badge sizes, placed `thank-you.gif` in a dedicated header, and restored the original static penguin on the flyby rocket.
+- Finale & Thank You refinement: scaled down "Thank You, Hippo" text, matched dancing badge sizes, placed `thank-you.gif` in a dedicated header, and restored the Arpita & Pranjal couple on the flyby rocket with heart pop.
+- Launch stage stabilization: locked `.launch-header` and `.launch-title-slot` height, completely preventing the moon, ground, and pad from shifting when the title changes or clears.
+- Pranjal standing with flowers: connected `pengu-flower.gif` for Pranjal waiting at the launch pad; wired `ASSETS.pranjal` with graceful fallback to `pengu-love-1.gif` (never the rocket image).
+- Tubelight power-up: integrated `pengu-energy.gif` triggering with full voltage when comprehension buffers to 100%.
