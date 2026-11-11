@@ -1497,25 +1497,37 @@ img {
   min-height: 0;
 }
 
+.recharge-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 660px;
+  margin: auto 0;
+}
+
 .recharge-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 16px;
-  padding: clamp(24px, 3.5vw, 36px);
+  padding: clamp(22px, 3.2vw, 32px);
   border-radius: 28px;
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
   box-shadow: var(--shadow-card);
   width: 100%;
-  max-width: 660px;
-  margin: auto 0;
 }
 
 .recharge-hero-pengu {
-  margin: 4px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
   filter: drop-shadow(0 14px 32px rgba(255, 210, 122, 0.45));
 }
 
@@ -1820,12 +1832,12 @@ img {
 .contract {
   position: relative;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1140px;
   margin: auto 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 2vh, 20px);
-  padding: clamp(18px, 2.5vw, 26px);
+  gap: clamp(16px, 2.2vh, 22px);
+  padding: clamp(20px, 2.8vw, 30px);
   border-radius: 28px;
   background: var(--glass-bg);
   border: var(--glass-border);
@@ -1869,17 +1881,21 @@ img {
 }
 
 .clause-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 12px 14px;
   width: 100%;
 }
 
 .clause-tile {
+  flex: 0 1 calc((100% - 2 * 14px) / 3 - 2px);
+  min-width: 270px;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding: 12px 14px;
+  gap: 6px;
+  padding: 12px 16px;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1957,11 +1973,11 @@ img {
 
 .cursive-signature {
   font-family: var(--font-hand);
-  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
   font-weight: 700;
   color: var(--pink);
-  text-shadow: 0 0 16px rgba(255, 143, 177, 0.45);
-  line-height: 1;
+  text-shadow: 0 0 14px rgba(255, 143, 177, 0.4);
+  line-height: 1.1;
 }
 
 .witness-pills {
@@ -1972,9 +1988,9 @@ img {
 
 .witness-tag {
   font-family: var(--font-hand);
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  padding: 3px 14px;
+  padding: 2px 10px;
   border-radius: var(--radius-full);
   background: rgba(255, 210, 122, 0.12);
   border: 1px solid rgba(255, 210, 122, 0.35);
@@ -4187,9 +4203,16 @@ img {
   }
 
   .clause-grid {
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     overflow-y: auto;
     gap: 8px 10px;
+  }
+
+  .clause-tile {
+    flex: initial;
+    max-width: none;
+    min-width: 0;
   }
 
   .contract-foot {

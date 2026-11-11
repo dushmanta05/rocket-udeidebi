@@ -14,7 +14,6 @@ const NO_VARIANTS = ['no1', 'no2', 'no3', 'no4', 'no5'] as const
 export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   const [dodgePos, setDodgePos] = useState({ x: 0, y: 0 })
   const [dodges, setDodges] = useState(0)
-  const [totalDodges, setTotalDodges] = useState(0)
 
   useEffect(() => {
     setTotalSteps(REQUESTS_DATA.length + 1)
@@ -40,7 +39,6 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
     const side = Math.random() < 0.5 ? -1 : 1
     setDodgePos({ x: side * (120 + Math.random() * 200), y: (Math.random() - 0.5) * 140 })
     setDodges((n) => n + 1)
-    setTotalDodges((n) => n + 1)
   }
 
   const handleYes = () => {
@@ -188,22 +186,8 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
                 rotate: { repeat: Infinity, duration: 2, ease: 'easeInOut' }
               }}
             >
-              <Pengu size={130} variant="dance2" />
+              <Pengu size={140} variant="dance2" />
             </motion.div>
-            <div className="score-row">
-              <div className="score-tile">
-                <span className="score-num yes">{REQUESTS_DATA.length - 1}</span>
-                <span className="score-label">{SAYNO_COPY.scoreYes}</span>
-              </div>
-              <div className="score-tile">
-                <span className="score-num no">1</span>
-                <span className="score-label">{SAYNO_COPY.scoreNo}</span>
-              </div>
-              <div className="score-tile">
-                <span className="score-num">{totalDodges}</span>
-                <span className="score-label">{SAYNO_COPY.scoreEscapes}</span>
-              </div>
-            </div>
             <Stamp text={SAYNO_COPY.verdict} subtext={SAYNO_COPY.verdictSub} color="#7ee2a8" />
           </motion.div>
         )}
