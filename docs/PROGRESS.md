@@ -140,6 +140,8 @@ Ideas raised for possible extra sections; none is started.
   - `pengu-love-1.gif`: romantic boarding Pengu when Pranjal hops onto the rocket with Arpita.
   - `pengu-kitchen.gif`, `pengu-kitchen-2.gif`, `pengu-kitchen-3.gif`: chef cooking animations cycling in Cloud Kitchen.
   - `pengu-run.gif`: delivery Pengu sprinting next to the free delivery notice in Cloud Kitchen.
+  - `pengu-no.gif`, `pengu-no-2.gif`, `pengu-no-3.gif`, `pengu-no-4.gif`, `pengu-no-5.gif`: animated refusing Pengus accompanying the dodging NO button in Say NO.
+  - `penguin-mic.gif`: animated MC announcer Pengu presenting each roast in Awards.
 - Cloud Kitchen direct bill: directly displays the printed complimentary bill with "PAID" stamp, updating live on each order.
 - Predictions layout safety: relocated Pengu future poses to side and lower deck positions, preventing overlap on the section title/header.
 - Finale & Thank You refinement: scaled down "Thank You, Hippo" text, matched dancing badge sizes, placed `thank-you.gif` in a dedicated header, and restored the Arpita & Pranjal couple on the flyby rocket with heart pop.
