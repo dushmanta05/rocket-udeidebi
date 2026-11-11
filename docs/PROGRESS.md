@@ -128,3 +128,13 @@ Ideas raised for possible extra sections; none is started.
 - Message for you: converted into a 16:9 widescreen cinema feature film player with Pengu holding a TV remote; tapping Pengu or screen toggles play/pause with infrared beam effects.
 - Launch Pad mobile polish: centered gantry platform and scaled rocket to fit 390px mobile screens without overflow.
 - Thank You screen: enlarged Hippo to match hero size (380px) and added slot for `pengu-dance.gif`.
+- Custom transparent GIFs integration: wired all transparent GIFs into their respective locations:
+  - `pengu-future.gif`: animated future-vision Pengu shifting around the Predictions card.
+  - `pengu-remote.gif`: animated TV-remote Pengu in Crew Messages controlling the feature film player.
+  - `pengu-dance.gif`: celebratory dancing badge at the top-right of the Thank You card.
+  - `thank-you.gif`: animated thank you badge in the Thank You card header.
+  - `dancing-dance-3.gif`: party co-dancer beside the final crew sign-off.
+  - `pengu-dance-1.gif`: party greeter dancing beside the "Let's Begin" button on the Welcome screen.
+  - `pengu-dance-2.gif`: triumphant victory dancer above the Say NO breakthrough scoreboard.
+  - `pengu-love.gif`: celebratory love Pengu popping onto the Terms covenant when Arpita signs.
+  - `pengu-love-1.gif`: romantic boarding Pengu when Pranjal hops onto the rocket with Arpita.
