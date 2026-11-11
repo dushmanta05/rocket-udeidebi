@@ -87,7 +87,7 @@ export function Terms({ onNext }: TermsProps) {
         <div className="contract-foot">
           <div className="signature">
             <div className="signature-line">
-              <span className="signature-name cursive-signature">{TERMS_COPY.signature}</span>
+              <span className="cursive-signature">{TERMS_COPY.signature}</span>
               <div className="witness-pills">
                 <span className="witness-tag cursive-tag">Hippo</span>
                 <span className="witness-tag cursive-tag">Pengu</span>
