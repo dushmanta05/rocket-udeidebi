@@ -159,11 +159,14 @@ export const SAYNO_COPY = {
   no: 'No',
   requestLabel: 'Request',
   taunts: ['Nope, No ran away.', 'No is scared of you.', 'No has left the chat.', 'Even No knows you will say yes.', 'Just press Yes, Hippo.'],
+  yesTaunts: ['Nope! You have to say NO this time!', 'Yes has left the chat.', 'Denied! Say NO!', 'You are practicing saying NO!'],
   scoreYes: 'Times you said Yes',
-  scoreNo: 'Times you said No',
-  scoreEscapes: 'Times No ran away',
-  verdict: 'CASE CLOSED',
-  verdictSub: 'The Jagatmata cannot say no. Not even to a button.'
+  scoreNo: 'Breakthrough NOs delivered',
+  scoreEscapes: 'Times buttons dodged',
+  verdictTitle: 'SEE? LOOK HOW EASILY YOU SAID NO!',
+  verdictSubtitle: 'It took 5 rounds of training, but you finally unlocked the sacred word.',
+  verdict: 'NO-SAYER UNLOCKED',
+  verdictSub: 'See? It was that easy! Practice this daily on Pranjal.'
 }
 
 export const KITCHEN_COPY = {

@@ -1920,6 +1920,11 @@ img {
   box-shadow: var(--glow-pink);
 }
 
+.no-btn.pulse-no {
+  box-shadow: 0 0 35px rgba(255, 143, 177, 0.7), 0 0 70px rgba(255, 143, 177, 0.4);
+  cursor: pointer;
+}
+
 .yes-btn {
   padding: 8px 18px;
   border-radius: var(--radius-full);
@@ -1933,6 +1938,26 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.verdict-banner {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.verdict-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  font-weight: 700;
+  color: var(--mint);
+  text-shadow: 0 0 20px rgba(126, 226, 168, 0.4);
+}
+
+.verdict-subtitle {
+  font-family: var(--font-hand);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: var(--ink-soft);
+  margin-top: 6px;
 }
 
 .kitchen-layout {
