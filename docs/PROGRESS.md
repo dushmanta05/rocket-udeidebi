@@ -195,3 +195,6 @@ Ideas raised for possible extra sections; none is started.
 - Impossible NO UI Upgrade: Removed the top-left profile avatar from `.chat-card`; styled clean request counter pill and sender badge; updated request balloon with soft shadow and 28px frosted glass.
 - Cloud Kitchen Desktop Grid Centering: Converted dish grid to flex-wrap with centered items so the 2 items in row 2 center horizontally on desktop; added top spacing and vertically centered the stage.
 - Timeline Adaptive Photo Framing: Dynamically detect GIF vs image; GIFs have zero background, zero border, and zero box-shadow; static photos retain the classic small white photo border.
+- Terms 3+3+2 Matrix & Signature Resize: Switched desktop clause layout to 3+3+2 with centered 2-card bottom row; increased card width and padding; reduced Arpita Nayak cursive signature and witness pills for graceful card proportions.
+- Recharge Station Free-Floating Hero GIF: Extracted `pengu-energy.gif` outside and above the frosted card within `.recharge-stage`, letting the animated GIF float freely with zero enclosing card box.
+- Say NO Verdict Simplification: Removed the 3 score cards (`.score-row`) from the test result, leaving the victory banner, dancing penguin, and green PASSED stamp.
