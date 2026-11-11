@@ -2181,7 +2181,7 @@ img {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
-.pranjal-riding .name-pill {
+.pranjal-flying .name-pill {
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -2192,7 +2192,7 @@ img {
   margin-top: -6px;
 }
 
-.pranjal-riding {
+.pranjal-flying {
   position: absolute;
   left: 6%;
   top: 8%;

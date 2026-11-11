@@ -223,7 +223,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
           )}
           {currentStep >= STEP_BOARD && (
             <motion.div
-              className="pranjal-riding"
+              className="pranjal-flying"
               initial={{ x: 260, y: 60, opacity: 1 }}
               animate={{ x: [260, 140, 0], y: [60, -120, 0] }}
               transition={{ duration: 1, ease: 'easeOut' }}
