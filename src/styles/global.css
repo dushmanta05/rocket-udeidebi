@@ -3106,36 +3106,19 @@ img {
   box-shadow: var(--shadow-card);
 }
 
-.thanks-hero-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-
-.thanks-thankyou-gif {
-  width: clamp(140px, 20vw, 200px);
-  height: clamp(84px, 12vw, 120px);
-  filter: drop-shadow(0 8px 24px rgba(255, 143, 177, 0.4));
-  margin: -8px 0 -10px -6px;
-}
-
-.thanks-badge-gif {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: transparent;
-}
-
 .thanks-dance-badge {
   position: absolute;
-  top: -28px;
-  right: 18px;
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.45));
+  top: -34px;
+  right: 14px;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
   pointer-events: none;
 }
 
-.thanks-dance-badge .pengu,
+.thanks-dance-badge .pengu {
+  width: clamp(86px, 12vw, 118px) !important;
+  height: clamp(86px, 12vw, 118px) !important;
+}
+
 .thanks-party-dancer .pengu {
   width: clamp(74px, 9vw, 96px) !important;
   height: clamp(74px, 9vw, 96px) !important;

@@ -2,11 +2,9 @@ import { useEffect, useState, useMemo } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { FINALE_COPY, SECTIONS } from '../data/sections'
-import { ASSETS } from '../data/assets'
 import { CREW_NAMES } from '../data/crew'
 import { Pengu } from '../components/Pengu'
 import { Hippo } from '../components/Hippo'
-import { SmartImage } from '../components/SmartImage'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
 import { LaunchPadArt } from '../components/art/LaunchPadArt'
 import { Hint } from '../components/SectionHeader'
@@ -147,25 +145,10 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
             transition={{ delay: 0.3, type: 'spring', damping: 14 }}
           >
             <div className="thanks-dance-badge">
-              <Pengu size={isMobile ? 70 : 96} variant="dance" />
+              <Pengu size={isMobile ? 86 : 116} variant="dance" />
             </div>
 
-            <div className="thanks-hero-header">
-              <motion.div
-                className="thanks-thankyou-gif"
-                initial={{ scale: 0, y: -10 }}
-                animate={{ scale: 1, y: 0 }}
-                transition={{ delay: 0.45, type: 'spring', damping: 12 }}
-              >
-                <SmartImage
-                  src={ASSETS.thankYou}
-                  alt="Thank you animation"
-                  fallback={null}
-                  className="thanks-badge-gif"
-                />
-              </motion.div>
-              <h2 className="script-title thanks-title">{FINALE_COPY.thankYouTitle}</h2>
-            </div>
+            <h2 className="script-title thanks-title">{FINALE_COPY.thankYouTitle}</h2>
 
             {FINALE_COPY.thankYouNote.map((line) => (
               <p key={line} className="thanks-line">
