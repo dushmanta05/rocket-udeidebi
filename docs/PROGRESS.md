@@ -171,3 +171,12 @@ Ideas raised for possible extra sections; none is started.
 - Cloud Kitchen: Scattered recipe cards across the counter; clicking any card opens modal with dish info, cycling chef cooking GIFs, delivery runner, and itemized bill with PAID stamp.
 - Predictions: Wrapped revealed chips tray across rows (`flex-wrap: wrap; justify-content: center;`), eliminating horizontal scrollbar.
 - Cinema Screen: Added retro marquee header, theater velvet curtains, clapperboard details, film reel glow ring, metadata badges, fullscreen toggle, and Pengu Remote with infrared beam.
+- Catchphrase Unlocked: Upgraded "Catchphrase unlocked" into a dedicated achievement card with glowing cursive quote and enlarged animated rocket Pengu (`size={115}`).
+- Unified Card Styling: Rebuilt `Awards` and `RechargeStation` cards with the identical two-column frosted glass layout from `RocketTimeline` and `BagReveal`.
+- Recharge Station HUD Clean-Up: Simplified charging bar to "Charging... X%" and "100%", removing "CHARGING STATUS" header and "FULL VOLTAGE" text.
+- Tubelight Refinement: Swapped initial stage GIF to `pengu-asking.gif` (clueless polite smile); removed duplicate `pengu-energy.gif` from the 100% comprehension stage.
+- Terms & Conditions Tiles: Converted clauses to interactive tiles within the contract, eliminated horizontal desktop scrollbars, styled witness tags with curvy cursive script, and moved celebratory `pengu-yes.gif` (`size={130}`) exclusively inside the inspection modal.
+- Say NO Side Showcase: Extracted animated refusing Pengus to a prominent left-side reaction stage (`size={210}`), with `beleive-in-pengu.gif` cheering on the Final Exam; wired `pengu-please.gif` into the requester profile avatar.
+- Cloud Kitchen Policy Dock: Replaced tiny delivery footer with a full-width delivery and policy marquee featuring `pengu-run.gif` (`size={105}`) and bold free delivery tags.
+- Predictions Synchronized Motion: Wrapped the future Pengu and prediction card inside a shared `AnimatePresence` bundle so both render and animate at the exact same instant.
+- Cinema Velvet Curtains: Styled realistic repeating velvet drapery folds with deep ruby shadows and gold trim; removed the two extra standby pills.
