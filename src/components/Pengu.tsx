@@ -37,6 +37,16 @@ type PenguVariant =
   | 'think'
   | 'useHead'
   | 'travel'
+  | 'egg'
+  | 'believe'
+  | 'chair'
+  | 'cute'
+  | 'dance4'
+  | 'fly'
+  | 'laugh'
+  | 'walk'
+  | 'yes'
+  | 'greet'
 
 interface PenguProps {
   size?: number
@@ -77,7 +87,17 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   idea: ASSETS.penguIdea,
   think: ASSETS.penguThink,
   useHead: ASSETS.penguUseHead,
-  travel: ASSETS.penguinTravel
+  travel: ASSETS.penguinTravel,
+  egg: ASSETS.penguEgg,
+  believe: ASSETS.penguBelieve,
+  chair: ASSETS.penguChair,
+  cute: ASSETS.penguCute,
+  dance4: ASSETS.penguDance4,
+  fly: ASSETS.penguFly,
+  laugh: ASSETS.penguLaugh,
+  walk: ASSETS.penguWalk,
+  yes: ASSETS.penguYes,
+  greet: ASSETS.penguGreet
 }
 
 export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguProps) {
@@ -120,7 +140,25 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
                                         ? 'Pengu tapping head'
                                         : variant === 'travel'
                                           ? 'Pengu traveling with luggage'
-                                          : 'Pengu'
+                                          : variant === 'egg'
+                                            ? 'Penguin hatching from egg'
+                                            : variant === 'believe'
+                                              ? 'Believe in Pengu'
+                                              : variant === 'chair'
+                                                ? 'Pengu relaxing on chair'
+                                                : variant === 'cute'
+                                                  ? 'Cute Pengu'
+                                                  : variant === 'fly'
+                                                    ? 'Flying Pengu'
+                                                    : variant === 'laugh'
+                                                      ? 'Laughing Pengu'
+                                                      : variant === 'walk'
+                                                        ? 'Pengu walking'
+                                                        : variant === 'yes'
+                                                          ? 'Pengu saying yes'
+                                                          : variant === 'greet'
+                                                            ? 'Pengu greeting warmly'
+                                                            : 'Pengu'
         }
         className="pengu-img"
         fallback={
