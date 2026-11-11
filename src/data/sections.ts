@@ -149,7 +149,7 @@ export const TERMS_COPY = {
   disagree: 'Disagree',
   surrender: 'Fine, I Agree',
   signatureLabel: 'Signed by the bride',
-  signature: 'Arpita',
+  signature: 'Arpita Nayak',
   stamp: 'ACCEPTED',
   stampSub: 'No disagreement allowed. Case closed.'
 }

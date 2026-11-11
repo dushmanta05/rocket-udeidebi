@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { TERMS_DATA } from '../data/terms'
 import { SECTIONS, TERMS_COPY } from '../data/sections'
@@ -17,6 +17,7 @@ export function Terms({ onNext }: TermsProps) {
   const [agreed, setAgreed] = useState(false)
   const [offset, setOffset] = useState({ x: 0, y: 0 })
   const [escapes, setEscapes] = useState(0)
+  const [activeTermIdx, setActiveTermIdx] = useState<number | null>(null)
 
   const accept = () => {
     if (agreed) return
@@ -57,6 +58,7 @@ export function Terms({ onNext }: TermsProps) {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 + idx * 0.07 }}
+              onClick={() => setActiveTermIdx(idx)}
             >
               <span className="clause-num">{String(term.id).padStart(2, '0')}</span>
               <div>
@@ -69,7 +71,13 @@ export function Terms({ onNext }: TermsProps) {
 
         <div className="contract-foot">
           <div className="signature">
-            <span className="signature-name">{agreed ? TERMS_COPY.signature : ''}</span>
+            <div className="signature-line">
+              <span className="signature-name">{agreed ? TERMS_COPY.signature : ''}</span>
+              <div className="witness-pills">
+                <span className="name-pill">Hippo</span>
+                <span className="name-pill">Pengu</span>
+              </div>
+            </div>
             <span className="signature-label">{TERMS_COPY.signatureLabel}</span>
           </div>
           <div className="contract-actions">
@@ -102,6 +110,55 @@ export function Terms({ onNext }: TermsProps) {
           </div>
         )}
       </div>
+
+      <AnimatePresence>
+        {activeTermIdx !== null && (
+          <motion.div
+            className="term-modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveTermIdx(null)}
+          >
+            <motion.div
+              className="term-modal"
+              initial={{ scale: 0.8, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.85, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 18 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="term-modal-header">
+                <span className="pill">Clause {String(TERMS_DATA[activeTermIdx].id).padStart(2, '0')} of {TERMS_DATA.length}</span>
+                <button type="button" className="term-modal-close" onClick={() => setActiveTermIdx(null)}>✕</button>
+              </div>
+              <h3 className="term-modal-title">{TERMS_DATA[activeTermIdx].title}</h3>
+              <p className="term-modal-rule">"{TERMS_DATA[activeTermIdx].rule}"</p>
+              <div className="term-modal-witnesses">
+                <span className="name-pill">Hippo</span>
+                <span className="name-pill">Pengu</span>
+              </div>
+              <div className="term-modal-nav">
+                <button
+                  type="button"
+                  className="ghost-btn"
+                  onClick={() => setActiveTermIdx((prev) => (prev! > 0 ? prev! - 1 : TERMS_DATA.length - 1))}
+                >
+                  Previous
+                </button>
+                <span className="term-modal-counter">{activeTermIdx + 1} / {TERMS_DATA.length}</span>
+                <button
+                  type="button"
+                  className="primary-btn"
+                  onClick={() => setActiveTermIdx((prev) => (prev! < TERMS_DATA.length - 1 ? prev! + 1 : 0))}
+                >
+                  Next
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Hint>{copy.hint}</Hint>
     </div>

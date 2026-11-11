@@ -66,7 +66,7 @@ export function RocketTimeline({ stops, copy, variant, currentStep, setTotalStep
 
   const arcAt = useMemo(() => arcFractions(variant), [variant])
   const previous = useRef(index)
-  const duration = variant === 'family' ? 2.8 : 2.2
+  const duration = 1.3
 
   const flight = useMemo(() => {
     const from = tFor(previous.current)
@@ -77,7 +77,7 @@ export function RocketTimeline({ stops, copy, variant, currentStep, setTotalStep
       left: frames.map((t) => `${(pointAt(t, variant).x / VIEW_W) * 100}%`),
       top: frames.map((t) => `${(pointAt(t, variant).y / VIEW_H) * 100}%`),
       rotate: frames.map((t) => headingAt(t, variant, forward)),
-      lit: arcAt(to)
+      lit: frames.map((t) => Math.max(arcAt(t), 0.001))
     }
   }, [index, variant, arcAt])
 
@@ -96,7 +96,7 @@ export function RocketTimeline({ stops, copy, variant, currentStep, setTotalStep
             d={pathD}
             className="timeline-path-done"
             initial={false}
-            animate={{ pathLength: Math.max(flight.lit, 0.001) }}
+            animate={{ pathLength: flight.lit }}
             transition={{ duration, ease: 'easeInOut' }}
           />
           {stops.map((s, i) => {
