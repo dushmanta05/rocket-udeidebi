@@ -2465,6 +2465,11 @@ img {
   gap: clamp(20px, 5vw, 70px);
 }
 
+.thanks-layout .hippo-character {
+  max-width: min(440px, 45vw);
+  max-height: min(440px, 56vh);
+}
+
 .thanks-flyby-layer {
   position: absolute;
   inset: 0;
@@ -2709,7 +2714,8 @@ img {
     text-align: center;
   }
 
-  .welcome-hippo .hippo-character {
+  .welcome-hippo .hippo-character,
+  .thanks-layout .hippo-character {
     max-width: min(280px, 65vw);
     max-height: min(280px, 36vh);
   }

@@ -135,7 +135,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
 
         <div className="thanks-layout">
           <motion.div initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', damping: 12 }}>
-            <Hippo size={170} speechText={FINALE_COPY.hippoSays} />
+            <Hippo size={380} speechText={FINALE_COPY.hippoSays} />
           </motion.div>
 
           <motion.div
