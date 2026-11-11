@@ -2338,7 +2338,9 @@ img {
 }
 
 .progress-dot.current {
-  box-shadow: 0 0 0 5px rgba(255, 143, 177, 0.25);
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .progress-tip {
@@ -2369,6 +2371,19 @@ img {
   translate: -50% -50%;
   z-index: 2;
   pointer-events: none;
+}
+
+.progress-rocket::before {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--sky-bottom);
+  z-index: -1;
 }
 
 @media (max-width: 900px) {
