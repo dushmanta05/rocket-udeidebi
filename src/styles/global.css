@@ -2099,10 +2099,10 @@ img {
 
 .launch-pad {
   position: absolute;
-  left: 56%;
-  bottom: 13%;
-  width: 260px;
-  height: 220px;
+  left: 52%;
+  bottom: 12%;
+  width: clamp(340px, 30vw, 440px);
+  height: clamp(300px, 36vh, 390px);
   pointer-events: none;
 }
 
@@ -2114,7 +2114,7 @@ img {
 }
 
 .balloon-bunch {
-  transform-origin: 194px 76px;
+  transform-origin: 300px 120px;
   animation: balloon-float 3.6s ease-in-out infinite alternate;
 }
 
@@ -2147,8 +2147,8 @@ img {
 
 .pranjal-standing {
   position: absolute;
-  left: 60%;
-  bottom: calc(13% + 22px);
+  left: 58%;
+  bottom: calc(12% + 44px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2553,14 +2553,15 @@ img {
   }
 
   .launch-pad {
-    left: 48%;
-    width: 200px;
-    height: 180px;
+    left: 36%;
+    width: 280px;
+    height: 250px;
+    bottom: 11%;
   }
 
   .pranjal-standing {
-    left: 52%;
-    bottom: calc(13% + 20px);
+    left: 48%;
+    bottom: calc(11% + 34px);
   }
 
   .nav-arrow {
