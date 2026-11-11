@@ -62,7 +62,7 @@ export function RocketFlyby({ section }: RocketFlybyProps) {
         style={{ rotate: pose.rotate }}
       >
         <div style={{ transform: `scaleX(${pose.flip})` }}>
-          <PenguinRocketArt size={64} />
+          <PenguinRocketArt size={64} sparks />
         </div>
       </motion.div>
     </div>

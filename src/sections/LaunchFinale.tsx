@@ -66,7 +66,7 @@ function ThanksCoupleFlyby() {
         style={{ rotate: pose.rotate }}
       >
         <div style={{ transform: `scaleX(${pose.flip})` }} className="couple-rocket-wrap">
-          <PenguinRocketArt size={88} />
+          <PenguinRocketArt size={88} sparks />
           <div className="couple-pranjal">
             <Pengu size={34} variant="pranjal" />
           </div>
@@ -127,9 +127,9 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
     currentStep === STEP_PAD
       ? { left: '-30%', bottom: '55%', rotate: 0, opacity: 0 }
       : launched
-        ? { left: '38%', bottom: '160%', rotate: -50, opacity: 1 }
+        ? { left: '38%', bottom: '160%', rotate: -47, opacity: 1 }
         : currentStep === STEP_LAUNCH
-          ? { left: '38%', bottom: '24%', rotate: -50, opacity: 1 }
+          ? { left: '38%', bottom: '24%', rotate: -47, opacity: 1 }
           : { left: '30%', bottom: '30%', rotate: 0, opacity: 1 }
 
   if (currentStep >= STEP_THANKS) {
@@ -229,7 +229,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
           transition={launched ? { duration: 2.2, ease: 'easeIn' } : { type: 'spring', damping: 14, stiffness: 60 }}
         >
           {currentStep === STEP_ARRIVE && <div className="speech-bubble">{FINALE_COPY.arpitaSays}</div>}
-          <PenguinRocketArt size={170} />
+          <PenguinRocketArt size={170} sparks={currentStep >= STEP_ARRIVE} />
           {currentStep >= STEP_ARRIVE && (
             <motion.span className="name-pill rocket-name" animate={{ rotate: -rocketState.rotate }}>
               {FINALE_COPY.arpitaName}

@@ -29,7 +29,7 @@ function pointAt(t: number, variant: 'family' | 'work') {
   return { x: MARGIN + t * (VIEW_W - MARGIN * 2), y: curveY(t, variant) }
 }
 
-const ROCKET_NOSE_OFFSET = 40
+const ROCKET_NOSE_OFFSET = 43
 const SAMPLES = 160
 
 function headingAt(t: number, variant: 'family' | 'work', forward: boolean) {
@@ -126,7 +126,7 @@ export function RocketTimeline({ stops, copy, variant, currentStep, setTotalStep
           animate={{ left: flight.left, top: flight.top, rotate: flight.rotate }}
           transition={{ duration, ease: 'easeInOut' }}
         >
-          <PenguinRocketArt size={68} />
+          <PenguinRocketArt size={68} sparks />
         </motion.div>
       </div>
 

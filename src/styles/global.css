@@ -436,6 +436,166 @@ img {
 .pengu-rocket {
   display: grid;
   place-items: center;
+  position: relative;
+}
+
+.rocket-spark-stream {
+  position: absolute;
+  left: 9%;
+  bottom: 8%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.thruster-core {
+  position: absolute;
+  left: -5px;
+  top: -3px;
+  width: 10px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 15%, #ffd27a 50%, #ff7a45 85%, transparent 100%);
+  filter: drop-shadow(0 0 6px rgba(255, 170, 70, 0.9));
+  transform: rotate(135deg);
+  animation: thruster-pulse 0.18s ease-in-out infinite alternate;
+}
+
+.spark {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.spark-1 {
+  width: 3.5px;
+  height: 3.5px;
+  background: #fff4a3;
+  box-shadow: 0 0 4px #fff4a3, 0 0 7px #ff9f5a;
+  animation: spark-shoot-straight 0.65s linear infinite;
+}
+
+.spark-2 {
+  width: 3px;
+  height: 3px;
+  background: #ffffff;
+  box-shadow: 0 0 4px #ffffff, 0 0 6px #ffd27a;
+  animation: spark-shoot-wide-up 0.75s 0.15s linear infinite;
+}
+
+.spark-3 {
+  width: 3.5px;
+  height: 3.5px;
+  background: #ff9f5a;
+  box-shadow: 0 0 5px #ff9f5a, 0 0 8px #ff5e62;
+  animation: spark-shoot-wide-down 0.7s 0.3s linear infinite;
+}
+
+.spark-4 {
+  width: 2.5px;
+  height: 2.5px;
+  background: #ffd27a;
+  box-shadow: 0 0 4px #ffd27a;
+  animation: spark-shoot-burst 0.85s 0.45s linear infinite;
+}
+
+.spark-5 {
+  width: 3px;
+  height: 3px;
+  background: #ffffff;
+  box-shadow: 0 0 4px #ffffff;
+  animation: spark-shoot-short 0.55s 0.22s linear infinite;
+}
+
+.spark-6 {
+  width: 2px;
+  height: 2px;
+  background: #ff7a45;
+  box-shadow: 0 0 4px #ff7a45;
+  animation: spark-shoot-straight 0.8s 0.55s linear infinite;
+}
+
+@keyframes thruster-pulse {
+  0% {
+    transform: rotate(135deg) scale(0.85);
+    opacity: 0.85;
+  }
+  100% {
+    transform: rotate(135deg) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes spark-shoot-straight {
+  0% {
+    transform: translate(0, 0) scale(1.2);
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-26px, 24px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes spark-shoot-wide-up {
+  0% {
+    transform: translate(0, 0) scale(1.2);
+    opacity: 1;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-30px, 16px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes spark-shoot-wide-down {
+  0% {
+    transform: translate(0, 0) scale(1.2);
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-18px, 28px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes spark-shoot-burst {
+  0% {
+    transform: translate(0, 0) scale(1.4);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-38px, 34px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes spark-shoot-short {
+  0% {
+    transform: translate(0, 0) scale(1.1);
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-14px, 12px) scale(0);
+    opacity: 0;
+  }
 }
 
 .idle-float {
@@ -2640,6 +2800,10 @@ img {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .rocket-spark-stream {
+    display: none;
   }
 
   .star {

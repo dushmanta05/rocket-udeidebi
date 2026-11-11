@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Hippo } from '../components/Hippo'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
@@ -10,15 +11,27 @@ interface WelcomeProps {
 const copy = SECTIONS[0]
 
 export function Welcome({ onStart }: WelcomeProps) {
+  const rotate = useMemo(() => {
+    const w = typeof window !== 'undefined' ? window.innerWidth : 1440
+    const h = typeof window !== 'undefined' ? window.innerHeight : 900
+    const dx = 1.2 * w
+    const dy = -0.4 * h
+    const heading = Math.atan2(dy, dx) * (180 / Math.PI)
+    let deg = heading - (-43)
+    while (deg > 180) deg -= 360
+    while (deg < -180) deg += 360
+    return Math.round(deg)
+  }, [])
+
   return (
     <div className="section welcome-section">
       <motion.div
         className="welcome-flyby"
-        initial={{ x: '-15vw', y: '10vh', rotate: 0 }}
-        animate={{ x: '105vw', y: '-30vh' }}
+        initial={{ x: '-15vw', y: '10vh', rotate }}
+        animate={{ x: '105vw', y: '-30vh', rotate }}
         transition={{ duration: 9, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
       >
-        <PenguinRocketArt size={72} />
+        <PenguinRocketArt size={72} sparks />
       </motion.div>
 
       <div className="welcome-grid">
