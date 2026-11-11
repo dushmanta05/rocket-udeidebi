@@ -27,7 +27,8 @@ export const AWARDS_DATA: AwardItem[] = [
     id: 'award-3',
     title: 'Chair Seeker Award',
     roast: 'Chai break is for drinking tea. She is strictly there for locating the nearest chair.',
-    label: 'Award: Chair Seeker'
+    label: 'Award: Chair Seeker',
+    src: ASSETS.penguinTravel
   },
   {
     id: 'award-4',
@@ -40,7 +41,8 @@ export const AWARDS_DATA: AwardItem[] = [
     id: 'award-5',
     title: 'Current Laugh Award',
     roast: 'Laughs like a high-voltage live wire. Spectators are advised to maintain a safe distance.',
-    label: 'Award: Current Laugh'
+    label: 'Award: Current Laugh',
+    src: ASSETS.penguUseHead
   },
   {
     id: 'award-6',

@@ -1942,11 +1942,9 @@ img {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, var(--sky), var(--lavender));
-  color: #14183a;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
 }
 
 .chat-from {

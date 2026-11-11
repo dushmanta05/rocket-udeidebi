@@ -84,7 +84,9 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
               transition={{ type: 'spring', damping: 16 }}
             >
               <div className="chat-head">
-                <span className="chat-avatar">{request.from.charAt(0)}</span>
+                <span className="chat-avatar">
+                  <Pengu size={42} variant={isFinalTest ? 'useHead' : 'asking'} />
+                </span>
                 <div>
                   <span className="chat-from">{request.from}</span>
                   <span className="chat-meta">
