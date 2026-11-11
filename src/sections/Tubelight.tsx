@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { TUBELIGHT_STEPS } from '../data/tubelight'
 import { SECTIONS, TUBELIGHT_COPY } from '../data/sections'
+import { ASSETS } from '../data/assets'
 import { Placeholder } from '../components/Placeholder'
 import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
@@ -44,7 +45,7 @@ export function Tubelight({ currentStep, setTotalSteps, onNext }: StepSectionPro
           </div>
           <div className="tube-beam" />
           <div className="tube-subject">
-            <Placeholder label="Photo: Arpita's tubelight face" aspectRatio="1 / 1" />
+            <Placeholder label="Photo: Arpita's tubelight face" src={ASSETS.penguTubelight} aspectRatio="1 / 1" />
           </div>
           <div className="meter">
             <div className="meter-head">

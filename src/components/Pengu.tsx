@@ -1,6 +1,7 @@
 import { ASSETS } from '../data/assets'
 import { SmartImage } from './SmartImage'
 import { PenguinArt } from './art/PenguinArt'
+import { BagArt } from './art/BagArt'
 
 type PenguVariant =
   | 'arpita'
@@ -27,6 +28,9 @@ type PenguVariant =
   | 'no5'
   | 'mic'
   | 'thankYou'
+  | 'bag'
+  | 'jagatMata'
+  | 'tubelight'
 
 interface PenguProps {
   size?: number
@@ -58,7 +62,10 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   no4: ASSETS.penguNo4,
   no5: ASSETS.penguNo5,
   mic: ASSETS.penguMic,
-  thankYou: ASSETS.thankYou
+  thankYou: ASSETS.thankYou,
+  bag: ASSETS.penguBag,
+  jagatMata: ASSETS.penguJagatMata,
+  tubelight: ASSETS.penguTubelight
 }
 
 export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguProps) {
@@ -83,7 +90,13 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
                       ? 'Pengu running'
                       : variant.startsWith('love')
                         ? 'Pengu with love'
-                        : 'Pengu'
+                        : variant === 'bag'
+                          ? 'Pengu with Doraemon bag'
+                          : variant === 'jagatMata'
+                            ? 'Jagatmata Pengu'
+                            : variant === 'tubelight'
+                              ? 'Tubelight Pengu'
+                              : 'Pengu'
         }
         className="pengu-img"
         fallback={
@@ -94,6 +107,8 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
               className="pengu-img"
               fallback={<PenguinArt size={size} />}
             />
+          ) : variant === 'bag' ? (
+            <BagArt size={size} />
           ) : (
             <PenguinArt
               size={size}

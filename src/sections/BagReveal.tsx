@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { BAG_ITEMS } from '../data/bagItems'
 import { SECTIONS } from '../data/sections'
-import { BagArt } from '../components/art/BagArt'
 import { Placeholder } from '../components/Placeholder'
 import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
@@ -45,8 +44,12 @@ export function BagReveal({ currentStep, setTotalSteps, onNext }: StepSectionPro
 
       <div className="bag-layout">
         <div className="bag-side">
-          <motion.div className="bag-art" animate={{ scale: [1, 1.03, 1] }} transition={{ duration: 2.4, repeat: Infinity }}>
-            <BagArt size={240} isWiggling={wiggling} />
+          <motion.div
+            className="bag-art"
+            animate={wiggling ? { rotate: [-8, 8, -6, 6, 0], scale: [1, 1.06, 1] } : { scale: [1, 1.03, 1] }}
+            transition={wiggling ? { duration: 0.5 } : { duration: 2.4, repeat: Infinity }}
+          >
+            <Pengu size={240} variant="bag" />
           </motion.div>
           <div className="bag-counter">
             <span className="bag-counter-num">{isRecharge ? '⚡' : index + 1}</span>
