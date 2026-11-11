@@ -180,3 +180,6 @@ Ideas raised for possible extra sections; none is started.
 - Cloud Kitchen Policy Dock: Replaced tiny delivery footer with a full-width delivery and policy marquee featuring `pengu-run.gif` (`size={105}`) and bold free delivery tags.
 - Predictions Synchronized Motion: Wrapped the future Pengu and prediction card inside a shared `AnimatePresence` bundle so both render and animate at the exact same instant.
 - Cinema Velvet Curtains: Styled realistic repeating velvet drapery folds with deep ruby shadows and gold trim; removed the two extra standby pills.
+- Modal Escape Key Close: Added keyboard listener closing both the Terms clause modal and Cloud Kitchen recipe modal when pressing the `Escape` key.
+- Timeline Photos Frosted Glass: Replaced polaroid white `#ffffff` background on `.milestone-photo` with dark frosted glass (`rgba(18, 24, 44, 0.65)`), letting transparent GIFs in Family & Work timelines float seamlessly without box artifacts.
+- Universal Card & Modal Frosted Glass: Enforced standard `--glass-border` and `--glass-bg` on `.catchphrase-unlock-card`, `.term-modal`, `.kitchen-modal`, and `.kitchen-policy-bar`, eliminating all colored or highlighted borders.
