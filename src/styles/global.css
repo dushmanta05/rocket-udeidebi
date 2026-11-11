@@ -2099,36 +2099,56 @@ img {
 
 .launch-pad {
   position: absolute;
-  left: 58%;
+  left: 56%;
   bottom: 13%;
-  width: 220px;
-  height: 160px;
+  width: 260px;
+  height: 220px;
+  pointer-events: none;
 }
 
-.pad-tower {
-  position: absolute;
-  right: 0;
-  bottom: 16px;
-  width: 26px;
-  height: 150px;
-  background: repeating-linear-gradient(45deg, #4b5480 0 6px, #2d3458 6px 12px);
-  border-radius: 4px;
+.launch-pad-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
 }
 
-.pad-base {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 18px;
-  border-radius: 6px;
-  background: linear-gradient(180deg, #6b75a8, #3a4270);
+.balloon-bunch {
+  transform-origin: 194px 76px;
+  animation: balloon-float 3.6s ease-in-out infinite alternate;
+}
+
+.beacon-lamp {
+  animation: beacon-blink 1.4s ease-in-out infinite;
+}
+
+@keyframes balloon-float {
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: rotate(2.5deg) translateY(-4px);
+  }
+  100% {
+    transform: rotate(-2deg) translateY(-2px);
+  }
+}
+
+@keyframes beacon-blink {
+  0%, 100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 1px #ff4d6d);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px #ff4d6d);
+  }
 }
 
 .pranjal-standing {
   position: absolute;
   left: 60%;
-  bottom: calc(13% + 16px);
+  bottom: calc(13% + 22px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2533,12 +2553,14 @@ img {
   }
 
   .launch-pad {
-    left: 50%;
-    width: 160px;
+    left: 48%;
+    width: 200px;
+    height: 180px;
   }
 
   .pranjal-standing {
     left: 52%;
+    bottom: calc(13% + 20px);
   }
 
   .nav-arrow {

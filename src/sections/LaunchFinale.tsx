@@ -7,6 +7,7 @@ import { CREW_NAMES } from '../data/crew'
 import { Pengu } from '../components/Pengu'
 import { Hippo } from '../components/Hippo'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
+import { LaunchPadArt } from '../components/art/LaunchPadArt'
 import { Hint } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
@@ -141,8 +142,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
         <div className="moon" />
         <div className="launch-ground" />
         <div className="launch-pad">
-          <div className="pad-tower" />
-          <div className="pad-base" />
+          <LaunchPadArt />
         </div>
 
         <AnimatePresence>
