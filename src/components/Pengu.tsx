@@ -31,6 +31,7 @@ type PenguVariant =
   | 'bag'
   | 'jagatMata'
   | 'tubelight'
+  | 'rocket'
 
 interface PenguProps {
   size?: number
@@ -65,7 +66,8 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   thankYou: ASSETS.thankYou,
   bag: ASSETS.penguBag,
   jagatMata: ASSETS.penguJagatMata,
-  tubelight: ASSETS.penguTubelight
+  tubelight: ASSETS.penguTubelight,
+  rocket: ASSETS.penguRocketGif
 }
 
 export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguProps) {
@@ -96,7 +98,9 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
                             ? 'Jagatmata Pengu'
                             : variant === 'tubelight'
                               ? 'Tubelight Pengu'
-                              : 'Pengu'
+                              : variant === 'rocket'
+                                ? 'Pengu with rocket'
+                                : 'Pengu'
         }
         className="pengu-img"
         fallback={

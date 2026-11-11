@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { EggArt, EggShellBottom, EggShellTop } from '../components/art/EggArt'
 import { Placeholder } from '../components/Placeholder'
+import { Pengu } from '../components/Pengu'
 import { Hint } from '../components/SectionHeader'
 import { ASSETS } from '../data/assets'
 import { BIRTH_COPY, SECTIONS } from '../data/sections'
@@ -121,7 +122,10 @@ export function PenguinBirth({ currentStep, setTotalSteps, onNext }: StepSection
               <motion.div className="hatch-text" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.7 }}>
                 <h3 className="script-title">{BIRTH_COPY.bornTitle}</h3>
                 <p>{BIRTH_COPY.bornText}</p>
-                <span className="pill">{BIRTH_COPY.bornTag}</span>
+                <div style={{ display: 'inline-flex', gap: 10, alignItems: 'center' }}>
+                  <span className="pill">{BIRTH_COPY.bornTag}</span>
+                  <Pengu size={48} variant="rocket" />
+                </div>
               </motion.div>
             </motion.div>
           )}

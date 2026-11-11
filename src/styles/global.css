@@ -2904,6 +2904,10 @@ img {
   margin-bottom: -4px;
 }
 
+.pranjal-standing .pengu-img {
+  transform: scaleX(-1);
+}
+
 .launch-rocket {
   position: absolute;
   display: flex;

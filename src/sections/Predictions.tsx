@@ -47,7 +47,7 @@ export function Predictions({ currentStep, setTotalSteps, onNext }: StepSectionP
             animate={{ scale: 1, opacity: 1, rotate: pose.rotate }}
             transition={{ type: 'spring', damping: 13, stiffness: 140 }}
           >
-            <Pengu size={130} variant="future" />
+            <Pengu size={130} variant={prediction.text.includes('Rocket udeidebi') ? 'rocket' : 'future'} />
           </motion.div>
 
           <AnimatePresence mode="wait">

@@ -1,6 +1,15 @@
 export const CREW_NAMES: string[] = [
   'Dushmanta',
-  'Siblings & Cousins',
-  'The Office Gang',
-  'Childhood Besties'
+  'Niyaz',
+  'Astha',
+  'Subhasree',
+  'Tapan',
+  'Shyam',
+  'Soumya',
+  'Tanu',
+  'Asutosh',
+  'Paresh',
+  'Amit',
+  'Anchal',
+  'Ankita'
 ]
