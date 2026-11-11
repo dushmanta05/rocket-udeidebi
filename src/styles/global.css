@@ -2289,10 +2289,61 @@ img {
 
 .thanks-layout {
   position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: auto minmax(0, 560px);
   align-items: center;
   gap: clamp(20px, 5vw, 70px);
+}
+
+.thanks-layout .hippo-character {
+  max-width: min(280px, 45vw);
+  max-height: min(280px, 42vh);
+}
+
+.thanks-flyby-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.thanks-flyby-rocket {
+  position: absolute;
+}
+
+.couple-rocket-wrap {
+  position: relative;
+  display: inline-block;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+}
+
+.couple-pranjal {
+  position: absolute;
+  left: 6%;
+  top: 8%;
+  z-index: -1;
+}
+
+.couple-heart {
+  position: absolute;
+  left: 36%;
+  top: -10%;
+  font-size: 1.2rem;
+  color: var(--pink);
+  filter: drop-shadow(0 0 8px rgba(255, 143, 177, 0.85));
+  pointer-events: none;
+  animation: heart-flutter 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes heart-flutter {
+  0% {
+    transform: scale(0.9) translateY(0);
+  }
+  100% {
+    transform: scale(1.15) translateY(-3px);
+  }
 }
 
 .thanks-card {
@@ -2433,7 +2484,8 @@ img {
     overflow: hidden;
   }
 
-  .flyby-layer {
+  .flyby-layer,
+  .thanks-flyby-layer {
     display: none;
   }
 
@@ -2500,6 +2552,11 @@ img {
   .welcome-hippo .hippo-character {
     max-width: min(240px, 65vw);
     max-height: min(240px, 32vh);
+  }
+
+  .thanks-layout .hippo-character {
+    max-width: min(200px, 60vw);
+    max-height: min(200px, 28vh);
   }
 
   .script-word {

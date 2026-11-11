@@ -18,6 +18,51 @@ const STEP_BOARD = 2
 const STEP_LAUNCH = 3
 const STEP_THANKS = 4
 
+interface ThanksFlight {
+  fromX: string
+  toX: string
+  fromY: string
+  toY: string
+  rotate: number
+  flip: number
+  duration: number
+}
+
+const THANKS_FLIGHTS: ThanksFlight[] = [
+  { fromX: '-15vw', toX: '115vw', fromY: '72vh', toY: '18vh', rotate: -24, flip: 1, duration: 11 },
+  { fromX: '115vw', toX: '-15vw', fromY: '24vh', toY: '60vh', rotate: 18, flip: -1, duration: 12 },
+  { fromX: '-15vw', toX: '115vw', fromY: '36vh', toY: '14vh', rotate: -18, flip: 1, duration: 10 },
+  { fromX: '115vw', toX: '-15vw', fromY: '76vh', toY: '20vh', rotate: -26, flip: -1, duration: 13 },
+  { fromX: '-15vw', toX: '115vw', fromY: '58vh', toY: '26vh', rotate: -15, flip: 1, duration: 11 }
+]
+
+function ThanksCoupleFlyby() {
+  const [flightIdx, setFlightIdx] = useState(0)
+  const flight = THANKS_FLIGHTS[flightIdx]
+
+  return (
+    <div className="thanks-flyby-layer" aria-hidden="true">
+      <motion.div
+        key={flightIdx}
+        className="thanks-flyby-rocket"
+        initial={{ left: flight.fromX, top: flight.fromY }}
+        animate={{ left: flight.toX, top: flight.toY }}
+        transition={{ duration: flight.duration, ease: 'linear' }}
+        onAnimationComplete={() => setFlightIdx((prev) => (prev + 1) % THANKS_FLIGHTS.length)}
+        style={{ rotate: flight.rotate }}
+      >
+        <div style={{ transform: `scaleX(${flight.flip})` }} className="couple-rocket-wrap">
+          <PenguinRocketArt size={88} />
+          <div className="couple-pranjal">
+            <Pengu size={34} variant="pranjal" />
+          </div>
+          <span className="couple-heart">♥</span>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
 function useCountdown(active: boolean) {
   const [tick, setTick] = useState(-1)
 
@@ -92,9 +137,11 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
           ))}
         </div>
 
+        {!reduceMotion && <ThanksCoupleFlyby />}
+
         <div className="thanks-layout">
           <motion.div initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', damping: 12 }}>
-            <Hippo size={170} speechText={FINALE_COPY.hippoSays} />
+            <Hippo size={250} speechText={FINALE_COPY.hippoSays} />
           </motion.div>
 
           <motion.div
