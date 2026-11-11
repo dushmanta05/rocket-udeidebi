@@ -130,10 +130,24 @@ export function PenguinBirth({ currentStep, setTotalSteps, onNext }: StepSection
               <motion.div className="hatch-text" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.7 }}>
                 <h3 className="script-title">{BIRTH_COPY.bornTitle}</h3>
                 <p>{BIRTH_COPY.bornText}</p>
-                <div style={{ display: 'inline-flex', gap: 10, alignItems: 'center' }}>
-                  <span className="pill">{BIRTH_COPY.bornTag}</span>
-                  <Pengu size={48} variant="rocket" />
-                </div>
+                <motion.div
+                  className="catchphrase-unlock-card"
+                  initial={{ scale: 0.85, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.9, type: 'spring', damping: 12 }}
+                >
+                  <div className="unlock-details">
+                    <span className="unlock-kicker">✦ CATCHPHRASE UNLOCKED ✦</span>
+                    <span className="unlock-quote">"Rocket udeidebi!"</span>
+                  </div>
+                  <motion.div
+                    className="unlock-pengu"
+                    animate={{ y: [0, -8, 0], rotate: [-2, 4, -2] }}
+                    transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <Pengu size={115} variant="rocket" />
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </motion.div>
           )}

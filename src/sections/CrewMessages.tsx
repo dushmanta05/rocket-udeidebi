@@ -122,11 +122,6 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
                   <h3 className="standby-title">{CREW_COPY.filmTitle}</h3>
                   <p className="standby-sub">{CREW_COPY.filmSubtitle}</p>
 
-                  <div className="standby-meta-row">
-                    <span className="meta-tag">🍿 100% Chaotic</span>
-                    <span className="meta-tag">★ Rated Bachelorette Legend</span>
-                  </div>
-
                   <span className="standby-badge">{CREW_COPY.filmPlaceholder}</span>
                 </div>
               )}

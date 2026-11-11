@@ -56,10 +56,33 @@ export function CloudKitchen() {
           ))}
         </div>
 
-        <div className="kitchen-delivery-line">
-          <Pengu size={52} variant="run" />
-          <p className="menu-footer">{KITCHEN_COPY.footer}</p>
-        </div>
+        <motion.div
+          className="kitchen-policy-bar"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <div className="policy-runner-wrap">
+            <Pengu size={105} variant="run" />
+          </div>
+
+          <div className="policy-tags-row">
+            <div className="policy-tag-item">
+              <span className="policy-label">DELIVERY</span>
+              <span className="policy-val">100% Free Forever</span>
+            </div>
+            <div className="policy-tag-divider" />
+            <div className="policy-tag-item">
+              <span className="policy-label">PAYMENT</span>
+              <span className="policy-val">Strictly Not Accepted</span>
+            </div>
+            <div className="policy-tag-divider" />
+            <div className="policy-tag-item">
+              <span className="policy-label">HEAD CHEF / OWNER</span>
+              <span className="policy-val">Physically Cannot Say No</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       <AnimatePresence>

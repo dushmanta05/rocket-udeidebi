@@ -74,109 +74,110 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
 
       <div className="sayno-stage">
         {!isDone ? (
-          <AnimatePresence mode="wait">
+          <div className="sayno-card-wrapper">
             <motion.div
-              key={request.id}
-              className="chat-card"
-              initial={{ scale: 0.9, opacity: 0, y: 30 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ x: 400, rotate: 10, opacity: 0, transition: { duration: 0.4 } }}
-              transition={{ type: 'spring', damping: 16 }}
+              key={`side-pengu-${requestIndex}`}
+              className="sayno-side-pengu"
+              initial={{ scale: 0.8, opacity: 0, x: -24 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              transition={{ type: 'spring', damping: 14 }}
             >
-              <div className="chat-head">
-                <span className="chat-avatar">
-                  <Pengu size={42} variant={isFinalTest ? 'useHead' : 'asking'} />
+              <div className="side-pengu-bubble-wrap">
+                <span className="side-speech-bubble">
+                  {isFinalTest ? 'Believe in yourself, Hippo! Say NO!' : 'Can you resist this request?'}
                 </span>
-                <div>
-                  <span className="chat-from">{request.from}</span>
-                  <span className="chat-meta">
-                    {SAYNO_COPY.requestLabel} {request.id} / {REQUESTS_DATA.length}
-                  </span>
-                </div>
+                <Pengu
+                  size={210}
+                  variant={isFinalTest ? 'believe' : NO_VARIANTS[requestIndex % NO_VARIANTS.length]}
+                />
               </div>
+            </motion.div>
 
+            <AnimatePresence mode="wait">
               <motion.div
-                className="chat-bubble"
-                initial={{ scale: 0.6, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.25, type: 'spring', damping: 12 }}
+                key={request.id}
+                className="chat-card"
+                initial={{ scale: 0.9, opacity: 0, y: 30 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ x: 400, rotate: 10, opacity: 0, transition: { duration: 0.4 } }}
+                transition={{ type: 'spring', damping: 16 }}
               >
-                {request.question}
-              </motion.div>
-              <p className="chat-sub">{request.subtext}</p>
+                <div className="chat-head">
+                  <span className="chat-avatar">
+                    <Pengu size={46} variant="please" />
+                  </span>
+                  <div>
+                    <span className="chat-from">{request.from}</span>
+                    <span className="chat-meta">
+                      {SAYNO_COPY.requestLabel} {request.id} / {REQUESTS_DATA.length}
+                    </span>
+                  </div>
+                </div>
 
-              <div className="request-actions">
                 <motion.div
-                  className="no-btn-group"
-                  animate={
-                    isFinalTest
-                      ? { scale: [1, 1.08, 1], transition: { repeat: Infinity, duration: 1.2 } }
-                      : { x: dodgePos.x, y: dodgePos.y, rotate: dodges > 0 ? (dodgePos.x > 0 ? 8 : -8) : 0 }
-                  }
-                  transition={{ type: 'spring', damping: 11, stiffness: 240 }}
+                  className="chat-bubble"
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.25, type: 'spring', damping: 12 }}
                 >
+                  {request.question}
+                </motion.div>
+                <p className="chat-sub">{request.subtext}</p>
+
+                <div className="request-actions">
+                  <motion.div
+                    className="no-btn-group"
+                    animate={
+                      isFinalTest
+                        ? { scale: [1, 1.08, 1], transition: { repeat: Infinity, duration: 1.2 } }
+                        : { x: dodgePos.x, y: dodgePos.y, rotate: dodges > 0 ? (dodgePos.x > 0 ? 8 : -8) : 0 }
+                    }
+                    transition={{ type: 'spring', damping: 11, stiffness: 240 }}
+                  >
+                    <motion.button
+                      type="button"
+                      className={`no-btn ${isFinalTest ? 'pulse-no' : ''}`}
+                      whileTap={{ scale: 0.94 }}
+                      onMouseEnter={!isFinalTest ? dodge : undefined}
+                      onClick={handleNo}
+                    >
+                      {SAYNO_COPY.no}
+                    </motion.button>
+                  </motion.div>
                   <motion.button
                     type="button"
-                    className={`no-btn ${isFinalTest ? 'pulse-no' : ''}`}
-                    whileTap={{ scale: 0.94 }}
-                    onMouseEnter={!isFinalTest ? dodge : undefined}
-                    onClick={handleNo}
+                    className="yes-btn"
+                    animate={
+                      isFinalTest
+                        ? { x: dodgePos.x, y: dodgePos.y, rotate: dodges > 0 ? (dodgePos.x > 0 ? 8 : -8) : 0 }
+                        : { scale: 1 + Math.min(dodges, 6) * 0.05 }
+                    }
+                    whileTap={{ scale: 0.92 }}
+                    onMouseEnter={isFinalTest ? dodge : undefined}
+                    onClick={handleYes}
                   >
-                    {SAYNO_COPY.no}
+                    {SAYNO_COPY.yes}
                   </motion.button>
-                  {!isFinalTest ? (
-                    <motion.div
-                      className="no-dodging-pengu"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: 'spring', damping: 12 }}
-                    >
-                      <Pengu size={100} variant={NO_VARIANTS[requestIndex % NO_VARIANTS.length]} />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      className="no-dodging-pengu believe-pengu"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: [1, 1.06, 1] }}
-                      transition={{ repeat: Infinity, duration: 1.5 }}
-                    >
-                      <Pengu size={105} variant="believe" />
-                    </motion.div>
-                  )}
-                </motion.div>
-                <motion.button
-                  type="button"
-                  className="yes-btn"
-                  animate={
-                    isFinalTest
-                      ? { x: dodgePos.x, y: dodgePos.y, rotate: dodges > 0 ? (dodgePos.x > 0 ? 8 : -8) : 0 }
-                      : { scale: 1 + Math.min(dodges, 6) * 0.05 }
-                  }
-                  whileTap={{ scale: 0.92 }}
-                  onMouseEnter={isFinalTest ? dodge : undefined}
-                  onClick={handleYes}
-                >
-                  {SAYNO_COPY.yes}
-                </motion.button>
-              </div>
+                </div>
 
-              <AnimatePresence>
-                {dodges > 0 && (
-                  <motion.span
-                    key={dodges}
-                    className="dodge-taunt"
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    {isFinalTest
-                      ? SAYNO_COPY.yesTaunts[(dodges - 1) % SAYNO_COPY.yesTaunts.length]
-                      : SAYNO_COPY.taunts[(dodges - 1) % SAYNO_COPY.taunts.length]}
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          </AnimatePresence>
+                <AnimatePresence>
+                  {dodges > 0 && (
+                    <motion.span
+                      key={dodges}
+                      className="dodge-taunt"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      {isFinalTest
+                        ? SAYNO_COPY.yesTaunts[(dodges - 1) % SAYNO_COPY.yesTaunts.length]
+                        : SAYNO_COPY.taunts[(dodges - 1) % SAYNO_COPY.taunts.length]}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         ) : (
           <motion.div className="verdict" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="verdict-banner">

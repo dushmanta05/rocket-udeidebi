@@ -40,32 +40,31 @@ export function Predictions({ currentStep, setTotalSteps, onNext }: StepSectionP
 
       <div className="oracle-layout">
         <div className="fortune-arena">
-          <motion.div
-            key={index}
-            className={`pengu-teller-wrap ${pose.className}`}
-            initial={{ scale: 0.6, opacity: 0, rotate: 0 }}
-            animate={{ scale: 1, opacity: 1, rotate: pose.rotate }}
-            transition={{ type: 'spring', damping: 13, stiffness: 140 }}
-          >
-            <Pengu size={130} variant={prediction.text.includes('Rocket udeidebi') ? 'rocket' : 'future'} />
-          </motion.div>
-
           <AnimatePresence mode="wait">
             <motion.div
               key={prediction.id}
-              className="fortune-card"
-              initial={{ rotateY: 90, opacity: 0, scale: 0.85 }}
-              animate={{ rotateY: 0, opacity: 1, scale: 1 }}
-              exit={{ x: 260, y: -40, rotate: 10, scale: 0.4, opacity: 0 }}
-              transition={{ type: 'spring', damping: 15 }}
+              className="fortune-bundle"
+              initial={{ opacity: 0, scale: 0.9, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -16, transition: { duration: 0.24 } }}
+              transition={{ type: 'spring', damping: 16, stiffness: 140 }}
             >
-              <Sparkle className="fortune-sparkle tl" />
-              <Sparkle className="fortune-sparkle br" />
-              <span className="fortune-num">Vision {index + 1} of {PREDICTIONS_DATA.length}</span>
-              <p className="fortune-text">{prediction.text}</p>
-              <span className="fortune-author">
-                {PREDICTIONS_COPY.foreseenBy} <strong>{prediction.author}</strong>
-              </span>
+              <div
+                className={`pengu-teller-wrap ${pose.className}`}
+                style={{ transform: `rotate(${pose.rotate}deg)` }}
+              >
+                <Pengu size={130} variant={prediction.text.includes('Rocket udeidebi') ? 'rocket' : 'future'} />
+              </div>
+
+              <div className="fortune-card">
+                <Sparkle className="fortune-sparkle tl" />
+                <Sparkle className="fortune-sparkle br" />
+                <span className="fortune-num">Vision {index + 1} of {PREDICTIONS_DATA.length}</span>
+                <p className="fortune-text">{prediction.text}</p>
+                <span className="fortune-author">
+                  {PREDICTIONS_COPY.foreseenBy} <strong>{prediction.author}</strong>
+                </span>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>

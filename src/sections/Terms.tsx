@@ -13,7 +13,7 @@ interface TermsProps {
 
 const copy = SECTIONS[9]
 const ESCAPES_BEFORE_SURRENDER = 5
-const CLAUSE_TILTS = [-2.2, 1.8, -1.5, 2, -2, 1.6, -1.8, 2.2]
+const CLAUSE_TILTS = [-1.5, 1.8, -1.2, 1.5, -1.8, 1.2, -1.4, 1.6]
 
 export function Terms({ onNext }: TermsProps) {
   const [agreed, setAgreed] = useState(false)
@@ -56,39 +56,37 @@ export function Terms({ onNext }: TermsProps) {
           {TERMS_DATA.map((term, idx) => (
             <motion.div
               key={term.id}
-              className="clause"
+              className="clause-tile"
               style={{ rotate: CLAUSE_TILTS[idx % CLAUSE_TILTS.length] }}
-              whileHover={{ scale: 1.04, rotate: 0 }}
+              whileHover={{ scale: 1.03, rotate: 0 }}
+              whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 + idx * 0.06 }}
+              transition={{ delay: 0.1 + idx * 0.05 }}
               onClick={() => setActiveTermIdx(idx)}
             >
-              <span className="clause-num">{String(term.id).padStart(2, '0')}</span>
-              <div>
-                <h4 className="clause-title">{term.title}</h4>
-                <p className="clause-rule">{term.rule}</p>
+              <div className="clause-tile-head">
+                <span className="clause-num">Clause {String(term.id).padStart(2, '0')}</span>
+                <span className="clause-tap-hint">Tap to inspect →</span>
               </div>
+              <h4 className="clause-title">{term.title}</h4>
+              <p className="clause-rule">{term.rule}</p>
             </motion.div>
           ))}
         </div>
 
         <div className="contract-foot">
-          <div className="terms-pengu-yes-badge">
-            <Pengu size={110} variant="yes" />
-          </div>
-
           <div className="signature">
             <div className="signature-line">
               <span className="signature-name cursive-signature">{TERMS_COPY.signature}</span>
               <div className="witness-pills">
-                <span className="name-pill">Hippo</span>
-                <span className="name-pill">Pengu</span>
-                <Pengu size={34} variant="flower" />
+                <span className="witness-tag cursive-tag">Hippo</span>
+                <span className="witness-tag cursive-tag">Pengu</span>
               </div>
             </div>
             <span className="signature-label">{TERMS_COPY.signatureLabel}</span>
           </div>
+
           <div className="contract-actions">
             <motion.button
               type="button"
@@ -121,7 +119,7 @@ export function Terms({ onNext }: TermsProps) {
               animate={{ scale: 1, y: 0 }}
               transition={{ delay: 0.15, type: 'spring', damping: 11 }}
             >
-              <Pengu size={120} variant="love" />
+              <Pengu size={130} variant="love" />
             </motion.div>
             <Stamp text={TERMS_COPY.stamp} subtext={TERMS_COPY.stampSub} color="#ff5a6e" />
           </div>
@@ -149,13 +147,19 @@ export function Terms({ onNext }: TermsProps) {
                 <span className="pill">Clause {String(TERMS_DATA[activeTermIdx].id).padStart(2, '0')} of {TERMS_DATA.length}</span>
                 <button type="button" className="term-modal-close" onClick={() => setActiveTermIdx(null)}>✕</button>
               </div>
+
+              <div className="term-modal-pengu-wrap">
+                <Pengu size={130} variant="yes" />
+              </div>
+
               <h3 className="term-modal-title">{TERMS_DATA[activeTermIdx].title}</h3>
               <p className="term-modal-rule">"{TERMS_DATA[activeTermIdx].rule}"</p>
+
               <div className="term-modal-witnesses">
-                <span className="name-pill">Hippo</span>
-                <span className="name-pill">Pengu</span>
-                <Pengu size={34} variant="flower" />
+                <span className="witness-tag cursive-tag">Witness: Hippo</span>
+                <span className="witness-tag cursive-tag">Witness: Pengu</span>
               </div>
+
               <div className="term-modal-nav">
                 <button
                   type="button"

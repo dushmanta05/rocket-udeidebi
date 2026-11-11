@@ -31,26 +31,21 @@ export function Awards({ currentStep, setTotalSteps, onNext }: StepSectionProps)
       <SectionHeader copy={copy} kicker={`${copy.kicker} · Award ${index + 1} of ${AWARDS_DATA.length}`} />
 
       <AnimatePresence mode="wait">
-        <motion.div
+        <motion.article
           key={award.id}
-          className="award-stage"
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9, y: -20 }}
-          transition={{ type: 'spring', damping: 15 }}
+          className="award-card"
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -16, scale: 0.96 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
         >
-          <motion.div
-            className="award-frame"
-            initial={{ rotate: -20, scale: 0.5 }}
-            animate={{ rotate: -3, scale: 1 }}
-            transition={{ type: 'spring', damping: 9, stiffness: 120 }}
-          >
+          <div className="award-photo">
             <Placeholder label={award.label} src={award.src} aspectRatio="1 / 1" />
-          </motion.div>
+          </div>
 
           <div className="award-text">
             <div className="award-head-row">
-              <span className="award-number">No. {String(index + 1).padStart(2, '0')}</span>
+              <span className="pill">Award {String(index + 1).padStart(2, '0')}</span>
               <motion.div
                 className="award-mic-pengu"
                 initial={{ scale: 0, rotate: -10 }}
@@ -60,20 +55,13 @@ export function Awards({ currentStep, setTotalSteps, onNext }: StepSectionProps)
                   rotate: { repeat: Infinity, duration: 2.2, ease: 'easeInOut' }
                 }}
               >
-                <Pengu size={74} variant="mic" />
+                <Pengu size={68} variant="mic" />
               </motion.div>
             </div>
             <h3 className="award-title">{award.title}</h3>
-            <motion.p
-              className="award-roast"
-              initial={{ clipPath: 'inset(0 100% 0 0)' }}
-              animate={{ clipPath: 'inset(0 0% 0 0)' }}
-              transition={{ delay: 0.3, duration: 1.2, ease: 'easeOut' }}
-            >
-              {award.roast}
-            </motion.p>
+            <p className="award-roast">{award.roast}</p>
           </div>
-        </motion.div>
+        </motion.article>
       </AnimatePresence>
 
       <Hint>{copy.hint}</Hint>
