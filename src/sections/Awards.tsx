@@ -39,7 +39,7 @@ export function Awards({ currentStep, setTotalSteps, onNext }: StepSectionProps)
           exit={{ opacity: 0, y: -16, scale: 0.96 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
         >
-          <div className="award-photo">
+          <div className="award-gif-wrap">
             <Placeholder label={award.label} src={award.src} aspectRatio="1 / 1" />
           </div>
 

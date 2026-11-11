@@ -51,13 +51,13 @@ export function RechargeStation({ onNext }: RechargeStationProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <div className="recharge-photo">
+          <div className="recharge-top-gif">
             <motion.div
               className="recharge-hero-pengu"
               animate={{ scale: [1, 1.04, 1] }}
               transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
             >
-              <Pengu size={200} variant="energy" />
+              <Pengu size={180} variant="energy" />
             </motion.div>
           </div>
 
