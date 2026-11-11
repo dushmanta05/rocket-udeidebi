@@ -77,6 +77,7 @@ export function Terms({ onNext }: TermsProps) {
               <div className="witness-pills">
                 <span className="name-pill">Hippo</span>
                 <span className="name-pill">Pengu</span>
+                {agreed && <Pengu size={40} variant="flower" />}
               </div>
             </div>
             <span className="signature-label">{TERMS_COPY.signatureLabel}</span>
@@ -146,6 +147,7 @@ export function Terms({ onNext }: TermsProps) {
               <div className="term-modal-witnesses">
                 <span className="name-pill">Hippo</span>
                 <span className="name-pill">Pengu</span>
+                <Pengu size={34} variant="flower" />
               </div>
               <div className="term-modal-nav">
                 <button
