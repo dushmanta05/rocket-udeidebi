@@ -9,6 +9,20 @@ import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[8]
+const ELAPSED_TAGS = [
+  'T+0m · Joke cracked',
+  '+1m · Polite smile',
+  '+20m later · Buffering',
+  '+38m later · Still trying',
+  '+45m later · Full Voltage!'
+]
+const ELAPSED_MINUTES = [0, 1, 20, 38, 45]
+
+function speakerLabel(speaker: string) {
+  if (speaker === 'arpita') return 'Arpita'
+  if (speaker === 'system') return 'Buffering'
+  return 'The Room'
+}
 
 export function Tubelight({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   useEffect(() => {
@@ -42,6 +56,29 @@ export function Tubelight({ currentStep, setTotalSteps, onNext }: StepSectionPro
             <div className="tube-cap left" />
             <div className="tube-cap right" />
           </div>
+
+          <motion.div
+            key={active.time}
+            className="tube-clock-display"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: 'spring', damping: 14 }}
+          >
+            <div className="tube-clock-time-row">
+              <span className="tube-clock-time">{active.time}</span>
+              <span className={`tube-clock-elapsed ${isDone ? 'done' : ''}`}>
+                {index === 0 ? 'START' : `+${ELAPSED_MINUTES[index]}m DELAY`}
+              </span>
+            </div>
+            <span className="tube-clock-sub">
+              {index === 0
+                ? 'Original joke delivery'
+                : isDone
+                ? '45 min latency · Full comprehension reached!'
+                : `${ELAPSED_MINUTES[index]} minutes elapsed · Buffering...`}
+            </span>
+          </motion.div>
+
           <div className="tube-beam" />
           <div className="tube-subject">
             <Placeholder
@@ -68,10 +105,18 @@ export function Tubelight({ currentStep, setTotalSteps, onNext }: StepSectionPro
                 key={step.step}
                 className={`log-row speaker-${step.speaker} ${idx === index ? 'latest' : ''}`}
                 initial={{ opacity: 0, x: 30, scale: 0.95 }}
-                animate={{ opacity: idx === index ? 1 : 0.55, x: 0, scale: 1 }}
+                animate={{ opacity: idx === index ? 1 : 0.6, x: 0, scale: 1 }}
                 transition={{ type: 'spring', damping: 18 }}
               >
-                <span className="log-time">{step.time}</span>
+                <div className="log-head-row">
+                  <div className="log-time-badge">
+                    <span className="log-time-digits">{step.time}</span>
+                    <span className="log-elapsed-pill">{ELAPSED_TAGS[idx]}</span>
+                  </div>
+                  <span className={`log-speaker-badge speaker-${step.speaker}`}>
+                    {speakerLabel(step.speaker)}
+                  </span>
+                </div>
                 <p className="log-text">{step.text}</p>
               </motion.div>
             ))}
