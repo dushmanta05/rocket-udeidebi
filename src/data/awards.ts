@@ -33,7 +33,7 @@ export const AWARDS_DATA: AwardItem[] = [
   {
     id: 'award-4',
     title: 'Doraemon Pocket Award',
-    roast: 'Need a safety pin, 3-pin charger, a biscuit, or emergency medicine? Ask her bag.',
+    roast: 'Need a safety pin, Jhandu Balm, Hajmola, or perfume? Ask her bag.',
     label: 'Award: Doraemon Pocket',
     src: ASSETS.penguBag
   },

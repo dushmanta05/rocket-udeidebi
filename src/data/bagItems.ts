@@ -6,11 +6,11 @@ export interface BagItem {
 }
 
 export const BAG_ITEMS: BagItem[] = [
-  { id: 'item-1', name: 'Phone Charger', roast: 'Not hers. Belongs to someone who gave up asking six months ago.' },
-  { id: 'item-2', name: 'Snack Stash', roast: 'Emergency rations stockpiled for a war that will never come.' },
-  { id: 'item-3', name: 'Pocket Chair', roast: 'For roadside chai breaks. Deployed within three seconds flat.' },
-  { id: 'item-4', name: 'Medicine Strip', roast: 'Headache, fever, heartbreak, existential dread. She has one for each.' },
-  { id: 'item-5', name: 'Leftover Biscuit', roast: 'Crushed into crumbs. Never thrown away, even when full.' },
-  { id: 'item-6', name: 'Dog Biscuit', roast: 'Reserved for every stray animal she meets on the way.' },
-  { id: 'item-7', name: 'Safety Pin', roast: 'Single-handedly saved three weddings and one product demo.' }
+  { id: 'item-1', name: 'Pocket Chair', roast: 'For roadside chai breaks. Deployed within three seconds flat.' },
+  { id: 'item-2', name: 'Hand Cream', roast: 'Applied every twelve minutes without fail. Leaves the entire floor smelling like a luxury spa.' },
+  { id: 'item-3', name: 'Hajmola', roast: 'Digestive candy for post-meal survival. Generously distributed to anyone who makes eye contact.' },
+  { id: 'item-4', name: 'Jhandu Balm', roast: 'Her single-point solution for headaches, office stress, and questionable life decisions.' },
+  { id: 'item-5', name: 'Perfume', roast: 'Two spritzes for freshness, six more for dramatic presence. You smell her arrival two hallways away.' },
+  { id: 'item-6', name: 'Dog Biscuit', roast: 'Reserved for every stray puppy and kitten she meets on her travels.' },
+  { id: 'item-7', name: 'Safety Pin', roast: 'Single-handedly saved three weddings, four outfits, and one critical presentation.' }
 ]
