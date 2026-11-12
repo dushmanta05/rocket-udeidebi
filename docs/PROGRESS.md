@@ -47,8 +47,9 @@ Ideas raised for possible extra sections; none is started.
 | 11 | Say NO | Done | 2-column stage, scenario-themed GIFs (boss, bag, Jagatmata, 7am, chair, believe), stabilized card layout, bounded dodging, PASSED stamp |
 | 12 | Cloud Kitchen | Done | Scattered recipe board, modal view with cycling chef cooking GIFs and itemized bill with PAID stamp |
 | 13 | Predictions | Done | Large card, future-lens Pengu, wrapping 2-row revealed name tray (no horizontal scrollbar) |
-| 14 | Crew messages | Done | Retro marquee, cinema curtains, clapperboard, film reel, fullscreen toggle, remote-holding Pengu |
-| 15 | Launch & Finale | Done | Name pills, countdown, blast-off, pink thank-you title, strictly 13 crew wish-stars, continuous confetti |
+| 14 | Why We Love You (Heart) | Done | Pre-video heartfelt tribute section highlighting 6 true qualities of Arpita with hero GIFs, quotes & badge tray |
+| 15 | Crew messages | Done | Retro marquee, cinema curtains, clapperboard, film reel, fullscreen toggle, remote & popcorn Pengu |
+| 16 | Launch & Finale | Done | Name pills, countdown, blast-off, pink thank-you title, strictly 13 crew wish-stars, continuous confetti |
 
 ---
 
@@ -209,3 +210,4 @@ Ideas raised for possible extra sections; none is started.
 - Doraemon Bag Artifacts Refresh: Added Hand Cream, Hajmola, Jhandu Balm, and Perfume with tailored affectionate roasts; removed phone charger, snack stash, medicine strip, and leftover biscuit; updated Doraemon Pocket Award copy.
 - Special Film Screen Popcorn & Cute Hippo Update: Renamed subtitle to "Special feature film for cute hippo", added handwritten "Get ready with popcorn!" line and clapper text, integrated `pengu-popcorn.gif` inside standby cinema player and dynamic playback state on side remote Pengu.
 - Cloud Kitchen Signature Dishes: Added Arpita's real specialty culinary creations (Royal Afghani Chicken, Signature Dum Biryani, Masterclass Chocolate Cake) alongside the roast classics in a balanced 6-dish grid with chef tags and recipe tickets.
+- Heart of Gold Tribute Section: Built dedicated 14th section "Why We Love You, Hippo" before the video screen, showcasing 6 heartfelt genuine qualities (empathy, master cooking, electric laughter, unwavering loyalty, gentle spirit, and irreplaceable friendship) with matching transparent Pengu GIFs, Caveat quotes, and badge chips tray.

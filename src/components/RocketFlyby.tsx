@@ -50,7 +50,7 @@ export function RocketFlyby({ section }: RocketFlybyProps) {
   const traj = FLYBY_TRAJECTORIES[flightIdx]
   const pose = useMemo(() => computeTrajectoryPose(traj), [traj])
 
-  if (reduceMotion || section < 4 || section > 12) return null
+  if (reduceMotion || section < 4 || section > 13) return null
 
   return (
     <div className="flyby-layer" aria-hidden="true">

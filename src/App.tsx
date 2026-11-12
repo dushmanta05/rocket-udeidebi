@@ -18,6 +18,7 @@ import { Terms } from './sections/Terms'
 import { SayNo } from './sections/SayNo'
 import { CloudKitchen } from './sections/CloudKitchen'
 import { Predictions } from './sections/Predictions'
+import { HeartOfGold } from './sections/HeartOfGold'
 import { CrewMessages } from './sections/CrewMessages'
 import { LaunchFinale } from './sections/LaunchFinale'
 
@@ -55,8 +56,10 @@ export default function App() {
       case 12:
         return <Predictions {...stepProps} />
       case 13:
-        return <CrewMessages {...stepProps} />
+        return <HeartOfGold {...stepProps} />
       case 14:
+        return <CrewMessages {...stepProps} />
+      case 15:
         return <LaunchFinale {...stepProps} />
       default:
         return null

@@ -8,7 +8,7 @@ import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
-const copy = SECTIONS[13]
+const copy = SECTIONS[14]
 
 export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
   const wishes = useWishes()

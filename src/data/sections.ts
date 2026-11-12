@@ -99,6 +99,13 @@ export const SECTIONS: SectionCopy[] = [
     hint: 'Tap the crystal ball'
   },
   {
+    short: 'Heart',
+    kicker: 'All Roasts Aside',
+    title: 'Why We Love You, Hippo',
+    subtitle: 'We spent the whole evening roasting you, but here is the honest truth from our hearts.',
+    hint: 'Tap to read why you are so special'
+  },
+  {
     short: 'Crew',
     kicker: 'The Crew Premiere',
     title: 'A Special Film for Hippo',
