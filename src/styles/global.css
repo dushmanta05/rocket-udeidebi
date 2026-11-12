@@ -3295,7 +3295,19 @@ img {
   font-family: var(--font-hand);
   font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.standby-popcorn-line {
+  font-family: var(--font-hand);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  color: var(--gold);
   margin-bottom: 12px;
+}
+
+.cinema-popcorn-pengu {
+  margin-bottom: 8px;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
 }
 
 .standby-meta-row {

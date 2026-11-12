@@ -47,6 +47,7 @@ export const ASSETS = {
   penguNo4: './images/pengu-no-4.gif',
   penguNo5: './images/pengu-no-5.gif',
   penguMic: './images/penguin-mic.gif',
+  penguPopcorn: './images/pengu-popcorn.gif',
   thankYou: './images/thank-you.gif',
   pranjal: './images/pranjal.png',
   crewFilm: './videos/crew-film.mp4',

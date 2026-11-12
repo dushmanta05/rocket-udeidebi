@@ -49,6 +49,7 @@ type PenguVariant =
   | 'yes'
   | 'greet'
   | 'please'
+  | 'popcorn'
 
 interface PenguProps {
   size?: number
@@ -101,7 +102,8 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   walk: ASSETS.penguWalk,
   yes: ASSETS.penguYes,
   greet: ASSETS.penguGreet,
-  please: ASSETS.penguPlease
+  please: ASSETS.penguPlease,
+  popcorn: ASSETS.penguPopcorn
 }
 
 export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguProps) {
@@ -164,7 +166,9 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
                                                             ? 'Pengu greeting warmly'
                                                             : variant === 'please'
                                                               ? 'Pengu begging politely'
-                                                              : 'Pengu'
+                                                              : variant === 'popcorn'
+                                                                ? 'Pengu eating popcorn'
+                                                                : 'Pengu'
         }
         className="pengu-img"
         fallback={

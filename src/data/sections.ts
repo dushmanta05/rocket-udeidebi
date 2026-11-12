@@ -193,7 +193,8 @@ export const PREDICTIONS_COPY = {
 
 export const CREW_COPY = {
   filmTitle: 'The Crew Premiere',
-  filmSubtitle: 'Special feature film for Arpita Nayak',
+  filmSubtitle: 'Special feature film for cute hippo',
+  popcornLine: 'Get ready with popcorn!',
   playPrompt: 'Tap Pengu or screen to play',
   nowPlaying: 'Now Playing · Sit back & enjoy!',
   filmPlaceholder: 'Drop crew-film.mp4 into public/videos/',

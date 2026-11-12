@@ -104,8 +104,16 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
               ) : (
                 <div className="cinema-standby" onClick={triggerRemote}>
                   <div className="cinema-clapper">
-                    <span className="clapper-stripe">🎬 ROLL 01 · SCENE: ARPITA · TAKE 01</span>
+                    <span className="clapper-stripe">ROLL 01 · SCENE: CUTE HIPPO · TAKE 01</span>
                   </div>
+
+                  <div className="cinema-popcorn-pengu">
+                    <Pengu size={130} variant="popcorn" />
+                  </div>
+
+                  <h3 className="standby-title">{CREW_COPY.filmTitle}</h3>
+                  <p className="standby-sub">{CREW_COPY.filmSubtitle}</p>
+                  <p className="standby-popcorn-line">{CREW_COPY.popcornLine}</p>
 
                   <div className="cinema-reel-ring">
                     <motion.div
@@ -118,9 +126,6 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
                       </svg>
                     </motion.div>
                   </div>
-
-                  <h3 className="standby-title">{CREW_COPY.filmTitle}</h3>
-                  <p className="standby-sub">{CREW_COPY.filmSubtitle}</p>
 
                   <span className="standby-badge">{CREW_COPY.filmPlaceholder}</span>
                 </div>
@@ -164,11 +169,13 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
           whileTap={{ scale: 0.95 }}
         >
           <div className="pengu-speech-bubble">
-            {isPlaying ? 'Shh... movie rolling! 🍿' : 'Tap me for remote! 🎬'}
+            {isPlaying ? 'Shh... movie rolling!' : 'Get ready with popcorn! Tap for remote!'}
           </div>
           {remoteFlash && <div className="infrared-beam" />}
-          <Pengu size={185} variant="remote" />
-          <span className="name-pill pengu-remote-pill">Pengu Remote</span>
+          <Pengu size={185} variant={isPlaying ? 'popcorn' : 'remote'} />
+          <span className="name-pill pengu-remote-pill">
+            {isPlaying ? 'Pengu Popcorn' : 'Pengu Remote'}
+          </span>
         </motion.div>
       </div>
 
