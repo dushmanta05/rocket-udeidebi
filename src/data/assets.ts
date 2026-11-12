@@ -7,6 +7,7 @@ export const ASSETS = {
   pengu: './images/pengu.png',
   penguJourney: './images/pengu.webp',
   penguBag: './images/pengu-bag.gif',
+  penguBags: './images/pengu-bags.gif',
   penguJagatMata: './images/pengu-jagat-mata.gif',
   penguTubelight: './images/pengu-tubelight.gif',
   penguAsking: './images/pengu-asking.gif',

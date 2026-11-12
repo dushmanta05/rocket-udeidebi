@@ -29,6 +29,7 @@ type PenguVariant =
   | 'mic'
   | 'thankYou'
   | 'bag'
+  | 'bags'
   | 'jagatMata'
   | 'tubelight'
   | 'rocket'
@@ -81,6 +82,7 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   mic: ASSETS.penguMic,
   thankYou: ASSETS.thankYou,
   bag: ASSETS.penguBag,
+  bags: ASSETS.penguBags,
   jagatMata: ASSETS.penguJagatMata,
   tubelight: ASSETS.penguTubelight,
   rocket: ASSETS.penguRocketGif,
@@ -124,8 +126,8 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
                       ? 'Pengu running'
                       : variant.startsWith('love')
                         ? 'Pengu with love'
-                        : variant === 'bag'
-                          ? 'Pengu with Doraemon bag'
+                        : variant === 'bag' || variant === 'bags'
+                          ? 'Pengu with bags'
                           : variant === 'jagatMata'
                             ? 'Jagatmata Pengu'
                             : variant === 'tubelight'

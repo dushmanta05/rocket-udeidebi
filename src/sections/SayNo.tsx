@@ -9,7 +9,7 @@ import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[10]
-const SCENARIO_VARIANTS = ['please', 'bag', 'jagatMata', 'asking', 'chair', 'believe'] as const
+const SCENARIO_VARIANTS = ['please', 'bags', 'jagatMata', 'asking', 'chair', 'believe'] as const
 const SIDE_QUOTES = [
   'A wild project lead appears! Can you say NO?',
   'Wait, this bag weighs 20 kilos... resist!',
