@@ -3570,17 +3570,10 @@ img {
   white-space: nowrap;
 }
 
-.infrared-beam {
-  position: absolute;
-  top: 50%;
-  left: -20px;
-  width: 50px;
-  height: 4px;
-  background: #ff4d6d;
-  box-shadow: 0 0 16px #ff4d6d;
-  border-radius: 2px;
-  transform: rotate(20deg);
-  pointer-events: none;
+.remote-pengu-facing {
+  display: inline-flex;
+  transform: scaleX(-1);
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
 }
 
 .pengu-remote-pill {

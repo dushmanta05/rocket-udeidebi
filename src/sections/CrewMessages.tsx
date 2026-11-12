@@ -16,7 +16,6 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
   const bezelRef = useRef<HTMLDivElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [videoFailed, setVideoFailed] = useState(false)
-  const [remoteFlash, setRemoteFlash] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
   const filmSource = ASSETS.crewFilm || (wishes.length > 0 && wishes[0].video ? wishes[0].video : null)
@@ -34,8 +33,6 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
   }, [])
 
   const triggerRemote = () => {
-    setRemoteFlash(true)
-    setTimeout(() => setRemoteFlash(false), 350)
     confetti({
       particleCount: 28,
       spread: 65,
@@ -171,8 +168,9 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
           <div className="pengu-speech-bubble">
             {isPlaying ? 'Shh... movie rolling!' : 'Get ready with popcorn! Tap for remote!'}
           </div>
-          {remoteFlash && <div className="infrared-beam" />}
-          <Pengu size={185} variant={isPlaying ? 'popcorn' : 'remote'} />
+          <div className="remote-pengu-facing">
+            <Pengu size={185} variant={isPlaying ? 'popcorn' : 'remote'} />
+          </div>
           <span className="name-pill pengu-remote-pill">
             {isPlaying ? 'Pengu Popcorn' : 'Pengu Remote'}
           </span>
