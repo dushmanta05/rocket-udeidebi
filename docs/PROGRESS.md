@@ -43,8 +43,8 @@ Ideas raised for possible extra sections; none is started.
 | 07 | Doraemon pocket | Done | 7 bag artifacts, drawn tote bag, item details beside it |
 | 08 | Hippo Recharge Station | Done | Dedicated section, 5s battery charging (0-100%), locked resume button, `pengu-energy.gif` |
 | 09 | Tubelight | Done | Timestamped log, flicker, comprehension meter, room lights up |
-| 10 | Terms & Conditions | Done | Zig-zag 8 clauses, modal viewer, cursive Arpita Nayak signature, `pengu-yes.gif` badge |
-| 11 | Say NO | Done | Chat requests, enlarged dodging NO, weekend work & heavy bag roasts, `beleive-in-pengu.gif` on final exam |
+| 10 | Terms & Conditions | Done | 3+3+2 matrix, modal viewer with Esc close, proportional Arpita Nayak cursive signature, pengu-flower.gif |
+| 11 | Say NO | Done | 2-column stage, scenario-themed GIFs (boss, bag, Jagatmata, 7am, chair, believe), stabilized card layout, bounded dodging, PASSED stamp |
 | 12 | Cloud Kitchen | Done | Scattered recipe board, modal view with cycling chef cooking GIFs and itemized bill with PAID stamp |
 | 13 | Predictions | Done | Large card, future-lens Pengu, wrapping 2-row revealed name tray (no horizontal scrollbar) |
 | 14 | Crew messages | Done | Retro marquee, cinema curtains, clapperboard, film reel, fullscreen toggle, remote-holding Pengu |
