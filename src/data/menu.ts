@@ -1,6 +1,7 @@
 export interface MenuItem {
   id: string
   name: string
+  tag?: string
   description: string
   price: string
 }
@@ -8,31 +9,43 @@ export interface MenuItem {
 export const MENU_ITEMS: MenuItem[] = [
   {
     id: 'dish-1',
-    name: 'Never-Throw Thali',
-    description: 'A full royal platter plus whatever half-eaten roti is left on your plate.',
+    name: 'Royal Afghani Chicken',
+    tag: 'Chef’s Real Masterpiece',
+    description: 'Her true culinary crowning glory. Marinated with secret spices and pure perfection. The real reason friends show up at her door unannounced.',
     price: 'Free, because heart'
   },
   {
     id: 'dish-2',
-    name: 'Munch Mix Special',
-    description: 'Whatever assorted edible treasures are currently floating in the Doraemon bag.',
+    name: 'Signature Dum Biryani',
+    tag: 'Crowd Favorite',
+    description: 'Slow-cooked aromatic masterpiece. One whiff summons the entire crew to the dining table. Diet resolutions are instantly canceled.',
     price: 'Free, because heart'
   },
   {
     id: 'dish-3',
-    name: 'Chai With A Chair Combo',
-    description: 'Steaming ginger tea paired with the comfiest armchair in the establishment.',
+    name: 'Masterclass Chocolate Cake',
+    tag: 'Secret Specialty',
+    description: 'Decadent, rich, and dangerously soft. Baked with love and guaranteed to vanish completely within sixty seconds of leaving the oven.',
     price: 'Free, because heart'
   },
   {
     id: 'dish-4',
-    name: 'Work Bestie’s Midnight Maggi',
-    description: 'Cooked with extra love and seasoned with the week’s juicy gossip.',
+    name: 'Chai With A Chair Combo',
+    tag: 'Comfort Special',
+    description: 'Steaming ginger tea paired with the comfiest armchair in the establishment.',
     price: 'Free, because heart'
   },
   {
     id: 'dish-5',
+    name: 'Never-Throw Thali',
+    tag: 'Host Special',
+    description: 'A full royal platter plus whatever half-eaten roti is left on your plate.',
+    price: 'Free, because heart'
+  },
+  {
+    id: 'dish-6',
     name: 'Jagatmata Feast',
+    tag: 'Heart of Gold',
     description: 'An endless buffet open to humans, birds, puppies, and weary travelers alike.',
     price: 'Free, because heart'
   }

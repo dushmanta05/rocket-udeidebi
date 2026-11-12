@@ -8,7 +8,7 @@ import { Hint, SectionHeader } from '../components/SectionHeader'
 
 const copy = SECTIONS[11]
 const CHEF_VARIANTS = ['kitchen', 'kitchen2', 'kitchen3'] as const
-const RECIPE_TILTS = [-2, 2.4, -1.8, 2, -2.2]
+const RECIPE_TILTS = [-2, 2.4, -1.8, 2, -2.2, 1.8]
 
 export function CloudKitchen() {
   const [activeDish, setActiveDish] = useState<MenuItem | null>(null)
@@ -55,7 +55,7 @@ export function CloudKitchen() {
               onClick={() => openDish(dish)}
             >
               <div className="recipe-card-head">
-                <span className="recipe-tag">Recipe #{idx + 1}</span>
+                <span className="recipe-tag">{dish.tag || `Recipe #${idx + 1}`}</span>
                 <span className="recipe-badge-free">100% Free</span>
               </div>
               <h3 className="recipe-card-title">{dish.name}</h3>
@@ -113,7 +113,7 @@ export function CloudKitchen() {
             >
               <div className="kitchen-modal-header">
                 <div>
-                  <span className="pill">Cloud Kitchen Special</span>
+                  <span className="pill">{activeDish.tag || 'Cloud Kitchen Special'}</span>
                   <h3 className="kitchen-modal-title">{activeDish.name}</h3>
                 </div>
                 <button type="button" className="term-modal-close" onClick={() => setActiveDish(null)}>✕</button>
