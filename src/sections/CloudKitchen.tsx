@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
-import { MENU_ITEMS, type MenuItem } from '../data/menu'
+import { MENU_ITEMS } from '../data/menu'
 import { KITCHEN_COPY, SECTIONS } from '../data/sections'
 import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
@@ -11,30 +11,45 @@ const CHEF_VARIANTS = ['cook1', 'cook2', 'cook3', 'cook4', 'cook5', 'cook6'] as 
 const RECIPE_TILTS = [-2, 2.4, -1.8, 2, -2.2, 1.8]
 
 export function CloudKitchen() {
-  const [activeDish, setActiveDish] = useState<MenuItem | null>(null)
+  const [activeIdx, setActiveIdx] = useState<number | null>(null)
   const [ticket, setTicket] = useState(101)
   const [chefIdx, setChefIdx] = useState(0)
 
-  useEffect(() => {
-    if (activeDish === null) return
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setActiveDish(null)
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [activeDish])
+  const activeDish = activeIdx !== null ? MENU_ITEMS[activeIdx] : null
 
-  const openDish = (dish: MenuItem, idx: number) => {
-    setActiveDish(dish)
+  const openDish = (idx: number) => {
+    setActiveIdx(idx)
     setTicket((prev) => prev + 1)
     setChefIdx(idx % CHEF_VARIANTS.length)
     confetti({ particleCount: 36, spread: 70, origin: { y: 0.6 }, colors: ['#ffd27a', '#7ee2a8', '#8ec5ff'] })
+  }
+
+  const navigateDish = (newIdx: number) => {
+    setActiveIdx(newIdx)
+    setTicket((prev) => prev + 1)
+    setChefIdx(newIdx % CHEF_VARIANTS.length)
+    confetti({ particleCount: 22, spread: 50, origin: { y: 0.6 }, colors: ['#ffd27a', '#7ee2a8', '#8ec5ff'] })
   }
 
   const cycleChef = (e: React.MouseEvent) => {
     e.stopPropagation()
     setChefIdx((prev) => (prev + 1) % CHEF_VARIANTS.length)
   }
+
+  useEffect(() => {
+    if (activeIdx === null) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveIdx(null)
+      } else if (e.key === 'ArrowRight') {
+        navigateDish((activeIdx + 1) % MENU_ITEMS.length)
+      } else if (e.key === 'ArrowLeft') {
+        navigateDish((activeIdx - 1 + MENU_ITEMS.length) % MENU_ITEMS.length)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeIdx])
 
   return (
     <div className="section kitchen-section">
@@ -52,7 +67,7 @@ export function CloudKitchen() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 + idx * 0.08 }}
-              onClick={() => openDish(dish, idx)}
+              onClick={() => openDish(idx)}
             >
               <div className="recipe-card-head">
                 <span className="recipe-tag">{dish.tag || `Recipe #${idx + 1}`}</span>
@@ -95,13 +110,13 @@ export function CloudKitchen() {
       </div>
 
       <AnimatePresence>
-        {activeDish && (
+        {activeDish && activeIdx !== null && (
           <motion.div
             className="kitchen-modal-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setActiveDish(null)}
+            onClick={() => setActiveIdx(null)}
           >
             <motion.div
               className="kitchen-modal"
@@ -113,10 +128,19 @@ export function CloudKitchen() {
             >
               <div className="kitchen-modal-header">
                 <div>
-                  <span className="pill">{activeDish.tag || 'Cloud Kitchen Special'}</span>
+                  <span className="pill">
+                    Recipe {String(activeIdx + 1).padStart(2, '0')} of {String(MENU_ITEMS.length).padStart(2, '0')} · {activeDish.tag || 'Cloud Kitchen Special'}
+                  </span>
                   <h3 className="kitchen-modal-title">{activeDish.name}</h3>
                 </div>
-                <button type="button" className="term-modal-close" onClick={() => setActiveDish(null)}>✕</button>
+                <button
+                  type="button"
+                  className="term-modal-close"
+                  onClick={() => setActiveIdx(null)}
+                  aria-label="Close recipe"
+                >
+                  ✕
+                </button>
               </div>
 
               <div className="kitchen-modal-body">
@@ -146,6 +170,36 @@ export function CloudKitchen() {
               </div>
 
               <p className="kitchen-modal-recipe-desc">{activeDish.description}</p>
+
+              <div className="family-modal-nav">
+                <button
+                  type="button"
+                  className="family-nav-btn"
+                  onClick={() => navigateDish((activeIdx - 1 + MENU_ITEMS.length) % MENU_ITEMS.length)}
+                  aria-label="Previous recipe"
+                >
+                  ‹ Previous
+                </button>
+
+                <div className="family-dots-tray">
+                  {MENU_ITEMS.map((_, dotIdx) => (
+                    <span
+                      key={dotIdx}
+                      className={`family-dot ${dotIdx === activeIdx ? 'active' : ''}`}
+                      onClick={() => navigateDish(dotIdx)}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  className="family-nav-btn"
+                  onClick={() => navigateDish((activeIdx + 1) % MENU_ITEMS.length)}
+                  aria-label="Next recipe"
+                >
+                  Next ›
+                </button>
+              </div>
             </motion.div>
           </motion.div>
         )}

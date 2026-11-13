@@ -61,7 +61,7 @@ export const TIMELINE_STOPS: TimelineStop[] = [
     title: 'The Chai Break Protocol',
     caption: 'Chai took 3 minutes. Finding her ideal sitting spot took 15.',
     chapter: 'work',
-    src: ASSETS.penguChair
+    src: ASSETS.penguTea
   },
   {
     id: 'work-3',
