@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti'
 import { FAMILY_PHOTOS } from '../data/familyPhotos'
 import { SECTIONS } from '../data/sections'
 import { Placeholder } from '../components/Placeholder'
-import { Hint, SectionHeader } from '../components/SectionHeader'
+import { SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[2]
@@ -72,7 +72,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
     <div className="section family-section">
       <SectionHeader
         copy={copy}
-        kicker={`${copy.kicker} · Set ${setIndex + 1} of ${SETS.length}: ${currentSet.title}`}
+        kicker={copy.kicker}
       />
 
       <div className="family-stage">
@@ -125,7 +125,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
                     style={{ background: TAPE_COLORS[globalIdx % TAPE_COLORS.length] }}
                   />
                   <div className="family-photo-frame">
-                    <Placeholder label={photo.title} src={photo.src} aspectRatio="1 / 1" />
+                    <Placeholder label={photo.title} src={photo.src} aspectRatio="4 / 3" />
                   </div>
                   <div className="family-card-body">
                     <div className="family-card-meta">
@@ -140,7 +140,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
           </motion.div>
         </AnimatePresence>
 
-        <div className="family-nav-row">
+        <footer className="family-footer">
           <button
             type="button"
             className="family-stage-btn"
@@ -148,7 +148,8 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
           >
             {setIndex === 0 ? 'Next: Family & The "A" Squad (5 photos) →' : 'Next: Then We Met You →'}
           </button>
-        </div>
+          <span className="family-hint-text">{copy.hint}</span>
+        </footer>
       </div>
 
       <AnimatePresence>
@@ -228,8 +229,6 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
           </motion.div>
         )}
       </AnimatePresence>
-
-      <Hint>{copy.hint}</Hint>
     </div>
   )
 }

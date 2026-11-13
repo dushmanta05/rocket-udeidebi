@@ -1168,41 +1168,61 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
+  padding: clamp(10px, 1.8vh, 18px) clamp(16px, 4vw, 48px) 8px;
+  gap: clamp(6px, 1vh, 10px);
+}
+
+.family-section .section-header {
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.family-section .section-title {
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.family-section .section-subtitle {
+  font-size: clamp(0.82rem, 1vw, 0.92rem);
+  line-height: 1.25;
+  margin: 0;
 }
 
 .family-stage {
   flex: 1;
   min-height: 0;
   width: 100%;
-  max-width: 1100px;
+  max-width: 960px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: clamp(10px, 1.6vh, 18px);
+  justify-content: flex-start;
+  gap: clamp(6px, 1.2vh, 12px);
 }
 
 .family-set-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px;
+  gap: 6px;
+  padding: 3px;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
 }
 
 .family-set-pill {
-  padding: 5px 16px;
+  padding: 4px 14px;
   border-radius: var(--radius-full);
   background: transparent;
   border: 1px solid transparent;
   color: var(--ink-soft);
   font-family: var(--font-display);
-  font-size: clamp(0.78rem, 1vw, 0.86rem);
+  font-size: clamp(0.74rem, 0.88vw, 0.82rem);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s;
@@ -1220,13 +1240,16 @@ img {
   align-items: center;
   justify-content: center;
   width: 100%;
+  flex: 1;
+  min-height: 0;
 }
 
 .family-cards-wrap.set-0 {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(14px, 2.2vw, 22px);
-  max-width: 620px;
+  grid-template-columns: repeat(2, minmax(0, 230px));
+  justify-content: center;
+  gap: clamp(10px, 1.4vw, 16px);
+  max-width: 500px;
   width: 100%;
 }
 
@@ -1238,23 +1261,22 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: clamp(12px, 1.8vw, 18px);
-  max-width: 860px;
+  gap: clamp(10px, 1.2vw, 14px);
+  max-width: 660px;
   width: 100%;
 }
 
 .family-cards-wrap.set-1 .family-card {
-  flex: 0 1 calc((100% - 2 * clamp(12px, 1.8vw, 18px)) / 3 - 2px);
-  min-width: 220px;
-  max-width: 270px;
+  width: clamp(165px, 13vw, 205px);
+  flex: 0 0 auto;
 }
 
 .family-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: clamp(10px, 1.3vw, 14px);
-  border-radius: 18px;
+  padding: 8px 9px;
+  border-radius: 14px;
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
@@ -1271,41 +1293,56 @@ img {
 
 .family-tape {
   position: absolute;
-  top: -8px;
+  top: -6px;
   left: 50%;
   transform: translateX(-50%) rotate(-1.5deg);
-  width: 46px;
-  height: 15px;
+  width: 36px;
+  height: 12px;
   opacity: 0.88;
   border-radius: 2px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 2;
 }
 
 .family-photo-frame {
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(0, 0, 0, 0.35);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  height: clamp(100px, 13.5vh, 130px);
+  width: 100%;
+}
+
+.family-photo-frame .media-frame,
+.family-photo-frame .media-placeholder {
+  height: 100% !important;
+  width: 100%;
+}
+
+.family-photo-frame .media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
 }
 
 .family-card-body {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  margin-top: 8px;
+  gap: 2px;
+  margin-top: 6px;
 }
 
 .family-card-meta {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 5px;
 }
 
 .family-photo-num {
   font-family: var(--font-display);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: var(--gold);
   letter-spacing: 0.04em;
@@ -1313,7 +1350,7 @@ img {
 
 .family-card-title {
   font-family: var(--font-display);
-  font-size: clamp(0.88rem, 1.1vw, 1.02rem);
+  font-size: clamp(0.8rem, 0.95vw, 0.92rem);
   font-weight: 700;
   color: #ffffff;
   white-space: nowrap;
@@ -1324,9 +1361,9 @@ img {
 
 .family-card-caption {
   font-family: var(--font-hand);
-  font-size: clamp(0.96rem, 1.25vw, 1.12rem);
+  font-size: clamp(0.82rem, 1vw, 0.96rem);
   color: var(--ink-soft);
-  line-height: 1.25;
+  line-height: 1.2;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1334,24 +1371,26 @@ img {
   overflow: hidden;
 }
 
-.family-nav-row {
+.family-footer {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 4px;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-top: clamp(8px, 1.5vh, 14px);
 }
 
 .family-stage-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 22px;
+  gap: 6px;
+  padding: 6px 18px;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.22);
   color: var(--gold);
   font-family: var(--font-display);
-  font-size: 0.88rem;
+  font-size: clamp(0.78rem, 0.9vw, 0.84rem);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
@@ -1362,6 +1401,12 @@ img {
   border-color: var(--gold);
   color: #ffffff;
   transform: translateY(-1px);
+}
+
+.family-hint-text {
+  font-size: 0.76rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
 }
 
 .family-modal-backdrop {
@@ -4792,31 +4837,42 @@ img {
   }
 
   .family-stage {
-    gap: 12px;
+    gap: 8px;
+    height: auto;
   }
 
   .family-cards-wrap.set-0 {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    max-width: 380px;
+    gap: 8px;
+    max-width: 360px;
   }
 
   .family-cards-wrap.set-1 {
-    gap: 10px;
-    max-width: 380px;
+    gap: 8px;
+    max-width: 360px;
   }
 
   .family-cards-wrap.set-1 .family-card {
-    flex: 0 1 calc((100% - 10px) / 2);
-    min-width: 140px;
+    flex: 0 1 calc((100% - 8px) / 2);
+    min-width: 135px;
+    width: auto;
+  }
+
+  .family-photo-frame {
+    height: 105px;
   }
 
   .family-card {
-    padding: 8px;
+    padding: 6px;
   }
 
   .family-card-caption {
-    font-size: 0.88rem;
+    font-size: 0.8rem;
+  }
+
+  .family-footer {
+    margin-top: 14px;
+    margin-bottom: 20px;
   }
 
   .polaroid-grid,
