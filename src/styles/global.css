@@ -1246,10 +1246,10 @@ img {
 
 .family-cards-wrap.set-0 {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 310px));
+  grid-template-columns: repeat(2, minmax(0, 390px));
   justify-content: center;
   gap: clamp(14px, 2vw, 24px);
-  max-width: 660px;
+  max-width: 840px;
   width: 100%;
 }
 
@@ -1262,12 +1262,12 @@ img {
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(12px, 1.6vw, 18px);
-  max-width: 880px;
+  max-width: 1040px;
   width: 100%;
 }
 
 .family-cards-wrap.set-1 .family-card {
-  width: clamp(230px, 19vw, 275px);
+  width: clamp(260px, 23vw, 315px);
   flex: 0 0 auto;
 }
 
@@ -1310,7 +1310,7 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(0, 0, 0, 0.35);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
-  height: clamp(135px, 18vh, 180px);
+  height: clamp(155px, 21vh, 215px);
   width: 100%;
 }
 

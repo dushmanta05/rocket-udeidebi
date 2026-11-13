@@ -30,7 +30,7 @@ export function HeartOfGold({ currentStep, setTotalSteps, onNext }: StepSectionP
     <div className="section heart-section" onClick={onNext}>
       <SectionHeader
         copy={copy}
-        kicker={`${copy.kicker} · Truth ${index + 1} of ${TRIBUTES_DATA.length}`}
+        kicker={copy.kicker}
       />
 
       <div className="heart-layout">
@@ -58,7 +58,6 @@ export function HeartOfGold({ currentStep, setTotalSteps, onNext }: StepSectionP
           >
             <div className="heart-head-row">
               <span className="pill">{tribute.badge}</span>
-              <span className="heart-badge-sub">Truth #{index + 1}</span>
             </div>
 
             <h3 className="heart-title">{tribute.title}</h3>
