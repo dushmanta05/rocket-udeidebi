@@ -70,10 +70,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
 
   return (
     <div className="section family-section">
-      <SectionHeader
-        copy={copy}
-        kicker={copy.kicker}
-      />
+      <SectionHeader copy={copy} />
 
       <div className="family-stage">
         <div className="family-set-toggle">
