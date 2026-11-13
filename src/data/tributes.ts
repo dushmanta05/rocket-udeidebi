@@ -20,7 +20,7 @@ export const TRIBUTES_DATA: TributeItem[] = [
     badge: 'Heart of Gold',
     photoLabel: 'Empathy & Warmth',
     src: ASSETS.penguHeart,
-    scale: 1.38
+    scale: 1.22
   },
   {
     id: 'tribute-2',
@@ -30,7 +30,7 @@ export const TRIBUTES_DATA: TributeItem[] = [
     badge: 'Master Chef',
     photoLabel: 'Cooking with Love',
     src: ASSETS.penguFood,
-    scale: 1.3
+    scale: 1.12
   },
   {
     id: 'tribute-3',
@@ -40,7 +40,7 @@ export const TRIBUTES_DATA: TributeItem[] = [
     badge: 'Pure Joy',
     photoLabel: 'Electric Smile',
     src: ASSETS.penguSmile,
-    scale: 1.12
+    scale: 0.9
   },
   {
     id: 'tribute-4',
@@ -50,7 +50,7 @@ export const TRIBUTES_DATA: TributeItem[] = [
     badge: 'Forever Loyal',
     photoLabel: 'Always in Our Corner',
     src: ASSETS.penguFriend,
-    scale: 1.08
+    scale: 0.9
   },
   {
     id: 'tribute-5',
@@ -60,16 +60,6 @@ export const TRIBUTES_DATA: TributeItem[] = [
     badge: 'Pure Grace',
     photoLabel: 'Gentle Soul',
     src: ASSETS.penguPari,
-    scale: 1.25
-  },
-  {
-    id: 'tribute-6',
-    title: 'Simply Irreplaceable Hippo',
-    quote: 'There is truly nobody else like you.',
-    text: 'Pranjal is the luckiest guy on earth, but we are the lucky crew who get to celebrate you today. Thank you for the chai breaks, the laughter, the endless love, and for being the brightest star in our galaxy.',
-    badge: 'Our Star',
-    photoLabel: 'Irreplaceable Hippo',
-    src: ASSETS.penguCute,
-    scale: 1.0
+    scale: 1.15
   }
 ]

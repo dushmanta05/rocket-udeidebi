@@ -15,6 +15,7 @@ type PenguVariant =
   | 'dance3'
   | 'party1'
   | 'party2'
+  | 'party3'
   | 'heart'
   | 'food'
   | 'pari'
@@ -76,6 +77,7 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   dance3: ASSETS.penguDance3,
   party1: ASSETS.penguParty1,
   party2: ASSETS.penguParty2,
+  party3: ASSETS.penguParty3,
   heart: ASSETS.penguHeart,
   food: ASSETS.penguFood,
   pari: ASSETS.penguPari,

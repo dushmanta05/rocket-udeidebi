@@ -45,10 +45,6 @@ export function HeartOfGold({ currentStep, setTotalSteps, onNext }: StepSectionP
           >
             <Placeholder label={tribute.photoLabel} src={tribute.src} aspectRatio="1 / 1" />
           </motion.div>
-          <div className="heart-counter">
-            <span className="heart-counter-num">{index + 1}</span>
-            <span className="heart-counter-of">of {TRIBUTES_DATA.length} truths</span>
-          </div>
         </div>
 
         <AnimatePresence mode="wait">
@@ -71,7 +67,7 @@ export function HeartOfGold({ currentStep, setTotalSteps, onNext }: StepSectionP
 
             <div className="heart-card-footer">
               <span className="heart-prompt">
-                {index < TRIBUTES_DATA.length - 1 ? 'Tap anywhere for next truth →' : 'Next up: A Special Film for Hippo →'}
+                {index < TRIBUTES_DATA.length - 1 ? 'Tap anywhere for next →' : 'Next up: A Special Film for Hippo →'}
               </span>
             </div>
           </motion.article>
