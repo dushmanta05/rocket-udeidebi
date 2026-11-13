@@ -13,27 +13,19 @@ const RECIPE_TILTS = [-2, 2.4, -1.8, 2, -2.2, 1.8]
 export function CloudKitchen() {
   const [activeIdx, setActiveIdx] = useState<number | null>(null)
   const [ticket, setTicket] = useState(101)
-  const [chefIdx, setChefIdx] = useState(0)
 
   const activeDish = activeIdx !== null ? MENU_ITEMS[activeIdx] : null
 
   const openDish = (idx: number) => {
     setActiveIdx(idx)
     setTicket((prev) => prev + 1)
-    setChefIdx(idx % CHEF_VARIANTS.length)
     confetti({ particleCount: 36, spread: 70, origin: { y: 0.6 }, colors: ['#ffd27a', '#7ee2a8', '#8ec5ff'] })
   }
 
   const navigateDish = (newIdx: number) => {
     setActiveIdx(newIdx)
     setTicket((prev) => prev + 1)
-    setChefIdx(newIdx % CHEF_VARIANTS.length)
     confetti({ particleCount: 22, spread: 50, origin: { y: 0.6 }, colors: ['#ffd27a', '#7ee2a8', '#8ec5ff'] })
-  }
-
-  const cycleChef = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setChefIdx((prev) => (prev + 1) % CHEF_VARIANTS.length)
   }
 
   useEffect(() => {
@@ -144,15 +136,14 @@ export function CloudKitchen() {
               </div>
 
               <div className="kitchen-modal-body">
-                <div className="kitchen-modal-chef" onClick={cycleChef}>
+                <div className="kitchen-modal-chef">
                   <motion.div
-                    key={chefIdx}
-                    animate={{ scale: [1, 1.04, 1] }}
-                    transition={{ repeat: Infinity, duration: 2 }}
+                    key={activeIdx}
+                    animate={{ scale: [1, 1.03, 1] }}
+                    transition={{ repeat: Infinity, duration: 2.2 }}
                   >
-                    <Pengu size={150} variant={CHEF_VARIANTS[chefIdx]} />
+                    <Pengu size={195} variant={CHEF_VARIANTS[activeIdx]} />
                   </motion.div>
-                  <span className="chef-action-prompt">Tap chef to cycle cooking style</span>
                   <div className="chef-speech">{KITCHEN_COPY.chefSays}</div>
                 </div>
 

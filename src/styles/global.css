@@ -3407,14 +3407,9 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  cursor: pointer;
   user-select: none;
-}
-
-.chef-action-prompt {
-  font-size: 0.75rem;
-  color: var(--ink-muted);
 }
 
 .chef-speech {
