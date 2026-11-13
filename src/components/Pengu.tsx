@@ -7,8 +7,13 @@ type PenguVariant =
   | 'arpita'
   | 'chef'
   | 'cook'
+  | 'cook1'
   | 'cook2'
   | 'cook3'
+  | 'cook4'
+  | 'cook5'
+  | 'cook6'
+  | 'tea'
   | 'pranjal'
   | 'future'
   | 'remote'
@@ -72,8 +77,13 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   arpita: ASSETS.pengu,
   chef: ASSETS.penguChef,
   cook: ASSETS.penguCook,
+  cook1: ASSETS.penguCook1,
   cook2: ASSETS.penguCook2,
   cook3: ASSETS.penguCook3,
+  cook4: ASSETS.penguCook4,
+  cook5: ASSETS.penguCook5,
+  cook6: ASSETS.penguCook6,
+  tea: ASSETS.penguTea,
   pranjal: ASSETS.pranjal,
   future: ASSETS.penguFuture,
   remote: ASSETS.penguRemote,
@@ -144,7 +154,7 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
                 ? 'Pengu with TV remote'
                 : variant.startsWith('dance')
                   ? 'Dancing Pengu'
-                  : variant.startsWith('kitchen') || variant === 'chef' || variant.startsWith('cook')
+                  : variant.startsWith('kitchen') || variant === 'chef' || variant.startsWith('cook') || variant === 'tea'
                     ? 'Pengu cooking'
                     : variant === 'run'
                       ? 'Pengu running'
@@ -206,7 +216,7 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
           ) : (
             <PenguinArt
               size={size}
-              chefHat={variant === 'chef' || variant.startsWith('kitchen') || variant.startsWith('cook')}
+              chefHat={variant === 'chef' || variant.startsWith('kitchen') || variant.startsWith('cook') || variant === 'tea'}
               futureLens={variant === 'future'}
               remote={variant === 'remote'}
             />
