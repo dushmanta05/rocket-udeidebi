@@ -7,7 +7,7 @@ import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 
 const copy = SECTIONS[11]
-const CHEF_VARIANTS = ['cook6', 'cook2', 'cook3', 'cook4', 'cook5', 'cook1'] as const
+const CHEF_VARIANTS = ['cook6', 'cook2', 'cook3', 'tea', 'thali', 'feast'] as const
 const RECIPE_TILTS = [-2, 2.4, -1.8, 2, -2.2, 1.8]
 
 export function CloudKitchen() {
