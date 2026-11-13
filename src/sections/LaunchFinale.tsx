@@ -193,22 +193,6 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
   if (currentStep >= STEP_SPONSORS) {
     return (
       <div className="section sponsors-section">
-        <div className="wish-rain" aria-hidden="true">
-          {names.map((name, idx) => (
-            <span
-              key={name}
-              className="wish-star"
-              style={{
-                left: `${6 + ((idx * 37) % 86)}%`,
-                animationDelay: `${(idx * cycle) / names.length}s`,
-                animationDuration: `${cycle}s`
-              }}
-            >
-              {name}
-            </span>
-          ))}
-        </div>
-
         {!reduceMotion && <ThanksCoupleFlyby />}
 
         <header className="section-header sponsors-header">
