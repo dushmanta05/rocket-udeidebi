@@ -253,10 +253,13 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
         </div>
 
         <div className="sponsors-footer">
-          <div className="sponsors-pengu-wrap">
-            <Pengu size={isMobile ? 54 : 68} variant="dance1" />
+          <div className="sponsors-party-wrap party-band">
+            <Pengu size={isMobile ? 58 : 84} variant="party1" />
           </div>
           <span className="sponsors-tagline">"Zero sponsors were harmed in the making of this launch."</span>
+          <div className="sponsors-party-wrap party-dance">
+            <Pengu size={isMobile ? 58 : 84} variant="party2" />
+          </div>
         </div>
       </div>
     )

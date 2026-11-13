@@ -26,6 +26,8 @@ export const ASSETS = {
   penguDance1: './images/pengu-dance-1.gif',
   penguDance2: './images/pengu-dance-2.gif',
   penguDance3: './images/dancing-dance-3.gif',
+  penguParty1: './images/pengu-party-1.gif',
+  penguParty2: './images/pengu-party-2.gif',
   penguLove: './images/pengu-love.gif',
   penguLove1: './images/pengu-love-1.gif',
   penguEnergy: './images/pengu-energy.gif',

@@ -1575,20 +1575,35 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: clamp(12px, 2.5vw, 28px);
   flex-shrink: 0;
   margin-top: clamp(4px, 1vh, 8px);
+  max-width: 1100px;
+  width: 100%;
 }
 
-.sponsors-pengu-wrap {
+.sponsors-party-wrap {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.sponsors-party-wrap:hover {
+  transform: scale(1.14);
+}
+
+.sponsors-party-wrap img {
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.45));
 }
 
 .sponsors-tagline {
   font-family: var(--font-hand);
-  font-size: clamp(0.92rem, 1.2vw, 1.08rem);
+  font-size: clamp(0.96rem, 1.25vw, 1.15rem);
   color: var(--gold);
+  text-align: center;
+  line-height: 1.25;
 }
 
 .family-modal-backdrop {
@@ -4507,15 +4522,18 @@ img {
 }
 
 .thanks-flyby-layer {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
   overflow: hidden;
 }
 
 .thanks-flyby-rocket {
   position: absolute;
+  translate: -50% -50%;
 }
 
 .couple-rocket-wrap {
