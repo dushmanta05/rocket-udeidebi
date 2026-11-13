@@ -1744,10 +1744,10 @@ img {
   flex: 1;
   min-height: 0;
   width: 100%;
-  max-width: 1180px;
+  max-width: 1100px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(8px, 1.4vh, 18px) clamp(10px, 1.6vw, 24px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 2vh, 24px) clamp(14px, 2.4vw, 36px);
   align-content: center;
   justify-items: center;
 }
@@ -1758,8 +1758,8 @@ img {
 
 .polaroid {
   position: relative;
-  width: min(100%, 205px, 25vh);
-  padding: 8px 8px 0;
+  width: min(100%, 230px, 27vh);
+  padding: 10px 10px 0;
   background: #fbfaf6;
   border-radius: 4px;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
@@ -1780,10 +1780,10 @@ img {
 
 .polaroid-tape {
   position: absolute;
-  top: -8px;
+  top: -10px;
   left: 50%;
-  width: 60px;
-  height: 20px;
+  width: 70px;
+  height: 22px;
   translate: -50% 0;
   rotate: -3deg;
   opacity: 0.85;
@@ -1792,10 +1792,10 @@ img {
 
 .polaroid-caption {
   font-family: var(--font-hand);
-  font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
   color: #2b2b3c;
   text-align: center;
-  padding: 4px 4px 8px;
+  padding: 6px 4px 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
