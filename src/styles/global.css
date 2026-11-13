@@ -2192,6 +2192,17 @@ img {
   color: var(--ink-muted);
   font-size: 0.78rem;
   font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.tray-chip.current {
+  border-style: solid;
+  border-color: rgba(255, 210, 122, 0.8);
+  background: rgba(255, 210, 122, 0.22);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 0 16px rgba(255, 210, 122, 0.4);
+  transform: scale(1.06);
 }
 
 .tray-chip.found {
@@ -3131,6 +3142,19 @@ img {
   gap: 8px;
   max-width: 900px;
   width: 100%;
+}
+
+.sayno-tray .tray-chip.current {
+  border-color: var(--gold);
+  background: rgba(255, 210, 122, 0.25);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(255, 210, 122, 0.45);
+}
+
+.sayno-tray .tray-chip.found {
+  border-color: rgba(126, 226, 168, 0.45);
+  background: rgba(126, 226, 168, 0.12);
+  color: #7ee2a8;
 }
 
 .no-btn-group {

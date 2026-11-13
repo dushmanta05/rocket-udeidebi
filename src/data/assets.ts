@@ -51,6 +51,8 @@ export const ASSETS = {
   penguEgg: './images/pengu-egg.gif',
   penguBelieve: './images/beleive-in-pengu.gif',
   penguChair: './images/pengu-chair.gif',
+  penguPlan: './images/pengu-plan.gif',
+  penguSofa: './images/pengu-sofa.gif',
   penguCute: './images/pengu-cute.gif',
   penguDance4: './images/pengu-dance-3.gif',
   penguFly: './images/pengu-fly.gif',

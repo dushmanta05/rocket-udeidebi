@@ -9,13 +9,13 @@ import { Hint, SectionHeader } from '../components/SectionHeader'
 import type { StepSectionProps } from './types'
 
 const copy = SECTIONS[10]
-const SCENARIO_VARIANTS = ['please', 'bags', 'jagatMata', 'asking', 'chair', 'believe'] as const
+const SCENARIO_VARIANTS = ['please', 'bags', 'plan', 'asking', 'sofa', 'believe'] as const
 const SIDE_QUOTES = [
   'A wild project lead appears! Can you say NO?',
   'Wait, this bag weighs 20 kilos... resist!',
-  'Jagatmata instincts kicking in...',
+  'Planning the entire trip already... resist!',
   '7:00 AM?! You haven’t even had chai!',
-  'NOT THE CHAIR! Anything but the chair!',
+  'Comfy sofa claimed! Do NOT surrender it!',
   'Believe in yourself, Hippo! Say NO right now!'
 ]
 
@@ -213,6 +213,7 @@ export function SayNo({ currentStep, setTotalSteps, onNext }: StepSectionProps) 
               key={item.id}
               className={`tray-chip ${idx < requestIndex ? 'found' : idx === requestIndex ? 'current' : ''}`}
             >
+              {idx < requestIndex ? '✓ ' : ''}
               {idx === REQUESTS_DATA.length - 1 ? 'Final Boss' : item.from}
             </span>
           ))}

@@ -59,6 +59,8 @@ type PenguVariant =
   | 'egg'
   | 'believe'
   | 'chair'
+  | 'plan'
+  | 'sofa'
   | 'cute'
   | 'dance4'
   | 'fly'
@@ -131,6 +133,8 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   egg: ASSETS.penguEgg,
   believe: ASSETS.penguBelieve,
   chair: ASSETS.penguChair,
+  plan: ASSETS.penguPlan,
+  sofa: ASSETS.penguSofa,
   cute: ASSETS.penguCute,
   dance4: ASSETS.penguDance4,
   fly: ASSETS.penguFly,
@@ -188,6 +192,10 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
                                               ? 'Believe in Pengu'
                                               : variant === 'chair'
                                                 ? 'Pengu relaxing on chair'
+                                                : variant === 'plan'
+                                                  ? 'Pengu making a plan'
+                                                  : variant === 'sofa'
+                                                    ? 'Pengu on comfy sofa'
                                                 : variant === 'cute'
                                                   ? 'Cute Pengu'
                                                   : variant === 'fly'
