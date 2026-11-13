@@ -171,18 +171,20 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
               </motion.div>
               <span className="thanks-sign">{FINALE_COPY.signOff}</span>
             </div>
-
-            <button
-              type="button"
-              className="thanks-sponsors-btn"
-              onClick={(e) => {
-                e.stopPropagation()
-                onNext()
-              }}
-            >
-              <span>Presented By: Official Sponsors →</span>
-            </button>
           </motion.div>
+        </div>
+
+        <div className="thanks-bottom-action">
+          <button
+            type="button"
+            className="thanks-sponsors-btn"
+            onClick={(e) => {
+              e.stopPropagation()
+              onNext()
+            }}
+          >
+            <span>Presented By: Official Sponsors →</span>
+          </button>
         </div>
       </div>
     )
