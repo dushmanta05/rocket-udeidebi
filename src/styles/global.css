@@ -3381,40 +3381,41 @@ img {
 }
 
 .kitchen-modal-header {
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
-  padding: 0 36px;
+  gap: 12px;
 }
 
 .kitchen-modal-title {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.1vw, 1.65rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 700;
   color: var(--gold);
-  text-align: center;
+  text-align: left;
   margin: 0;
+  line-height: 1.25;
 }
 
 .kitchen-modal-close {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--ink-soft);
-  font-size: 1.3rem;
+  display: grid;
+  place-items: center;
+  font-size: 0.95rem;
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
+  flex-shrink: 0;
   transition: color 0.2s, background 0.2s;
 }
 
 .kitchen-modal-close:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .kitchen-modal-body {
