@@ -26,7 +26,7 @@ export const SECTIONS: SectionCopy[] = [
     kicker: 'Chapter 1',
     title: 'Family & Early Years',
     subtitle: 'Before we met you, you were already a legend in the making.',
-    hint: 'Tap or press the right arrow to fly to the next stop'
+    hint: 'Tap any photo to view full size'
   },
   {
     short: 'Work',

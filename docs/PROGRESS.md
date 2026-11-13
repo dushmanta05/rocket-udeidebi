@@ -36,7 +36,7 @@ Ideas raised for possible extra sections; none is started.
 |---|---|---|---|
 | 01 | Welcome | Done | `hippo.png` host, Fredoka + Caveat title, full-width rocket fly-by |
 | 02 | Antarctica + rebirth | Done | Full-screen lone penguin journey, `pengu-egg.gif`, baby photo rises with enlarged caption & pill |
-| 03 | Family timeline | Done | Rocket follows the curve, lit path, two-column card (no overlap) |
+| 03 | Family & Early Years | Done | 8-photo memory album with washi tape, titles, Caveat captions, and interactive modal viewer with prev/next navigation (`familyPhotos.ts`) |
 | 04 | Work timeline | Done | Faster wavier gold path, `pnngu-greet.gif` when crew meets her |
 | 05 | Polaroids | Done | 4 sets, 2 of them Weird Expressions (6 photos each) |
 | 06 | Awards | Done | Neutral frosted glass frames with gold titles; custom GIFs for chair, laugh, walk |
@@ -212,3 +212,4 @@ Ideas raised for possible extra sections; none is started.
 - Cloud Kitchen Signature Dishes: Added Arpita's real specialty culinary creations (Royal Afghani Chicken, Signature Dum Biryani, Masterclass Chocolate Cake) alongside the roast classics in a balanced 6-dish grid with chef tags and recipe tickets.
 - Heart of Gold Tribute Section: Built dedicated 14th section "Why We Love You, Hippo" before the video screen, showcasing 6 heartfelt genuine qualities (empathy, master cooking, electric laughter, unwavering loyalty, gentle spirit, and irreplaceable friendship) with matching transparent Pengu GIFs, Caveat quotes, and badge chips tray.
 - Pengu Remote Orientation & Beam Clean Up: Removed the infrared beam direction artifact and mirrored Pengu horizontally (`transform: scaleX(-1)`) so it faces and aims directly towards the cinema screen.
+- Family & Early Years Photo Album: Converted timeline into an 8-photo memory album grid (`familyPhotos.ts`), styled with washi tape, titles, and handwritten Caveat captions, backed by full-view modal viewer with previous/next photo flipping and keyboard navigation.
