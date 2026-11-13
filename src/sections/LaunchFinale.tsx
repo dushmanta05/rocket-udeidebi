@@ -74,6 +74,19 @@ function useCountdown(active: boolean) {
   return tick
 }
 
+const SPONSOR_SCATTERS = [
+  { rotate: -2.4, y: -6, x: -4 },
+  { rotate: 1.8, y: -4, x: 2 },
+  { rotate: -1.6, y: -6, x: 3 },
+  { rotate: 2.4, y: 2, x: -4 },
+  { rotate: -2.0, y: 0, x: -1 },
+  { rotate: 1.6, y: 2, x: 2 },
+  { rotate: -2.6, y: -2, x: 4 },
+  { rotate: 2.0, y: 6, x: -3 },
+  { rotate: -1.8, y: 8, x: 2 },
+  { rotate: 2.4, y: 6, x: 3 }
+]
+
 export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   const reduceMotion = useReducedMotion()
   const tick = useCountdown(currentStep === STEP_LAUNCH)
@@ -203,24 +216,40 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
           </p>
         </header>
 
-        <div className="sponsors-grid">
-          {SPONSORS.map((s, idx) => (
-            <motion.div
-              key={s.id}
-              className="sponsor-card"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.04 + idx * 0.04 }}
-              whileHover={{ scale: 1.02, zIndex: 4 }}
-            >
-              <div className="sponsor-top">
-                <span className="sponsor-idx">{String(idx + 1).padStart(2, '0')}</span>
-                <span className="sponsor-title">{s.title}</span>
-              </div>
-              <div className="sponsor-name">({s.subtitle})</div>
-              <p className="sponsor-tag">{s.tag}</p>
-            </motion.div>
-          ))}
+        <div className="sponsors-scatter-grid">
+          {SPONSORS.map((s, idx) => {
+            const scatter = reduceMotion ? { rotate: 0, y: 0, x: 0 } : SPONSOR_SCATTERS[idx % SPONSOR_SCATTERS.length]
+            const isTier3 = idx < 3 || idx >= 7
+
+            return (
+              <motion.div
+                key={s.id}
+                className={`sponsor-card ${isTier3 ? 'sponsor-card-tier-3' : 'sponsor-card-tier-4'}`}
+                initial={{ opacity: 0, scale: 0.92, y: 18 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  rotate: scatter.rotate,
+                  x: scatter.x,
+                  y: scatter.y
+                }}
+                transition={{ delay: 0.04 + idx * 0.035, type: 'spring', stiffness: 280, damping: 22 }}
+                whileHover={
+                  reduceMotion
+                    ? { scale: 1.04, zIndex: 10 }
+                    : { scale: 1.08, rotate: 0, x: 0, y: -4, zIndex: 10, transition: { duration: 0.18 } }
+                }
+              >
+                <div className="sponsor-card-inner">
+                  <div className="sponsor-top">
+                    <span className="sponsor-idx">{String(idx + 1).padStart(2, '0')}</span>
+                    <h3 className="sponsor-title">{s.title}</h3>
+                  </div>
+                  <div className="sponsor-name">({s.subtitle})</div>
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
 
         <div className="sponsors-footer">
