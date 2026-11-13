@@ -1196,12 +1196,12 @@ img {
   flex: 1;
   min-height: 0;
   width: 100%;
-  max-width: 960px;
+  max-width: 1040px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: clamp(6px, 1.2vh, 12px);
+  gap: clamp(8px, 1.4vh, 16px);
 }
 
 .family-set-toggle {
@@ -1246,10 +1246,10 @@ img {
 
 .family-cards-wrap.set-0 {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 230px));
+  grid-template-columns: repeat(2, minmax(0, 310px));
   justify-content: center;
-  gap: clamp(10px, 1.4vw, 16px);
-  max-width: 500px;
+  gap: clamp(14px, 2vw, 24px);
+  max-width: 660px;
   width: 100%;
 }
 
@@ -1261,13 +1261,13 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: clamp(10px, 1.2vw, 14px);
-  max-width: 660px;
+  gap: clamp(12px, 1.6vw, 18px);
+  max-width: 880px;
   width: 100%;
 }
 
 .family-cards-wrap.set-1 .family-card {
-  width: clamp(165px, 13vw, 205px);
+  width: clamp(230px, 19vw, 275px);
   flex: 0 0 auto;
 }
 
@@ -1275,8 +1275,8 @@ img {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 8px 9px;
-  border-radius: 14px;
+  padding: 10px 12px;
+  border-radius: 16px;
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
@@ -1305,12 +1305,12 @@ img {
 }
 
 .family-photo-frame {
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(0, 0, 0, 0.35);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
-  height: clamp(100px, 13.5vh, 130px);
+  height: clamp(135px, 18vh, 180px);
   width: 100%;
 }
 
@@ -1331,18 +1331,18 @@ img {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .family-card-meta {
   display: flex;
   align-items: baseline;
-  gap: 5px;
+  gap: 6px;
 }
 
 .family-photo-num {
   font-family: var(--font-display);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 800;
   color: var(--gold);
   letter-spacing: 0.04em;
@@ -1350,7 +1350,7 @@ img {
 
 .family-card-title {
   font-family: var(--font-display);
-  font-size: clamp(0.8rem, 0.95vw, 0.92rem);
+  font-size: clamp(0.88rem, 1.1vw, 1.02rem);
   font-weight: 700;
   color: #ffffff;
   white-space: nowrap;
@@ -1361,9 +1361,9 @@ img {
 
 .family-card-caption {
   font-family: var(--font-hand);
-  font-size: clamp(0.82rem, 1vw, 0.96rem);
+  font-size: clamp(0.92rem, 1.2vw, 1.08rem);
   color: var(--ink-soft);
-  line-height: 1.2;
+  line-height: 1.25;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1380,33 +1380,140 @@ img {
   margin-top: clamp(8px, 1.5vh, 14px);
 }
 
-.family-stage-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 18px;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: var(--gold);
-  font-family: var(--font-display);
-  font-size: clamp(0.78rem, 0.9vw, 0.84rem);
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
+.family-hint-text {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
 }
 
-.family-stage-btn:hover {
-  background: rgba(255, 210, 122, 0.18);
-  border-color: var(--gold);
-  color: #ffffff;
+.thanks-sponsors-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 22px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 210, 122, 0.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-top: 10px;
+}
+
+.thanks-sponsors-btn:hover {
+  background: rgba(255, 210, 122, 0.28);
+  box-shadow: 0 0 16px rgba(255, 210, 122, 0.35);
   transform: translateY(-1px);
 }
 
-.family-hint-text {
-  font-size: 0.76rem;
-  color: var(--ink-muted);
+.sponsors-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: clamp(10px, 1.8vh, 18px) clamp(16px, 4vw, 48px) 8px;
+  gap: clamp(8px, 1.4vh, 14px);
+  overflow-y: auto;
+}
+
+.sponsors-header {
+  gap: 2px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 480px));
+  gap: clamp(8px, 1.2vw, 12px);
+  width: 100%;
+  max-width: 980px;
+  flex: 1;
+  min-height: 0;
+}
+
+.sponsor-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: clamp(8px, 1.1vw, 11px) clamp(12px, 1.5vw, 15px);
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-card);
+  text-align: left;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.sponsor-card:hover {
+  border-color: rgba(255, 210, 122, 0.4);
+  box-shadow: 0 8px 24px rgba(255, 210, 122, 0.15);
+}
+
+.sponsor-top {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.sponsor-idx {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.sponsor-title {
+  font-family: var(--font-display);
+  font-size: clamp(0.88rem, 1.08vw, 1.02rem);
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.sponsor-name {
+  font-family: var(--font-body);
+  font-size: clamp(0.76rem, 0.9vw, 0.84rem);
+  font-weight: 700;
+  color: var(--gold);
   letter-spacing: 0.02em;
+}
+
+.sponsor-tag {
+  font-family: var(--font-hand);
+  font-size: clamp(0.86rem, 1.08vw, 0.98rem);
+  color: var(--ink-soft);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.sponsors-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.sponsors-pengu-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.sponsors-tagline {
+  font-family: var(--font-hand);
+  font-size: clamp(0.92rem, 1.2vw, 1.08rem);
+  color: var(--gold);
 }
 
 .family-modal-backdrop {
@@ -4873,6 +4980,16 @@ img {
   .family-footer {
     margin-top: 14px;
     margin-bottom: 20px;
+  }
+
+  .sponsors-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    max-width: 420px;
+  }
+
+  .sponsor-card {
+    padding: 8px 10px;
   }
 
   .polaroid-grid,

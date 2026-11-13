@@ -138,13 +138,6 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
         </AnimatePresence>
 
         <footer className="family-footer">
-          <button
-            type="button"
-            className="family-stage-btn"
-            onClick={onNext}
-          >
-            {setIndex === 0 ? 'Next: Family & The "A" Squad (5 photos) →' : 'Next: Then We Met You →'}
-          </button>
           <span className="family-hint-text">{copy.hint}</span>
         </footer>
       </div>

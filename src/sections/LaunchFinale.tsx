@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { FINALE_COPY, SECTIONS } from '../data/sections'
 import { CREW_NAMES } from '../data/crew'
+import { SPONSORS } from '../data/sponsors'
 import { Pengu } from '../components/Pengu'
 import { Hippo } from '../components/Hippo'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
@@ -17,6 +18,7 @@ const STEP_ARRIVE = 1
 const STEP_BOARD = 2
 const STEP_LAUNCH = 3
 const STEP_THANKS = 4
+const STEP_SPONSORS = 5
 
 const THANKS_TRAJECTORIES: FlightTrajectory[] = [
   { from: [-15, 72], to: [115, 18], duration: 11 },
@@ -78,7 +80,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
   const launched = currentStep === STEP_LAUNCH && tick >= FINALE_COPY.countdown.length
 
   useEffect(() => {
-    setTotalSteps(5)
+    setTotalSteps(6)
   }, [setTotalSteps])
 
   useEffect(() => {
@@ -112,7 +114,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
           ? { left: isMobile ? '28%' : '38%', bottom: isMobile ? '20%' : '24%', rotate: -47, opacity: 1 }
           : { left: isMobile ? '22%' : '30%', bottom: isMobile ? '24%' : '30%', rotate: 0, opacity: 1 }
 
-  if (currentStep >= STEP_THANKS) {
+  if (currentStep === STEP_THANKS) {
     return (
       <div className="section thanks-section" onClick={onNext}>
         <div className="wish-rain" aria-hidden="true">
@@ -169,7 +171,77 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
               </motion.div>
               <span className="thanks-sign">{FINALE_COPY.signOff}</span>
             </div>
+
+            <button
+              type="button"
+              className="thanks-sponsors-btn"
+              onClick={(e) => {
+                e.stopPropagation()
+                onNext()
+              }}
+            >
+              <span>Presented By: Official Sponsors →</span>
+            </button>
           </motion.div>
+        </div>
+      </div>
+    )
+  }
+
+  if (currentStep >= STEP_SPONSORS) {
+    return (
+      <div className="section sponsors-section">
+        <div className="wish-rain" aria-hidden="true">
+          {names.map((name, idx) => (
+            <span
+              key={name}
+              className="wish-star"
+              style={{
+                left: `${6 + ((idx * 37) % 86)}%`,
+                animationDelay: `${(idx * cycle) / names.length}s`,
+                animationDuration: `${cycle}s`
+              }}
+            >
+              {name}
+            </span>
+          ))}
+        </div>
+
+        {!reduceMotion && <ThanksCoupleFlyby />}
+
+        <header className="section-header sponsors-header">
+          <span className="kicker">Brought To You By</span>
+          <h2 className="section-title">Presented By</h2>
+          <p className="section-subtitle">
+            The certified syndicates, agencies & family delegates who made this bachelorette possible.
+          </p>
+        </header>
+
+        <div className="sponsors-grid">
+          {SPONSORS.map((s, idx) => (
+            <motion.div
+              key={s.id}
+              className="sponsor-card"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.04 + idx * 0.04 }}
+              whileHover={{ scale: 1.02, zIndex: 4 }}
+            >
+              <div className="sponsor-top">
+                <span className="sponsor-idx">{String(idx + 1).padStart(2, '0')}</span>
+                <span className="sponsor-title">{s.title}</span>
+              </div>
+              <div className="sponsor-name">({s.subtitle})</div>
+              <p className="sponsor-tag">{s.tag}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="sponsors-footer">
+          <div className="sponsors-pengu-wrap">
+            <Pengu size={isMobile ? 54 : 68} variant="dance1" />
+          </div>
+          <span className="sponsors-tagline">"Zero sponsors were harmed in the making of this launch."</span>
         </div>
       </div>
     )
