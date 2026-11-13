@@ -18,7 +18,7 @@ export const TRIBUTES_DATA: TributeItem[] = [
     text: 'We joke about you being Jagatmata, but the truth is you have an extraordinary gift of caring. Whether it is a friend having a bad day, an exhausted colleague, or a stray animal on the road, your warmth and genuine empathy never run out.',
     badge: 'Heart of Gold',
     photoLabel: 'Empathy & Warmth',
-    src: ASSETS.penguJagatMata
+    src: ASSETS.penguHeart
   },
   {
     id: 'tribute-2',
@@ -27,7 +27,7 @@ export const TRIBUTES_DATA: TributeItem[] = [
     text: 'Your royal Afghani chicken, aromatic dum biryani, and heavenly chocolate cakes are your signature love language. You never let anyone leave your presence hungry or uncared for. Every dish is a warm hug on a plate.',
     badge: 'Master Chef',
     photoLabel: 'Cooking with Love',
-    src: ASSETS.penguKitchen
+    src: ASSETS.penguFood
   },
   {
     id: 'tribute-3',
@@ -49,12 +49,12 @@ export const TRIBUTES_DATA: TributeItem[] = [
   },
   {
     id: 'tribute-5',
-    title: 'A Gentle, Peaceful Spirit',
+    title: 'A Gentle, Playful Spirit',
     quote: 'Zero malice, infinite grace.',
     text: 'In a world that can often feel loud, complicated, and rushed, you choose peace. You never hold grudges, you avoid petty drama, and you forgive easily. Your calm presence makes every chaotic day feel manageable.',
     badge: 'Pure Grace',
     photoLabel: 'Gentle Soul',
-    src: ASSETS.penguFlower
+    src: ASSETS.penguPari
   },
   {
     id: 'tribute-6',
