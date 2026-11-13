@@ -21,10 +21,21 @@ export function Terms({ onNext }: TermsProps) {
   const [escapes, setEscapes] = useState(0)
   const [activeTermIdx, setActiveTermIdx] = useState<number | null>(null)
 
+  const navigateClause = (newIdx: number) => {
+    setActiveTermIdx(newIdx)
+    confetti({ particleCount: 18, spread: 45, origin: { y: 0.6 }, colors: ['#ffd27a', '#7ee2a8', '#ff8fb1'] })
+  }
+
   useEffect(() => {
     if (activeTermIdx === null) return
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setActiveTermIdx(null)
+      if (e.key === 'Escape') {
+        setActiveTermIdx(null)
+      } else if (e.key === 'ArrowRight') {
+        navigateClause((activeTermIdx + 1) % TERMS_DATA.length)
+      } else if (e.key === 'ArrowLeft') {
+        navigateClause((activeTermIdx - 1 + TERMS_DATA.length) % TERMS_DATA.length)
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
@@ -169,21 +180,35 @@ export function Terms({ onNext }: TermsProps) {
                 <span className="witness-tag cursive-tag">Witness: Pengu</span>
               </div>
 
-              <div className="term-modal-nav">
+              <div className="family-modal-nav">
                 <button
                   type="button"
-                  className="ghost-btn"
-                  onClick={() => setActiveTermIdx((prev) => (prev! > 0 ? prev! - 1 : TERMS_DATA.length - 1))}
+                  className="family-nav-btn"
+                  onClick={() => navigateClause((activeTermIdx - 1 + TERMS_DATA.length) % TERMS_DATA.length)}
+                  aria-label="Previous clause"
                 >
-                  Previous
+                  ‹ Previous
                 </button>
-                <span className="term-modal-counter">{activeTermIdx + 1} / {TERMS_DATA.length}</span>
+
+                <div className="family-dots-tray">
+                  {TERMS_DATA.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className={`family-dot ${i === activeTermIdx ? 'active' : ''}`}
+                      onClick={() => navigateClause(i)}
+                      aria-label={`Go to clause ${i + 1}`}
+                    />
+                  ))}
+                </div>
+
                 <button
                   type="button"
-                  className="primary-btn"
-                  onClick={() => setActiveTermIdx((prev) => (prev! < TERMS_DATA.length - 1 ? prev! + 1 : 0))}
+                  className="family-nav-btn"
+                  onClick={() => navigateClause((activeTermIdx + 1) % TERMS_DATA.length)}
+                  aria-label="Next clause"
                 >
-                  Next
+                  Next ›
                 </button>
               </div>
             </motion.div>
