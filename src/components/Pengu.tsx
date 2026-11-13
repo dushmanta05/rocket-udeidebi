@@ -61,6 +61,7 @@ type PenguVariant =
   | 'chair'
   | 'plan'
   | 'sofa'
+  | 'help'
   | 'cute'
   | 'dance4'
   | 'fly'
@@ -135,6 +136,7 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   chair: ASSETS.penguChair,
   plan: ASSETS.penguPlan,
   sofa: ASSETS.penguSofa,
+  help: ASSETS.penguHelp,
   cute: ASSETS.penguCute,
   dance4: ASSETS.penguDance4,
   fly: ASSETS.penguFly,
@@ -196,6 +198,8 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
                                                   ? 'Pengu making a plan'
                                                   : variant === 'sofa'
                                                     ? 'Pengu on comfy sofa'
+                                                    : variant === 'help'
+                                                      ? 'Pengu pleading for help'
                                                 : variant === 'cute'
                                                   ? 'Cute Pengu'
                                                   : variant === 'fly'

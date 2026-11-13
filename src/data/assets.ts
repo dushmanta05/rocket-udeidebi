@@ -53,6 +53,7 @@ export const ASSETS = {
   penguChair: './images/pengu-chair.gif',
   penguPlan: './images/pengu-plan.gif',
   penguSofa: './images/pengu-sofa.gif',
+  penguHelp: './images/pengu-help.gif',
   penguCute: './images/pengu-cute.gif',
   penguDance4: './images/pengu-dance-3.gif',
   penguFly: './images/pengu-fly.gif',
