@@ -1181,17 +1181,22 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 0;
+  padding: 8px 0;
+  overflow-y: auto;
 }
 
 .family-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: clamp(12px, 1.8vw, 20px);
   width: 100%;
 }
 
 .family-card {
+  flex: 0 1 calc((100% - 2 * clamp(12px, 1.8vw, 20px)) / 3 - 2px);
+  min-width: 250px;
+  max-width: 340px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -4704,8 +4709,12 @@ img {
   }
 
   .family-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+  }
+
+  .family-card {
+    flex: 0 1 calc((100% - 12px) / 2 - 2px);
+    min-width: 140px;
   }
 
   .polaroid-grid,

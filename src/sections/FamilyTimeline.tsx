@@ -70,7 +70,7 @@ export function FamilyTimeline({ setTotalSteps }: StepSectionProps) {
               </div>
               <div className="family-card-body">
                 <div className="family-card-meta">
-                  <span className="family-photo-num">0{idx + 1}</span>
+                  <span className="family-photo-num">{String(idx + 1).padStart(2, '0')}</span>
                   <span className="family-card-title">{photo.title}</span>
                 </div>
                 <p className="family-card-caption">{photo.caption}</p>
@@ -98,7 +98,7 @@ export function FamilyTimeline({ setTotalSteps }: StepSectionProps) {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="family-modal-header">
-                <span className="pill">Memory 0{selectedIdx + 1} of 0{FAMILY_PHOTOS.length}</span>
+                <span className="pill">Memory {String(selectedIdx + 1).padStart(2, '0')} of {String(FAMILY_PHOTOS.length).padStart(2, '0')}</span>
                 <button
                   type="button"
                   className="family-modal-close"

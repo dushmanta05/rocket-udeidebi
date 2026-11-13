@@ -53,5 +53,11 @@ export const FAMILY_PHOTOS: FamilyPhoto[] = [
     title: 'With Amit',
     caption: 'Partner in crime, endless teasing, and unconditional sibling love.',
     src: './images/family/family-4.jpeg'
+  },
+  {
+    id: 'fam-9',
+    title: 'The "A" Squad',
+    caption: 'Arpita, Ankita, Amit & cousin Anchal. Proof the family ran out of alphabet letters! Four A’s, infinite chaos, and a lifetime of shared memories.',
+    src: './images/family/siblings.jpeg'
   }
 ]
