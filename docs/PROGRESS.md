@@ -38,7 +38,7 @@ Ideas raised for possible extra sections; none is started.
 | 02 | Antarctica + rebirth | Done | Full-screen lone penguin journey, `pengu-egg.gif`, baby photo rises with enlarged caption & pill |
 | 03 | Family & Early Years | Done | 9-photo stepped memory album (Set 1: 4 early journey photos in 2x2, Set 2: 5 family & 'A' squad photos in 3+2) with enlarged cards, washi tape, and full-view modal (`familyPhotos.ts`) |
 | 04 | Work timeline | Done | Faster wavier gold path, `pnngu-greet.gif` when crew meets her |
-| 05 | Polaroids | Done | 4 sets, 2 of them Weird Expressions (6 photos each) |
+| 05 | Polaroids | Done | 3 volumes of Weird Expressions (8 photos each, 24 total) in 4x2 grid, with bounded modal navigation (cycling strictly within current volume) |
 | 06 | Awards | Done | Neutral frosted glass frames with gold titles; custom GIFs for chair, laugh, walk |
 | 07 | Doraemon pocket | Done | 7 bag artifacts, drawn tote bag, item details beside it |
 | 08 | Hippo Recharge Station | Done | Dedicated section, 5s battery charging (0-100%), locked resume button, `pengu-energy.gif` |
@@ -239,3 +239,4 @@ Ideas raised for possible extra sections; none is started.
 - Terms Modal Navigation with Dots Tray: Replaced text buttons and counter in `Terms.tsx` modal with interactive `.family-modal-nav` navigation featuring `‹ Previous` / `Next ›` pills, 8 interactive indicator dots for all 8 clauses, keyboard arrow key navigation (`ArrowLeft` / `ArrowRight`), and confetti feedback.
 - Assets GIF Directory Restructure: Created dedicated `public/images/gifs/` folder and moved all 48 actively used GIFs into it while leaving the 13 unused ones in `public/images/`; updated `src/data/assets.ts` with clean paths.
 - Doraemon Bag Safety Pin Removal: Removed Safety Pin from `bagItems.ts` (down to 6 items: Pocket Chair, Hand Cream, Hajmola, Jhandu Balm, Perfume, Dog Biscuit) and updated Doraemon Pocket Award copy in `awards.ts`.
+- Weird Expressions 3-Volume Consolidation & Bounded Modal Navigation: Merged polaroid pages into 3 volumes titled "Weird Expressions, Vol. 1", "Weird Expressions, Vol. 2", and "Weird Expressions, Vol. 3" (merging old Office Era and Trips pages into Vol. 3); expanded each volume to hold 8 items (24 items total) in a balanced 4x2 grid; upgraded polaroid modal viewer with header pill, close button, Previous/Next buttons, 8 indicator dots, and keyboard navigation (ArrowLeft/ArrowRight/Escape) bounded strictly within the active volume so modal cycling never crosses into another page.
