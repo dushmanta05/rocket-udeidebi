@@ -14,9 +14,9 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
   const wishes = useWishes()
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const bezelRef = useRef<HTMLDivElement | null>(null)
+  const [hasStarted, setHasStarted] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [videoFailed, setVideoFailed] = useState(false)
-  const [isFullscreen, setIsFullscreen] = useState(false)
 
   const filmSource = ASSETS.crewFilm || (wishes.length > 0 && wishes[0].video ? wishes[0].video : null)
 
@@ -24,13 +24,19 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
     setTotalSteps(1)
   }, [setTotalSteps])
 
-  useEffect(() => {
-    const handleFsChange = () => {
-      setIsFullscreen(Boolean(document.fullscreenElement))
-    }
-    document.addEventListener('fullscreenchange', handleFsChange)
-    return () => document.removeEventListener('fullscreenchange', handleFsChange)
-  }, [])
+  const startFilm = () => {
+    setHasStarted(true)
+    setIsPlaying(true)
+    confetti({
+      particleCount: 28,
+      spread: 65,
+      origin: { x: 0.75, y: 0.6 },
+      colors: ['#ff4d6d', '#ffd27a', '#8ec5ff', '#ff8fb1']
+    })
+    setTimeout(() => {
+      videoRef.current?.play().catch(() => {})
+    }, 50)
+  }
 
   const triggerRemote = () => {
     confetti({
@@ -40,8 +46,12 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
       colors: ['#ff4d6d', '#ffd27a', '#8ec5ff', '#ff8fb1']
     })
 
-    if (!videoRef.current) return
+    if (!hasStarted) {
+      startFilm()
+      return
+    }
 
+    if (!videoRef.current) return
     if (isPlaying) {
       videoRef.current.pause()
     } else {
@@ -55,15 +65,6 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
       videoRef.current.pause()
     } else {
       videoRef.current.play().catch(() => {})
-    }
-  }
-
-  const toggleFullscreen = () => {
-    if (!bezelRef.current) return
-    if (document.fullscreenElement) {
-      document.exitFullscreen().catch(() => {})
-    } else {
-      bezelRef.current.requestFullscreen().catch(() => {})
     }
   }
 
@@ -81,14 +82,19 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
 
           <div ref={bezelRef} className="cinema-bezel">
             <div className="projector-glow" />
-            <div className="curtain-drape curtain-left" />
-            <div className="curtain-drape curtain-right" />
+            {!hasStarted && (
+              <>
+                <div className="curtain-drape curtain-left" />
+                <div className="curtain-drape curtain-right" />
+              </>
+            )}
 
             <div className="cinema-screen">
-              {filmSource && !videoFailed ? (
+              {filmSource && !videoFailed && (
                 <video
                   ref={videoRef}
                   className="cinema-video"
+                  style={{ display: hasStarted ? 'block' : 'none' }}
                   src={filmSource}
                   playsInline
                   controls
@@ -98,19 +104,16 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
                   onError={() => setVideoFailed(true)}
                   onClick={handleVideoClick}
                 />
-              ) : (
-                <div className="cinema-standby" onClick={triggerRemote}>
-                  <div className="cinema-clapper">
-                    <span className="clapper-stripe">ROLL 01 · SCENE: CUTE HIPPO · TAKE 01</span>
-                  </div>
+              )}
 
+              {!hasStarted && (
+                <div className="cinema-standby" onClick={startFilm}>
                   <div className="cinema-popcorn-pengu">
-                    <Pengu size={130} variant="popcorn" />
+                    <Pengu size={105} variant="popcorn" />
                   </div>
 
                   <h3 className="standby-title">{CREW_COPY.filmTitle}</h3>
                   <p className="standby-sub">{CREW_COPY.filmSubtitle}</p>
-                  <p className="standby-popcorn-line">{CREW_COPY.popcornLine}</p>
 
                   <div className="cinema-reel-ring">
                     <motion.div
@@ -123,36 +126,16 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
                       </svg>
                     </motion.div>
                   </div>
+                </div>
+              )}
 
-                  <span className="standby-badge">{CREW_COPY.filmPlaceholder}</span>
+              {videoFailed && (
+                <div className="cinema-standby" onClick={startFilm}>
+                  <h3 className="standby-title">{CREW_COPY.filmTitle}</h3>
+                  <p className="standby-sub">{CREW_COPY.noVideo}</p>
                 </div>
               )}
             </div>
-          </div>
-
-          <div className="cinema-status-bar">
-            <div className="status-main">
-              <span className={`status-led ${isPlaying ? 'live' : ''}`} />
-              <span className="status-text">
-                {isPlaying ? CREW_COPY.nowPlaying : CREW_COPY.playPrompt}
-              </span>
-            </div>
-
-            <button
-              type="button"
-              className="cinema-fs-btn"
-              onClick={toggleFullscreen}
-              aria-label={isFullscreen ? 'Exit fullscreen' : 'View in fullscreen'}
-            >
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                {isFullscreen ? (
-                  <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
-                ) : (
-                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
-                )}
-              </svg>
-              <span>{isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}</span>
-            </button>
           </div>
         </div>
 
@@ -166,7 +149,11 @@ export function CrewMessages({ setTotalSteps, onNext }: StepSectionProps) {
           whileTap={{ scale: 0.95 }}
         >
           <div className="pengu-speech-bubble">
-            {isPlaying ? 'Shh... movie rolling!' : 'Get ready with popcorn! Tap for remote!'}
+            {isPlaying
+              ? 'Shh... movie rolling!'
+              : hasStarted
+                ? 'Tap remote to resume!'
+                : 'Get ready with popcorn! Tap for remote!'}
           </div>
           <div className="remote-pengu-facing">
             <Pengu size={185} variant={isPlaying ? 'popcorn' : 'remote'} />
