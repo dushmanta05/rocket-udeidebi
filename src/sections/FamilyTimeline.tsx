@@ -48,35 +48,71 @@ export function FamilyTimeline({ setTotalSteps }: StepSectionProps) {
       <SectionHeader copy={copy} />
 
       <div className="family-grid-stage">
-        <div className="family-grid">
-          {FAMILY_PHOTOS.map((photo, idx) => (
-            <motion.div
-              key={photo.id}
-              className="family-card"
-              style={{ rotate: PHOTO_TILTS[idx % PHOTO_TILTS.length] }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 + idx * 0.05 }}
-              whileHover={{ scale: 1.05, rotate: 0, zIndex: 6 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => openPhoto(idx)}
-            >
-              <span
-                className="family-tape"
-                style={{ background: TAPE_COLORS[idx % TAPE_COLORS.length] }}
-              />
-              <div className="family-photo-frame">
-                <Placeholder label={photo.title} src={photo.src} aspectRatio="1 / 1" />
-              </div>
-              <div className="family-card-body">
-                <div className="family-card-meta">
-                  <span className="family-photo-num">{String(idx + 1).padStart(2, '0')}</span>
-                  <span className="family-card-title">{photo.title}</span>
+        <div className="family-rows">
+          <div className="family-row family-row-arpita">
+            {FAMILY_PHOTOS.slice(0, 4).map((photo, idx) => (
+              <motion.div
+                key={photo.id}
+                className="family-card"
+                style={{ rotate: PHOTO_TILTS[idx % PHOTO_TILTS.length] }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.04 + idx * 0.04 }}
+                whileHover={{ scale: 1.06, rotate: 0, zIndex: 6 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => openPhoto(idx)}
+              >
+                <span
+                  className="family-tape"
+                  style={{ background: TAPE_COLORS[idx % TAPE_COLORS.length] }}
+                />
+                <div className="family-photo-frame">
+                  <Placeholder label={photo.title} src={photo.src} aspectRatio="1 / 1" />
                 </div>
-                <p className="family-card-caption">{photo.caption}</p>
-              </div>
-            </motion.div>
-          ))}
+                <div className="family-card-body">
+                  <div className="family-card-meta">
+                    <span className="family-photo-num">{String(idx + 1).padStart(2, '0')}</span>
+                    <span className="family-card-title">{photo.title}</span>
+                  </div>
+                  <p className="family-card-caption">{photo.caption}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="family-row family-row-family">
+            {FAMILY_PHOTOS.slice(4).map((photo, idx) => {
+              const actualIdx = idx + 4
+              return (
+                <motion.div
+                  key={photo.id}
+                  className="family-card"
+                  style={{ rotate: PHOTO_TILTS[actualIdx % PHOTO_TILTS.length] }}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.04 + actualIdx * 0.04 }}
+                  whileHover={{ scale: 1.06, rotate: 0, zIndex: 6 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => openPhoto(actualIdx)}
+                >
+                  <span
+                    className="family-tape"
+                    style={{ background: TAPE_COLORS[actualIdx % TAPE_COLORS.length] }}
+                  />
+                  <div className="family-photo-frame">
+                    <Placeholder label={photo.title} src={photo.src} aspectRatio="1 / 1" />
+                  </div>
+                  <div className="family-card-body">
+                    <div className="family-card-meta">
+                      <span className="family-photo-num">{String(actualIdx + 1).padStart(2, '0')}</span>
+                      <span className="family-card-title">{photo.title}</span>
+                    </div>
+                    <p className="family-card-caption">{photo.caption}</p>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
         </div>
       </div>
 

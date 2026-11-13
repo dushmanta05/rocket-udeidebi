@@ -1177,31 +1177,37 @@ img {
   flex: 1;
   min-height: 0;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1160px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 0;
-  overflow-y: auto;
+  padding: 4px 0;
 }
 
-.family-grid {
+.family-rows {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: clamp(12px, 1.8vw, 20px);
+  gap: clamp(10px, 1.4vh, 16px);
+  width: 100%;
+}
+
+.family-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.2vw, 16px);
   width: 100%;
 }
 
 .family-card {
-  flex: 0 1 calc((100% - 2 * clamp(12px, 1.8vw, 20px)) / 3 - 2px);
-  min-width: 250px;
-  max-width: 340px;
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: clamp(9px, 1.2vw, 13px);
-  border-radius: 18px;
+  width: clamp(155px, 13.5vw, 195px);
+  padding: 8px 8px 10px;
+  border-radius: 16px;
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
@@ -1218,11 +1224,11 @@ img {
 
 .family-tape {
   position: absolute;
-  top: -8px;
+  top: -7px;
   left: 50%;
   transform: translateX(-50%) rotate(-1.5deg);
-  width: 46px;
-  height: 15px;
+  width: 42px;
+  height: 14px;
   opacity: 0.88;
   border-radius: 2px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -1230,18 +1236,18 @@ img {
 }
 
 .family-photo-frame {
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .family-card-body {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .family-card-meta {
@@ -1252,7 +1258,7 @@ img {
 
 .family-photo-num {
   font-family: var(--font-display);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: var(--gold);
   letter-spacing: 0.04em;
@@ -1260,7 +1266,7 @@ img {
 
 .family-card-title {
   font-family: var(--font-display);
-  font-size: clamp(0.85rem, 1.05vw, 0.98rem);
+  font-size: clamp(0.78rem, 0.95vw, 0.88rem);
   font-weight: 700;
   color: #ffffff;
   white-space: nowrap;
@@ -1271,14 +1277,13 @@ img {
 
 .family-card-caption {
   font-family: var(--font-hand);
-  font-size: clamp(0.92rem, 1.15vw, 1.08rem);
+  font-size: clamp(0.86rem, 1.05vw, 0.98rem);
   color: var(--ink-soft);
-  line-height: 1.25;
+  line-height: 1.2;
   margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .family-modal-backdrop {
@@ -4708,13 +4713,25 @@ img {
     width: min(70vw, 300px);
   }
 
-  .family-grid {
+  .family-rows {
+    gap: 10px;
+  }
+
+  .family-row {
+    flex-wrap: wrap;
     gap: 10px;
   }
 
   .family-card {
-    flex: 0 1 calc((100% - 12px) / 2 - 2px);
+    width: calc((100% - 12px) / 2);
     min-width: 140px;
+    max-width: 180px;
+  }
+
+  .family-grid-stage {
+    overflow-y: auto;
+    max-height: calc(100vh - 170px);
+    padding-bottom: 20px;
   }
 
   .polaroid-grid,
