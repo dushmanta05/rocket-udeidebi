@@ -38,9 +38,9 @@ export function HeartOfGold({ currentStep, setTotalSteps, onNext }: StepSectionP
           <motion.div
             key={`heart-gif-${tribute.id}`}
             className="heart-hero-gif"
-            initial={{ scale: 0.8, opacity: 0, rotate: -4 }}
-            animate={{ scale: 1, opacity: 1, rotate: 0 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: (tribute.scale ?? 1) * 0.85, opacity: 0, rotate: -4 }}
+            animate={{ scale: tribute.scale ?? 1, opacity: 1, rotate: 0 }}
+            exit={{ scale: (tribute.scale ?? 1) * 0.85, opacity: 0 }}
             transition={{ type: 'spring', damping: 14 }}
           >
             <Placeholder label={tribute.photoLabel} src={tribute.src} aspectRatio="1 / 1" />

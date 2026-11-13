@@ -31,6 +31,8 @@ export const ASSETS = {
   penguHeart: './images/pengu-heart.gif',
   penguFood: './images/pengu-food.gif',
   penguPari: './images/pengu-pari.gif',
+  penguSmile: './images/pengu-smile.gif',
+  penguFriend: './images/pengu-friend.gif',
   penguLove: './images/pengu-love.gif',
   penguLove1: './images/pengu-love-1.gif',
   penguEnergy: './images/pengu-energy.gif',
