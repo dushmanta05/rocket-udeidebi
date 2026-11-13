@@ -84,18 +84,18 @@ export function CloudKitchen() {
 
           <div className="policy-tags-row">
             <div className="policy-tag-item">
-              <span className="policy-label">DELIVERY</span>
-              <span className="policy-val">100% Free Forever</span>
+              <span className="policy-label">{KITCHEN_COPY.deliveryLabel}</span>
+              <span className="policy-val">{KITCHEN_COPY.deliveryVal}</span>
             </div>
             <div className="policy-tag-divider" />
             <div className="policy-tag-item">
-              <span className="policy-label">PAYMENT</span>
-              <span className="policy-val">Strictly Not Accepted</span>
+              <span className="policy-label">{KITCHEN_COPY.paymentLabel}</span>
+              <span className="policy-val">{KITCHEN_COPY.paymentVal}</span>
             </div>
             <div className="policy-tag-divider" />
             <div className="policy-tag-item">
-              <span className="policy-label">HEAD CHEF / OWNER</span>
-              <span className="policy-val">Physically Cannot Say No</span>
+              <span className="policy-label">{KITCHEN_COPY.extraLabel}</span>
+              <span className="policy-val">{KITCHEN_COPY.extraVal}</span>
             </div>
           </div>
         </motion.div>

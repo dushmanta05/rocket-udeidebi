@@ -185,7 +185,13 @@ export const SAYNO_COPY = {
 
 export const KITCHEN_COPY = {
   chefSays: 'Food is free, hugs are unlimited!',
-  footer: 'Delivery: free. Payment: not accepted. Owner: cannot say no.',
+  deliveryLabel: 'DELIVERY',
+  deliveryVal: '100% Free Forever',
+  paymentLabel: 'PAYMENT',
+  paymentVal: 'Strictly Not Accepted',
+  extraLabel: 'EXTRA SERVINGS',
+  extraVal: 'Unlimited Seconds Guaranteed',
+  footer: 'Delivery: free. Payment: not accepted. Extra servings: unlimited seconds guaranteed.',
   receiptTitle: 'Order Received',
   receiptTotal: 'Total: Rs 0.00',
   receiptNote: 'Paid in full by a generous heart',
