@@ -119,15 +119,10 @@ export function CloudKitchen() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="kitchen-modal-header">
-                <div>
-                  <span className="pill">
-                    Recipe {String(activeIdx + 1).padStart(2, '0')} of {String(MENU_ITEMS.length).padStart(2, '0')} · {activeDish.tag || 'Cloud Kitchen Special'}
-                  </span>
-                  <h3 className="kitchen-modal-title">{activeDish.name}</h3>
-                </div>
+                <h3 className="kitchen-modal-title">{activeDish.name}</h3>
                 <button
                   type="button"
-                  className="term-modal-close"
+                  className="kitchen-modal-close"
                   onClick={() => setActiveIdx(null)}
                   aria-label="Close recipe"
                 >
