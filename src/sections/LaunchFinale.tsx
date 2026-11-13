@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { FINALE_COPY, SECTIONS } from '../data/sections'
 import { CREW_NAMES } from '../data/crew'
-import { SPONSORS } from '../data/sponsors'
+import { SPONSORS, SPONSORS_COPY } from '../data/sponsors'
 import { Pengu } from '../components/Pengu'
 import { Hippo } from '../components/Hippo'
 import { PenguinRocketArt } from '../components/art/PenguinRocketArt'
@@ -209,11 +209,9 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
         {!reduceMotion && <ThanksCoupleFlyby />}
 
         <header className="section-header sponsors-header">
-          <span className="kicker">Brought To You By</span>
-          <h2 className="section-title">Presented By</h2>
-          <p className="section-subtitle">
-            The certified syndicates, agencies & family delegates who made this bachelorette possible.
-          </p>
+          <span className="kicker">{SPONSORS_COPY.kicker}</span>
+          <h2 className="section-title">{SPONSORS_COPY.title}</h2>
+          <p className="section-subtitle">{SPONSORS_COPY.subtitle}</p>
         </header>
 
         <div className="sponsors-scatter-grid">
@@ -240,20 +238,19 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
                     : { scale: 1.08, rotate: 0, x: 0, y: -4, zIndex: 10, transition: { duration: 0.18 } }
                 }
               >
-                <div className="sponsor-card-inner">
-                  <div className="sponsor-top">
-                    <span className="sponsor-idx">{String(idx + 1).padStart(2, '0')}</span>
-                    <h3 className="sponsor-title">{s.title}</h3>
-                  </div>
-                  <div className="sponsor-name">({s.subtitle})</div>
+                <div className="sponsor-card-head">
+                  <span className="sponsor-tag">Sponsor #{String(idx + 1).padStart(2, '0')}</span>
+                  <span className="sponsor-badge-free">{SPONSORS_COPY.badge}</span>
                 </div>
+                <h3 className="sponsor-card-title">{s.title}</h3>
+                <div className="sponsor-card-member">({s.subtitle})</div>
               </motion.div>
             )
           })}
         </div>
 
         <div className="sponsors-footer">
-          <span className="sponsors-tagline">"Zero sponsors were harmed in the making of this launch."</span>
+          <span className="sponsors-tagline">{SPONSORS_COPY.tagline}</span>
           <div className="sponsors-party-row">
             <div className="sponsors-party-wrap party-band">
               <Pengu size={isMobile ? 100 : 160} variant="party1" />

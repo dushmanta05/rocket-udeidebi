@@ -5,10 +5,18 @@ export interface Sponsor {
   tag: string
 }
 
+export const SPONSORS_COPY = {
+  kicker: 'Brought To You By',
+  title: 'Presented By',
+  subtitle: 'The certified syndicates, agencies & family delegates who made this bachelorette possible.',
+  badge: 'Official',
+  tagline: '"Zero sponsors were harmed in the making of this launch."'
+}
+
 export const SPONSORS: Sponsor[] = [
   {
     id: 'dushmanta',
-    title: 'Talcher Coalfield Syndicate',
+    title: 'Angul Coalfield Syndicate',
     subtitle: 'Dushmanta Behera',
     tag: 'Official Energy & Black Diamond Sponsor'
   },
