@@ -7,13 +7,13 @@ import { Pengu } from '../components/Pengu'
 import { Hint, SectionHeader } from '../components/SectionHeader'
 
 const copy = SECTIONS[11]
-const CHEF_VARIANTS = ['kitchen', 'kitchen2', 'kitchen3'] as const
+const CHEF_VARIANTS = ['chef', 'cook', 'cook2', 'cook3'] as const
 const RECIPE_TILTS = [-2, 2.4, -1.8, 2, -2.2, 1.8]
 
 export function CloudKitchen() {
   const [activeDish, setActiveDish] = useState<MenuItem | null>(null)
   const [ticket, setTicket] = useState(101)
-  const [chefIdx, setChefIdx] = useState<0 | 1 | 2>(0)
+  const [chefIdx, setChefIdx] = useState(0)
 
   useEffect(() => {
     if (activeDish === null) return
@@ -24,16 +24,16 @@ export function CloudKitchen() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [activeDish])
 
-  const openDish = (dish: MenuItem) => {
+  const openDish = (dish: MenuItem, idx: number) => {
     setActiveDish(dish)
     setTicket((prev) => prev + 1)
-    setChefIdx((prev) => ((prev + 1) % 3) as 0 | 1 | 2)
+    setChefIdx(idx % CHEF_VARIANTS.length)
     confetti({ particleCount: 36, spread: 70, origin: { y: 0.6 }, colors: ['#ffd27a', '#7ee2a8', '#8ec5ff'] })
   }
 
   const cycleChef = (e: React.MouseEvent) => {
     e.stopPropagation()
-    setChefIdx((prev) => ((prev + 1) % 3) as 0 | 1 | 2)
+    setChefIdx((prev) => (prev + 1) % CHEF_VARIANTS.length)
   }
 
   return (
@@ -52,7 +52,7 @@ export function CloudKitchen() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 + idx * 0.08 }}
-              onClick={() => openDish(dish)}
+              onClick={() => openDish(dish, idx)}
             >
               <div className="recipe-card-head">
                 <span className="recipe-tag">{dish.tag || `Recipe #${idx + 1}`}</span>

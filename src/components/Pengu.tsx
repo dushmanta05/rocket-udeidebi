@@ -6,6 +6,9 @@ import { BagArt } from './art/BagArt'
 type PenguVariant =
   | 'arpita'
   | 'chef'
+  | 'cook'
+  | 'cook2'
+  | 'cook3'
   | 'pranjal'
   | 'future'
   | 'remote'
@@ -68,6 +71,9 @@ interface PenguProps {
 const VARIANT_SRC: Record<PenguVariant, string> = {
   arpita: ASSETS.pengu,
   chef: ASSETS.penguChef,
+  cook: ASSETS.penguCook,
+  cook2: ASSETS.penguCook2,
+  cook3: ASSETS.penguCook3,
   pranjal: ASSETS.pranjal,
   future: ASSETS.penguFuture,
   remote: ASSETS.penguRemote,
@@ -138,7 +144,7 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
                 ? 'Pengu with TV remote'
                 : variant.startsWith('dance')
                   ? 'Dancing Pengu'
-                  : variant.startsWith('kitchen') || variant === 'chef'
+                  : variant.startsWith('kitchen') || variant === 'chef' || variant.startsWith('cook')
                     ? 'Pengu cooking'
                     : variant === 'run'
                       ? 'Pengu running'
@@ -200,7 +206,7 @@ export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguP
           ) : (
             <PenguinArt
               size={size}
-              chefHat={variant === 'chef' || variant.startsWith('kitchen')}
+              chefHat={variant === 'chef' || variant.startsWith('kitchen') || variant.startsWith('cook')}
               futureLens={variant === 'future'}
               remote={variant === 'remote'}
             />
