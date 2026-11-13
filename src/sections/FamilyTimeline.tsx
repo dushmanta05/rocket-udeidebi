@@ -66,7 +66,7 @@ export function FamilyTimeline({ setTotalSteps }: StepSectionProps) {
                 style={{ background: TAPE_COLORS[idx % TAPE_COLORS.length] }}
               />
               <div className="family-photo-frame">
-                <Placeholder label={photo.title} src={photo.src} aspectRatio="4 / 3" />
+                <Placeholder label={photo.title} src={photo.src} aspectRatio="1 / 1" />
               </div>
               <div className="family-card-body">
                 <div className="family-card-meta">
@@ -113,7 +113,7 @@ export function FamilyTimeline({ setTotalSteps }: StepSectionProps) {
                 <Placeholder
                   label={FAMILY_PHOTOS[selectedIdx].title}
                   src={FAMILY_PHOTOS[selectedIdx].src}
-                  aspectRatio="4 / 3"
+                  aspectRatio="1 / 1"
                 />
               </div>
 
