@@ -2175,11 +2175,11 @@ img {
 
 .sponsor-card-title {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 1.55vw, 1.35rem);
+  font-size: clamp(1.02rem, 1.35vw, 1.25rem);
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.01em;
-  line-height: 1.25;
+  line-height: 1.22;
   margin: 0;
 }
 

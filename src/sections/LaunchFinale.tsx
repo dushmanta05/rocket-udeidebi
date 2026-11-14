@@ -84,7 +84,8 @@ const SPONSOR_SCATTERS = [
   { rotate: -2.6, y: -2, x: 4 },
   { rotate: 2.0, y: 6, x: -3 },
   { rotate: -1.8, y: 8, x: 2 },
-  { rotate: 2.4, y: 6, x: 3 }
+  { rotate: 2.4, y: 6, x: 3 },
+  { rotate: -2.2, y: 4, x: -2 }
 ]
 
 export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
@@ -217,7 +218,7 @@ export function LaunchFinale({ currentStep, setTotalSteps, onNext }: StepSection
         <div className="sponsors-scatter-grid">
           {SPONSORS.map((s, idx) => {
             const scatter = reduceMotion ? { rotate: 0, y: 0, x: 0 } : SPONSOR_SCATTERS[idx % SPONSOR_SCATTERS.length]
-            const isTier3 = idx < 3 || idx >= 7
+            const isTier3 = idx >= 8
 
             return (
               <motion.div

@@ -33,10 +33,16 @@ export const SPONSORS: Sponsor[] = [
     tag: 'Bhitarkanika Saline Hydration & Reptile Defense'
   },
   {
-    id: 'paresh-niyaz',
-    title: 'Jajpur Airlines',
-    subtitle: 'Paresh Singh & Niyaz Noor',
-    tag: 'Non-Stop High Altitude Chai Flights'
+    id: 'paresh',
+    title: 'Jajpur Express',
+    subtitle: 'Paresh Singh',
+    tag: 'High-Speed Local Transit & Non-Stop Chai Runs'
+  },
+  {
+    id: 'niyaz',
+    title: 'Delulu Vande Bharat Superfast Express Pilot',
+    subtitle: 'Niyaz Noor',
+    tag: 'Certified High-Speed Daydreaming & Express Operations'
   },
   {
     id: 'tapan',
