@@ -45,7 +45,7 @@ export const PREDICTION_SETS: PredictionSet[] = [
       {
         id: 'pred-paresh',
         author: 'Paresh Singh',
-        text: 'Husband will be the CEO on paper, but Didi will be the actual management. One thing is certain: shaadi ke baad bhi Didi hi boss rahegi! 😎🌻'
+        text: 'Husband will be the CEO on paper, but Arpita will be the actual management. One thing is certain: shaadi ke baad bhi Arpita hi boss rahegi! 😎🌻'
       },
       {
         id: 'pred-niyaz',
@@ -56,24 +56,24 @@ export const PREDICTION_SETS: PredictionSet[] = [
   },
   {
     id: 'siblings-gang',
-    pill: 'Siblings & Gang',
-    title: 'Siblings & The Gang',
+    pill: 'More Crew & Siblings',
+    title: 'More Crew & Siblings',
     kicker: 'Future Visions · Part 2',
     subtitle: 'The uncensored truth from the family squad and late-night partners-in-crime.',
     items: [
       {
         id: 'pred-ankita',
-        author: 'Ankita (Didi)',
+        author: 'Ankita',
         text: 'A picture-perfect housewife with two beautiful children, and an active, devoted lifetime member of the ISKCON association!'
       },
       {
         id: 'pred-amit',
-        author: 'Amit (Brother)',
+        author: 'Amit',
         text: 'She will be pregnant with baby number two, delightfully jobless, and lounging on the sofa looking deliciously, extremely fat!'
       },
       {
         id: 'pred-anchal',
-        author: 'Anchal (Cousin)',
+        author: 'Anchal',
         text: 'Forever slim and hot, happily pregnant with baby Penguin, and living the most joyful, blessed married life!'
       },
       {

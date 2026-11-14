@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
-import { FRIENDS_SETS, FRIENDS_PHOTOS } from '../data/friendsPhotos'
+import { FRIENDS_SETS } from '../data/friendsPhotos'
 import { SECTIONS } from '../data/sections'
 import { Placeholder } from '../components/Placeholder'
 import { SectionHeader } from '../components/SectionHeader'
@@ -22,6 +22,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
   const currentSet = FRIENDS_SETS[setIndex]
 
   useEffect(() => {
+    setSelectedIdx(null)
     if (currentSet.isHero) {
       confetti({
         particleCount: 45,
@@ -58,16 +59,16 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
       } else if (e.key === 'ArrowRight') {
         e.preventDefault()
         e.stopImmediatePropagation()
-        navigateModal((selectedIdx + 1) % FRIENDS_PHOTOS.length)
+        navigateModal((selectedIdx + 1) % currentSet.items.length)
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault()
         e.stopImmediatePropagation()
-        navigateModal((selectedIdx - 1 + FRIENDS_PHOTOS.length) % FRIENDS_PHOTOS.length)
+        navigateModal((selectedIdx - 1 + currentSet.items.length) % currentSet.items.length)
       }
     }
     window.addEventListener('keydown', handleKeyDown, true)
     return () => window.removeEventListener('keydown', handleKeyDown, true)
-  }, [selectedIdx, navigateModal])
+  }, [selectedIdx, currentSet.items.length, navigateModal])
 
   const openPhoto = (idx: number) => {
     setSelectedIdx(idx)
@@ -131,7 +132,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                 transition={{ duration: 0.4, ease: 'easeOut' }}
                 onClick={(e) => {
                   e.stopPropagation()
-                  openPhoto(currentSet.offset)
+                  openPhoto(0)
                 }}
               >
                 <span className="friends-tape left" style={{ background: '#ffd27a' }} />
@@ -167,7 +168,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                     whileTap={{ scale: 0.97 }}
                     onClick={(e) => {
                       e.stopPropagation()
-                      openPhoto(globalIdx)
+                      openPhoto(itemIdx)
                     }}
                   >
                     <span
@@ -179,7 +180,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                     </div>
                     <div className="friends-card-body">
                       <div className="friends-card-meta">
-                        <span className="friends-photo-num">{String(globalIdx + 1).padStart(2, '0')}</span>
+                        <span className="friends-photo-num">{String(itemIdx + 1).padStart(2, '0')}</span>
                         <span className="friends-card-title">{photo.title}</span>
                       </div>
                       <p className="friends-card-caption">{photo.caption}</p>
@@ -197,7 +198,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
       </div>
 
       <AnimatePresence>
-        {selectedIdx !== null && (
+        {selectedIdx !== null && currentSet.items[selectedIdx] && (
           <motion.div
             className="friends-modal-backdrop"
             initial={{ opacity: 0 }}
@@ -214,7 +215,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
               onClick={(e) => e.stopPropagation()}
             >
               <div className="friends-modal-header">
-                <span className="pill">Memory {String(selectedIdx + 1).padStart(2, '0')} of {String(FRIENDS_PHOTOS.length).padStart(2, '0')}</span>
+                <span className="pill">Memory {String(selectedIdx + 1).padStart(2, '0')} of {String(currentSet.items.length).padStart(2, '0')}</span>
                 <button
                   type="button"
                   className="friends-modal-close"
@@ -225,17 +226,17 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                 </button>
               </div>
 
-              <div className={`friends-modal-photo ${FRIENDS_PHOTOS[selectedIdx].orientation || ''}`}>
+              <div className={`friends-modal-photo ${currentSet.items[selectedIdx].orientation || ''}`}>
                 <Placeholder
-                  label={FRIENDS_PHOTOS[selectedIdx].title}
-                  src={FRIENDS_PHOTOS[selectedIdx].src}
-                  aspectRatio={FRIENDS_PHOTOS[selectedIdx].aspectRatio || 'auto'}
+                  label={currentSet.items[selectedIdx].title}
+                  src={currentSet.items[selectedIdx].src}
+                  aspectRatio={currentSet.items[selectedIdx].aspectRatio || 'auto'}
                 />
               </div>
 
               <div className="friends-modal-info">
-                <h3 className="friends-modal-title">{FRIENDS_PHOTOS[selectedIdx].title}</h3>
-                <p className="friends-modal-caption">"{FRIENDS_PHOTOS[selectedIdx].caption}"</p>
+                <h3 className="friends-modal-title">{currentSet.items[selectedIdx].title}</h3>
+                <p className="friends-modal-caption">"{currentSet.items[selectedIdx].caption}"</p>
               </div>
 
               <div className="friends-modal-nav">
@@ -243,7 +244,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                   type="button"
                   className="friends-nav-btn"
                   onClick={() =>
-                    navigateModal((selectedIdx - 1 + FRIENDS_PHOTOS.length) % FRIENDS_PHOTOS.length)
+                    navigateModal((selectedIdx - 1 + currentSet.items.length) % currentSet.items.length)
                   }
                   aria-label="Previous photo"
                 >
@@ -251,7 +252,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                 </button>
 
                 <div className="friends-dots-tray">
-                  {FRIENDS_PHOTOS.map((_, dotIdx) => (
+                  {currentSet.items.map((_, dotIdx) => (
                     <span
                       key={dotIdx}
                       className={`friends-dot ${dotIdx === selectedIdx ? 'active' : ''}`}
@@ -263,7 +264,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                 <button
                   type="button"
                   className="friends-nav-btn"
-                  onClick={() => navigateModal((selectedIdx + 1) % FRIENDS_PHOTOS.length)}
+                  onClick={() => navigateModal((selectedIdx + 1) % currentSet.items.length)}
                   aria-label="Next photo"
                 >
                   Next ›

@@ -35,6 +35,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
   const currentSet = SETS[setIndex]
 
   useEffect(() => {
+    setSelectedIdx(null)
     confetti({
       particleCount: 24,
       spread: 55,
@@ -49,14 +50,14 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
       if (e.key === 'Escape') {
         setSelectedIdx(null)
       } else if (e.key === 'ArrowRight') {
-        setSelectedIdx((prev) => (prev !== null ? (prev + 1) % FAMILY_PHOTOS.length : null))
+        setSelectedIdx((prev) => (prev !== null ? (prev + 1) % currentSet.items.length : null))
       } else if (e.key === 'ArrowLeft') {
-        setSelectedIdx((prev) => (prev !== null ? (prev - 1 + FAMILY_PHOTOS.length) % FAMILY_PHOTOS.length : null))
+        setSelectedIdx((prev) => (prev !== null ? (prev - 1 + currentSet.items.length) % currentSet.items.length : null))
       }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedIdx])
+  }, [selectedIdx, currentSet.items.length])
 
   const openPhoto = (idx: number) => {
     setSelectedIdx(idx)
@@ -114,7 +115,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
                   whileTap={{ scale: 0.97 }}
                   onClick={(e) => {
                     e.stopPropagation()
-                    openPhoto(globalIdx)
+                    openPhoto(itemIdx)
                   }}
                 >
                   <span
@@ -126,7 +127,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
                   </div>
                   <div className="family-card-body">
                     <div className="family-card-meta">
-                      <span className="family-photo-num">{String(globalIdx + 1).padStart(2, '0')}</span>
+                      <span className="family-photo-num">{String(itemIdx + 1).padStart(2, '0')}</span>
                       <span className="family-card-title">{photo.title}</span>
                     </div>
                     <p className="family-card-caption">{photo.caption}</p>
@@ -143,7 +144,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
       </div>
 
       <AnimatePresence>
-        {selectedIdx !== null && (
+        {selectedIdx !== null && currentSet.items[selectedIdx] && (
           <motion.div
             className="family-modal-backdrop"
             initial={{ opacity: 0 }}
@@ -160,7 +161,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
               onClick={(e) => e.stopPropagation()}
             >
               <div className="family-modal-header">
-                <span className="pill">Memory {String(selectedIdx + 1).padStart(2, '0')} of {String(FAMILY_PHOTOS.length).padStart(2, '0')}</span>
+                <span className="pill">Memory {String(selectedIdx + 1).padStart(2, '0')} of {String(currentSet.items.length).padStart(2, '0')}</span>
                 <button
                   type="button"
                   className="family-modal-close"
@@ -173,15 +174,15 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
 
               <div className="family-modal-photo">
                 <Placeholder
-                  label={FAMILY_PHOTOS[selectedIdx].title}
-                  src={FAMILY_PHOTOS[selectedIdx].src}
+                  label={currentSet.items[selectedIdx].title}
+                  src={currentSet.items[selectedIdx].src}
                   aspectRatio="1 / 1"
                 />
               </div>
 
               <div className="family-modal-info">
-                <h3 className="family-modal-title">{FAMILY_PHOTOS[selectedIdx].title}</h3>
-                <p className="family-modal-caption">"{FAMILY_PHOTOS[selectedIdx].caption}"</p>
+                <h3 className="family-modal-title">{currentSet.items[selectedIdx].title}</h3>
+                <p className="family-modal-caption">"{currentSet.items[selectedIdx].caption}"</p>
               </div>
 
               <div className="family-modal-nav">
@@ -189,7 +190,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
                   type="button"
                   className="family-nav-btn"
                   onClick={() =>
-                    setSelectedIdx((prev) => (prev! - 1 + FAMILY_PHOTOS.length) % FAMILY_PHOTOS.length)
+                    setSelectedIdx((prev) => (prev! - 1 + currentSet.items.length) % currentSet.items.length)
                   }
                   aria-label="Previous photo"
                 >
@@ -197,7 +198,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
                 </button>
 
                 <div className="family-dots-tray">
-                  {FAMILY_PHOTOS.map((_, dotIdx) => (
+                  {currentSet.items.map((_, dotIdx) => (
                     <span
                       key={dotIdx}
                       className={`family-dot ${dotIdx === selectedIdx ? 'active' : ''}`}
@@ -209,7 +210,7 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
                 <button
                   type="button"
                   className="family-nav-btn"
-                  onClick={() => setSelectedIdx((prev) => (prev! + 1) % FAMILY_PHOTOS.length)}
+                  onClick={() => setSelectedIdx((prev) => (prev! + 1) % currentSet.items.length)}
                   aria-label="Next photo"
                 >
                   Next ›
