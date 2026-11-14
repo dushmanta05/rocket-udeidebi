@@ -188,6 +188,14 @@ export const FRIENDS_SETS: FriendSet[] = [
         src: 'images/friends/last-day.jpeg',
         aspectRatio: '4 / 3',
         orientation: 'landscape'
+      },
+      {
+        id: 'celeb-5',
+        title: 'The Farewell Cake',
+        caption: 'Holding the cake we gave her for farewell — sending off our favorite teammate with chocolate, cheers, and big hugs!',
+        src: 'images/friends/farewell.jpeg',
+        aspectRatio: '3 / 4',
+        orientation: 'portrait'
       }
     ]
   },
@@ -196,8 +204,8 @@ export const FRIENDS_SETS: FriendSet[] = [
     pill: 'Outings & Trips',
     title: 'Trips & Adventures',
     kicker: 'Chapter 2 · Act 6',
-    subtitle: 'Coastal trails, poolside splashes, handwoven garlands, and sweet send-offs on the road.',
-    offset: 19,
+    subtitle: 'Coastal trails, poolside splashes, handwoven garlands, and sunny adventures on the road.',
+    offset: 20,
     items: [
       {
         id: 'outing-1',
@@ -210,14 +218,6 @@ export const FRIENDS_SETS: FriendSet[] = [
         title: 'Poolside Splash Day',
         caption: 'Beating the heat with poolside loungers, giant splashes, and endless sunny shenanigans.',
         src: 'images/friends/outing-2.jpeg'
-      },
-      {
-        id: 'outing-3',
-        title: 'The Farewell Cake',
-        caption: 'Holding the cake we gave her for farewell — sending off our favorite teammate with chocolate, cheers, and big hugs!',
-        src: 'images/friends/farewell.jpeg',
-        aspectRatio: '3 / 4',
-        orientation: 'portrait'
       }
     ]
   },

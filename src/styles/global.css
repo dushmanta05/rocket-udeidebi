@@ -1644,8 +1644,8 @@ img {
 }
 
 .friends-card.portrait .friends-photo-frame .media-img {
-  object-fit: contain;
-  background: rgba(8, 12, 24, 0.7);
+  object-fit: cover;
+  object-position: center 35%;
 }
 
 .friends-card-body {

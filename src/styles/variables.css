@@ -1,7 +1,7 @@
 :root {
   --font-display: 'Fredoka Variable', 'Fredoka', system-ui, sans-serif;
   --font-body: 'Nunito Variable', 'Nunito', system-ui, sans-serif;
-  --font-hand: 'Caveat', cursive;
+  --font-hand: 'Patrick Hand', cursive, sans-serif;
 
   --sky-top: #0b1030;
   --sky-mid: #0a0d24;
