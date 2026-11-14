@@ -95,8 +95,8 @@ export const SECTIONS: SectionCopy[] = [
     short: 'Predictions',
     kicker: 'The Oracle Speaks',
     title: 'Your Married Life: Predicted',
-    subtitle: 'Tap the crystal ball to see what the future holds.',
-    hint: 'Tap the crystal ball'
+    subtitle: 'Tap any fortune card to spotlight what the future holds.',
+    hint: 'Tap any card to spotlight · Space / Arrow keys flip page'
   },
   {
     short: 'Heart',

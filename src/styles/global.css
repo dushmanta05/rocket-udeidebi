@@ -4478,174 +4478,371 @@ img {
   text-align: center;
 }
 
-.oracle-layout {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  width: 100%;
-  max-width: 860px;
+.predictions-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
-}
-
-.fortune-arena {
-  position: relative;
+  justify-content: flex-start;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  height: 100%;
+  padding: clamp(10px, 1.8vh, 18px) clamp(16px, 4vw, 48px) 8px;
+  gap: clamp(6px, 1vh, 10px);
 }
 
-.fortune-bundle {
-  position: relative;
+.predictions-stage {
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.pengu-teller-wrap {
-  position: absolute;
-  z-index: 4;
-  pointer-events: none;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.45));
-}
-
-.pengu-teller-wrap.pos-side-right {
-  top: 50%;
-  right: -95px;
-  transform: translateY(-50%);
-}
-
-.pengu-teller-wrap.pos-side-left {
-  top: 50%;
-  left: -95px;
-  transform: translateY(-50%);
-}
-
-.pengu-teller-wrap.pos-bottom-right {
-  bottom: -24px;
-  right: 20px;
-}
-
-.pengu-teller-wrap.pos-bottom-left {
-  bottom: -24px;
-  left: 20px;
-}
-
-.pengu-teller-wrap.pos-deck-right {
-  bottom: 8px;
-  right: -55px;
-}
-
-.fortune-card {
-  position: relative;
-  width: min(100%, 740px);
-  min-height: 280px;
+  max-width: 1160px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(6px, 1.2vh, 12px);
+}
+
+.predictions-set-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.predictions-set-toggle::-webkit-scrollbar {
+  display: none;
+}
+
+.predictions-set-pill {
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-size: clamp(0.74rem, 0.88vw, 0.82rem);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+.predictions-set-pill.active {
+  background: rgba(255, 210, 122, 0.18);
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 14px rgba(255, 210, 122, 0.25);
+}
+
+.predictions-grid-wrap {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 16px;
-  padding: clamp(28px, 4.5vw, 48px);
-  border-radius: var(--radius-lg);
+}
+
+.predictions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 360px));
+  justify-content: center;
+  gap: clamp(10px, 1.4vw, 16px);
+  width: 100%;
+  max-width: 1140px;
+}
+
+.fortune-grid-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(12px, 1.8vh, 16px) clamp(14px, 1.8vw, 20px);
+  border-radius: 18px;
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  box-shadow: var(--shadow-card);
+  text-align: left;
+  cursor: pointer;
+  min-height: clamp(130px, 18vh, 175px);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.fortune-grid-card:hover {
+  border-color: rgba(255, 210, 122, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 210, 122, 0.18);
+}
+
+.fortune-grid-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fortune-grid-num {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.fortune-grid-tag {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--lavender);
+  background: rgba(167, 139, 250, 0.14);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+}
+
+.fortune-grid-text {
+  font-family: var(--font-hand);
+  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  line-height: 1.32;
+  color: #ffffff;
+  margin: 6px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fortune-grid-author {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.fortune-author-label {
+  font-size: 0.74rem;
+  color: var(--ink-muted);
+}
+
+.fortune-author-name {
+  font-family: var(--font-display);
+  font-size: clamp(0.82rem, 1vw, 0.94rem);
+  font-weight: 700;
+  color: var(--pink);
 }
 
 .fortune-sparkle {
   position: absolute;
   color: var(--gold);
+  opacity: 0.6;
 }
 
 .fortune-sparkle.tl {
-  top: 18px;
-  left: 18px;
+  top: 10px;
+  left: 10px;
 }
 
 .fortune-sparkle.br {
-  bottom: 18px;
-  right: 18px;
+  bottom: 10px;
+  right: 10px;
 }
 
-.fortune-num {
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--lavender);
-  text-align: center;
-}
-
-.fortune-text {
-  font-family: var(--font-hand);
-  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
-  line-height: 1.35;
-  color: #ffffff;
-  text-align: center;
-}
-
-.fortune-author {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  color: var(--gold);
-  text-align: center;
-}
-
-.fortune-author strong {
-  font-weight: 700;
-}
-
-.revealed-tray-wrap {
-  width: 100%;
-  max-width: 740px;
+.predictions-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-top: clamp(4px, 1vh, 8px);
 }
 
-.revealed-tray-label {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+.predictions-hint-text {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+}
+
+.fortune-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 6, 16, 0.88);
+  backdrop-filter: blur(12px);
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.fortune-modal-card {
+  position: relative;
+  width: min(92vw, 640px);
+  max-height: 92vh;
+  background: rgba(18, 22, 44, 0.96);
+  border: 1.5px solid rgba(255, 210, 122, 0.35);
+  border-radius: 24px;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 210, 122, 0.12);
+  padding: clamp(18px, 3vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.fortune-modal-mascot {
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+  margin-top: -10px;
+}
+
+.fortune-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.fortune-modal-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--ink-soft);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.fortune-modal-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.fortune-modal-body {
+  position: relative;
+  padding: clamp(16px, 2.8vh, 26px) clamp(18px, 3vw, 30px);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fortune-modal-text {
+  font-family: var(--font-hand);
+  font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+  line-height: 1.35;
+  color: #ffffff;
+  margin: 0 0 12px;
+}
+
+.fortune-modal-author {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+}
+
+.fortune-modal-author .fortune-author-label {
+  font-size: 0.82rem;
   color: var(--ink-muted);
 }
 
-.revealed-tray {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  max-width: 100%;
-  padding: 4px;
+.fortune-modal-author .fortune-author-name {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: var(--pink);
 }
 
-.revealed-chip {
+.fortune-modal-cosmic-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(255, 210, 122, 0.14);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+}
+
+.fortune-modal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.14);
+}
+
+.fortune-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.fortune-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.fortune-dots-tray {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  white-space: nowrap;
-  font-size: 0.85rem;
-  color: var(--ink-soft);
 }
 
-.revealed-chip .revealed-idx {
-  color: var(--gold);
-  font-weight: 700;
+.fortune-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.24);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.revealed-chip .revealed-author {
-  font-family: var(--font-hand);
-  font-size: 1.05rem;
-  color: var(--ink);
+.fortune-dot.active {
+  background: var(--gold);
+  transform: scale(1.35);
+}
+
+@media (max-width: 900px) {
+  .predictions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .predictions-section {
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
+  .predictions-grid {
+    grid-template-columns: 1fr;
+  }
+  .fortune-modal-mascot {
+    display: none;
+  }
 }
 
 .cinema-stage {
