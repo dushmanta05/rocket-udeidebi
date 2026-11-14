@@ -1695,17 +1695,20 @@ img {
 .friends-hero-card {
   position: relative;
   display: flex;
-  flex-direction: column;
-  width: min(94vw, 780px);
-  margin-top: clamp(8px, 1.5vh, 16px);
-  padding: clamp(14px, 2.2vh, 20px) clamp(16px, 2.5vw, 24px);
+  flex-direction: row;
+  align-items: center;
+  width: min(94vw, 960px);
+  max-width: 980px;
+  margin-top: clamp(6px, 1.2vh, 14px);
+  padding: clamp(14px, 2vh, 20px) clamp(16px, 2.4vw, 24px);
   border-radius: 22px;
   background: var(--glass-bg);
   border: var(--glass-border);
   backdrop-filter: var(--glass-blur);
   box-shadow: var(--shadow-card);
   cursor: pointer;
-  text-align: center;
+  text-align: left;
+  gap: clamp(18px, 2.5vw, 32px);
   transition: all 0.3s ease;
 }
 
@@ -1718,7 +1721,7 @@ img {
 .friends-tape.left {
   position: absolute;
   top: -7px;
-  left: 18%;
+  left: 12%;
   transform: rotate(-3deg);
   width: 44px;
   height: 13px;
@@ -1731,7 +1734,7 @@ img {
 .friends-tape.right {
   position: absolute;
   top: -7px;
-  right: 18%;
+  right: 12%;
   transform: rotate(3deg);
   width: 44px;
   height: 13px;
@@ -1751,13 +1754,16 @@ img {
 }
 
 .friends-hero-photo-frame {
+  flex: 0 0 auto;
   border-radius: 14px;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  height: clamp(260px, 46vh, 440px);
-  width: 100%;
-  background: rgba(8, 12, 24, 0.75);
+  aspect-ratio: 4 / 3;
+  height: clamp(260px, 45vh, 430px);
+  width: auto;
+  max-width: 60%;
+  background: transparent;
 }
 
 .friends-hero-photo-frame .media-frame,
@@ -1769,16 +1775,18 @@ img {
 .friends-hero-photo-frame .media-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background: rgba(8, 12, 24, 0.75);
+  object-fit: cover;
+  display: block;
 }
 
 .friends-hero-body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  margin-top: 10px;
+  align-items: flex-start;
+  text-align: left;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
 }
 
 .friends-hero-badge {
@@ -1797,19 +1805,20 @@ img {
 
 .friends-hero-title {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
   font-weight: 700;
   color: #ffffff;
-  margin: 4px 0 0;
+  margin: 2px 0 0;
+  line-height: 1.25;
 }
 
 .friends-hero-caption {
   font-family: var(--font-hand);
-  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   color: var(--pink);
-  line-height: 1.35;
+  line-height: 1.4;
   margin: 0;
-  max-width: 580px;
+  max-width: 540px;
 }
 
 .friends-footer {
@@ -2008,8 +2017,22 @@ img {
     position: static;
     margin-bottom: 6px;
   }
+  .friends-hero-card {
+    flex-direction: column;
+    text-align: center;
+    width: min(94vw, 440px);
+    gap: 12px;
+    padding: 14px;
+  }
   .friends-hero-photo-frame {
-    height: 200px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .friends-hero-body {
+    align-items: center;
+    text-align: center;
   }
 }
 

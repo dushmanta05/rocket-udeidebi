@@ -37,7 +37,7 @@ Ideas raised for possible extra sections; none is started.
 | 01 | Welcome | Done | `hippo.png` host, Fredoka + Patrick Hand title, full-width rocket fly-by |
 | 02 | Antarctica + rebirth | Done | Full-screen lone penguin journey, `pengu-egg.gif`, `arpita.png` transparent cutout rises directly from hatching egg shell |
 | 03 | Family & Early Years | Done | 12-photo balanced album in two 3x2 sets (Set 1: 6 early journey photos, Set 2: 6 family, 'A' squad & Tripling photos) with enlarged cards, washi tape, and full-view modal (`familyPhotos.ts`) |
-| 04 | Friends (Then We Met You) | Done | 7-page interactive stepped memory album with 23 photos across 7 acts (1st Trip & Uno, Holi, Eating Together & Gupchup tower, Dinners & Pakhala lunch, Celebrating Together with Farewell Cake, Outings & Trips, and single Hero finale card 'We\'ll cherish these moments'), washi tape, and modal viewer |
+| 04 | Friends (Then We Met You) | Done | 7-page interactive stepped memory album with 23 photos across 7 acts (1st Trip & Uno, Holi, Eating Together & Gupchup tower, Dinners & Pakhala lunch, Celebrating Together with Farewell Cake, Outings & Trips, and full-bleed zero-crop 4:3 Hero finale card 'We\'ll cherish these moments'), washi tape, and modal viewer |
 | 05 | Polaroids | Done | 3 volumes of Weird Expressions with all 18 real photos wired (6 photos each) in 3x2 grid, with bounded modal navigation (cycling strictly within current volume) |
 | 06 | Awards | Done | Neutral frosted glass frames with gold titles; custom GIFs for chair, laugh, walk |
 | 07 | Doraemon pocket | Done | 6 transparent PNG artifacts (pocket-chair, hand-cream, hajmola, zandu-balm, perfume, biscuit) with normalized 520px viewing sizes, drawn tote bag, item details beside it |
