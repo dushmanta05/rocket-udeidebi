@@ -29,11 +29,11 @@ export const SECTIONS: SectionCopy[] = [
     hint: 'Tap any photo to view full size'
   },
   {
-    short: 'Work',
+    short: 'Friends',
     kicker: 'Chapter 2',
     title: 'Then We Met You',
-    subtitle: 'Your rocket found its crew, and the chai breaks got longer.',
-    hint: 'Tap to boost to the next stop'
+    subtitle: 'Your rocket found its crew, and the memories started stacking up.',
+    hint: 'Tap any photo to view full size'
   },
   {
     short: 'Polaroids',

@@ -6,9 +6,10 @@ interface SectionHeaderProps {
   copy: SectionCopy
   title?: ReactNode
   kicker?: string
+  subtitle?: ReactNode
 }
 
-export function SectionHeader({ copy, title, kicker }: SectionHeaderProps) {
+export function SectionHeader({ copy, title, kicker, subtitle }: SectionHeaderProps) {
   return (
     <motion.header
       initial={{ opacity: 0, y: -12 }}
@@ -18,7 +19,9 @@ export function SectionHeader({ copy, title, kicker }: SectionHeaderProps) {
     >
       <span className="kicker">{kicker ?? copy.kicker}</span>
       <h2 className="section-title">{title ?? copy.title}</h2>
-      {copy.subtitle && <p className="section-subtitle">{copy.subtitle}</p>}
+      {(subtitle !== undefined ? subtitle : copy.subtitle) && (
+        <p className="section-subtitle">{subtitle ?? copy.subtitle}</p>
+      )}
     </motion.header>
   )
 }

@@ -24,8 +24,8 @@ import { LaunchFinale } from './sections/LaunchFinale'
 
 export default function App() {
   const nav = useNavigation(SECTIONS.length)
-  const { currentSection, currentStep, setTotalSteps, goToNext, goToPrev } = nav
-  const stepProps = { currentStep, setTotalSteps, onNext: goToNext }
+  const { currentSection, currentStep, setTotalSteps, goToNext, goToPrev, setStep } = nav
+  const stepProps = { currentStep, setTotalSteps, onNext: goToNext, onStepChange: setStep }
 
   const renderSection = () => {
     switch (currentSection) {
