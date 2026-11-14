@@ -77,6 +77,7 @@ export function Polaroids({ currentStep, setTotalSteps }: StepSectionProps) {
               key={item.id}
               type="button"
               className="polaroid"
+              title={item.caption || item.label}
               style={{ rotate: item.rotation }}
               variants={{
                 hidden: { y: -260, opacity: 0, rotate: item.rotation * 3 },
@@ -127,6 +128,7 @@ export function Polaroids({ currentStep, setTotalSteps }: StepSectionProps) {
 
               <Placeholder label={activeItem.label} src={activeItem.src} aspectRatio="1 / 1" />
               <span className="polaroid-caption large">{activeItem.label}</span>
+              {activeItem.caption && <p className="polaroid-subcaption">"{activeItem.caption}"</p>}
 
               <div className="polaroid-modal-nav">
                 <button
