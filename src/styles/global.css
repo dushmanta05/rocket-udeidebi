@@ -897,24 +897,24 @@ img {
 
 .hatch-egg {
   position: relative;
-  width: 200px;
-  height: 300px;
+  width: 240px;
+  height: 340px;
 }
 
 .shell-top {
   position: absolute;
-  top: 40px;
+  top: 10px;
   left: 0;
-  z-index: 3;
+  z-index: 4;
 }
 
 .baby-photo {
   position: absolute;
-  left: 5px;
-  right: 5px;
-  top: 10px;
-  bottom: 20px;
-  z-index: 1;
+  left: 20px;
+  right: 20px;
+  top: 0;
+  bottom: 85px;
+  z-index: 3;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -930,6 +930,7 @@ img {
   background: transparent;
   border: none;
   box-shadow: none;
+  overflow: visible;
 }
 
 .baby-photo .media-img {
@@ -937,14 +938,14 @@ img {
   height: 100%;
   object-fit: contain;
   object-position: bottom center;
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.5));
 }
 
 .shell-bottom {
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .journey-pengu-wrap {
@@ -5693,7 +5694,11 @@ img {
   }
 
   .hatch-egg {
-    height: 280px;
+    width: 240px;
+    height: 340px;
+    transform: scale(0.88);
+    transform-origin: top center;
+    margin-bottom: -30px;
   }
 
   .crew-queue {
