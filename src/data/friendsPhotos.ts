@@ -4,6 +4,7 @@ export interface FriendPhoto {
   caption: string
   src: string
   aspectRatio?: string
+  orientation?: 'portrait' | 'landscape' | 'square' | 'wide'
 }
 
 export interface FriendSet {
@@ -108,13 +109,17 @@ export const FRIENDS_SETS: FriendSet[] = [
         id: 'eat-3',
         title: 'Shell-Served Ice Creams',
         caption: 'Sweet treats served straight inside fruit shells because ordinary cups could not match our dessert standards.',
-        src: 'images/friends/eating-3.jpeg'
+        src: 'images/friends/eating-3.jpeg',
+        aspectRatio: '3 / 4',
+        orientation: 'portrait'
       },
       {
         id: 'eat-4',
-        title: 'The Legendary Gupchup Tower',
-        caption: 'Who needs a regular cake when you can engineer an entire skyscraper of crispy gupchup topped with a celebration candle?',
-        src: 'images/friends/gupchup-1.jpeg'
+        title: 'The Gupchup Birthday "Cake"',
+        caption: 'Holding her favorite gupchup — which we celebrated as the ultimate birthday cake replacement!',
+        src: 'images/friends/gupchup-1.jpeg',
+        aspectRatio: '3 / 4',
+        orientation: 'portrait'
       }
     ]
   },
@@ -180,9 +185,11 @@ export const FRIENDS_SETS: FriendSet[] = [
       },
       {
         id: 'celeb-4',
-        title: 'Milestones Around the Desk',
-        caption: 'Huddled around the office tables, sharing laughs, sweet bites, and memories that stay with us forever.',
-        src: 'images/friends/last-day.jpeg'
+        title: 'Release Letter Day',
+        caption: 'The day she got her official release letter — celebrating around the desk, and yes, Astha was missing that day!',
+        src: 'images/friends/last-day.jpeg',
+        aspectRatio: '4 / 3',
+        orientation: 'landscape'
       }
     ]
   },
@@ -208,9 +215,11 @@ export const FRIENDS_SETS: FriendSet[] = [
       },
       {
         id: 'outing-3',
-        title: 'Sweet Send-Off Celebration',
-        caption: 'A chocolate cake salute to great times, packed bags, and our unstoppable friend.',
-        src: 'images/friends/farewell.jpeg'
+        title: 'The Farewell Cake',
+        caption: 'Holding the cake we gave her for farewell — sending off our favorite teammate with chocolate, cheers, and big hugs!',
+        src: 'images/friends/farewell.jpeg',
+        aspectRatio: '3 / 4',
+        orientation: 'portrait'
       }
     ]
   },

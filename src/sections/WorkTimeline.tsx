@@ -170,7 +170,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                 return (
                   <motion.div
                     key={photo.id}
-                    className="friends-card"
+                    className={`friends-card ${photo.orientation || ''}`}
                     style={{ rotate: PHOTO_TILTS[globalIdx % PHOTO_TILTS.length] }}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -187,7 +187,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                       style={{ background: TAPE_COLORS[globalIdx % TAPE_COLORS.length] }}
                     />
                     <div className="friends-photo-frame">
-                      <Placeholder label={photo.title} src={photo.src} aspectRatio="4 / 3" />
+                      <Placeholder label={photo.title} src={photo.src} aspectRatio={photo.aspectRatio || '4 / 3'} />
                     </div>
                     <div className="friends-card-body">
                       <div className="friends-card-meta">
@@ -237,11 +237,11 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                 </button>
               </div>
 
-              <div className="friends-modal-photo">
+              <div className={`friends-modal-photo ${FRIENDS_PHOTOS[selectedIdx].orientation || ''}`}>
                 <Placeholder
                   label={FRIENDS_PHOTOS[selectedIdx].title}
                   src={FRIENDS_PHOTOS[selectedIdx].src}
-                  aspectRatio="4 / 3"
+                  aspectRatio={FRIENDS_PHOTOS[selectedIdx].aspectRatio || 'auto'}
                 />
               </div>
 
