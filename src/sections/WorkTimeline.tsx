@@ -123,18 +123,6 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
             exit={{ opacity: 0, y: -16, scale: 0.98 }}
             transition={{ duration: 0.32, ease: 'easeOut' }}
           >
-            {currentSet.gif && (
-              <motion.div
-                className="friends-gif-badge"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.15 }}
-              >
-                <img src={currentSet.gif} alt={currentSet.gifAlt || 'Pengu'} className="friends-gif-img" />
-                <span className="friends-gif-label">Road Trip Crew</span>
-              </motion.div>
-            )}
-
             {currentSet.isHero ? (
               <motion.div
                 className="friends-hero-card"
@@ -154,7 +142,7 @@ export function WorkTimeline({ currentStep, setTotalSteps, onNext, onStepChange 
                   <Placeholder
                     label={currentSet.items[0].title}
                     src={currentSet.items[0].src}
-                    aspectRatio="16 / 10"
+                    aspectRatio="4 / 3"
                   />
                 </div>
 

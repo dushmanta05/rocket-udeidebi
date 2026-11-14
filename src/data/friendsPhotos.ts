@@ -27,8 +27,6 @@ export const FRIENDS_SETS: FriendSet[] = [
     title: 'When Our Group First Got Together',
     kicker: 'Chapter 2 · Act 1',
     subtitle: 'Where the story began — our very first road trip, lawn Uno, beach strolls, and golden hour leaps.',
-    gif: 'images/gifs/penguin-travel.gif',
-    gifAlt: 'Pengu traveling with luggage',
     offset: 0,
     items: [
       {
