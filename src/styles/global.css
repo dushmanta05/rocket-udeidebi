@@ -910,15 +910,34 @@ img {
 
 .baby-photo {
   position: absolute;
-  left: 20px;
-  right: 20px;
-  top: 30px;
+  left: 5px;
+  right: 5px;
+  top: 10px;
+  bottom: 20px;
   z-index: 1;
-  padding: 8px 8px 22px;
-  background: #ffffff;
-  border-radius: 6px;
-  box-shadow: var(--shadow-card);
-  transform: rotate(-3deg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.baby-photo .media-frame {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.baby-photo .media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
 }
 
 .shell-bottom {
@@ -1244,31 +1263,19 @@ img {
   min-height: 0;
 }
 
-.family-cards-wrap.set-0 {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 390px));
-  justify-content: center;
-  gap: clamp(14px, 2vw, 24px);
-  max-width: 840px;
-  width: 100%;
-}
-
-.family-cards-wrap.set-0 .family-card {
-  width: 100%;
-}
-
+.family-cards-wrap.set-0,
 .family-cards-wrap.set-1 {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 340px));
   justify-content: center;
-  gap: clamp(12px, 1.6vw, 18px);
-  max-width: 1040px;
+  gap: clamp(10px, 1.4vw, 18px);
+  max-width: 1080px;
   width: 100%;
 }
 
+.family-cards-wrap.set-0 .family-card,
 .family-cards-wrap.set-1 .family-card {
-  width: clamp(260px, 23vw, 315px);
-  flex: 0 0 auto;
+  width: 100%;
 }
 
 .family-card {
@@ -2295,7 +2302,29 @@ img {
 }
 
 .artifact-photo {
-  max-height: 40vh;
+  max-height: 38vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artifact-photo .media-frame {
+  width: min(100%, 280px);
+  max-height: 38vh;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, transparent 68%);
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artifact-photo .media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.55));
 }
 
 .artifact-text {
@@ -5113,21 +5142,17 @@ img {
     height: auto;
   }
 
-  .family-cards-wrap.set-0 {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    max-width: 360px;
-  }
-
+  .family-cards-wrap.set-0,
   .family-cards-wrap.set-1 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
-    max-width: 360px;
+    max-width: 380px;
   }
 
+  .family-cards-wrap.set-0 .family-card,
   .family-cards-wrap.set-1 .family-card {
-    flex: 0 1 calc((100% - 8px) / 2);
-    min-width: 135px;
-    width: auto;
+    width: 100%;
   }
 
   .family-photo-frame {

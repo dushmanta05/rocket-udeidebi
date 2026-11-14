@@ -1,7 +1,7 @@
 export const ASSETS = {
   hippo: './images/hippo.png',
   arpita: './images/arpita.jpeg',
-  babyArpita: './images/baby-arpita.jpg',
+  babyArpita: './images/arpita.png',
   penguRocket: './images/pengu-on-rocket.png',
   penguRocketGif: './images/gifs/pengu-rocket.gif',
   pengu: './images/pengu.png',

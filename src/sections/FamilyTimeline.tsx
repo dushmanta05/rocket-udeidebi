@@ -14,13 +14,13 @@ const PHOTO_TILTS = [-2, 1.8, -1.8, 2, -1.8, 1.6, -2, 1.8, -1.5]
 const SETS = [
   {
     title: 'Her Early Journey',
-    items: FAMILY_PHOTOS.slice(0, 4),
+    items: FAMILY_PHOTOS.slice(0, 6),
     offset: 0
   },
   {
-    title: "Family & The 'A' Squad",
-    items: FAMILY_PHOTOS.slice(4),
-    offset: 4
+    title: 'Family & Siblings',
+    items: FAMILY_PHOTOS.slice(6),
+    offset: 6
   }
 ]
 

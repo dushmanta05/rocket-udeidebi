@@ -54,7 +54,7 @@ export function BagReveal({ currentStep, setTotalSteps, onNext }: StepSectionPro
             transition={{ type: 'spring', damping: 13 }}
           >
             <div className="artifact-photo">
-              <Placeholder label={`Photo: ${item.name}`} src={item.src} aspectRatio="4 / 3" />
+              <Placeholder label={`Photo: ${item.name}`} src={item.src} aspectRatio="1 / 1" />
             </div>
             <div className="artifact-text">
               <span className="pill">Artifact {String(index + 1).padStart(2, '0')}</span>

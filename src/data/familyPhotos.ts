@@ -26,38 +26,56 @@ export const FAMILY_PHOTOS: FamilyPhoto[] = [
   },
   {
     id: 'fam-4',
-    title: 'Arpita & Zoxo',
-    caption: 'Certified Jagatmata cuddling her favorite four-legged boy Zoxo.',
+    title: 'Braids & Mischief',
+    caption: 'Signature braided strands and that unmistakable sparkle of pure mischief.',
     src: './images/family/arpita-4.jpeg'
   },
   {
     id: 'fam-5',
+    title: 'Sweet Home Vibes',
+    caption: 'Peaceful, cozy at home — rare serene Hippo moments before the next adventure.',
+    src: './images/family/arpita-5.jpeg'
+  },
+  {
+    id: 'fam-6',
+    title: 'Arpita & Zoxo',
+    caption: 'Certified Jagatmata cuddling her favorite four-legged boy Zoxo.',
+    src: './images/family/arpita-6.jpeg'
+  },
+  {
+    id: 'fam-7',
     title: 'The Core Family',
     caption: 'With Mom, Dad, and Ankita Didi — the foundation of all her love and warmth.',
     src: './images/family/family-1.jpeg'
   },
   {
-    id: 'fam-6',
+    id: 'fam-8',
     title: 'Mom, Arpita & Zoxo',
     caption: 'Sweetest moments at home with Mom and Zoxo by her side.',
     src: './images/family/family-2.jpeg'
   },
   {
-    id: 'fam-7',
+    id: 'fam-9',
     title: 'With Ankita Didi',
     caption: 'Lifelong secrets, shared wardrobes, and an unbreakable sister bond.',
     src: './images/family/family-3.jpeg'
   },
   {
-    id: 'fam-8',
+    id: 'fam-10',
     title: 'With Amit',
     caption: 'Partner in crime, endless teasing, and unconditional sibling love.',
     src: './images/family/family-4.jpeg'
   },
   {
-    id: 'fam-9',
+    id: 'fam-11',
     title: 'The "A" Squad',
     caption: 'Arpita, Ankita, Amit & cousin Anchal. Proof the family ran out of alphabet letters! Four A’s, infinite chaos, and a lifetime of shared memories.',
     src: './images/family/siblings.jpeg'
+  },
+  {
+    id: 'fam-12',
+    title: 'Our Own TVF Tripling',
+    caption: 'TVF had Chandan, Chanchal & Chitvan (the 3 C’s) — here we have Amit, Ankita & Arpita (the 3 A’s)! The original sibling trio navigating road trips, chaos, and endless family drama.',
+    src: './images/family/tripling.jpeg'
   }
 ]
