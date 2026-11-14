@@ -1778,6 +1778,13 @@ img {
   border-radius: 2px;
 }
 
+.polaroid .media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .polaroid-tape {
   position: absolute;
   top: -10px;
