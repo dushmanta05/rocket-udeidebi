@@ -6198,20 +6198,92 @@ img {
     margin-top: 2px;
   }
 
+  .thanks-section {
+    justify-content: flex-start;
+    padding-top: max(40px, calc(env(safe-area-inset-top, 0px) + 20px));
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 68px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .thanks-layout {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: min(92vw, 440px);
+    margin: 0 auto;
+  }
+
+  .thanks-layout .hippo-wrapper {
+    gap: 8px;
+  }
+
+  .thanks-layout .hippo-character {
+    max-width: min(160px, 44vw);
+    max-height: min(160px, 22vh);
+  }
+
+  .thanks-layout .speech-bubble {
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    max-width: min(85vw, 260px);
+    white-space: normal;
+    text-align: center;
+  }
+
+  .thanks-card {
+    position: relative;
+    padding: 22px 16px 16px;
+    max-width: min(92vw, 440px);
+    gap: 10px;
+  }
+
+  .thanks-dance-badge {
+    top: -28px;
+    right: 10px;
+  }
+
+  .thanks-dance-badge .pengu {
+    width: 68px !important;
+    height: 68px !important;
+  }
+
+  .thanks-title {
+    font-size: clamp(1.8rem, 5.2vw, 2.4rem);
+    padding-right: 50px;
+  }
+
+  .thanks-line {
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
   .thanks-foot {
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
+    margin-top: 4px;
+  }
+
+  .thanks-party-dancer .pengu {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .thanks-sign {
+    align-self: center;
+    font-size: 1.45rem;
+  }
+
+  .thanks-bottom-action {
+    margin-top: 8px;
+    margin-bottom: 16px;
   }
 
   .welcome-hippo .hippo-character {
     max-width: min(210px, 50vw);
     max-height: min(210px, 28vh);
-  }
-
-  .thanks-layout .hippo-character {
-    max-width: min(200px, 48vw);
-    max-height: min(200px, 28vh);
   }
 
   .timeline-track {
@@ -6719,23 +6791,6 @@ img {
     margin-bottom: 2px;
   }
 
-  .thanks-card {
-    padding: 16px 16px;
-    max-width: min(92vw, 440px);
-  }
-
-  .thanks-title {
-    font-size: clamp(2rem, 5.5vw, 2.7rem);
-  }
-
-  .thanks-body {
-    font-size: 0.95rem;
-  }
-
-  .thanks-bottom-action {
-    margin-top: 8px;
-    margin-bottom: 12px;
-  }
 
   .launch-rocket svg.pengu-rocket {
     width: min(130px, 32vw);
