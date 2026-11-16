@@ -1,8 +1,11 @@
+import { useState, useEffect, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigation } from './hooks/useNavigation'
 import { ProgressRocket } from './components/ProgressRocket'
 import { Starfield } from './components/Starfield'
 import { RocketFlyby } from './components/RocketFlyby'
+import { LoginScreen } from './components/LoginScreen'
+import { AUTH_CONFIG, type AuthSession } from './data/auth'
 import { SECTIONS } from './data/sections'
 
 import { Welcome } from './sections/Welcome'
@@ -22,10 +25,61 @@ import { HeartOfGold } from './sections/HeartOfGold'
 import { CrewMessages } from './sections/CrewMessages'
 import { LaunchFinale } from './sections/LaunchFinale'
 
+const checkSessionValid = (): boolean => {
+  try {
+    const raw = localStorage.getItem(AUTH_CONFIG.storageKey)
+    if (!raw) return false
+    const parsed = JSON.parse(raw) as AuthSession
+    if (parsed && typeof parsed.expiresAt === 'number' && parsed.expiresAt > Date.now()) {
+      return true
+    }
+  } catch {
+    return false
+  }
+  return false
+}
+
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => checkSessionValid())
   const nav = useNavigation(SECTIONS.length)
   const { currentSection, currentStep, setTotalSteps, goToNext, goToPrev, setStep } = nav
   const stepProps = { currentStep, setTotalSteps, onNext: goToNext, onStepChange: setStep }
+
+  const handleLoginSuccess = useCallback((user: string) => {
+    const session: AuthSession = {
+      user,
+      expiresAt: Date.now() + AUTH_CONFIG.tenureMs
+    }
+    try {
+      localStorage.setItem(AUTH_CONFIG.storageKey, JSON.stringify(session))
+    } catch {}
+    setIsAuthenticated(true)
+  }, [])
+
+  const handleLogout = useCallback(() => {
+    try {
+      localStorage.removeItem(AUTH_CONFIG.storageKey)
+    } catch {}
+    setIsAuthenticated(false)
+  }, [])
+
+  useEffect(() => {
+    if (!isAuthenticated) return
+    const raw = localStorage.getItem(AUTH_CONFIG.storageKey)
+    if (!raw) return
+    try {
+      const parsed = JSON.parse(raw) as AuthSession
+      const remaining = parsed.expiresAt - Date.now()
+      if (remaining <= 0) {
+        handleLogout()
+        return
+      }
+      const timer = setTimeout(handleLogout, remaining)
+      return () => clearTimeout(timer)
+    } catch {
+      handleLogout()
+    }
+  }, [isAuthenticated, handleLogout])
 
   const renderSection = () => {
     switch (currentSection) {
@@ -66,12 +120,33 @@ export default function App() {
     }
   }
 
+  if (!isAuthenticated) {
+    return (
+      <div className="app">
+        <Starfield />
+        <LoginScreen onLoginSuccess={handleLoginSuccess} />
+      </div>
+    )
+  }
+
   return (
     <div className="app">
       <Starfield />
       <RocketFlyby section={currentSection} />
 
       <div className="top-controls">
+        <button
+          type="button"
+          className="icon-btn"
+          onClick={handleLogout}
+          aria-label="Lock Launch Pad"
+          title="Lock Launch Pad"
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </button>
         <button
           type="button"
           className="icon-btn"

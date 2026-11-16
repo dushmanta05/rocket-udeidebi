@@ -71,6 +71,7 @@ type PenguVariant =
   | 'greet'
   | 'please'
   | 'popcorn'
+  | 'typing'
 
 interface PenguProps {
   size?: number
@@ -145,7 +146,8 @@ const VARIANT_SRC: Record<PenguVariant, string> = {
   yes: ASSETS.penguYes,
   greet: ASSETS.penguGreet,
   please: ASSETS.penguPlease,
-  popcorn: ASSETS.penguPopcorn
+  popcorn: ASSETS.penguPopcorn,
+  typing: ASSETS.penguTyping
 }
 
 export function Pengu({ size = 180, variant = 'arpita', className = '' }: PenguProps) {
