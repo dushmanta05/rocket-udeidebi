@@ -170,6 +170,9 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
                   if (error) setError(null)
                 }}
                 disabled={isLockedOut || isSubmitting}
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
                 autoComplete="username"
                 autoFocus
               />
@@ -196,6 +199,9 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
                   if (error) setError(null)
                 }}
                 disabled={isLockedOut || isSubmitting}
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
                 autoComplete="current-password"
               />
               <button
