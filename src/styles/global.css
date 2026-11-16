@@ -5815,6 +5815,7 @@ img {
   padding: 0 clamp(36px, 6vw, 90px);
 }
 
+.mobile-dock,
 .dock-nav-btn {
   display: none;
 }
@@ -6565,44 +6566,66 @@ img {
     right: 0;
     bottom: 0;
     height: auto;
-    padding: 0 16px calc(env(safe-area-inset-bottom, 0px) + 12px);
+    padding: 0 0 calc(env(safe-area-inset-bottom, 0px) + 12px);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     pointer-events: none;
-    z-index: 15;
+    z-index: 20;
   }
 
   .progress-track {
     display: none;
   }
 
+  .mobile-dock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 4px 6px;
+    background: rgba(14, 20, 48, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    pointer-events: auto;
+  }
+
   .dock-nav-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: rgba(14, 20, 48, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     color: var(--ink);
-    font-size: 1.6rem;
+    font-size: 1.45rem;
     line-height: 1;
-    pointer-events: auto;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     transition: transform 0.15s ease, background 0.15s ease;
   }
 
-  .dock-nav-btn:active {
+  .dock-nav-btn:active:not(:disabled) {
     transform: scale(0.92);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.22);
   }
 
-  .dock-nav-btn.next {
-    margin-left: auto;
+  .dock-nav-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  .dock-counter {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    padding: 0 6px;
+    user-select: none;
   }
 }
 

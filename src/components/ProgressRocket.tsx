@@ -26,19 +26,40 @@ export function ProgressRocket({
 
   return (
     <nav className="progress" aria-label="Sections">
-      {onPrev && (
-        <button
-          type="button"
-          className="dock-nav-btn prev"
-          onClick={(e) => {
-            e.stopPropagation()
-            onPrev()
-          }}
-          aria-label="Previous"
-        >
-          ‹
-        </button>
-      )}
+      <div className="mobile-dock">
+        {onPrev && (
+          <button
+            type="button"
+            className="dock-nav-btn prev"
+            onClick={(e) => {
+              e.stopPropagation()
+              onPrev()
+            }}
+            disabled={currentSection === 0 && currentStep === 0}
+            aria-label="Previous"
+          >
+            ‹
+          </button>
+        )}
+        <span className="dock-counter">
+          {String(currentSection + 1).padStart(2, '0')} / {String(totalSections).padStart(2, '0')}
+        </span>
+        {onNext && (
+          <button
+            type="button"
+            className="dock-nav-btn next"
+            onClick={(e) => {
+              e.stopPropagation()
+              onNext()
+            }}
+            disabled={currentSection >= totalSections - 1}
+            aria-label="Next"
+          >
+            ›
+          </button>
+        )}
+      </div>
+
       <div className="progress-track">
         <div className="progress-fill" style={{ width: `${percent}%` }} />
         {SECTIONS.map((section, idx) => (
@@ -64,19 +85,6 @@ export function ProgressRocket({
           <PenguinRocketArt size={36} tilt={40} />
         </motion.div>
       </div>
-      {onNext && currentSection < totalSections - 1 && (
-        <button
-          type="button"
-          className="dock-nav-btn next"
-          onClick={(e) => {
-            e.stopPropagation()
-            onNext()
-          }}
-          aria-label="Next"
-        >
-          ›
-        </button>
-      )}
     </nav>
   )
 }
