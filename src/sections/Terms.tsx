@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { TERMS_DATA } from '../data/terms'
@@ -20,6 +20,7 @@ export function Terms({ onNext }: TermsProps) {
   const [offset, setOffset] = useState({ x: 0, y: 0 })
   const [escapes, setEscapes] = useState(0)
   const [activeTermIdx, setActiveTermIdx] = useState<number | null>(null)
+  const touchStartXRef = useRef<number | null>(null)
 
   const navigateClause = (newIdx: number) => {
     setActiveTermIdx(newIdx)
@@ -162,6 +163,19 @@ export function Terms({ onNext }: TermsProps) {
               exit={{ scale: 0.85, opacity: 0, y: 20 }}
               transition={{ type: 'spring', damping: 18 }}
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={(e) => {
+                touchStartXRef.current = e.touches[0].clientX
+              }}
+              onTouchEnd={(e) => {
+                if (touchStartXRef.current === null) return
+                const diff = e.changedTouches[0].clientX - touchStartXRef.current
+                if (diff > 45) {
+                  navigateClause((activeTermIdx - 1 + TERMS_DATA.length) % TERMS_DATA.length)
+                } else if (diff < -45) {
+                  navigateClause((activeTermIdx + 1) % TERMS_DATA.length)
+                }
+                touchStartXRef.current = null
+              }}
             >
               <div className="term-modal-header">
                 <span className="pill">Clause {String(TERMS_DATA[activeTermIdx].id).padStart(2, '0')} of {TERMS_DATA.length}</span>

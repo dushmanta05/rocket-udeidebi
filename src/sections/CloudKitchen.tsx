@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { MENU_ITEMS } from '../data/menu'
@@ -13,6 +13,7 @@ const RECIPE_TILTS = [-2, 2.4, -1.8, 2, -2.2, 1.8]
 export function CloudKitchen() {
   const [activeIdx, setActiveIdx] = useState<number | null>(null)
   const [ticket, setTicket] = useState(101)
+  const touchStartXRef = useRef<number | null>(null)
 
   const activeDish = activeIdx !== null ? MENU_ITEMS[activeIdx] : null
 
@@ -117,6 +118,19 @@ export function CloudKitchen() {
               exit={{ scale: 0.85, opacity: 0, y: 20 }}
               transition={{ type: 'spring', damping: 18 }}
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={(e) => {
+                touchStartXRef.current = e.touches[0].clientX
+              }}
+              onTouchEnd={(e) => {
+                if (touchStartXRef.current === null) return
+                const diff = e.changedTouches[0].clientX - touchStartXRef.current
+                if (diff > 45) {
+                  navigateDish((activeIdx - 1 + MENU_ITEMS.length) % MENU_ITEMS.length)
+                } else if (diff < -45) {
+                  navigateDish((activeIdx + 1) % MENU_ITEMS.length)
+                }
+                touchStartXRef.current = null
+              }}
             >
               <div className="kitchen-modal-header">
                 <h3 className="kitchen-modal-title">{activeDish.name}</h3>

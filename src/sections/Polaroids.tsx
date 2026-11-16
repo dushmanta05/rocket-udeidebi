@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { POLAROID_ITEMS, POLAROID_PAGES } from '../data/polaroids'
@@ -12,6 +12,7 @@ const TAPE_COLORS = ['#ff8fb1', '#8ec5ff', '#ffd27a', '#b9a6ff']
 
 export function Polaroids({ currentStep, setTotalSteps }: StepSectionProps) {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null)
+  const touchStartXRef = useRef<number | null>(null)
 
   useEffect(() => {
     setTotalSteps(POLAROID_PAGES.length)
@@ -111,6 +112,19 @@ export function Polaroids({ currentStep, setTotalSteps }: StepSectionProps) {
               exit={{ scale: 0.8, rotate: 4, opacity: 0 }}
               transition={{ type: 'spring', damping: 20 }}
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={(e) => {
+                touchStartXRef.current = e.touches[0].clientX
+              }}
+              onTouchEnd={(e) => {
+                if (touchStartXRef.current === null) return
+                const diff = e.changedTouches[0].clientX - touchStartXRef.current
+                if (diff > 45) {
+                  navigatePhoto((selectedIdx - 1 + items.length) % items.length)
+                } else if (diff < -45) {
+                  navigatePhoto((selectedIdx + 1) % items.length)
+                }
+                touchStartXRef.current = null
+              }}
             >
               <div className="polaroid-modal-head">
                 <span className="polaroid-pill">

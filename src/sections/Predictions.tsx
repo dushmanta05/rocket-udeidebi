@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { PREDICTION_SETS, type PredictionItem } from '../data/predictions'
@@ -20,6 +20,7 @@ function Sparkle({ className }: { className: string }) {
 
 export function Predictions({ currentStep, setTotalSteps, onNext, onStepChange }: StepSectionProps) {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null)
+  const touchStartXRef = useRef<number | null>(null)
 
   useEffect(() => {
     setTotalSteps(PREDICTION_SETS.length)
@@ -184,6 +185,19 @@ export function Predictions({ currentStep, setTotalSteps, onNext, onStepChange }
               exit={{ scale: 0.88, opacity: 0, y: 16 }}
               transition={{ type: 'spring', damping: 18 }}
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={(e) => {
+                touchStartXRef.current = e.touches[0].clientX
+              }}
+              onTouchEnd={(e) => {
+                if (touchStartXRef.current === null) return
+                const diff = e.changedTouches[0].clientX - touchStartXRef.current
+                if (diff > 45) {
+                  navigateModal((selectedIdx - 1 + items.length) % items.length)
+                } else if (diff < -45) {
+                  navigateModal((selectedIdx + 1) % items.length)
+                }
+                touchStartXRef.current = null
+              }}
             >
               <div className="fortune-modal-mascot">
                 <Pengu size={110} variant={activeItem.text.includes('Rocket udeidebi') ? 'rocket' : 'future'} />

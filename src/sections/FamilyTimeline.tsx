@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { FAMILY_PHOTOS } from '../data/familyPhotos'
@@ -26,6 +26,7 @@ const SETS = [
 
 export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSectionProps) {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null)
+  const touchStartXRef = useRef<number | null>(null)
 
   useEffect(() => {
     setTotalSteps(SETS.length)
@@ -159,6 +160,19 @@ export function FamilyTimeline({ currentStep, setTotalSteps, onNext }: StepSecti
               exit={{ scale: 0.88, opacity: 0, y: 16 }}
               transition={{ type: 'spring', damping: 18 }}
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={(e) => {
+                touchStartXRef.current = e.touches[0].clientX
+              }}
+              onTouchEnd={(e) => {
+                if (touchStartXRef.current === null) return
+                const diff = e.changedTouches[0].clientX - touchStartXRef.current
+                if (diff > 45) {
+                  setSelectedIdx((prev) => (prev !== null ? (prev - 1 + currentSet.items.length) % currentSet.items.length : null))
+                } else if (diff < -45) {
+                  setSelectedIdx((prev) => (prev !== null ? (prev + 1) % currentSet.items.length : null))
+                }
+                touchStartXRef.current = null
+              }}
             >
               <div className="family-modal-header">
                 <span className="pill">Memory {String(selectedIdx + 1).padStart(2, '0')} of {String(currentSet.items.length).padStart(2, '0')}</span>
