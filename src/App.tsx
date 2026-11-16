@@ -122,6 +122,8 @@ export default function App() {
           currentStep={currentStep}
           totalSteps={nav.totalSteps}
           onSectionClick={nav.setSection}
+          onPrev={goToPrev}
+          onNext={goToNext}
         />
       )}
     </div>

@@ -5594,6 +5594,10 @@ img {
   padding: 0 clamp(36px, 6vw, 90px);
 }
 
+.dock-nav-btn {
+  display: none;
+}
+
 .progress-track {
   position: relative;
   width: 100%;
@@ -6134,6 +6138,35 @@ img {
 
   .nav-arrow {
     display: none;
+  }
+
+  .progress {
+    padding: 0 14px calc(env(safe-area-inset-bottom, 0px) + 6px);
+    height: calc(var(--progress-h) + env(safe-area-inset-bottom, 0px));
+    gap: 12px;
+  }
+
+  .dock-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: var(--ink);
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+    backdrop-filter: blur(8px);
+    transition: transform 0.15s ease, background 0.15s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .dock-nav-btn:active {
+    transform: scale(0.9);
+    background: rgba(255, 255, 255, 0.25);
   }
 }
 

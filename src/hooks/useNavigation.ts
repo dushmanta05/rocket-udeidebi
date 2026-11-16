@@ -14,8 +14,17 @@ export interface NavigationState {
   isFullscreen: boolean
 }
 
+const getInitialSection = (total: number) => {
+  const hash = window.location.hash.replace('#', '')
+  const parsed = parseInt(hash, 10)
+  if (!Number.isNaN(parsed) && parsed >= 0 && parsed < total) {
+    return parsed
+  }
+  return 0
+}
+
 export function useNavigation(totalSections: number): NavigationState {
-  const [currentSection, setCurrentSection] = useState(0)
+  const [currentSection, setCurrentSection] = useState(() => getInitialSection(totalSections))
   const [currentStep, setCurrentStep] = useState(0)
   const [totalSteps, setTotalStepsState] = useState(1)
   const [isFullscreen, setIsFullscreen] = useState(false)
@@ -60,6 +69,23 @@ export function useNavigation(totalSections: number): NavigationState {
     }
   }, [totalSections, currentSection])
 
+  useEffect(() => {
+    if (window.location.hash !== `#${currentSection}`) {
+      window.location.hash = String(currentSection)
+    }
+  }, [currentSection])
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const target = getInitialSection(totalSections)
+      if (target !== currentSection) {
+        setSection(target)
+      }
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [totalSections, currentSection, setSection])
+
   const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().then(() => setIsFullscreen(true)).catch(() => {})
@@ -93,10 +119,21 @@ export function useNavigation(totalSections: number): NavigationState {
 
     const handleTouchEnd = (e: TouchEvent) => {
       if (touchStartXRef.current === null || touchStartYRef.current === null) return
+      const hasActiveModal = Boolean(
+        document.querySelector(
+          '.modal-backdrop, .family-modal-overlay, .term-modal-backdrop, .kitchen-modal-backdrop, .fortune-modal-backdrop, [data-modal-open="true"]'
+        )
+      )
+      if (hasActiveModal) {
+        touchStartXRef.current = null
+        touchStartYRef.current = null
+        return
+      }
+
       const deltaX = e.changedTouches[0].clientX - touchStartXRef.current
       const deltaY = e.changedTouches[0].clientY - touchStartYRef.current
 
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+      if (Math.abs(deltaX) > Math.abs(deltaY) * 1.4 && Math.abs(deltaX) > 55) {
         if (deltaX < 0) {
           goToNext()
         } else {

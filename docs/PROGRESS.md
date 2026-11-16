@@ -258,3 +258,6 @@ Ideas raised for possible extra sections; none is started.
   - Bounded modal navigation in both Family Photos (`FamilyTimeline.tsx`) and Friends Photos (`WorkTimeline.tsx`) strictly to the active tab's items, matching Weird Expressions (`Polaroids.tsx`): clicking a photo shows "Memory 0X of 0N" with exactly N dots corresponding to that tab, and Previous/Next buttons and arrow keys cycle only within the current tab.
   - Purged `(Didi)`, `(Brother)`, and `(Cousin)` tags from Predictions author names (`Ankita`, `Amit`, `Anchal`), and replaced "Didi" in Paresh's prophecy with "Arpita".
   - Renamed Predictions Part 2 pill and title to "More Crew & Siblings", and enlarged prediction cards to `min-height: clamp(160px, 22vh, 215px)`, `max-width: 1200px`, 5-line text clamp, and increased typography.
+
+### Session 7 (2026-11-16)
+- Mobile Dock Navigation & URL Hash Routing: Added URL hash syncing (`#0` to `#15`) in `useNavigation.ts` enabling browser back/forward buttons, refreshing without losing position, and direct deep-linking; added mobile dock navigation buttons (`‹` Prev and `›` Next) in `ProgressRocket.tsx` flanking the rocket progress track on screens under 900px; calibrated swipe threshold to prevent diagonal scroll conflicts and isolated touch swipes when modals are active.
