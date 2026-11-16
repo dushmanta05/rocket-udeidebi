@@ -485,6 +485,38 @@ img {
   border-radius: var(--radius-full);
 }
 
+.login-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.login-submit-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.login-toggle-pass:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.login-security-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+.login-security-badge svg {
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+
 .login-hint-text {
   font-family: var(--font-hand);
   color: var(--gold);

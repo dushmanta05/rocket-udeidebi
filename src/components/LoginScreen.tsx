@@ -1,7 +1,7 @@
-import { useState, type FormEvent } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
-import { AUTH_CONFIG } from '../data/auth'
+import { AUTH_CONFIG, hashPassword, type LockoutState } from '../data/auth'
 import { Pengu } from './Pengu'
 
 interface LoginScreenProps {
@@ -16,14 +16,50 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [shakeKey, setShakeKey] = useState(0)
 
-  const { copy } = AUTH_CONFIG
+  const [lockoutSeconds, setLockoutSeconds] = useState<number>(() => {
+    try {
+      const raw = localStorage.getItem(AUTH_CONFIG.lockoutKey)
+      if (!raw) return 0
+      const parsed = JSON.parse(raw) as LockoutState
+      if (parsed && typeof parsed.lockedUntil === 'number') {
+        const diff = Math.ceil((parsed.lockedUntil - Date.now()) / 1000)
+        return diff > 0 ? diff : 0
+      }
+    } catch {}
+    return 0
+  })
 
-  const handleSubmit = (e: FormEvent) => {
+  useEffect(() => {
+    if (lockoutSeconds <= 0) return
+
+    const interval = setInterval(() => {
+      setLockoutSeconds((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval)
+          try {
+            localStorage.removeItem(AUTH_CONFIG.lockoutKey)
+          } catch {}
+          setError(null)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [lockoutSeconds])
+
+  const { copy } = AUTH_CONFIG
+  const isLockedOut = lockoutSeconds > 0
+  const activeError = isLockedOut ? copy.errorLocked(lockoutSeconds) : error
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    if (isLockedOut || isSubmitting) return
     setError(null)
 
     const trimmedUser = username.trim().toLowerCase()
-    const trimmedPass = password.trim().toLowerCase()
+    const trimmedPass = password.trim()
 
     if (!trimmedUser || !trimmedPass) {
       setError(copy.errorEmpty)
@@ -31,11 +67,24 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
       return
     }
 
-    const isUserValid = (AUTH_CONFIG.validUsers as readonly string[]).includes(trimmedUser)
-    const isPassValid = (AUTH_CONFIG.validPasswords as readonly string[]).includes(trimmedPass)
+    setIsSubmitting(true)
+
+    const isUserValid = trimmedUser === AUTH_CONFIG.validUsername
+
+    let targetHash: string = AUTH_CONFIG.defaultHash
+    if (AUTH_CONFIG.validPasswordHash) {
+      targetHash = AUTH_CONFIG.validPasswordHash
+    } else if (AUTH_CONFIG.validPlainPassword) {
+      targetHash = await hashPassword(AUTH_CONFIG.validPlainPassword)
+    }
+
+    const inputHash = await hashPassword(trimmedPass)
+    const isPassValid = inputHash === targetHash
 
     if (isUserValid && isPassValid) {
-      setIsSubmitting(true)
+      try {
+        localStorage.removeItem(AUTH_CONFIG.lockoutKey)
+      } catch {}
       confetti({
         particleCount: 65,
         spread: 80,
@@ -46,7 +95,32 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
         onLoginSuccess(trimmedUser)
       }, 500)
     } else {
-      setError(copy.errorInvalid)
+      setIsSubmitting(false)
+      let currentAttempts = 0
+      try {
+        const raw = localStorage.getItem(AUTH_CONFIG.lockoutKey)
+        if (raw) {
+          const parsed = JSON.parse(raw) as LockoutState
+          if (parsed && typeof parsed.attempts === 'number') {
+            currentAttempts = parsed.attempts
+          }
+        }
+      } catch {}
+
+      const newAttempts = currentAttempts + 1
+      if (newAttempts >= AUTH_CONFIG.maxAttempts) {
+        const lockUntil = Date.now() + AUTH_CONFIG.lockoutDurationMs
+        try {
+          localStorage.setItem(AUTH_CONFIG.lockoutKey, JSON.stringify({ attempts: newAttempts, lockedUntil: lockUntil }))
+        } catch {}
+        setLockoutSeconds(Math.ceil(AUTH_CONFIG.lockoutDurationMs / 1000))
+      } else {
+        try {
+          localStorage.setItem(AUTH_CONFIG.lockoutKey, JSON.stringify({ attempts: newAttempts, lockedUntil: 0 }))
+        } catch {}
+        const remaining = AUTH_CONFIG.maxAttempts - newAttempts
+        setError(`${copy.errorInvalid} ${copy.attemptsRemaining(remaining)}`)
+      }
       setShakeKey((prev) => prev + 1)
     }
   }
@@ -102,6 +176,7 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
                   setUsername(e.target.value)
                   if (error) setError(null)
                 }}
+                disabled={isLockedOut || isSubmitting}
                 autoComplete="username"
                 autoFocus
               />
@@ -127,6 +202,7 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
                   setPassword(e.target.value)
                   if (error) setError(null)
                 }}
+                disabled={isLockedOut || isSubmitting}
                 autoComplete="current-password"
               />
               <button
@@ -134,6 +210,7 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
                 className="login-toggle-pass"
                 onClick={() => setShowPassword((prev) => !prev)}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
+                disabled={isLockedOut || isSubmitting}
               >
                 {showPassword ? (
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -151,7 +228,7 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
           </div>
 
           <AnimatePresence>
-            {error && (
+            {activeError && (
               <motion.div
                 className="login-error-msg"
                 initial={{ opacity: 0, height: 0 }}
@@ -164,7 +241,7 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
                   <line x1="12" y1="8" x2="12" y2="12" />
                   <line x1="12" y1="16" x2="12.01" y2="16" />
                 </svg>
-                <span>{error}</span>
+                <span>{activeError}</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -172,15 +249,25 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
           <motion.button
             type="submit"
             className="primary-btn login-submit-btn"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            disabled={isSubmitting}
+            whileHover={!isLockedOut && !isSubmitting ? { scale: 1.02 } : {}}
+            whileTap={!isLockedOut && !isSubmitting ? { scale: 0.97 } : {}}
+            disabled={isLockedOut || isSubmitting}
           >
             <span>{copy.submitBtn}</span>
-            <span aria-hidden="true">🚀</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+              <path d="M9 12H4s.55-3.03 2-4.5c1.45-1.47 4.5-2 4.5-2" />
+              <path d="M12 15v5s3.03-.55 4.5-2c1.47-1.45 2-4.5 2-4.5" />
+            </svg>
           </motion.button>
 
-          <p className="login-hint-text">{copy.passHint}</p>
+          <div className="login-security-badge">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <span>{copy.securityBadge}</span>
+          </div>
         </form>
       </motion.div>
     </div>
