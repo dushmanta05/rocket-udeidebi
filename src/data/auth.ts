@@ -28,7 +28,6 @@ export async function hashPassword(password: string): Promise<string> {
 }
 
 const envUser = typeof import.meta !== 'undefined' && (import.meta as unknown as { env?: { VITE_AUTH_USERNAME?: string } }).env?.VITE_AUTH_USERNAME
-const envPass = typeof import.meta !== 'undefined' && (import.meta as unknown as { env?: { VITE_AUTH_PASSWORD?: string } }).env?.VITE_AUTH_PASSWORD
 const envPassHash = typeof import.meta !== 'undefined' && (import.meta as unknown as { env?: { VITE_AUTH_PASSWORD_HASH?: string } }).env?.VITE_AUTH_PASSWORD_HASH
 
 const DEFAULT_USERNAME = 'hippo'
@@ -42,7 +41,6 @@ export const AUTH_CONFIG = {
   lockoutDurationMs: 60 * 1000,
   validUsername: envUser ? envUser.trim().toLowerCase() : DEFAULT_USERNAME,
   validPasswordHash: envPassHash ? envPassHash.trim().toLowerCase() : '',
-  validPlainPassword: envPass ? envPass.trim() : '',
   defaultHash: DEFAULT_PASSWORD_HASH,
   copy: {
     kicker: 'RESTRICTED LAUNCH PAD',

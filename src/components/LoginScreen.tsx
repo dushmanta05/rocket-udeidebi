@@ -70,14 +70,7 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
     setIsSubmitting(true)
 
     const isUserValid = trimmedUser === AUTH_CONFIG.validUsername
-
-    let targetHash: string = AUTH_CONFIG.defaultHash
-    if (AUTH_CONFIG.validPasswordHash) {
-      targetHash = AUTH_CONFIG.validPasswordHash
-    } else if (AUTH_CONFIG.validPlainPassword) {
-      targetHash = await hashPassword(AUTH_CONFIG.validPlainPassword)
-    }
-
+    const targetHash = AUTH_CONFIG.validPasswordHash || AUTH_CONFIG.defaultHash
     const inputHash = await hashPassword(trimmedPass)
     const isPassValid = inputHash === targetHash
 
