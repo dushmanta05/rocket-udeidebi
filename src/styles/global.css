@@ -1025,17 +1025,24 @@ img {
 }
 
 .journey-backdrop {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   background-size: cover;
   background-position: 50% 65%;
   transform-origin: 48% 70%;
   z-index: 0;
+  pointer-events: none;
 }
 
 .journey-shade {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   background: linear-gradient(180deg, rgba(5, 6, 15, 0.55) 0%, rgba(5, 6, 15, 0) 30%, rgba(5, 6, 15, 0) 55%, rgba(5, 6, 15, 0.75) 100%);
   z-index: 0;
   pointer-events: none;
@@ -5976,6 +5983,99 @@ img {
     justify-content: center;
     padding-top: max(36px, calc(env(safe-area-inset-top, 0px) + 20px));
     padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+  }
+
+  .birth-section {
+    padding-top: max(36px, calc(env(safe-area-inset-top, 0px) + 16px));
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 64px);
+    overflow-x: hidden;
+  }
+
+  .birth-section .journey-caption {
+    margin-top: 1vh;
+    gap: 8px;
+    padding: 0 16px;
+  }
+
+  .birth-section .journey-line {
+    font-size: clamp(1.55rem, 5.2vw, 2.3rem);
+    line-height: 1.2;
+  }
+
+  .birth-section .journey-sub {
+    font-size: clamp(1.25rem, 3.8vw, 1.7rem);
+    line-height: 1.3;
+  }
+
+  .birth-section .journey-pengu-wrap {
+    margin: 6px 0 2px;
+  }
+
+  .birth-section .journey-pengu-wrap .pengu {
+    width: 105px !important;
+    height: 105px !important;
+  }
+
+  .birth-section .egg-scene {
+    gap: 8px;
+    padding: 0 16px;
+  }
+
+  .birth-section .rebirth-line {
+    font-size: clamp(1.3rem, 3.8vw, 1.7rem);
+    margin-bottom: 4px;
+  }
+
+  .birth-section .egg-title {
+    font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+  }
+
+  .birth-section .hatch-scene {
+    gap: 14px;
+    padding: 0 16px 24px;
+  }
+
+  .birth-section .hatch-egg {
+    width: 190px;
+    height: 270px;
+  }
+
+  .birth-section .hatch-egg .shell-bottom svg,
+  .birth-section .hatch-egg .shell-top svg {
+    width: 190px !important;
+    height: auto;
+  }
+
+  .birth-section .baby-photo {
+    bottom: 68px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .birth-section .hatch-text {
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .birth-section .hatch-text p {
+    font-size: clamp(0.95rem, 2.8vw, 1.15rem);
+    line-height: 1.4;
+  }
+
+  .birth-section .catchphrase-unlock-card {
+    padding: 10px 18px;
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  .birth-section .unlock-quote {
+    font-size: clamp(1.2rem, 3.2vw, 1.55rem);
+  }
+
+  .birth-section .unlock-pengu .pengu {
+    width: 85px !important;
+    height: 85px !important;
   }
 
   .welcome-grid,
