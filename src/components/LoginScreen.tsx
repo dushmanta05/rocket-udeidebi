@@ -141,12 +141,10 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
         </div>
 
         <header className="login-header">
-          <span className="kicker">{copy.kicker}</span>
           <h1 className="login-title">
             <span className="script-word">{copy.titleScript}</span>
             <span className="login-title-main">{copy.titleMain}</span>
           </h1>
-          <p className="login-subtitle">{copy.subtitle}</p>
         </header>
 
         <form className="login-form" onSubmit={handleSubmit}>
@@ -260,13 +258,6 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
               <path d="M12 15v5s3.03-.55 4.5-2c1.47-1.45 2-4.5 2-4.5" />
             </svg>
           </motion.button>
-
-          <div className="login-security-badge">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-            <span>{copy.securityBadge}</span>
-          </div>
         </form>
       </motion.div>
     </div>

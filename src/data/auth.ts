@@ -43,19 +43,16 @@ export const AUTH_CONFIG = {
   validPasswordHash: envPassHash ? envPassHash.trim().toLowerCase() : '',
   defaultHash: DEFAULT_PASSWORD_HASH,
   copy: {
-    kicker: 'RESTRICTED LAUNCH PAD',
     titleScript: 'Crew',
     titleMain: 'Access Gate',
-    subtitle: 'Hippo mission control credentials required for boarding.',
-    userLabel: 'Agent Nickname / Username',
-    userPlaceholder: 'Enter authorized username',
-    passLabel: 'Secret Launch Code',
-    passPlaceholder: 'Enter secret passcode',
-    submitBtn: 'Unlock Launch Pad',
-    securityBadge: 'SHA-256 Cryptographic Gate · Rate Limited',
-    errorEmpty: 'Please enter both username and secret code.',
-    errorInvalid: 'Access denied! Invalid username or launch code.',
-    errorLocked: (seconds: number) => `Security lockout: Too many failed attempts. Try again in ${seconds}s.`,
-    attemptsRemaining: (count: number) => `${count} attempt${count === 1 ? '' : 's'} remaining before temporary lockout.`
+    userLabel: 'Username',
+    userPlaceholder: 'Username',
+    passLabel: 'Secret Code',
+    passPlaceholder: 'Secret code',
+    submitBtn: 'Unlock',
+    errorEmpty: 'Enter username and secret code.',
+    errorInvalid: 'Invalid username or secret code.',
+    errorLocked: (seconds: number) => `Locked out. Try again in ${seconds}s.`,
+    attemptsRemaining: (count: number) => `(${count} left)`
   }
 } as const
